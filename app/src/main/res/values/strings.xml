@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">KisaanConnect</string>
+    <string name="login_failed">Login_Failed</string>
+    <string name="network_url">http://172.16.9.105:8000/api/user/</string>
+    <string name="network_check">http://www.google.com</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_govt_notification">Govt. Notif.</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string-array name="sports_array">
+                <item>wheat price increased
+        but at the same time rice
+        price fall
+     </item>
+                <item>rice
+                          shotage in market so farmers
+                       will be getting 100 rupee per kg.
+                        so sell it</item>
+                <item>zdsfdgdgfdgg
+       Modi told that
+        farmers will be given
+    seed free of cost</item>
+            
+            </string-array>
+</resources>
