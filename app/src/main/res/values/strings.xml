@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">KisaanConnect</string>
     <string name="login_failed">Login_Failed</string>
-    <string name="network_url">http://172.16.9.105:8000/api/user/</string>
+    <string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
     <string name="network_check">http://www.google.com</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_govt_notification">Govt. Notif.</string>
