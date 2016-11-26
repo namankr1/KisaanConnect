@@ -1,5 +1,10 @@
 package iitp.naman.kisaanconnect;
 
+import android.content.SharedPreferences;
+import android.text.InputType;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.app.ProgressDialog;
@@ -41,7 +46,10 @@ public class Login extends Activity
     Button btnReset;
     EditText inputPhone;
     EditText inputPassword;
-
+    ToggleButton tb;
+    CheckBox ch2;
+    SharedPreferences.Editor e;
+    SharedPreferences sf;
     /**
      * Called when the activity is first created.
      */
@@ -56,7 +64,29 @@ public class Login extends Activity
         btnRegister = (Button) findViewById(R.id.signup);
         btnLogin = (Button) findViewById(R.id.login);
         btnReset = (Button)findViewById(R.id.forgotpassword);
+        tb = (ToggleButton) findViewById(R.id.checkBox);
+        ch2 = (CheckBox)findViewById(R.id.checkBox2);
+        sf = getSharedPreferences("yaad",MODE_PRIVATE);
 
+        String ph = sf.getString("phonenum","");
+        String ps = sf.getString("passwordnum","");
+        inputPhone.setText(ph);
+        inputPassword.setText(ps);
+        tb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    inputPassword.setInputType(InputType.TYPE_CLASS_TEXT);
+
+                }
+                else
+                {
+                    inputPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+                }
+            }
+        });
         btnReset.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View view)
@@ -239,7 +269,15 @@ public class Login extends Activity
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
+                                        if (ch2.isChecked()) {
+                                            e = sf.edit();
+                                            e.putString("phonenum", inputPhone1);
+                                            e.putString("passwordnum", inputPassword1);
+                                            e.putBoolean("rm",true);
+                                            //e.putBoolean("con",true);
+                                            e.commit();
 
+                                        }
                                         pDialog.setMessage("Loading User Space");
                                         pDialog.setTitle("Getting Data");
                                         Intent upanel = new Intent(getApplicationContext(), Home.class);

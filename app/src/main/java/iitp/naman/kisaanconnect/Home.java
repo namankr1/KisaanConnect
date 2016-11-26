@@ -146,9 +146,9 @@ public class Home extends AppCompatActivity
             startActivity(upanel);
 
         } else if (id == R.id.nav_buy) {
-           /* Intent upanel = new Intent(getApplicationContext(), Home.class);
+           Intent upanel = new Intent(getApplicationContext(), Buy.class);
             upanel.putExtra("phoneno", inputPhone1);
-            startActivity(upanel);*/
+            startActivity(upanel);
 
         } else if (id == R.id.nav_sell) {
            /* Intent upanel = new Intent(getApplicationContext(), Home.class);

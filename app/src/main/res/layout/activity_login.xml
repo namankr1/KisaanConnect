@@ -1,101 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/green"
-    >
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/kisan"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:id="@+id/logo"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Login to your account"
-        android:textColor="#58b515"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:id="@+id/signupPage"
-        android:layout_above="@+id/phone"
-        android:textSize="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:padding="5dp"
-
-        android:background="#A8ffffff"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Contact Number"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:ems="10"
-        android:id="@+id/phone"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="Password"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:ems="10"
-        android:id="@+id/password"
-        android:layout_below="@+id/phone"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textStyle="bold"
-        android:background="@color/white"
-        android:textColor="@color/green"
-        android:id="@+id/login"
-        android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
-
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Forgot Password?"
-        android:textStyle="bold"
+    android:fillViewport="true">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:background="@color/green"
-        android:textColor="@color/white"
-        android:id="@+id/forgotpassword"
-        android:layout_below="@+id/login"
-        android:layout_alignLeft="@+id/login"
-        android:layout_alignStart="@+id/login" />
+        >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/kisan"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:id="@+id/logo"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Login to your account"
+            android:textColor="#58b515"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:id="@+id/signupPage"
+            android:layout_above="@+id/phone"
+            android:textSize="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:padding="5dp"
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:textStyle="bold"
-        android:background="@color/white"
-        android:textColor="@color/green"
-        android:id="@+id/signup"
-        android:layout_below="@+id/forgotpassword"
-        android:layout_alignLeft="@+id/forgotpassword"
-        android:layout_alignStart="@+id/forgotpassword" />
-</RelativeLayout>
+            android:background="#A8ffffff"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Contact Number"
+            android:background="@drawable/abc"
+            android:gravity="center_horizontal"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:ems="10"
+            android:id="@+id/phone"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/checkBox"
+            android:layout_alignEnd="@+id/checkBox" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:gravity="center_horizontal"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:background="@drawable/abc"
+            android:ems="10"
+            android:id="@+id/password"
+            android:layout_above="@+id/checkBox2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textStyle="bold"
+            android:background="@color/white"
+            android:textColor="@color/green"
+            android:id="@+id/login"
+            android:layout_below="@+id/password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:textStyle="bold"
+            android:background="@color/green"
+            android:textColor="@color/white"
+            android:id="@+id/forgotpassword"
+            android:layout_below="@+id/login"
+            android:layout_alignLeft="@+id/login"
+            android:layout_alignStart="@+id/login" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:textStyle="bold"
+            android:textColor="@color/green"
+            android:id="@+id/signup"
+            android:background="@color/white"
+            android:layout_below="@+id/forgotpassword"
+            android:layout_alignLeft="@+id/forgotpassword"
+            android:layout_alignStart="@+id/forgotpassword" />
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+            android:id="@+id/checkBox"
+            android:textOn="hide"
+            android:textOff="show"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/phone" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="remember password"
+            android:id="@+id/checkBox2"
+            android:layout_below="@+id/checkBox"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:checked="false" />
+    </RelativeLayout>
+</ScrollView>

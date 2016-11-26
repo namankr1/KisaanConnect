@@ -1,7 +1,7 @@
 package iitp.naman.kisaanconnect;
 
 /**
- * Created by naman on 30-Sep-16.
+ * Created by naman on 25-Nov-16.
  */
 
 import android.app.Activity;
@@ -12,14 +12,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,11 +34,19 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class PasswordReset extends Activity {
+public class ForgotPassword extends Activity {
 
-    EditText inputPhone;
-    Button btnReset;
-    Button btnBack;
+
+    /**
+     * Defining layout items.
+     **/
+
+    EditText inputOtp;
+    EditText inputNewpassword;
+
+    Button btnVerify;
+    Button btnResend;
+    String inputPhone1;
 
     /**
      * Called when the activity is first created.
@@ -48,36 +54,55 @@ public class PasswordReset extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.forgotpassword);
 
-        setContentView(R.layout.passwordreset);
+        /**
+         * Defining all layout items
+         **/
+        inputOtp = (EditText) findViewById(R.id.otp);
+        inputNewpassword = (EditText) findViewById(R.id.oldpassword);
+        btnVerify = (Button) findViewById(R.id.verify);
+        btnResend = (Button) findViewById(R.id.resend);
 
-       // btnBack = (Button) findViewById(R.id.back);
-        inputPhone = (EditText) findViewById(R.id.phone);
-        btnReset = (Button) findViewById(R.id.reset);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            inputPhone1 = extras.getString("phoneno");
+        }
 
-       /* btnBack.setOnClickListener(new View.OnClickListener() {
+        /**
+         * Button which Resends Otp on clicked
+         **/
+
+        btnResend.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), Login.class);
-                startActivityForResult(myIntent, 0);
-                finish();
+                Intent upanel = new Intent(getApplicationContext(), ForgotPassword.class);
+                upanel.putExtra("phoneno", inputPhone1);
+
+                startActivity(upanel);
             }
 
-        });*/
+        });
 
+        /* butto to register*/
 
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
+        btnVerify.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
-                NetAsync(view);
-
+                if (!inputOtp.getText().toString().equals("")) {
+                    NetAsync(view);
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Otp cannot be empty", Toast.LENGTH_SHORT).show();
+                }
             }
+        });
 
-        });}
+
+    }
 
 
     /**
-     * Async Task to check whether internet connection is working.
+     * Async Task to check whether internet connection is working
      **/
 
     private class NetCheck extends AsyncTask<String, Void, Boolean>
@@ -85,46 +110,37 @@ public class PasswordReset extends Activity {
         private ProgressDialog nDialog;
 
         @Override
-        protected void onPreExecute()
-        {
+        protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(PasswordReset.this);
-            nDialog.setTitle("Checking Network");
+            nDialog = new ProgressDialog(ForgotPassword.this);
             nDialog.setMessage("Loading..");
+            nDialog.setTitle("Checking Network");
             nDialog.setIndeterminate(false);
             nDialog.setCancelable(true);
             nDialog.show();
         }
 
         @Override
-        protected Boolean doInBackground(String... args)
-        {
+        protected Boolean doInBackground(String... args){
 
-            /**
-             * Gets current device state and checks for working internet connection by trying Google.
-             **/
+/**
+ * Gets current device state and checks for working internet connection by trying Google.
+ **/
             ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo netInfo = cm.getActiveNetworkInfo();
-            if (netInfo != null && netInfo.isConnected())
-            {
-                try
-                {
+            if (netInfo != null && netInfo.isConnected()) {
+                try {
                     URL url = new URL(getResources().getString(R.string.network_check));
                     HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
                     urlc.setConnectTimeout(3000);
                     urlc.connect();
-                    if (urlc.getResponseCode() == 200)
-                    {
+                    if (urlc.getResponseCode() == 200) {
                         return true;
                     }
-                }
-                catch (MalformedURLException e1)
-                {
+                } catch (MalformedURLException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
-                }
-                catch (IOException e)
-                {
+                } catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
@@ -133,37 +149,37 @@ public class PasswordReset extends Activity {
 
         }
         @Override
-        protected void onPostExecute(Boolean th)
-        {
+        protected void onPostExecute(Boolean th){
 
-            if(th == true)
-            {
+            if(th == true){
                 nDialog.dismiss();
                 new ProcessRegister().execute();
             }
-            else
-            {
+            else{
                 Toast.makeText(getApplicationContext(), "Cannot Connect to Network",
                         Toast.LENGTH_LONG).show();
-
             }
         }
     }
 
-
     private class ProcessRegister extends AsyncTask<String,Void,JSONObject> {
 
+        /**
+         * Defining Process dialog
+         **/
         private ProgressDialog pDialog;
 
-        String inputPhone1;
+        String inputOtp1;
+        String inputNewpassword1;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            inputPhone1 = inputPhone.getText().toString();
-
-            pDialog = new ProgressDialog(PasswordReset.this);
+            inputOtp1 = inputOtp.getText().toString();
+            inputNewpassword1 = inputNewpassword.getText().toString();
+            pDialog = new ProgressDialog(ForgotPassword.this);
             pDialog.setTitle("Contacting Servers");
-            pDialog.setMessage("Getting Data ...");
+            pDialog.setMessage("Registering ...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
@@ -174,23 +190,27 @@ public class PasswordReset extends Activity {
 
             JSONObject jsonIn = new JSONObject();
             try {
-                jsonIn.put("phone", inputPhone1);
+                jsonIn.put("phone",inputPhone1);
+                jsonIn.put("otp",inputOtp1);
+                jsonIn.put("newpassword",inputNewpassword1);
+                Log.i("abcd "+inputPhone1," "+inputOtp1);
+                Log.i(" "+inputNewpassword1," ");
+
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "login Failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_LONG).show();
                 return null;
             }
             return jsonIn;
 
         }
-
         @Override
         protected void onPostExecute(JSONObject json) {
             /**
-             * Checks if the Password Change Process is sucesss
+             * Checks for success message.
              **/
             RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-            String urlString = getResources().getString(R.string.network_url)+"sendotp/";
+            String urlString = getResources().getString(R.string.network_url)+"forgotpassword/";
             JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, json,
                     new Response.Listener<JSONObject>() {
 
@@ -199,15 +219,18 @@ public class PasswordReset extends Activity {
                             try {
                                 String status = response.getString("status");
                                 Log.i("Response :","Status : "+status);
+
                                 if (status.compareTo("ok") == 0) {
-                                    Log.i("Status Ok :","Veryfyig Otp ");
-                                    pDialog.setMessage("checking");
-                                    pDialog.setTitle("Veryfying Otp");
-                                    Intent upanel = new Intent(getApplicationContext(), ForgotPassword.class);
+                                    Log.i("Status Ok :","Loading User Space ");
+                                    pDialog.setMessage("Loading User Space");
+                                    pDialog.setTitle("Getting Data");
+                                    Intent upanel = new Intent(getApplicationContext(), Home.class);
                                     upanel.putExtra("phoneno", inputPhone1);
+
                                     pDialog.dismiss();
                                     startActivity(upanel);
                                 }else if(status.compareTo("err") == 0){
+                                    Log.i("Status err :","some error ");
                                     Toast.makeText(getApplicationContext(),
                                             response.getString("message") ,
                                             Toast.LENGTH_LONG).show();
@@ -233,7 +256,10 @@ public class PasswordReset extends Activity {
                 }
             });
             que.add(jsonObjReq);
-        }}
+        }
+    }
     public void NetAsync(View view){
         new NetCheck().execute();
-    }}
+    }
+
+}

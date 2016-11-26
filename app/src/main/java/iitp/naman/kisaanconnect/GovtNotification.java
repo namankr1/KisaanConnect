@@ -50,14 +50,36 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+//new
+import android.content.res.Resources;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+
 public class GovtNotification extends Activity {
     String inputPhone1;
+    String []buy_a={"arhar","bajra"};
+
+    int []images = {
+            R.drawable.arhar,
+            R.drawable.bajra
+    };
+    ListView l;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.govtnotification);
+
+        //
+        l = (ListView) findViewById(R.id.listView);
+        Adaptercls adapter = new Adaptercls(this,buy_a,images);
+        l.setAdapter(adapter);
+
+        //
        /* Bundle extras = getIntent().getExtras();
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
@@ -320,5 +342,32 @@ public class GovtNotification extends Activity {
         new NetCheck().execute();
     }
 }*/
+    }
+}
+
+class Adaptercls extends ArrayAdapter<String>
+
+{
+    Context context;
+    int []images;
+    String []b;
+    Adaptercls(Context c,String []b,int []imgs)
+    {
+        super(c,R.layout.single_row_notif,R.id.textView,b);
+        this.context = c;
+        this.images = imgs;
+        this.b = b;
+
+    }
+    @Override
+    public View getView(int position,View convertView,ViewGroup parent)
+    {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        View row = inflater.inflate(R.layout.single_row_notif,parent,false);
+        ImageView grainImage = (ImageView) row.findViewById(R.id.imageView);
+        TextView buy_arr = (TextView) row.findViewById(R.id.textView);
+        grainImage.setImageResource(images[position]);
+        buy_arr.setText(b[position]);
+        return row;
     }
 }
