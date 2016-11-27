@@ -1,31 +1,15 @@
 package iitp.naman.kisaanconnect;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+/**
+ * Created by naman on 26-Nov-16.
+ */
 import android.app.Activity;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.view.View;
-import android.widget.AdapterView.OnItemClickListener;
-
-import android.content.SharedPreferences;
-import android.text.InputType;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ToggleButton;
-import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import org.json.JSONException;
-import org.json.JSONObject;
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,101 +17,62 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-public class Buy extends Activity {
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    GridView gridView;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class AddCategory extends Activity {
+    /**
+     * Defining layout items.
+     **/
+
+    EditText inputName;
+    EditText inputDescription;
+    Button btnAdd;
+    Button btnResend;
     String inputPhone1;
-    Button btnAddcateogy;
-    Button btnBack;
-    Button btnNotification;
 
-
-    static final String[] categoryname = new String[] {"Rajma","Hello"};
-    static final String[] categorydescription = new String[] {"Test","Test2"};
-    static final String[] categoryid = new String[] {"Rajma","Hello"};
-    static final String[] categorypicture = new String[] {"google.com/","Test2"};
-
+    /**
+     * Called when the activity is first created.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buy);
+        setContentView(R.layout.addcategory);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
         }
-        Toast.makeText(getApplicationContext(), inputPhone1,
-                Toast.LENGTH_LONG).show();
 
+        inputName = (EditText) findViewById(R.id.name);
+        inputDescription = (EditText) findViewById(R.id.description);
+        btnAdd = (Button) findViewById(R.id.add);
 
-        btnAddcateogy = (Button) findViewById(R.id.addcategory);
-        btnBack = (Button) findViewById(R.id.back);
-        btnNotification = (Button) findViewById(R.id.notification);
-        NetAsync(this.findViewById(android.R.id.content));
-        gridView = (GridView) findViewById(R.id.gridView1);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
 
-        gridView.setAdapter(new ImageAdapter(this, categoryname,categorydescription,categoryid,categorypicture));
-
-
-
-        gridView.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        ((TextView) v.findViewById(R.id.grid_item_label))
-                                .getText(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        btnAddcateogy.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View view)
-            {
-                Intent upanel = new Intent(getApplicationContext(), AddCategory.class);
-                upanel.putExtra("phoneno", inputPhone1);
-
-                startActivity(upanel);
-            }
-        });
-        btnBack.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View view)
-            {
-                Intent upanel = new Intent(getApplicationContext(), Home.class);
-                upanel.putExtra("phoneno", inputPhone1);
-
-                startActivity(upanel);
-            }
-        });
-        btnNotification.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View view)
-            {
-                Intent upanel = new Intent(getApplicationContext(), Notification.class);
-                upanel.putExtra("phoneno", inputPhone1);
-
-                startActivity(upanel);
+                if (!inputName.getText().toString().equals("")) {
+                    NetAsync(view);
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Name cannot be empty", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
     }
-
 
     /**
      * Async Task to check whether internet connection is working
@@ -140,7 +85,7 @@ public class Buy extends Activity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(Buy.this);
+            nDialog = new ProgressDialog(AddCategory.this);
             nDialog.setMessage("Loading..");
             nDialog.setTitle("Checking Network");
             nDialog.setIndeterminate(false);
@@ -197,10 +142,15 @@ public class Buy extends Activity {
          **/
         private ProgressDialog pDialog;
 
+        String inputName1;
+        String inputDescription1;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(Buy.this);
+            inputName1 = inputName.getText().toString();
+            inputDescription1 = inputDescription.getText().toString();
+            pDialog = new ProgressDialog(AddCategory.this);
             pDialog.setTitle("Contacting Servers");
             pDialog.setMessage("Registering ...");
             pDialog.setIndeterminate(false);
@@ -214,6 +164,8 @@ public class Buy extends Activity {
             JSONObject jsonIn = new JSONObject();
             try {
                 jsonIn.put("phone",inputPhone1);
+                jsonIn.put("name",inputName1);
+                jsonIn.put("description",inputDescription1);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -229,8 +181,8 @@ public class Buy extends Activity {
              * Checks for success message.
              **/
             RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-            String urlString = getResources().getString(R.string.network_url_category)+"getcategories/";
-            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlString, json,
+            String urlString = getResources().getString(R.string.network_url_category)+"addcategories/";
+            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, json,
                     new Response.Listener<JSONObject>() {
 
                         @Override
@@ -242,32 +194,11 @@ public class Buy extends Activity {
                                     Log.i("Status Ok :","Loading User Space ");
                                     pDialog.setMessage("Loading User Space");
                                     pDialog.setTitle("Getting Data");
-
-                                    /*
                                     Intent upanel = new Intent(getApplicationContext(), Buy.class);
                                     upanel.putExtra("phoneno", inputPhone1);
 
                                     pDialog.dismiss();
-
                                     startActivity(upanel);
-                                    */
-
-                                    Log.i("Response1 :","Status : "+status);
-                                    /*JSONObject tempdata =  response.getJSONObject("categories");
-
-                                    Log.i("Response2 :","Status : "+status);
-                                    serverAddress = tempdata.getString("address");
-                                    serverName = tempdata.getString("name");
-                                    Log.i("Response3 :","Status : "+status);
-                                    serverType = tempdata.getString("type").equals("i")?"Individual":"Company";
-                                    serverPhone = tempdata.getString("phone");
-                                    Log.i("Response4 :","Status : "+serverPhone+serverType+serverName+serverAddress);
-                                    */
-                                    //insert category details here
-                                    pDialog.dismiss();
-                                    Toast.makeText(getApplicationContext(), "Welcome ",
-                                            Toast.LENGTH_LONG).show();
-
                                 }else if(status.compareTo("err") == 0){
                                     Toast.makeText(getApplicationContext(),
                                             response.getString("message") ,
@@ -299,5 +230,4 @@ public class Buy extends Activity {
     public void NetAsync(View view){
         new NetCheck().execute();
     }
-
 }

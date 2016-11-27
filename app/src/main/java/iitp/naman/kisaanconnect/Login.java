@@ -151,8 +151,10 @@ public class Login extends Activity
         {
             super.onPreExecute();
             nDialog = new ProgressDialog(Login.this);
-            nDialog.setTitle("Checking Network");
-            nDialog.setMessage("Loading..");
+            nDialog.setTitle("");
+            nDialog.setMessage("");
+            //nDialog.setTitle("Checking Network");
+            //nDialog.setMessage("Loading..");
             nDialog.setIndeterminate(false);
             nDialog.setCancelable(true);
             nDialog.show();
@@ -278,8 +280,10 @@ public class Login extends Activity
                                             e.commit();
 
                                         }
-                                        pDialog.setMessage("Loading User Space");
-                                        pDialog.setTitle("Getting Data");
+                                        //pDialog.setMessage("Loading User Space");
+                                        //pDialog.setTitle("Getting Data");
+                                        pDialog.setMessage("");
+                                        pDialog.setTitle("");
                                         Intent upanel = new Intent(getApplicationContext(), Home.class);
                                         upanel.putExtra("phoneno", inputPhone1);
                                         pDialog.dismiss();

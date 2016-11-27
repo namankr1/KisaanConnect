@@ -41,11 +41,13 @@
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".GovtNotification"
-            android:label="@string/title_activity_govt_notification"></activity>
-        <activity android:name=".Buy"></activity>
+            android:label="@string/title_activity_govt_notification" />
+        <activity android:name=".Buy" />
+        <activity android:name=".AddCategory" />
+        <activity android:name=".Notification"></activity>
     </application>
 
 </manifest>

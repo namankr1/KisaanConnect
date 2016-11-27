@@ -15,11 +15,19 @@ import android.widget.TextView;
 
 public class ImageAdapter extends BaseAdapter {
     private Context context;
-    private final String[] mobileValues;
+    private final String[] categoryname;
+    private final String[] categoryid;
+    private final String[] categorydescription;
+    private final String[] categorypicture;
 
-    public ImageAdapter(Context context, String[] mobileValues) {
+
+    public ImageAdapter(Context context, String[] categoryname,String[] categorydescription,String[] categoryid,String[] categorypicture) {
         this.context = context;
-        this.mobileValues = mobileValues;
+        this.categorydescription=categorydescription;
+        this.categoryid=categoryid;
+        this.categoryname=categoryname;
+        this.categorypicture=categorypicture;
+
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -39,24 +47,18 @@ public class ImageAdapter extends BaseAdapter {
             // set value into textview
             TextView textView = (TextView) gridView
                     .findViewById(R.id.grid_item_label);
-            textView.setText(mobileValues[position]);
+            textView.setText(categoryname[position]);
 
             // set image based on selected text
             ImageView imageView = (ImageView) gridView
                     .findViewById(R.id.grid_item_image);
 
-            String mobile = mobileValues[position];
+            String mobile = categoryname[position];
 
             if (imageView!=null) {
-                if (mobile.equals("Windows")) {
-                    imageView.setImageResource(R.drawable.arhar);
-                } else if (mobile.equals("iOS")) {
-                    imageView.setImageResource(R.drawable.arhar);
-                } else if (mobile.equals("Blackberry")) {
-                    imageView.setImageResource(R.drawable.arhar);
-                } else {
-                    imageView.setImageResource(R.drawable.arhar);
-                }
+                    //insert image here from given url
+                imageView.setImageResource(R.drawable.arhar);
+
             }
 
         } else {
@@ -68,7 +70,7 @@ public class ImageAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mobileValues.length;
+        return categoryname.length;
     }
 
     @Override
