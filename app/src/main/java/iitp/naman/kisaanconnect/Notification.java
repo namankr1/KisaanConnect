@@ -69,12 +69,11 @@ public class Notification extends AppCompatActivity {
         {
             public void onClick(View view)
             {
-                /*Intent upanel = new Intent(getApplicationContext(), Notification.class);
+                Intent upanel = new Intent(getApplicationContext(), Buy.class);
                 upanel.putExtra("phoneno", inputPhone1);
 
                 startActivity(upanel);
-                */
-                finishActivity(0);
+
             }
         });
     }

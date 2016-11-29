@@ -8,7 +8,9 @@
     <string name="title_activity_govt_notification">Govt. Notif.</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
+    <string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+    <string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+    <string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
     <string name="action_settings">Settings</string>
 
     <string-array name="sports_array">

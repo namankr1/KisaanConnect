@@ -5,8 +5,6 @@ import android.text.InputType;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
-import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -21,19 +19,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -78,12 +72,10 @@ public class Login extends Activity
                 if(isChecked)
                 {
                     inputPassword.setInputType(InputType.TYPE_CLASS_TEXT);
-
                 }
                 else
                 {
                     inputPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-
                 }
             }
         });
@@ -92,6 +84,8 @@ public class Login extends Activity
             public void onClick(View view)
             {
                 Intent myIntent = new Intent(getApplicationContext(), PasswordReset.class);
+                myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(myIntent);
             }
         });
@@ -226,15 +220,17 @@ public class Login extends Activity
         @Override
         protected void onPreExecute()
         {
-            super.onPreExecute();
-            inputPhone1 = inputPhone.getText().toString();
-            inputPassword1 = inputPassword.getText().toString();
             pDialog = new ProgressDialog(Login.this);
-            pDialog.setTitle("Contacting Servers");
-            pDialog.setMessage("Logging in ...");
+            pDialog.setTitle("");
+            pDialog.setMessage("");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
+
+            super.onPreExecute();
+            inputPhone1 = inputPhone.getText().toString();
+            inputPassword1 = inputPassword.getText().toString();
+
         }
 
         @Override
@@ -269,6 +265,7 @@ public class Login extends Activity
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
+                                    Log.i("Login Success : ", "getting profile jsonIn 1:");
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         if (ch2.isChecked()) {
@@ -280,14 +277,15 @@ public class Login extends Activity
                                             e.commit();
 
                                         }
-                                        //pDialog.setMessage("Loading User Space");
-                                        //pDialog.setTitle("Getting Data");
-                                        pDialog.setMessage("");
-                                        pDialog.setTitle("");
+                                        Log.i("Login Success : ", "getting profile jsonIn 2:");
                                         Intent upanel = new Intent(getApplicationContext(), Home.class);
+                                        Log.i("Login Success : ", "getting profile jsonIn 3:");
                                         upanel.putExtra("phoneno", inputPhone1);
-                                        pDialog.dismiss();
+                                        Log.i("Login Success : ", "getting profile jsonIn 4:");
+
                                         startActivity(upanel);
+                                        pDialog.dismiss();
+
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(),
                                                 response.getString("message") ,
@@ -313,8 +311,11 @@ public class Login extends Activity
                                 Toast.LENGTH_LONG).show();
                     }
                 });
+            Log.i("Login Success 77 : ", "getting profile jsonIn 4:");
             que.add(jsonObjReq);
-            pDialog.dismiss();
+            Log.i("Login Success 87 : ", "getting profile jsonIn 4:");
+
+            //pDialog.dismiss();
 
         }
     }
