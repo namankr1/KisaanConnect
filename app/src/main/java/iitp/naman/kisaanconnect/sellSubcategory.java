@@ -1,72 +1,62 @@
 package iitp.naman.kisaanconnect;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.TextView;
-import android.widget.Toast;
+/**
+ * Created by naman on 30-Nov-16.
+ */
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+        import android.app.Activity;
+        import android.app.ProgressDialog;
+        import android.content.Context;
+        import android.content.Intent;
+        import android.net.ConnectivityManager;
+        import android.net.NetworkInfo;
+        import android.os.AsyncTask;
+        import android.os.Bundle;
+        import android.support.design.widget.FloatingActionButton;
+        import android.support.design.widget.Snackbar;
+        import android.support.v7.app.AppCompatActivity;
+        import android.support.v7.widget.Toolbar;
+        import android.util.Log;
+        import android.view.Menu;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.widget.AdapterView;
+        import android.widget.Button;
+        import android.widget.GridView;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+        import com.android.volley.Request;
+        import com.android.volley.RequestQueue;
+        import com.android.volley.Response;
+        import com.android.volley.VolleyError;
+        import com.android.volley.toolbox.JsonObjectRequest;
+        import com.android.volley.toolbox.Volley;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+        import org.json.JSONArray;
+        import org.json.JSONException;
+        import org.json.JSONObject;
+
+        import java.io.IOException;
+        import java.net.HttpURLConnection;
+        import java.net.MalformedURLException;
+        import java.net.URL;
 
 
-public class GetQuotesofSubcategory extends AppCompatActivity {
+public class sellSubcategory extends AppCompatActivity {
 
     GridView gridView;
     String inputPhone1;
     String category1;
     String categoryname1;
-    String subcategoryname1;
-    String subcategory1;
     //Button btnAddcateogy;
     Button btnBack;
     Boolean subcategoriesget=false;//checks if categories are already get from server or not;
-    String[] quoteid= new String[]{"id","id"};
-    String[] quotetype= new String[]{"id","id"};
-    String[] quotequantity= new String[]{"id","id"};
-    String[] quoteprice= new String[]{"id","id"};
-    String[] quotedescription= new String[]{"id","id"};
-    String[] quotesubcategory= new String[]{"id","id"};
-    String[] quoteisactive= new String[]{"id","id"};
-    String[] quotebidvalue= new String[]{"id","id"};
-    String[] quoterating= new String[]{"id","id"};
-    String[] userrating= new String[] {"rating","id"};
-    String[] userdistance= new String[] {"distance","id"};
-    String[] userid=new String[]{"userid","id"};
-    String[] userphone= new String[]{"phone","id"};
-    String[] useraddress =  new String[]{"address","id"};
-    String[] username = new String[]{"name","id"};
 
-
+    String[] subcategoryname = new String[] {};
+    String[] subcategorydescription = new String[] {};
+    String[] subcategoryid = new String[] {};
+    String[] subcategorypicture = new String[] {};
 
     String[] notificationid = new String[] {""};
     String[] notificationquoteid = new String[] {"No new Notifications"};
@@ -83,20 +73,20 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.getquotesofsubcategory);
+        setContentView(R.layout.buysubcategory);
+
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
             category1=extras.getString("category");
-            subcategory1=extras.getString("subcategory");
-            subcategoryname1=extras.getString("subcategoryname");
             categoryname1=extras.getString("categoryname");
         }
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(subcategoryname1);
+        getSupportActionBar().setTitle(categoryname1);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         NetAsync(this.findViewById(android.R.id.content));
         new ProcessNotification().execute();
@@ -107,39 +97,26 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
 
         //btnAddcateogy = (Button) findViewById(R.id.addcategory);
         btnBack = (Button) findViewById(R.id.back);
-        Log.i("Response :","Status : ");
+
         gridView = (GridView) findViewById(R.id.gridView1);
-        Log.i("Response :","Status : ");
-        //gridView.setAdapter(new AdapterQuotes(getApplicationContext(), quotebidvalue,quotedescription,quoteid,quoteprice,quotequantity,quoterating,userphone,username,useraddress,userrating));
-        Log.i("Response :","Status : ");
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
 
-                String quoteid1 = ((TextView) v.findViewById(R.id.quoteid)).getText()+"";
-                String nameofseller1 =((TextView) v.findViewById(R.id.nameofseller)).getText()+"";
-                String price1 =((TextView) v.findViewById(R.id.price)).getText()+"";
-                String bidvalue1 =((TextView) v.findViewById(R.id.bidvalue)).getText()+"";
-                String quantity1 =((TextView) v.findViewById(R.id.quantity)).getText()+"";
-                String description1 =((TextView) v.findViewById(R.id.description)).getText()+"";
-                String quoterating1 =((TextView) v.findViewById(R.id.quoterating)).getText()+"";
-                String phone1 =((TextView) v.findViewById(R.id.phone)).getText()+"";
-
-                Intent upanel = new Intent(getApplicationContext(), InterestedQuote.class);
-                upanel.putExtra("senderphone", inputPhone1);
-                upanel.putExtra("nameofseller",nameofseller1);
-                upanel.putExtra("price", price1);
-                upanel.putExtra("bidvalue",bidvalue1);
-                upanel.putExtra("quantity", quantity1);
-                upanel.putExtra("description",description1);
-                upanel.putExtra("quoterating", quoterating1);
-                upanel.putExtra("receiverphone",phone1);
-                upanel.putExtra("quoteid",quoteid1);
+                String subcategoryid = ((TextView) v.findViewById(R.id.grid_item_id)).getText()+"";
+                String subcategoryname1 = ((TextView) v.findViewById(R.id.grid_item_label)).getText()+"";
+                Intent upanel = new Intent(getApplicationContext(), AddQuotesofSubcategory.class);
+                upanel.putExtra("phoneno", inputPhone1);
                 upanel.putExtra("category",category1);
-                upanel.putExtra("subcategory",subcategory1);
-                upanel.putExtra("subcategoryname",subcategoryname1);
                 upanel.putExtra("categoryname",categoryname1);
+                upanel.putExtra("subcategory",subcategoryid);
+                upanel.putExtra("subcategoryname",subcategoryname1);
                 startActivity(upanel);
+
+                Toast.makeText(
+                        getApplicationContext(),
+                        ((TextView) v.findViewById(R.id.grid_item_id))
+                                .getText(), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -149,10 +126,9 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         {
             public void onClick(View view)
             {
-                Intent upanel = new Intent(getApplicationContext(), buySubcategory.class);
+                Intent upanel = new Intent(getApplicationContext(), Sell.class);
                 upanel.putExtra("phoneno", inputPhone1);
-                upanel.putExtra("category", category1);
-                upanel.putExtra("categoryname",categoryname1);
+
                 startActivity(upanel);
             }
         });
@@ -189,10 +165,9 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), buySubcategory.class);
+                Intent upanel = new Intent(getApplicationContext(), Sell.class);
                 upanel.putExtra("phoneno", inputPhone1);
-                upanel.putExtra("category", category1);
-                upanel.putExtra("categoryname",categoryname1);
+
                 startActivity(upanel);
                 this.finish();
                 return true;
@@ -200,6 +175,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
     /**
      * Async Task to check whether internet connection is working
@@ -212,7 +188,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(GetQuotesofSubcategory.this);
+            nDialog = new ProgressDialog(sellSubcategory.this);
             nDialog.setMessage("Loading..");
             nDialog.setTitle("Checking Network");
             nDialog.setIndeterminate(false);
@@ -272,7 +248,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(GetQuotesofSubcategory.this);
+            pDialog = new ProgressDialog(sellSubcategory.this);
             pDialog.setTitle("Contacting Servers");
             pDialog.setMessage("Registering ...");
             pDialog.setIndeterminate(false);
@@ -286,8 +262,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
             JSONObject jsonIn = new JSONObject();
             try {
                 jsonIn.put("phone",inputPhone1);
-                jsonIn.put("subcategoryId",subcategory1);
-                Log.i("phone "+inputPhone1," "+subcategory1);
+                jsonIn.put("categoryid",category1);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -303,7 +278,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
              * Checks for success message.
              **/
             RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-            String urlString = getResources().getString(R.string.network_quotes)+"searchquotes/";
+            String urlString = getResources().getString(R.string.network_url_category)+"getsubcategories/";
             JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, json,
                     new Response.Listener<JSONObject>() {
 
@@ -311,7 +286,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
                             try {
                                 String status = response.getString("status");
-                                Log.i("Response :","Status : "+status);
+                                Log.i("Response :","Status : is here "+status+" " +category1);
                                 if (status.compareTo("ok") == 0) {
                                     Log.i("Status Ok :","Loading User Space ");
                                     pDialog.setMessage("Loading User Space");
@@ -327,48 +302,24 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
                                     */
 
                                     Log.i("Response1 :","Status : "+status);
-                                    JSONArray tempdata =  response.getJSONArray("results");
+                                    JSONArray tempdata =  response.getJSONArray("subcategories");
                                     int len=tempdata.length();
-                                    userdistance =new String[len];
-                                    userrating=new String[len];
-                                    quoteid=new String[len];
-                                    quotetype=new String[len];
-                                    quotequantity=new String[len];
-                                    quoteprice=new String[len];
-                                    quotedescription=new String[len];
-                                    userid=new String[len];
-                                    useraddress=new String[len];
-                                    userphone=new String[len];
-                                    username=new String[len];
-                                    quotesubcategory=new String[len];
-                                    quoteisactive=new String[len];
-                                    quotebidvalue=new String[len];
-                                    quoterating=new String[len];
-                                    for(int i=0;i<len;i++){
-                                        userdistance[i]=tempdata.getJSONObject(i).getString("distance");
-                                        userrating[i]=tempdata.getJSONObject(i).getString("rating");
-                                        JSONObject temp = tempdata.getJSONObject(i).getJSONObject("quote");
-                                        quoteid[i]=temp.getString("id");
-                                        quotetype[i]=temp.getString("type");
-                                        quotequantity[i]=temp.getString("quantity");
-                                        quoteprice[i]=temp.getString("price");
-                                        quotedescription[i]=temp.getString("description");
-                                        JSONObject temp1 = temp.getJSONObject("profile");
-                                        userid[i] = temp1.getString("userid");
-                                        useraddress[i] = temp1.getString("address");
-                                        userphone[i] = temp1.getString("phone");
-                                        username[i] = temp1.getString("name");
-                                        quotesubcategory[i]=temp.getString("subcategoryname");
-                                        quoteisactive[i]=temp.getString("is_active");
-                                        quotebidvalue[i]=temp.getString("bidvalue");
-                                        quoterating[i]=temp.getString("rating");
+                                    subcategoryname =new String[len];
+                                    subcategoryid=new String[len];
+                                    subcategorypicture=new String[len];
+                                    subcategorydescription=new String[len];
 
-                                       Log.i("Response4 :","Status : "+userdistance[i]+" "+userrating[i]);
+                                    for(int i=0;i<len;i++){
+                                        subcategoryname[i]=tempdata.getJSONObject(i).getString("name");
+                                        subcategoryid[i]=tempdata.getJSONObject(i).getString("id");
+                                        subcategorydescription[i]=tempdata.getJSONObject(i).getString("description");
+                                        subcategorypicture[i]=getResources().getString(R.string.network_home)+tempdata.getJSONObject(i).getString("picture");
+                                        Log.i("Response4 :","Status : "+subcategoryid[i]+" "+subcategoryname[i]+" "+subcategorydescription[i]+" "+subcategorypicture[i]);
 
                                     }
 
                                     subcategoriesget=true;
-                                    gridView.setAdapter(new AdapterQuotes(getApplicationContext(), quotebidvalue,quotedescription,quoteid,quoteprice,quotequantity,quoterating,userphone,username,useraddress,userrating));
+                                    gridView.setAdapter(new ImageAdapter(getApplicationContext(), subcategoryname,subcategorydescription,subcategoryid,subcategorypicture));
                                     //insert category details here
                                     pDialog.dismiss();
                                     Toast.makeText(getApplicationContext(), "Welcome ",
@@ -416,7 +367,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(GetQuotesofSubcategory.this);
+            pDialog = new ProgressDialog(sellSubcategory.this);
             pDialog.setTitle("Contacting Servers");
             pDialog.setMessage("Registering ...");
             pDialog.setIndeterminate(false);
@@ -533,3 +484,4 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         }
     }
 }
+

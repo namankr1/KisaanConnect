@@ -1,9 +1,9 @@
 package iitp.naman.kisaanconnect;
 
 /**
- * Created by naman on 26-Nov-16.
+ * Created by naman on 30-Nov-16.
  */
-import android.app.Activity;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,10 +11,18 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +33,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,45 +42,91 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class AddCategory extends Activity {
-    /**
-     * Defining layout items.
-     **/
+public class AddQuotesofSubcategory extends AppCompatActivity {
 
-    EditText inputName;
-    EditText inputDescription;
-    Button btnAdd;
-    Button btnResend;
+    GridView gridView;
     String inputPhone1;
+    String category1;
+    String categoryname1;
+    String subcategoryname1;
+    String subcategory1;
+    Button btnBack;
 
-    /**
-     * Called when the activity is first created.
-     */
+    EditText type1;
+    EditText quantity1;
+    EditText price1;
+    EditText description1;
+    Button add;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.addcategory);
+        setContentView(R.layout.addquotesofsubcategory);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
+            category1=extras.getString("category");
+            subcategory1=extras.getString("subcategory");
+            subcategoryname1=extras.getString("subcategoryname");
+            categoryname1=extras.getString("categoryname");
         }
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle(subcategoryname1);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-        inputName = (EditText) findViewById(R.id.name);
-        inputDescription = (EditText) findViewById(R.id.description);
-        btnAdd = (Button) findViewById(R.id.add);
+        type1 = (EditText) findViewById(R.id.type);
+        price1= (EditText) findViewById(R.id.price);
+        description1 = (EditText) findViewById(R.id.description);
+        quantity1 = (EditText) findViewById(R.id.quantity);
+        add = (Button) findViewById(R.id.add);
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
 
-                if (!inputName.getText().toString().equals("")) {
-                    NetAsync(view);
-                } else {
-                    Toast.makeText(getApplicationContext(),
-                            "Name cannot be empty", Toast.LENGTH_SHORT).show();
-                }
+
+        Toast.makeText(getApplicationContext(), inputPhone1,
+                Toast.LENGTH_LONG).show();
+
+
+        //btnAddcateogy = (Button) findViewById(R.id.addcategory);
+
+        Log.i("Response :","Status : ");
+
+
+        add.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View view)
+            {
+                NetAsync(view);
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.govtnotification, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent upanel = new Intent(getApplicationContext(), sellSubcategory.class);
+                upanel.putExtra("phoneno", inputPhone1);
+                upanel.putExtra("category", category1);
+                upanel.putExtra("categoryname",categoryname1);
+                startActivity(upanel);
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**
@@ -85,7 +140,7 @@ public class AddCategory extends Activity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(AddCategory.this);
+            nDialog = new ProgressDialog(AddQuotesofSubcategory.this);
             nDialog.setMessage("Loading..");
             nDialog.setTitle("Checking Network");
             nDialog.setIndeterminate(false);
@@ -141,31 +196,39 @@ public class AddCategory extends Activity {
          * Defining Process dialog
          **/
         private ProgressDialog pDialog;
-
-        String inputName1;
-        String inputDescription1;
+        String type2;
+        String quantity2;
+        String price2;
+        String desc2;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            inputName1 = inputName.getText().toString();
-            inputDescription1 = inputDescription.getText().toString();
-            pDialog = new ProgressDialog(AddCategory.this);
+            pDialog = new ProgressDialog(AddQuotesofSubcategory.this);
             pDialog.setTitle("Contacting Servers");
             pDialog.setMessage("Registering ...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
+            type2=type1.getText().toString();
+            desc2=description1.getText().toString();
+            quantity2=quantity1.getText().toString();
+            price2=price1.getText().toString();
         }
 
         @Override
         protected JSONObject doInBackground(String... args) {
 
+
             JSONObject jsonIn = new JSONObject();
             try {
                 jsonIn.put("phone",inputPhone1);
-                jsonIn.put("name",inputName1);
-                jsonIn.put("description",inputDescription1);
+                jsonIn.put("subcategoryId",subcategory1);
+                jsonIn.put("type",type2);
+                jsonIn.put("quantity",quantity2);
+                jsonIn.put("price",price2);
+                jsonIn.put("description",desc2);
+                Log.i("phone "+inputPhone1," "+subcategory1);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -181,7 +244,7 @@ public class AddCategory extends Activity {
              * Checks for success message.
              **/
             RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-            String urlString = getResources().getString(R.string.network_url_category)+"addcategories/";
+            String urlString = getResources().getString(R.string.network_quotes)+"addquote/";
             JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, json,
                     new Response.Listener<JSONObject>() {
 
@@ -194,11 +257,23 @@ public class AddCategory extends Activity {
                                     Log.i("Status Ok :","Loading User Space ");
                                     pDialog.setMessage("Loading User Space");
                                     pDialog.setTitle("Getting Data");
+
+                                    /*
                                     Intent upanel = new Intent(getApplicationContext(), Buy.class);
                                     upanel.putExtra("phoneno", inputPhone1);
 
                                     pDialog.dismiss();
+
                                     startActivity(upanel);
+                                    */
+
+                                    Log.i("Response1 :","Status : "+status);
+
+
+                                    pDialog.dismiss();
+                                    Toast.makeText(getApplicationContext(), response.getString("message") ,
+                                            Toast.LENGTH_LONG).show();
+
                                 }else if(status.compareTo("err") == 0){
                                     Toast.makeText(getApplicationContext(),
                                             response.getString("message") ,

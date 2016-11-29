@@ -10,7 +10,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -35,11 +39,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class buySubcategory extends Activity {
+public class buySubcategory extends AppCompatActivity {
 
     GridView gridView;
     String inputPhone1;
     String category1;
+    String categoryname1;
     //Button btnAddcateogy;
     Button btnBack;
     Boolean subcategoriesget=false;//checks if categories are already get from server or not;
@@ -49,11 +54,14 @@ public class buySubcategory extends Activity {
     String[] subcategoryid = new String[] {};
     String[] subcategorypicture = new String[] {};
 
-    String[] notificationid = new String[] {"1","2","3","4","5"};
-    String[] notificationreceiver = new String[] {"naman","naamna","naman","naman","naman"};
-    String[] notificationquote = new String[] {"naman","naamna","naman","naman","naman"};
-    String[] notificationprice = new String[] {"naman","naamna","naman","naman","naman"};
-    String[] notificationquantity = new String[] {"naman","naamna","naman","naman","naman"};
+    String[] notificationid = new String[] {""};
+    String[] notificationquoteid = new String[] {"No new Notifications"};
+    String[] notificationprice = new String[] {""};
+    String[] notificationquantity = new String[] {""};
+    String[] notificationsenderphone= new String[] {""};
+    String[] notificationsendername= new String[] {""};
+    String[] notificationsenderaddress= new String[] {""};
+    String[] notificationstatus= new String[] {""};
 
 
 
@@ -62,13 +70,22 @@ public class buySubcategory extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buysubcategory);
+
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
             category1=extras.getString("category");
+            categoryname1=extras.getString("categoryname");
         }
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle(categoryname1);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
         NetAsync(this.findViewById(android.R.id.content));
-        //new ProcessNotification().execute();
+        new ProcessNotification().execute();
 
         Toast.makeText(getApplicationContext(), inputPhone1,
                 Toast.LENGTH_LONG).show();
@@ -83,10 +100,13 @@ public class buySubcategory extends Activity {
                                     int position, long id) {
 
                 String subcategoryid = ((TextView) v.findViewById(R.id.grid_item_id)).getText()+"";
+                String subcategoryname1 = ((TextView) v.findViewById(R.id.grid_item_label)).getText()+"";
                 Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 upanel.putExtra("category",category1);
+                upanel.putExtra("categoryname",categoryname1);
                 upanel.putExtra("subcategory",subcategoryid);
+                upanel.putExtra("subcategoryname",subcategoryname1);
                 startActivity(upanel);
 
                 Toast.makeText(
@@ -97,18 +117,7 @@ public class buySubcategory extends Activity {
             }
         });
 
-        /*
-        btnAddcateogy.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View view)
-            {
-                Intent upanel = new Intent(getApplicationContext(), AddCategory.class);
-                upanel.putExtra("phoneno", inputPhone1);
 
-                startActivity(upanel);
-            }
-        });
-        */
         btnBack.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View view)
@@ -126,7 +135,7 @@ public class buySubcategory extends Activity {
                 int len=notificationid.length;
                 String notifall="";
                 for(int i=0;i<len;i++){
-                    notifall+=notificationid[i]+" "+notificationquote[i]+" "+notificationprice[i]+" "+notificationreceiver[i]+"\n";
+                    notifall+=notificationid[i]+" "+notificationquoteid[i]+" "+notificationprice[i]+"\n";
                 }
 
                 Snackbar snackbar = Snackbar.make(view, notifall, Snackbar.LENGTH_LONG)
@@ -138,6 +147,29 @@ public class buySubcategory extends Activity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.govtnotification, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent upanel = new Intent(getApplicationContext(), Buy.class);
+                upanel.putExtra("phoneno", inputPhone1);
+
+                startActivity(upanel);
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 
@@ -344,8 +376,8 @@ public class buySubcategory extends Activity {
 
             JSONObject jsonIn = new JSONObject();
             try {
-                jsonIn.put("userid",inputPhone1);
 
+                jsonIn.put("phone",inputPhone1);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -369,9 +401,9 @@ public class buySubcategory extends Activity {
                         public void onResponse(JSONObject response) {
                             try {
                                 String status = response.getString("status");
-                                Log.i("Response :","Status : "+status);
+                                Log.i("Response :","Status :1 "+status);
                                 if (status.compareTo("ok") == 0) {
-                                    Log.i("Status Ok :","Loading User Space ");
+                                    Log.i("Status Ok :2","Loading User Space ");
                                     pDialog.setMessage("Loading User Space");
                                     pDialog.setTitle("Getting Data");
 
@@ -384,28 +416,38 @@ public class buySubcategory extends Activity {
                                     startActivity(upanel);
                                     */
 
-                                    Log.i("Response1 :","Status : "+status);
-                                    JSONArray tempdata =  response.getJSONArray("categories");
+                                    Log.i("Response1 :3","Status : "+status);
+                                    JSONArray tempdata =  response.getJSONArray("notifications");
                                     int len=tempdata.length();
-                                    notificationid =new String[len];
-                                    notificationprice=new String[len];
-                                    notificationquantity=new String[len];
-                                    notificationquote=new String[len];
-                                    notificationreceiver=new String[len];
+                                    if(len!=0) {
+                                        notificationid = new String[len];
+                                        notificationprice = new String[len];
+                                        notificationquantity = new String[len];
+                                        notificationquoteid = new String[len];
+                                        notificationsenderphone = new String[len];
+                                        notificationsendername  = new String[len];
+                                        notificationsenderaddress  = new String[len];
+                                        notificationstatus = new String[len];
 
-                                    for(int i=0;i<len;i++){
-                                        notificationid[i]=tempdata.getJSONObject(i).getString("id");
-                                        notificationreceiver[i]=tempdata.getJSONObject(i).getString("receiver");
-                                        notificationquantity[i]=tempdata.getJSONObject(i).getString("quantity");
-                                        notificationprice[i]=tempdata.getJSONObject(i).getString("price");
-                                        notificationquote[i]=tempdata.getJSONObject(i).getString("quote");
-                                        Log.i("Response4 :","Status : got notification");
+                                        for (int i = 0; i < len; i++) {
+                                            notificationid[i] = tempdata.getJSONObject(i).getString("id");
+                                            JSONObject temp = tempdata.getJSONObject(i).getJSONObject("sender");
+                                            notificationsenderphone[i] = temp.getString("phone");
+                                            notificationsendername[i] = temp.getString("name");
+                                            notificationsenderaddress[i] = temp.getString("address");
+                                            notificationquantity[i] = tempdata.getJSONObject(i).getString("quantity");
+                                            notificationprice[i] = tempdata.getJSONObject(i).getString("price");
+                                            notificationquoteid[i] = tempdata.getJSONObject(i).getString("quoteid");
+                                            notificationstatus[i] = tempdata.getJSONObject(i).getString("status");
+                                            Log.i("Response4 :4", "Status : got notification");
+
+                                        }
+
+                                        //insert category details here
 
                                     }
-
-                                    //insert category details here
                                     pDialog.dismiss();
-                                    Toast.makeText(getApplicationContext(), "Welcome ",
+                                    Toast.makeText(getApplicationContext(), "Notification caught up ",
                                             Toast.LENGTH_LONG).show();
 
                                 }else if(status.compareTo("err") == 0){

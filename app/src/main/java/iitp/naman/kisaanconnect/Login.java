@@ -1,7 +1,11 @@
 package iitp.naman.kisaanconnect;
 
 import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
@@ -32,7 +36,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 
-public class Login extends Activity
+public class Login extends AppCompatActivity
 {
 
     Button btnLogin;
@@ -61,6 +65,11 @@ public class Login extends Activity
         tb = (ToggleButton) findViewById(R.id.checkBox);
         ch2 = (CheckBox)findViewById(R.id.checkBox2);
         sf = getSharedPreferences("yaad",MODE_PRIVATE);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         String ph = sf.getString("phonenum","");
         String ps = sf.getString("passwordnum","");
@@ -132,6 +141,22 @@ public class Login extends Activity
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.govtnotification, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     /**
      * Async Task to check whether internet connection is working.
      **/
@@ -169,7 +194,7 @@ public class Login extends Activity
             {
                 URL url = new URL(getResources().getString(R.string.network_check));
                 HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-                urlc.setConnectTimeout(3000);
+                urlc.setConnectTimeout(8000);
                 urlc.connect();
                 if (urlc.getResponseCode() == 200)
                 {

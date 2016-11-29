@@ -74,7 +74,7 @@ public class AdapterQuotes extends BaseAdapter {
             TextView textView2 = (TextView) gridView
                     .findViewById(R.id.description);
             textView2.setText(quotedescription[position]);
-            TextView textView3 = (TextView) gridView
+              TextView textView3 = (TextView) gridView
                     .findViewById(R.id.quoteid);
             textView3.setText(quoteid[position]);
             TextView textView4 = (TextView) gridView

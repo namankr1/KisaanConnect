@@ -5,6 +5,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -50,7 +53,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-public class Buy extends Activity {
+public class Buy extends AppCompatActivity {
 
     GridView gridView;
     String inputPhone1;
@@ -62,11 +65,14 @@ public class Buy extends Activity {
     String[] categoryid = new String[] {};
     String[] categorypicture = new String[] {};
 
-    String[] notificationid = new String[] {"1","2","3","4","5"};
-    String[] notificationreceiver = new String[] {"naman","naamna","naman","naman","naman"};
-    String[] notificationquote = new String[] {"naman","naamna","naman","naman","naman"};
-    String[] notificationprice = new String[] {"naman","naamna","naman","naman","naman"};
-    String[] notificationquantity = new String[] {"naman","naamna","naman","naman","naman"};
+    String[] notificationid = new String[] {""};
+    String[] notificationquoteid = new String[] {"No new Notifications"};
+    String[] notificationprice = new String[] {""};
+    String[] notificationquantity = new String[] {""};
+    String[] notificationsenderphone= new String[] {""};
+    String[] notificationsendername= new String[] {""};
+    String[] notificationsenderaddress= new String[] {""};
+    String[] notificationstatus= new String[] {""};
 
 
 
@@ -75,12 +81,18 @@ public class Buy extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buy);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Categories");
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
         }
         NetAsync(this.findViewById(android.R.id.content));
-        //new ProcessNotification().execute();
+        new ProcessNotification().execute();
 
         Toast.makeText(getApplicationContext(), inputPhone1,
                 Toast.LENGTH_LONG).show();
@@ -95,9 +107,11 @@ public class Buy extends Activity {
                                     int position, long id) {
 
                 String categoryid = ((TextView) v.findViewById(R.id.grid_item_id)).getText()+"";
+                String categoryname =((TextView) v.findViewById(R.id.grid_item_label)).getText()+"";
                 Intent upanel = new Intent(getApplicationContext(), buySubcategory.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 upanel.putExtra("category",categoryid);
+                upanel.putExtra("categoryname",categoryname);
                 startActivity(upanel);
 
                 /*Toast.makeText(
@@ -108,18 +122,7 @@ public class Buy extends Activity {
             }
         });
 
-        /*
-        btnAddcateogy.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View view)
-            {
-                Intent upanel = new Intent(getApplicationContext(), AddCategory.class);
-                upanel.putExtra("phoneno", inputPhone1);
 
-                startActivity(upanel);
-            }
-        });
-        */
         btnBack.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View view)
@@ -137,7 +140,7 @@ public class Buy extends Activity {
                 int len=notificationid.length;
                 String notifall="";
                 for(int i=0;i<len;i++){
-                    notifall+=notificationid[i]+" "+notificationquote[i]+" "+notificationprice[i]+" "+notificationreceiver[i]+"\n";
+                    notifall+=notificationid[i]+" "+notificationquoteid[i]+" "+notificationprice[i]+"\n";
                 }
 
                 Snackbar snackbar = Snackbar.make(view, notifall, Snackbar.LENGTH_LONG)
@@ -151,6 +154,28 @@ public class Buy extends Activity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.govtnotification, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent upanel = new Intent(getApplicationContext(), Home.class);
+                upanel.putExtra("phoneno", inputPhone1);
+
+                startActivity(upanel);
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     /**
      * Async Task to check whether internet connection is working
@@ -354,8 +379,8 @@ public class Buy extends Activity {
 
             JSONObject jsonIn = new JSONObject();
             try {
-                jsonIn.put("userid",inputPhone1);
 
+                jsonIn.put("phone",inputPhone1);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -379,9 +404,9 @@ public class Buy extends Activity {
                         public void onResponse(JSONObject response) {
                             try {
                                 String status = response.getString("status");
-                                Log.i("Response :","Status : "+status);
+                                Log.i("Response :","Status :1 "+status);
                                 if (status.compareTo("ok") == 0) {
-                                    Log.i("Status Ok :","Loading User Space ");
+                                    Log.i("Status Ok :2","Loading User Space ");
                                     pDialog.setMessage("Loading User Space");
                                     pDialog.setTitle("Getting Data");
 
@@ -394,28 +419,38 @@ public class Buy extends Activity {
                                     startActivity(upanel);
                                     */
 
-                                    Log.i("Response1 :","Status : "+status);
-                                    JSONArray tempdata =  response.getJSONArray("categories");
+                                    Log.i("Response1 :3","Status : "+status);
+                                    JSONArray tempdata =  response.getJSONArray("notifications");
                                     int len=tempdata.length();
-                                    notificationid =new String[len];
-                                    notificationprice=new String[len];
-                                    notificationquantity=new String[len];
-                                    notificationquote=new String[len];
-                                    notificationreceiver=new String[len];
+                                    if(len!=0) {
+                                        notificationid = new String[len];
+                                        notificationprice = new String[len];
+                                        notificationquantity = new String[len];
+                                        notificationquoteid = new String[len];
+                                        notificationsenderphone = new String[len];
+                                        notificationsendername  = new String[len];
+                                        notificationsenderaddress  = new String[len];
+                                        notificationstatus = new String[len];
 
-                                    for(int i=0;i<len;i++){
-                                        notificationid[i]=tempdata.getJSONObject(i).getString("id");
-                                        notificationreceiver[i]=tempdata.getJSONObject(i).getString("receiver");
-                                        notificationquantity[i]=tempdata.getJSONObject(i).getString("quantity");
-                                        notificationprice[i]=tempdata.getJSONObject(i).getString("price");
-                                        notificationquote[i]=tempdata.getJSONObject(i).getString("quote");
-                                        Log.i("Response4 :","Status : got notification");
+                                        for (int i = 0; i < len; i++) {
+                                            notificationid[i] = tempdata.getJSONObject(i).getString("id");
+                                            JSONObject temp = tempdata.getJSONObject(i).getJSONObject("sender");
+                                            notificationsenderphone[i] = temp.getString("phone");
+                                            notificationsendername[i] = temp.getString("name");
+                                            notificationsenderaddress[i] = temp.getString("address");
+                                            notificationquantity[i] = tempdata.getJSONObject(i).getString("quantity");
+                                            notificationprice[i] = tempdata.getJSONObject(i).getString("price");
+                                            notificationquoteid[i] = tempdata.getJSONObject(i).getString("quoteid");
+                                            notificationstatus[i] = tempdata.getJSONObject(i).getString("status");
+                                            Log.i("Response4 :4", "Status : got notification");
+
+                                        }
+
+                                        //insert category details here
 
                                     }
-
-                                    //insert category details here
                                     pDialog.dismiss();
-                                    Toast.makeText(getApplicationContext(), "Welcome ",
+                                    Toast.makeText(getApplicationContext(), "Notification caught up ",
                                             Toast.LENGTH_LONG).show();
 
                                 }else if(status.compareTo("err") == 0){

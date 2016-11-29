@@ -57,11 +57,15 @@ public class Home extends AppCompatActivity
     String serverType;
     String serverAddress;
 
-    String[] notificationid = new String[] {"1","2","3","4","5"};
-    String[] notificationreceiver = new String[] {"naman","naamna","naman","naman","naman"};
-    String[] notificationquote = new String[] {"naman","naamna","naman","naman","naman"};
-    String[] notificationprice = new String[] {"naman","naamna","naman","naman","naman"};
-    String[] notificationquantity = new String[] {"naman","naamna","naman","naman","naman"};
+    String[] notificationid = new String[] {""};
+    String[] notificationquoteid = new String[] {"No new Notifications"};
+    String[] notificationprice = new String[] {""};
+    String[] notificationquantity = new String[] {""};
+    String[] notificationsenderphone= new String[] {""};
+    String[] notificationsendername= new String[] {""};
+    String[] notificationsenderaddress= new String[] {""};
+    String[] notificationstatus= new String[] {""};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +79,7 @@ public class Home extends AppCompatActivity
 
 
         new NetCheck().execute();
-        //new ProcessNotification().execute();
+        new ProcessNotification().execute();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -87,7 +91,7 @@ public class Home extends AppCompatActivity
                 int len=notificationid.length;
                 String notifall="";
                 for(int i=0;i<len;i++){
-                    notifall+=notificationid[i]+" "+notificationquote[i]+" "+notificationprice[i]+" "+notificationreceiver[i]+"\n";
+                    notifall+=notificationid[i]+" "+notificationquoteid[i]+" "+notificationprice[i]+"\n";
                 }
 
                 Snackbar snackbar = Snackbar.make(view, notifall, Snackbar.LENGTH_LONG)
@@ -135,10 +139,6 @@ public class Home extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -158,9 +158,14 @@ public class Home extends AppCompatActivity
             upanel.putExtra("phoneno", inputPhone1);
             startActivity(upanel);
         } else if (id == R.id.nav_my_profile) {
-           /* Intent upanel = new Intent(getApplicationContext(), Home.class);
+            Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
+            upanel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            upanel.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             upanel.putExtra("phoneno", inputPhone1);
-            startActivity(upanel);*/
+            upanel.putExtra("name",serverName);
+            upanel.putExtra("address",serverAddress);
+            upanel.putExtra("type",serverType);
+            startActivity(upanel);
 
         } else if (id == R.id.nav_gov_not) {
             Intent upanel = new Intent(getApplicationContext(), GovtNotification.class);
@@ -177,9 +182,11 @@ public class Home extends AppCompatActivity
             startActivity(upanel);
 
         } else if (id == R.id.nav_sell) {
-           /* Intent upanel = new Intent(getApplicationContext(), Home.class);
+            Intent upanel = new Intent(getApplicationContext(), Sell.class);
+            upanel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            upanel.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             upanel.putExtra("phoneno", inputPhone1);
-            startActivity(upanel);*/
+            startActivity(upanel);
 
         } else if (id == R.id.nav_logout) {
             Intent upanel = new Intent(getApplicationContext(), Login.class);
@@ -380,7 +387,7 @@ public class Home extends AppCompatActivity
             JSONObject jsonIn = new JSONObject();
             try {
 
-                jsonIn.put("userid",inputPhone1);
+                jsonIn.put("phone",inputPhone1);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -404,9 +411,9 @@ public class Home extends AppCompatActivity
                         public void onResponse(JSONObject response) {
                             try {
                                 String status = response.getString("status");
-                                Log.i("Response :","Status : "+status);
+                                Log.i("Response :","Status :1 "+status);
                                 if (status.compareTo("ok") == 0) {
-                                    Log.i("Status Ok :","Loading User Space ");
+                                    Log.i("Status Ok :2","Loading User Space ");
                                     pDialog.setMessage("Loading User Space");
                                     pDialog.setTitle("Getting Data");
 
@@ -419,28 +426,38 @@ public class Home extends AppCompatActivity
                                     startActivity(upanel);
                                     */
 
-                                    Log.i("Response1 :","Status : "+status);
-                                    JSONArray tempdata =  response.getJSONArray("categories");
+                                    Log.i("Response1 :3","Status : "+status);
+                                    JSONArray tempdata =  response.getJSONArray("notifications");
                                     int len=tempdata.length();
-                                    notificationid =new String[len];
-                                    notificationprice=new String[len];
-                                    notificationquantity=new String[len];
-                                    notificationquote=new String[len];
-                                    notificationreceiver=new String[len];
+                                    if(len!=0) {
+                                        notificationid = new String[len];
+                                        notificationprice = new String[len];
+                                        notificationquantity = new String[len];
+                                        notificationquoteid = new String[len];
+                                        notificationsenderphone = new String[len];
+                                        notificationsendername  = new String[len];
+                                        notificationsenderaddress  = new String[len];
+                                        notificationstatus = new String[len];
 
-                                    for(int i=0;i<len;i++){
-                                        notificationid[i]=tempdata.getJSONObject(i).getString("id");
-                                        notificationreceiver[i]=tempdata.getJSONObject(i).getString("receiver");
-                                        notificationquantity[i]=tempdata.getJSONObject(i).getString("quantity");
-                                        notificationprice[i]=tempdata.getJSONObject(i).getString("price");
-                                        notificationquote[i]=tempdata.getJSONObject(i).getString("quote");
-                                        Log.i("Response4 :","Status : got notification");
+                                        for (int i = 0; i < len; i++) {
+                                            notificationid[i] = tempdata.getJSONObject(i).getString("id");
+                                            JSONObject temp = tempdata.getJSONObject(i).getJSONObject("sender");
+                                            notificationsenderphone[i] = temp.getString("phone");
+                                            notificationsendername[i] = temp.getString("name");
+                                            notificationsenderaddress[i] = temp.getString("address");
+                                            notificationquantity[i] = tempdata.getJSONObject(i).getString("quantity");
+                                            notificationprice[i] = tempdata.getJSONObject(i).getString("price");
+                                            notificationquoteid[i] = tempdata.getJSONObject(i).getString("quoteid");
+                                            notificationstatus[i] = tempdata.getJSONObject(i).getString("status");
+                                            Log.i("Response4 :4", "Status : got notification");
+
+                                        }
+
+                                        //insert category details here
 
                                     }
-
-                                    //insert category details here
                                     pDialog.dismiss();
-                                    Toast.makeText(getApplicationContext(), "Welcome ",
+                                    Toast.makeText(getApplicationContext(), "Notification caught up ",
                                             Toast.LENGTH_LONG).show();
 
                                 }else if(status.compareTo("err") == 0){

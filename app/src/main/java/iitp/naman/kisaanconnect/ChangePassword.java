@@ -13,7 +13,11 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,7 +40,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
-public class ChangePassword extends Activity {
+public class ChangePassword extends AppCompatActivity {
 
     private static String KEY_SUCCESS = "success";
     private static String KEY_ERROR = "error";
@@ -56,6 +60,12 @@ public class ChangePassword extends Activity {
 
         setContentView(R.layout.changepassword);
         Bundle extras = getIntent().getExtras();
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Change password");
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
         if (extras != null) {
            phonen = extras.getString("phoneno");
         cancel = (Button) findViewById(R.id.btcancel);
@@ -78,7 +88,30 @@ public class ChangePassword extends Activity {
             public void onClick(View view) {
                 NetAsync(view);
             }
-        });}}
+        });
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.govtnotification, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent login = new Intent(getApplicationContext(), Home.class);
+                startActivity(login);
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     private class NetCheck extends AsyncTask<String, Void, Boolean>
     {

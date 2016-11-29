@@ -10,7 +10,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -36,9 +40,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class InterestedQuote extends Activity {
+public class InterestedQuote extends AppCompatActivity {
     String senderPhone1;
     String category1;
+
+    String categoryname1;
+    String subcategoryname1;
     String subcategory1;
     String quoteid1 ;
     String nameofseller1 ;
@@ -54,6 +61,11 @@ public class InterestedQuote extends Activity {
     EditText yourquantity;
     TextView currentprice;
     TextView availablequantity;
+    TextView quoterating;
+    TextView nameofseller;
+    TextView phoneseller;
+    TextView description;
+
 
 
     @Override
@@ -70,12 +82,21 @@ public class InterestedQuote extends Activity {
             nameofseller1=extras.getString("nameofseller");
             price1=extras.getString("price");
             bidvalue1=extras.getString("bidvalue");
-            quoteid1=extras.getString("quoteid");
             quantity1=extras.getString("quantity");
             description1=extras.getString("description");
             quoterating1=extras.getString("quoterating");
             receiverphone1=extras.getString("receiverphone");
+
+            subcategoryname1=extras.getString("subcategoryname");
+            categoryname1=extras.getString("categoryname");
         }
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Quote Details");
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
         Toast.makeText(getApplicationContext(), senderPhone1,
                 Toast.LENGTH_LONG).show();
 
@@ -84,11 +105,19 @@ public class InterestedQuote extends Activity {
         btnInterested = (Button) findViewById(R.id.interested);
         yourprice = (EditText) findViewById(R.id.price);
         yourquantity = (EditText) findViewById(R.id.quantity);
+
         currentprice = (TextView) findViewById(R.id.currentbid);
         availablequantity = (TextView) findViewById(R.id.availablequantity);
-        currentprice.setText(bidvalue1);
+        quoterating = (TextView) findViewById(R.id.quoterating);
+        nameofseller = (TextView) findViewById(R.id.nameofseller);
+        phoneseller = (TextView) findViewById(R.id.phoneofseller);
+        description = (TextView) findViewById(R.id.description);
+        currentprice.setText(price1);
         availablequantity.setText((quantity1));
-
+        quoterating.setText(quoterating1);
+        nameofseller.setText(nameofseller1);
+        phoneseller.setText(receiverphone1);
+        description.setText(description1);
 
         Log.i("Response :","Status : ");
 
@@ -100,6 +129,8 @@ public class InterestedQuote extends Activity {
                 upanel.putExtra("phoneno", senderPhone1);
                 upanel.putExtra("category", category1);
                 upanel.putExtra("subcategory", subcategory1);
+                upanel.putExtra("subcategoryname",subcategoryname1);
+                upanel.putExtra("categoryname",categoryname1);
 
                 startActivity(upanel);
             }
@@ -119,6 +150,33 @@ public class InterestedQuote extends Activity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.govtnotification, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
+                upanel.putExtra("phoneno", senderPhone1);
+                upanel.putExtra("category", category1);
+                upanel.putExtra("subcategory", subcategory1);
+                upanel.putExtra("subcategoryname",subcategoryname1);
+                upanel.putExtra("categoryname",categoryname1);
+
+                startActivity(upanel);
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private class InterestedNotification extends AsyncTask<String,Void,JSONObject> {
@@ -149,8 +207,8 @@ public class InterestedQuote extends Activity {
 
             JSONObject jsonIn = new JSONObject();
             try {
-                jsonIn.put("senderid",senderPhone1);
-                jsonIn.put("recieverid",receiverphone1);
+                jsonIn.put("senderphone",senderPhone1);
+                jsonIn.put("recieverphone",receiverphone1);
                 jsonIn.put("quoteid",quoteid1);
                 jsonIn.put("price",yourprice1);
                 jsonIn.put("quantity",yourquantity1);
@@ -228,7 +286,7 @@ public class InterestedQuote extends Activity {
                             Toast.LENGTH_LONG).show();
                 }
             });
-            //que.add(jsonObjReq);
+            que.add(jsonObjReq);
 
         }
     }

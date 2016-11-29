@@ -1,8 +1,9 @@
 package iitp.naman.kisaanconnect;
 
 /**
- * Created by naman on 01-Oct-16.
+ * Created by naman on 30-Nov-16.
  */
+
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -53,9 +54,16 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+public class MyProfile extends AppCompatActivity{
+    String serverName;
+    String serverPhone;
+    String serverType;
+    String serverAddress;
 
-public class GovtNotification extends AppCompatActivity {
-    String inputPhone1;
+    TextView name1;
+    TextView phone1;
+    TextView address1;
+    TextView type1;
 
     String[] notificationid = new String[] {""};
     String[] notificationquoteid = new String[] {"No new Notifications"};
@@ -66,51 +74,29 @@ public class GovtNotification extends AppCompatActivity {
     String[] notificationsenderaddress= new String[] {""};
     String[] notificationstatus= new String[] {""};
 
-    String []buy_a={"arhar","bajra"};
-
-    int []images = {
-            R.drawable.arhar,
-            R.drawable.bajra
-    };
-
-    String govtnotifid[] = new String[]{"1"};
-    String govtnotiftitle[] = new String[]{"hi"};
-    String govtnotifbody[] = new String[]{"hhhhh"};
-    String govtnotifurl[] = new String[]{"google.com"};
-    GridView gridView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.govtnotification);
+        setContentView(R.layout.myprofile);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            serverName = extras.getString("name");
+            serverPhone=extras.getString("phoneno");
+            serverAddress=extras.getString("address");
+            serverType=extras.getString("type");
+        }
+
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Govt Notification");
+        getSupportActionBar().setTitle("My Profile");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            inputPhone1 = extras.getString("phoneno");
-        }
-        NetAsync(this.findViewById(android.R.id.content));
         new ProcessNotification().execute();
-        //
-        gridView = (GridView) findViewById(R.id.gridView1);
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-
-                String url1 = ((TextView) v.findViewById(R.id.url)).getText()+"";
-                Toast.makeText(getApplicationContext(), url1,
-                        Toast.LENGTH_LONG).show();
-
-            }
-        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -131,11 +117,17 @@ public class GovtNotification extends AppCompatActivity {
 
             }
         });
-
-        //
-
+        name1 = (TextView) findViewById(R.id.name);
+        phone1  = (TextView) findViewById(R.id.phone);
+        address1 = (TextView) findViewById(R.id.address);
+        type1  = (TextView) findViewById(R.id.type);
+        name1.setText(serverName);
+        address1.setText(serverAddress);
+        type1.setText(serverType);
+        phone1.setText(serverPhone);
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -150,190 +142,13 @@ public class GovtNotification extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent upanel = new Intent(getApplicationContext(), Home.class);
-                upanel.putExtra("phoneno", inputPhone1);
+                upanel.putExtra("phoneno", serverPhone);
                 startActivity(upanel);
                 this.finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    /**
-     * Async Task to check whether internet connection is working
-     **/
-
-    private class NetCheck extends AsyncTask<String, Void, Boolean>
-    {
-        private ProgressDialog nDialog;
-
-        @Override
-        protected void onPreExecute(){
-            super.onPreExecute();
-            nDialog = new ProgressDialog(GovtNotification.this);
-            nDialog.setMessage("Loading..");
-            nDialog.setTitle("Checking Network");
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
-            nDialog.show();
-        }
-
-        @Override
-        protected Boolean doInBackground(String... args){
-
-/**
- * Gets current device state and checks for working internet connection by trying Google.
- **/
-            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo netInfo = cm.getActiveNetworkInfo();
-            if (netInfo != null && netInfo.isConnected()) {
-                try {
-                    URL url = new URL(getResources().getString(R.string.network_check));
-                    HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-                    urlc.setConnectTimeout(3000);
-                    urlc.connect();
-                    if (urlc.getResponseCode() == 200) {
-                        return true;
-                    }
-                } catch (MalformedURLException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-            return false;
-
-        }
-        @Override
-        protected void onPostExecute(Boolean th){
-
-            if(th == true){
-                nDialog.dismiss();
-                new ProcessRegister().execute();
-            }
-            else{
-                Toast.makeText(getApplicationContext(), "Cannot Connect to Network",
-                        Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-    private class ProcessRegister extends AsyncTask<String,Void,JSONObject> {
-
-        /**
-         * Defining Process dialog
-         **/
-        private ProgressDialog pDialog;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(GovtNotification.this);
-            pDialog.setTitle("Contacting Servers");
-            pDialog.setMessage("Registering ...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
-            pDialog.show();
-        }
-
-        @Override
-        protected JSONObject doInBackground(String... args) {
-
-            JSONObject jsonIn = new JSONObject();
-            try {
-                jsonIn.put("phone",inputPhone1);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_LONG).show();
-                return null;
-            }
-            return jsonIn;
-
-        }
-        @Override
-        protected void onPostExecute(JSONObject json) {
-            /**
-             * Checks for success message.
-             **/
-            RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-            String urlString = getResources().getString(R.string.network_notification)+"getgovtnotifications/";
-            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlString, json,
-                    new Response.Listener<JSONObject>() {
-
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                String status = response.getString("status");
-                                Log.i("Response :","Status : is here "+status+" " );
-                                if (status.compareTo("ok") == 0) {
-                                    Log.i("Status Ok :","Loading User Space ");
-                                    pDialog.setMessage("Loading User Space");
-                                    pDialog.setTitle("Getting Data");
-
-                                    /*
-                                    Intent upanel = new Intent(getApplicationContext(), Buy.class);
-                                    upanel.putExtra("phoneno", inputPhone1);
-
-                                    pDialog.dismiss();
-
-                                    startActivity(upanel);
-                                    */
-
-                                    Log.i("Response1 :","Status : "+status);
-                                    JSONArray tempdata =  response.getJSONArray("govtNotifications");
-                                    int len=tempdata.length();
-                                    govtnotifbody =new String[len];
-                                    govtnotifid=new String[len];
-                                    govtnotiftitle=new String[len];
-                                    govtnotifurl=new String[len];
-
-                                    for(int i=0;i<len;i++){
-                                        govtnotifbody[i]=tempdata.getJSONObject(i).getString("body");
-                                        govtnotifid[i]=tempdata.getJSONObject(i).getString("id");
-                                        govtnotiftitle[i]=tempdata.getJSONObject(i).getString("title");
-                                        govtnotifurl[i]=tempdata.getJSONObject(i).getString("url");
-
-                                    }
-
-                                    gridView.setAdapter( new Adaptercls(getApplicationContext(),govtnotifbody,govtnotifid,govtnotiftitle,govtnotifurl));
-
-                                    pDialog.dismiss();
-                                    Toast.makeText(getApplicationContext(), "Welcome ",
-                                            Toast.LENGTH_LONG).show();
-
-                                }else if(status.compareTo("err") == 0){
-                                    Toast.makeText(getApplicationContext(),
-                                            response.getString("message") ,
-                                            Toast.LENGTH_LONG).show();
-                                    pDialog.dismiss();
-                                }
-                                else{
-                                    pDialog.setMessage("Server Connection Denied");
-                                    pDialog.setTitle("Exit");
-                                    pDialog.dismiss();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                    Toast.makeText(getApplicationContext(),
-                            getString(R.string.login_failed),
-                            Toast.LENGTH_LONG).show();
-                }
-            });
-            que.add(jsonObjReq);
-        }
-    }
-    public void NetAsync(View view){
-        new NetCheck().execute();
     }
 
 
@@ -347,7 +162,7 @@ public class GovtNotification extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(GovtNotification.this);
+            pDialog = new ProgressDialog(MyProfile.this);
             pDialog.setTitle("Contacting Servers");
             pDialog.setMessage("Registering ...");
             pDialog.setIndeterminate(false);
@@ -361,7 +176,7 @@ public class GovtNotification extends AppCompatActivity {
             JSONObject jsonIn = new JSONObject();
             try {
 
-                jsonIn.put("phone",inputPhone1);
+                jsonIn.put("phone",serverPhone);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -465,4 +280,3 @@ public class GovtNotification extends AppCompatActivity {
     }
 
 }
-

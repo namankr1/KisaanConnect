@@ -3,7 +3,7 @@
     <string name="login_failed">Login_Failed</string>
     <string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
     <string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
-    <string name="network_check">http://www.google.com</string>
+    <string name="network_check">https://www.google.co.in</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_govt_notification">Govt. Notif.</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
