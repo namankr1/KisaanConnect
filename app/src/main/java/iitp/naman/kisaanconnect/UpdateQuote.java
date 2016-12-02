@@ -13,106 +13,102 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class InterestedQuote extends AppCompatActivity {
-    String senderPhone1;
-    String category1;
+/**
+ * Created by naman on 02-Dec-16.
+ */
 
-    String categoryname1;
-    String subcategoryname1;
-    String subcategory1;
+public class UpdateQuote extends AppCompatActivity {
     String quoteid1 ;
-    String nameofseller1 ;
     String price1 ;
-    String bidvalue1;
     String quantity1 ;
     String description1 ;
-    String quoterating1;
-    String receiverphone1 ;
-    Button btnInterested;
-    EditText yourprice;
-    EditText yourquantity;
-    TextView currentprice;
-    TextView availablequantity;
-    TextView quoterating;
-    TextView nameofseller;
-    TextView phoneseller;
-    TextView description;
-    TextView category;
-    TextView subcategory;
+    String type1;
+    String is_active1;
+    String inputphone1;
+
+    TextView desc;
+    EditText price;
+    EditText type;
+    EditText quantity;
+    EditText is_active;
 
 
+    Button yes1;
+    Button no1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.interestedquote);
+        setContentView(R.layout.deletequote);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            senderPhone1 = extras.getString("senderphone");
-            category1=extras.getString("category");
-            subcategory1=extras.getString("subcategory");
             quoteid1 = extras.getString("quoteid");
-            nameofseller1=extras.getString("nameofseller");
             price1=extras.getString("price");
-            bidvalue1=extras.getString("bidvalue");
             quantity1=extras.getString("quantity");
-            description1=extras.getString("description");
-            quoterating1=extras.getString("quoterating");
-            receiverphone1=extras.getString("receiverphone");
-            subcategoryname1=extras.getString("subcategoryname");
-            categoryname1=extras.getString("categoryname");
+            description1=extras.getString("desc");
+            inputphone1=extras.getString("serverphone");
+            type1=extras.getString("type");
+            is_active1=extras.getString("is_active");
+
         }
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Quote Details");
+        getSupportActionBar().setTitle("Delete Quote");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-        btnInterested = (Button) findViewById(R.id.interested);
-        yourprice = (EditText) findViewById(R.id.price);
-        yourquantity = (EditText) findViewById(R.id.quantity);
+        yes1 = (Button) findViewById(R.id.yes);
+        no1 = (Button) findViewById(R.id.no);
 
-        currentprice = (TextView) findViewById(R.id.currentbid);
-        availablequantity = (TextView) findViewById(R.id.availablequantity);
-        quoterating = (TextView) findViewById(R.id.quoterating);
-        nameofseller = (TextView) findViewById(R.id.nameofseller);
-        phoneseller = (TextView) findViewById(R.id.phoneofseller);
-        description = (TextView) findViewById(R.id.description);
-        category = (TextView) findViewById(R.id.description);
-        subcategory= (TextView) findViewById(R.id.description);
-        currentprice.setText(price1);
-        availablequantity.setText((quantity1));
-        quoterating.setText(quoterating1);
-        nameofseller.setText(nameofseller1);
-        phoneseller.setText(receiverphone1);
-        description.setText(description1);
-        category.setText(categoryname1);
-        subcategory.setText(subcategoryname1);
 
-        btnInterested.setOnClickListener(new View.OnClickListener()
+        price = (EditText) findViewById(R.id.price);
+        quantity = (EditText) findViewById(R.id.quantity);
+        desc = (TextView) findViewById(R.id.description);
+        type=(EditText) findViewById(R.id.type);
+        is_active=(EditText) findViewById(R.id.is_active);
+
+        price.setText(price1,TextView.BufferType.EDITABLE);
+        quantity.setText(quantity1,TextView.BufferType.EDITABLE);
+        type.setText(type1,TextView.BufferType.EDITABLE);
+        is_active.setText(is_active1,TextView.BufferType.EDITABLE);
+        desc.setText(description1);
+
+
+        yes1.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View view)
             {
                 new InterestedNotification().execute();
+            }
+        });
+
+        no1.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View view)
+            {
                 Intent upanel = new Intent(getApplicationContext(), Home.class);
-                upanel.putExtra("phoneno", senderPhone1);
+                upanel.putExtra("phoneno", inputphone1);
                 startActivity(upanel);
             }
         });
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -124,12 +120,8 @@ public class InterestedQuote extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
-                upanel.putExtra("phoneno", senderPhone1);
-                upanel.putExtra("category", category1);
-                upanel.putExtra("subcategory", subcategory1);
-                upanel.putExtra("subcategoryname",subcategoryname1);
-                upanel.putExtra("categoryname",categoryname1);
+                Intent upanel = new Intent(getApplicationContext(), Home.class);
+                upanel.putExtra("phoneno", inputphone1);
                 startActivity(upanel);
                 this.finish();
                 return true;
@@ -140,18 +132,20 @@ public class InterestedQuote extends AppCompatActivity {
 
     private class InterestedNotification extends AsyncTask<String,Void,JSONObject> {
         private ProgressDialog pDialog;
-        String yourprice1,yourquantity1;
         JSONObject resultserver=null;
+        String type2,quantity2,price2,isactive2;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(InterestedQuote.this);
+            pDialog = new ProgressDialog(UpdateQuote.this);
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
-            yourprice1 = yourprice.getText().toString();
-            yourquantity1=yourquantity.getText().toString();
+            type2=type.getText().toString();
+            quantity2=quantity.getText().toString();
+            price2=price.getText().toString();
+            isactive2=is_active.getText().toString();
         }
 
         @Override
@@ -159,13 +153,13 @@ public class InterestedQuote extends AppCompatActivity {
 
             JSONObject jsonIn = new JSONObject();
             try {
-                jsonIn.put("senderphone",senderPhone1);
-                jsonIn.put("recieverphone",receiverphone1);
                 jsonIn.put("quoteid",quoteid1);
-                jsonIn.put("price",yourprice1);
-                jsonIn.put("quantity",yourquantity1);
+                jsonIn.put("type",type2);
+                jsonIn.put("quantity",quantity2);
+                jsonIn.put("price",price2);
+                jsonIn.put("is_active",isactive2);
                 RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-                String urlString = getResources().getString(R.string.network_notification)+"raiseinterest/";
+                String urlString = getResources().getString(R.string.network_notification)+"updatequote/";
                 JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, jsonIn,
                         new Response.Listener<JSONObject>() {
                             @Override
@@ -181,6 +175,9 @@ public class InterestedQuote extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                     }
                                     pDialog.dismiss();
+                                    Intent upanel = new Intent(getApplicationContext(), Home.class);
+                                    upanel.putExtra("phoneno", inputphone1);
+                                    startActivity(upanel);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
@@ -207,3 +204,4 @@ public class InterestedQuote extends AppCompatActivity {
         }
     }
 }
+

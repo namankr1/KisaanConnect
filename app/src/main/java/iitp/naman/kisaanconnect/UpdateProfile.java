@@ -1,34 +1,22 @@
 package iitp.naman.kisaanconnect;
 
-/**
- * Created by naman on 30-Nov-16.
- */
-
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.view.View;
-import android.widget.AdapterView.OnItemClickListener;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import android.content.Intent;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -36,56 +24,61 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-public class Buy extends AppCompatActivity {
-    GridView gridView;
-    String inputPhone1;
-    String[] categoryname = new String[] {};
-    String[] categorydescription = new String[] {};
-    String[] categoryid = new String[] {};
-    String[] categorypicture = new String[] {};
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+/**
+ * Created by naman on 02-Dec-16.
+ */
+
+public class UpdateProfile extends AppCompatActivity {
+    EditText newaddress;
+    TextView name;
+    TextView phone;
+    Button btnconfirm;
+
+    String serverName;
+    String serverPhone;
+    String serverType;
+    String serverAddress;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buy);
+        setContentView(R.layout.updateprofile);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Categories");
+        getSupportActionBar().setTitle("Update Profile");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            inputPhone1 = extras.getString("phoneno");
+            serverName = extras.getString("name");
+            serverPhone=extras.getString("phoneno");
+            serverAddress=extras.getString("address");
+            serverType=extras.getString("type");
+
+            newaddress = (EditText) findViewById(R.id.address);
+            btnconfirm = (Button) findViewById(R.id.btnconfirm);
+            name = (TextView) findViewById(R.id.name);
+            phone = (TextView) findViewById(R.id.phone);
+
+            btnconfirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    NetAsync(view);
+                }
+            });
         }
-
-        NetAsync(this.findViewById(android.R.id.content));
-
-        gridView = (GridView) findViewById(R.id.gridView1);
-        gridView.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                String categoryid = ((TextView) v.findViewById(R.id.grid_item_id)).getText()+"";
-                String categoryname =((TextView) v.findViewById(R.id.grid_item_label)).getText()+"";
-                Intent upanel = new Intent(getApplicationContext(), buySubcategory.class);
-                upanel.putExtra("phoneno", inputPhone1);
-                upanel.putExtra("category",categoryid);
-                upanel.putExtra("categoryname",categoryname);
-                startActivity(upanel);
-            }
-        });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
-                upanel.putExtra("phoneno", inputPhone1);
-                startActivity(upanel);
-            }
-        });
     }
 
     @Override
@@ -98,8 +91,11 @@ public class Buy extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), Home.class);
-                upanel.putExtra("phoneno", inputPhone1);
+                Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
+                upanel.putExtra("phoneno", serverPhone);
+                upanel.putExtra("name",serverName);
+                upanel.putExtra("address",serverAddress);
+                upanel.putExtra("type",serverType);
                 startActivity(upanel);
                 this.finish();
                 return true;
@@ -115,7 +111,7 @@ public class Buy extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(Buy.this);
+            nDialog = new ProgressDialog(UpdateProfile.this);
             nDialog.setIndeterminate(false);
             nDialog.setCancelable(true);
             nDialog.show();
@@ -157,27 +153,30 @@ public class Buy extends AppCompatActivity {
         }
     }
 
-    private class ProcessRegister extends AsyncTask<String,Void,Boolean> {
+    private class ProcessRegister extends AsyncTask<String,Void,JSONObject> {
         private ProgressDialog pDialog;
-        private Boolean resultserver=false;
-
+        String newaddress2;
+        JSONObject resultserver=null;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(Buy.this);
+            pDialog = new ProgressDialog(UpdateProfile.this);
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
+            newaddress2 = newaddress.getText().toString();
         }
 
         @Override
-        protected Boolean doInBackground(String... args) {
+        protected JSONObject doInBackground(String... args) {
+
             JSONObject jsonIn = new JSONObject();
             try {
-                jsonIn.put("phone",inputPhone1);
+                jsonIn.put("phone", serverPhone);
+                jsonIn.put("address",newaddress2);
                 RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-                String urlString = getResources().getString(R.string.network_url_category)+"getcategories/";
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlString, jsonIn,
+                String urlString = getResources().getString(R.string.network_url)+"profileupdate/";
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, jsonIn,
                         new Response.Listener<JSONObject>() {
 
                             @Override
@@ -185,42 +184,49 @@ public class Buy extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
-                                        JSONArray tempdata = response.getJSONArray("categories");
-                                        int len = tempdata.length();
-                                        categoryname = new String[len];
-                                        categoryid = new String[len];
-                                        categorypicture = new String[len];
-                                        categorydescription = new String[len];
-                                        for (int i = 0; i < len; i++) {
-                                            categoryname[i] = tempdata.getJSONObject(i).getString("name");
-                                            categoryid[i] = tempdata.getJSONObject(i).getString("id");
-                                            categorydescription[i] = tempdata.getJSONObject(i).getString("description");
-                                            categorypicture[i] = getResources().getString(R.string.network_home) + tempdata.getJSONObject(i).getString("picture");
-                                        }
-                                        gridView.setAdapter(new ImageAdapter(getApplicationContext(), categoryname, categorydescription, categoryid, categorypicture));
-                                        resultserver=true;
                                         pDialog.dismiss();
+                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
+                                        upanel.putExtra("phoneno", serverPhone);
+                                        upanel.putExtra("name",serverName);
+                                        upanel.putExtra("address",serverAddress);
+                                        upanel.putExtra("type",serverType);
+                                        startActivity(upanel);
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
+                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
+                                        upanel.putExtra("phoneno", serverPhone);
+                                        upanel.putExtra("name",serverName);
+                                        upanel.putExtra("address",serverAddress);
+                                        upanel.putExtra("type",serverType);
+                                        startActivity(upanel);
                                     }
-                                    else {
+                                    else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
+                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
+                                        upanel.putExtra("phoneno", serverPhone);
+                                        upanel.putExtra("name",serverName);
+                                        upanel.putExtra("address",serverAddress);
+                                        upanel.putExtra("type",serverType);
+                                        startActivity(upanel);
                                     }
-                                }
-                                catch (JSONException e) {
+                                } catch (JSONException e) {
                                     e.printStackTrace();
-
+                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
 
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 que.add(jsonObjReq);
             }
             catch (JSONException e) {
@@ -230,12 +236,11 @@ public class Buy extends AppCompatActivity {
             }
             return resultserver;
         }
-        @Override
-        protected void onPostExecute(Boolean response) {
 
+        @Override
+        protected void onPostExecute(JSONObject response) {
         }
     }
-
     public void NetAsync(View view){
         new NetCheck().execute();
     }

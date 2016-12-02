@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#58B515"
+        >
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/my_toolbar"
+            android:src="@drawable/kisan"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:id="@+id/logo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Negotiation"
+            android:textColor="#58b515"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="#A8ffffff"
+            android:id="@+id/t"
+            android:layout_below="@+id/logo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/t1"
+            android:layout_below="@+id/t"
+            android:gravity="left"
+            android:layout_marginLeft="15dp"
+            android:text="Sender Name         :"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/t2"
+            android:layout_below="@+id/sendername"
+            android:gravity="left"
+            android:layout_marginLeft="15dp"
+            android:text="Sender Address     :"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/t3"
+            android:layout_below="@+id/senderaddress"
+            android:gravity="left"
+            android:layout_marginLeft="15dp"
+            android:text="Sender phone        :"
+            android:layout_marginTop="20dp"
+
+            />
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/t4"
+            android:layout_below="@+id/senderphone"
+            android:gravity="left"
+            android:layout_marginLeft="15dp"
+            android:text="Quoted price          :"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/t5"
+            android:layout_below="@+id/quotedprice"
+            android:gravity="left"
+            android:layout_marginLeft="15dp"
+            android:text="Quoted Qnantity    :"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/t"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="20dp"
+            android:text="test"
+            android:id="@+id/sendername"
+            />
+        <TextView
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sendername"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="20dp"
+            android:text="test"
+            android:id="@+id/senderaddress"
+            />
+        <TextView
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/senderaddress"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="20dp"
+            android:text="test"
+            android:id="@+id/senderphone"
+            />
+        <TextView
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/senderphone"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="20dp"
+            android:text="test"
+            android:id="@+id/quotedprice"
+            />
+        <TextView
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/quotedprice"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="20dp"
+            android:text="test"
+            android:id="@+id/quotedquantity"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="your price"
+            android:gravity="center"
+            android:textColorHint="#ffffff"
+            android:id="@+id/yourprice"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/quotedquantity" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/yourquantity"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/btnnegotiate"
+            android:text="Negotiate"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="your quantity"
+            android:gravity="center"
+            android:textColorHint="#ffffff"
+            android:id="@+id/yourquantity"
+            android:layout_marginTop="18dp"
+            android:layout_below="@+id/yourprice"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+    </RelativeLayout>
+</ScrollView>

@@ -29,19 +29,10 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_noti" />
-    <Button
-        android:text="Back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/gridView1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="12dp"
-        android:layout_marginEnd="12dp"
-        android:id="@+id/back" />
 
     <GridView
         android:id="@+id/gridView1"
+        android:background="@color/white"
         android:numColumns="2"
         android:gravity="center"
         android:layout_width="match_parent"

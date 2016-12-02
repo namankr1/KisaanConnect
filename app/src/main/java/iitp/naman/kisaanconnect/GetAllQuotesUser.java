@@ -1,9 +1,5 @@
 package iitp.naman.kisaanconnect;
 
-/**
- * Created by naman on 30-Nov-16.
- */
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +10,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,57 +31,58 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Sell extends AppCompatActivity {
+public class GetAllQuotesUser extends AppCompatActivity {
 
     GridView gridView;
-    String inputPhone1;
-    String[] categoryname = new String[] {};
-    String[] categorydescription = new String[] {};
-    String[] categoryid = new String[] {};
-    String[] categorypicture = new String[] {};
+    String serverName;
+    String serverPhone;
+    String serverType;
+    String serverAddress;
+
+    String[] quoteid= new String[]{};
+    String[] quotetype= new String[]{};
+    String[] quotequantity= new String[]{};
+    String[] quoteprice= new String[]{};
+    String[] quotedescription= new String[]{};
+    String[] quotesubcategory= new String[]{};
+    String[] quoteisactive= new String[]{};
+    String[] quotebidvalue= new String[]{};
+    String[] quoterating= new String[]{};
+    String[] userid=new String[]{};
+    String[] userphone= new String[]{};
+    String[] useraddress =  new String[]{};
+    String[] username = new String[]{};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buy);
+        setContentView(R.layout.getquotesofsubcategory);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            serverName = extras.getString("name");
+            serverPhone=extras.getString("phoneno");
+            serverAddress=extras.getString("address");
+            serverType=extras.getString("type");
+        }
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Categories");
+        getSupportActionBar().setTitle("Your all quotes!");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            inputPhone1 = extras.getString("phoneno");
-        }
 
         NetAsync(this.findViewById(android.R.id.content));
 
         gridView = (GridView) findViewById(R.id.gridView1);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-
-                String categoryid = ((TextView) v.findViewById(R.id.grid_item_id)).getText()+"";
-                String categoryname =((TextView) v.findViewById(R.id.grid_item_label)).getText()+"";
-                Intent upanel = new Intent(getApplicationContext(), sellSubcategory.class);
-                upanel.putExtra("phoneno", inputPhone1);
-                upanel.putExtra("category",categoryid);
-                upanel.putExtra("categoryname",categoryname);
-                startActivity(upanel);
-            }
-        });
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
-                upanel.putExtra("phoneno", inputPhone1);
+                upanel.putExtra("phoneno", serverPhone);
                 startActivity(upanel);
-
             }
         });
     }
@@ -101,8 +97,11 @@ public class Sell extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), Home.class);
-                upanel.putExtra("phoneno", inputPhone1);
+                Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
+                upanel.putExtra("phoneno", serverPhone);
+                upanel.putExtra("name",serverName);
+                upanel.putExtra("address",serverAddress);
+                upanel.putExtra("type",serverType);
                 startActivity(upanel);
                 this.finish();
                 return true;
@@ -118,7 +117,7 @@ public class Sell extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(Sell.this);
+            nDialog = new ProgressDialog(GetAllQuotesUser.this);
             nDialog.setIndeterminate(false);
             nDialog.setCancelable(true);
             nDialog.show();
@@ -159,28 +158,27 @@ public class Sell extends AppCompatActivity {
         }
     }
 
-    private class ProcessRegister extends AsyncTask<String,Void,JSONObject> {
-
+    private class ProcessRegister extends AsyncTask<String,Void,Boolean> {
         private ProgressDialog pDialog;
+        Boolean resultserver=false;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(Sell.this);
+            pDialog = new ProgressDialog(GetAllQuotesUser.this);
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
         }
 
         @Override
-        protected JSONObject doInBackground(String... args) {
-
+        protected Boolean doInBackground(String... args) {
             JSONObject jsonIn = new JSONObject();
             try {
-                jsonIn.put("phone",inputPhone1);
+                jsonIn.put("phone",serverPhone);
                 RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-                String urlString = getResources().getString(R.string.network_url_category)+"getcategories/";
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlString, jsonIn,
+                String urlString = getResources().getString(R.string.network_quotes)+"getallquotesbyuser/";
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, jsonIn,
                         new Response.Listener<JSONObject>() {
 
                             @Override
@@ -188,36 +186,52 @@ public class Sell extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
-                                        JSONArray tempdata =  response.getJSONArray("categories");
-                                        int len=tempdata.length();
-                                        categoryname =new String[len];
-                                        categoryid=new String[len];
-                                        categorypicture=new String[len];
-                                        categorydescription=new String[len];
-
+                                        JSONArray temp =  response.getJSONArray("quote");
+                                        int len=temp.length();
+                                        quoteid=new String[len];
+                                        quotetype=new String[len];
+                                        quotequantity=new String[len];
+                                        quoteprice=new String[len];
+                                        quotedescription=new String[len];
+                                        userid=new String[len];
+                                        useraddress=new String[len];
+                                        userphone=new String[len];
+                                        username=new String[len];
+                                        quotesubcategory=new String[len];
+                                        quoteisactive=new String[len];
+                                        quotebidvalue=new String[len];
+                                        quoterating=new String[len];
                                         for(int i=0;i<len;i++){
-                                            categoryname[i]=tempdata.getJSONObject(i).getString("name");
-                                            categoryid[i]=tempdata.getJSONObject(i).getString("id");
-                                            categorydescription[i]=tempdata.getJSONObject(i).getString("description");
-                                            categorypicture[i]=getResources().getString(R.string.network_home)+tempdata.getJSONObject(i).getString("picture");
-                                            Log.i("Response4 :","Status : "+categoryid[i]+" "+categoryname[i]+" "+categorydescription[i]+" "+categorypicture[i]);
-
+                                            quoteid[i]=temp.getJSONObject(i).getString("id");
+                                            quotetype[i]=temp.getJSONObject(i).getString("type");
+                                            quotequantity[i]=temp.getJSONObject(i).getString("quantity");
+                                            quoteprice[i]=temp.getJSONObject(i).getString("price");
+                                            quotedescription[i]=temp.getJSONObject(i).getString("description");
+                                            JSONObject temp1 = temp.getJSONObject(i).getJSONObject("profile");
+                                            userid[i] = temp1.getString("userid");
+                                            useraddress[i] = temp1.getString("address");
+                                            userphone[i] = temp1.getString("phone");
+                                            username[i] = temp1.getString("name");
+                                            quotesubcategory[i]=temp.getJSONObject(i).getString("subcategoryname");
+                                            quoteisactive[i]=temp.getJSONObject(i).getString("is_active");
+                                            quotebidvalue[i]=temp.getJSONObject(i).getString("bidvalue");
+                                            quoterating[i]=temp.getJSONObject(i).getString("rating");
                                         }
 
-                                        gridView.setAdapter(new ImageAdapter(getApplicationContext(), categoryname,categorydescription,categoryid,categorypicture));
+                                        resultserver=true;
+                                        gridView.setAdapter(new AdapterUserQuotes(getApplicationContext(), quotebidvalue,quotedescription,quoteid,quoteprice,quotequantity,quoterating,userphone,username,useraddress,quotetype,serverPhone));
                                         pDialog.dismiss();
-                                    } else if (status.compareTo("err") == 0) {
+                                    }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
-                                    else {
+                                    else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
-                                }
-                                catch (JSONException e) {
+                                } catch (JSONException e) {
                                     e.printStackTrace();
-
+                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -228,20 +242,20 @@ public class Sell extends AppCompatActivity {
                     }
                 });
                 que.add(jsonObjReq);
-            }
-            catch (JSONException e) {
+
+            } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                return null;
+                return false;
             }
-            return jsonIn;
+            return resultserver;
+
         }
         @Override
-        protected void onPostExecute(JSONObject response) {
+        protected void onPostExecute(Boolean json) {
 
         }
     }
-
     public void NetAsync(View view){
         new NetCheck().execute();
     }

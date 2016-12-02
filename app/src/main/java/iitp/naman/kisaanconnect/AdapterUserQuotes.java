@@ -5,13 +5,15 @@ package iitp.naman.kisaanconnect;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
-public class AdapterQuotes extends BaseAdapter {
+public class AdapterUserQuotes extends BaseAdapter {
     private Context context;
     private String[] quotebidvalue;
     private String[] quotedescription;
@@ -22,9 +24,10 @@ public class AdapterQuotes extends BaseAdapter {
     private String[] userphone;
     private String[] username;
     private String[] useraddress;
-    private String[] userrating;
+    private String[] quotetype;
+    private String serverPhone;
 
-    public AdapterQuotes(Context context, String[] quotebidvalue,String[] quotedescription,String[] quoteid,String[] quoteprice,String[] quotequantity,String[] quoterating,String[] userphone,String[] username,String[] useraddress,String[] userrating) {
+    public AdapterUserQuotes(Context context, String[] quotebidvalue,String[] quotedescription,String[] quoteid,String[] quoteprice,String[] quotequantity,String[] quoterating,String[] userphone,String[] username,String[] useraddress,String[] quotetype,String serverPhone) {
         this.context = context;
         this.quotebidvalue=quotebidvalue;
         this.quotedescription=quotedescription;
@@ -35,18 +38,17 @@ public class AdapterQuotes extends BaseAdapter {
         this.userphone=userphone;
         this.username=username;
         this.useraddress=useraddress;
-        this.userrating=userrating;
+        this.serverPhone=serverPhone;
+        this.quotetype=quotetype;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View gridView;
         if (convertView == null) {
             gridView = new View(context);
             gridView = inflater.inflate(R.layout.singlerowquote, null);
-            TextView textView = (TextView) gridView.findViewById(R.id.userrating);
-            textView.setText(userrating[position]);
             TextView textView1 = (TextView) gridView.findViewById(R.id.bidvalue);
             textView1.setText(quotebidvalue[position]);
             TextView textView2 = (TextView) gridView.findViewById(R.id.description);
@@ -69,6 +71,40 @@ public class AdapterQuotes extends BaseAdapter {
         else {
             gridView = (View) convertView;
         }
+
+        Button btndel  = ((Button) gridView.findViewById(R.id.delete));
+        Button btnupdate = ((Button) gridView.findViewById(R.id.update));
+
+        btnupdate.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent upanel = new Intent(context, UpdateQuote.class);
+                upanel.putExtra("serverphone",serverPhone);
+                upanel.putExtra("quoteid",quoteid[position]);
+                upanel.putExtra("desc",quotedescription[position]);
+                upanel.putExtra("price",quoteprice[position]);
+                upanel.putExtra("quantity",quotequantity[position]);
+                upanel.putExtra("type",quotetype[position]);
+                context.startActivity(upanel);
+            }
+        });
+
+        btndel.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent upanel = new Intent(context, DeleteQuote.class);
+                upanel.putExtra("serverphone",serverPhone);
+                upanel.putExtra("quoteid",quoteid[position]);
+                upanel.putExtra("desc",quotedescription[position]);
+                upanel.putExtra("price",quoteprice[position]);
+                upanel.putExtra("quantity",quotequantity[position]);
+                context.startActivity(upanel);
+            }
+        });
         return gridView;
     }
 

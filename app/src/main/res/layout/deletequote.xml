@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+    android:text="Are you sure to delete this quote??"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/textView2" />
+    <TextView
+        android:text="Quote Desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/description" />
+    <TextView
+        android:text="Quote Quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/quantity" />
+    <TextView
+        android:text="Quote price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/price" />
+
+
+    <Button
+        android:text="Yes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/yes" />
+
+    <Button
+        android:text="No"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/no" />
+</LinearLayout>

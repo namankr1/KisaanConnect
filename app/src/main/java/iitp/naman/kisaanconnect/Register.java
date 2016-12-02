@@ -4,7 +4,6 @@ package iitp.naman.kisaanconnect;
  * Created by naman on 30-Sep-16.
  */
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -40,11 +38,6 @@ import java.net.URL;
 
 public class Register extends AppCompatActivity {
 
-
-    /**
-     * Defining layout items.
-     **/
-
     EditText inputName;
     EditText inputPhone;
     EditText inputPassword;
@@ -54,10 +47,7 @@ public class Register extends AppCompatActivity {
     EditText inputZip;
 
     Button btnRegister;
-    Button btnCancel;
-    /**
-     * Called when the activity is first created.
-     */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,9 +58,7 @@ public class Register extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle("Password reset");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-        /**
-         * Defining all layout items
-         **/
+
         inputName = (EditText) findViewById(R.id.name);
         inputPhone = (EditText) findViewById(R.id.phone);
         inputPassword = (EditText) findViewById(R.id.password);
@@ -78,28 +66,8 @@ public class Register extends AppCompatActivity {
         inputAddress = (EditText) findViewById(R.id.address);
         inputCity = (EditText) findViewById(R.id.city);
         inputZip = (EditText) findViewById(R.id.zip);
-
         btnRegister = (Button) findViewById(R.id.register);
-        btnCancel = (Button) findViewById(R.id.cancel);
 
-/**
- * Button which Switches back to the login screen on clicked
- **/
-
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), Login.class);
-                startActivityForResult(myIntent, 0);
-                finish();
-            }
-
-        });
-
-        /**
-         * Register Button click event.
-         * A Toast is set to alert when the fields are empty.
-         * Another toast is set to alert Username must be 5 characters.
-         **/
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,23 +77,19 @@ public class Register extends AppCompatActivity {
                 {
                     if ( inputPhone.getText().toString().length() == 10 ){
                         NetAsync(view);
-
                     }
                     else
                     {
-                        Toast.makeText(getApplicationContext(),
-                                "Phone Number Should be 10 digits", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Phone Number Should be 10 digits", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else if(!inputPassword.equals(inputCPassword))
                 {
-                    Toast.makeText(getApplicationContext(),
-                            "Password and Confirm Password Do Not Match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Password and Confirm Password Do Not Match", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(),
-                            "One or more fields are empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "One or more fields are empty", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -133,9 +97,7 @@ public class Register extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.govtnotification, menu);
-
         return true;
     }
 
@@ -144,7 +106,6 @@ public class Register extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent upanel = new Intent(getApplicationContext(), Login.class);
-
                 startActivity(upanel);
                 this.finish();
                 return true;
@@ -152,10 +113,6 @@ public class Register extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    /**
-     * Async Task to check whether internet connection is working
-     **/
 
     private class NetCheck extends AsyncTask<String, Void, Boolean>
     {
@@ -165,8 +122,6 @@ public class Register extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(Register.this);
-            nDialog.setMessage("Loading..");
-            nDialog.setTitle("Checking Network");
             nDialog.setIndeterminate(false);
             nDialog.setCancelable(true);
             nDialog.show();
@@ -174,10 +129,6 @@ public class Register extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(String... args){
-
-/**
- * Gets current device state and checks for working internet connection by trying Google.
- **/
             ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo netInfo = cm.getActiveNetworkInfo();
             if (netInfo != null && netInfo.isConnected()) {
@@ -190,10 +141,8 @@ public class Register extends AppCompatActivity {
                         return true;
                     }
                 } catch (MalformedURLException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -208,17 +157,13 @@ public class Register extends AppCompatActivity {
                 new ProcessRegister().execute();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Cannot Connect to Network",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     class ProcessRegister extends AsyncTask<String,Void,JSONObject> {
 
-        /**
-         * Defining Process dialog
-         **/
         private ProgressDialog pDialog;
 
         String inputName1,inputPhone1,inputPassword1,inputAddress1,inputCity1,inputZip1;
@@ -226,17 +171,13 @@ public class Register extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
             inputName1 = inputName.getText().toString();
             inputPhone1 = inputPhone.getText().toString();
             inputPassword1 = inputPassword.getText().toString();
             inputAddress1 = inputAddress.getText().toString();
             inputCity1 = inputCity.getText().toString();
             inputZip1 = inputZip.getText().toString();
-
             pDialog = new ProgressDialog(Register.this);
-            pDialog.setTitle("Contacting Servers");
-            pDialog.setMessage("Registering ...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
@@ -252,11 +193,47 @@ public class Register extends AppCompatActivity {
                 jsonIn.put("phone",inputPhone1);
                 jsonIn.put("address",inputAddress1+", "+inputCity1+", "+inputZip1);
                 jsonIn.put("password",inputPassword1);
+                RequestQueue que = Volley.newRequestQueue(getApplicationContext());
+                String urlString = getResources().getString(R.string.network_url)+"signup/";
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, jsonIn,
+                        new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    String status = response.getString("status");
+                                    if (status.compareTo("ok") == 0) {
+                                        Intent upanel = new Intent(getApplicationContext(), Otp.class);
+                                        upanel.putExtra("phoneno", inputPhone1);
+                                        pDialog.dismiss();
+                                        startActivity(upanel);
+                                    }else if(status.compareTo("err") == 0){
+                                        Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
+                                    }
+                                    else{
+                                        pDialog.dismiss();
+                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                que.add(jsonObjReq);
 
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "login Failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                 return null;
             }
             return jsonIn;
@@ -264,56 +241,10 @@ public class Register extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(JSONObject json) {
-            /**
-             * Checks for success message.
-             **/
-            RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-                String urlString = getResources().getString(R.string.network_url)+"signup/";
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, json,
-                        new Response.Listener<JSONObject>() {
 
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    String status = response.getString("status");
-                                    Log.i("Response :","Status : "+status);
-                                    if (status.compareTo("ok") == 0) {
-                                        Log.i("Status Ok :","Sending Otp ");
-                                        pDialog.setMessage("Sending Otp");
-                                        pDialog.setTitle("Otp");
-                                        Log.i("Status Before upanel :","Sending Otp ");
-                                        Intent upanel = new Intent(getApplicationContext(), Otp.class);
-                                        upanel.putExtra("phoneno", inputPhone1);
-                                        pDialog.dismiss();
-                                        startActivity(upanel);
-                                    }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(),
-                                                response.getString("message") ,
-                                                Toast.LENGTH_LONG).show();
-                                        pDialog.dismiss();
-                                    }
-                                    else{
-                                        pDialog.setMessage("Server Connection Denied");
-                                        pDialog.setTitle("Exit");
-                                        pDialog.dismiss();
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        Toast.makeText(getApplicationContext(),
-                                getString(R.string.login_failed),
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-            que.add(jsonObjReq);
         }
     }
     public void NetAsync(View view){
         new NetCheck().execute();
-    }}
+    }
+}

@@ -16,7 +16,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,9 +35,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 
-public class Login extends AppCompatActivity
-{
-
+public class Login extends AppCompatActivity {
     Button btnLogin;
     Button btnRegister;
     Button btnReset;
@@ -48,12 +45,9 @@ public class Login extends AppCompatActivity
     CheckBox ch2;
     SharedPreferences.Editor e;
     SharedPreferences sf;
-    /**
-     * Called when the activity is first created.
-     */
+
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -65,9 +59,9 @@ public class Login extends AppCompatActivity
         tb = (ToggleButton) findViewById(R.id.checkBox);
         ch2 = (CheckBox)findViewById(R.id.checkBox2);
         sf = getSharedPreferences("yaad",MODE_PRIVATE);
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Login");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
@@ -75,23 +69,21 @@ public class Login extends AppCompatActivity
         String ps = sf.getString("passwordnum","");
         inputPhone.setText(ph);
         inputPassword.setText(ps);
+
         tb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                {
+                if(isChecked) {
                     inputPassword.setInputType(InputType.TYPE_CLASS_TEXT);
                 }
-                else
-                {
+                else {
                     inputPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 }
             }
         });
-        btnReset.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View view)
-            {
+
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
                 Intent myIntent = new Intent(getApplicationContext(), PasswordReset.class);
                 myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -99,43 +91,27 @@ public class Login extends AppCompatActivity
             }
         });
 
-        btnRegister.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View view)
-            {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
                 Log.i("bt register","on click");
                 Intent myIntent = new Intent(getApplicationContext(), Register.class);
                 startActivity(myIntent);
             }
         });
-        /**
-         * Login button click event
-         * A Toast is set to alert when the Email and Password field is empty
-         **/
-        btnLogin.setOnClickListener(new View.OnClickListener()
-        {
 
-            public void onClick(View view)
-            {
-
-                if (  ( !inputPhone.getText().toString().equals("")) && ( !inputPassword.getText().toString().equals("")) )
-                {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (  ( !inputPhone.getText().toString().equals("")) && ( !inputPassword.getText().toString().equals("")) ) {
                     NetAsync(view);
                 }
-                else if ( ( !inputPhone.getText().toString().equals("")) )
-                {
-                    Toast.makeText(getApplicationContext(),
-                            "Password field empty", Toast.LENGTH_LONG).show();
+                else if ( ( !inputPhone.getText().toString().equals("")) ) {
+                    Toast.makeText(getApplicationContext(), "Password field empty", Toast.LENGTH_SHORT).show();
                 }
-                else if ( ( !inputPassword.getText().toString().equals("")) )
-                {
-                    Toast.makeText(getApplicationContext(),
-                            "Phone field empty", Toast.LENGTH_LONG).show();
+                else if ( ( !inputPassword.getText().toString().equals("")) ) {
+                    Toast.makeText(getApplicationContext(), "Phone field empty", Toast.LENGTH_SHORT).show();
                 }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),
-                            "Phone and Password field are empty", Toast.LENGTH_LONG).show();
+                else {
+                    Toast.makeText(getApplicationContext(), "Phone and Password field are empty", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -143,207 +119,145 @@ public class Login extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.govtnotification, menu);
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        return super.onOptionsItemSelected(item);
     }
-
-    /**
-     * Async Task to check whether internet connection is working.
-     **/
 
     private class NetCheck extends AsyncTask<String, Void, Boolean>
     {
         private ProgressDialog nDialog;
 
         @Override
-        protected void onPreExecute()
-        {
+        protected void onPreExecute() {
             super.onPreExecute();
             nDialog = new ProgressDialog(Login.this);
-            nDialog.setTitle("");
-            nDialog.setMessage("");
-            //nDialog.setTitle("Checking Network");
-            //nDialog.setMessage("Loading..");
             nDialog.setIndeterminate(false);
             nDialog.setCancelable(true);
             nDialog.show();
         }
 
         @Override
-        protected Boolean doInBackground(String... args)
-        {
-
-        /**
-         * Gets current device state and checks for working internet connection by trying Google.
-         **/
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnected())
-        {
-            try
-            {
-                URL url = new URL(getResources().getString(R.string.network_check));
-                HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-                urlc.setConnectTimeout(8000);
-                urlc.connect();
-                if (urlc.getResponseCode() == 200)
-                {
-                    return true;
+        protected Boolean doInBackground(String... args) {
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getActiveNetworkInfo();
+            if (netInfo != null && netInfo.isConnected()) {
+                try {
+                    URL url = new URL(getResources().getString(R.string.network_check));
+                    HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
+                    urlc.setConnectTimeout(8000);
+                    urlc.connect();
+                    if (urlc.getResponseCode() == 200)
+                    {
+                        return true;
+                    }
+                }
+                catch (MalformedURLException e1) {
+                    e1.printStackTrace();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-            catch (MalformedURLException e1)
-            {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
-            catch (IOException e)
-            {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            return false;
         }
-        return false;
+        @Override
+        protected void onPostExecute(Boolean th) {
 
-    }
-    @Override
-    protected void onPostExecute(Boolean th)
-    {
-
-        if(th == true)
-        {
-            nDialog.dismiss();
-            new ProcessLogin().execute();
-        }
-        else
-        {
-            Toast.makeText(getApplicationContext(), "Cannot Connect to Network",
-                    Toast.LENGTH_LONG).show();
-
+            if(th == true) {
+                nDialog.dismiss();
+                new ProcessLogin().execute();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+            }
         }
     }
-}
 
-    /**
-     * Async Task to get and send data to My Sql database through JSON respone.
-     **/
-    private class ProcessLogin extends AsyncTask<String,Void,JSONObject>
-    {
+    private class ProcessLogin extends AsyncTask<String,Void,JSONObject> {
 
         private ProgressDialog pDialog;
         String inputPhone1,inputPassword1;
+        JSONObject resultserver=null;
 
         @Override
-        protected void onPreExecute()
-        {
+        protected void onPreExecute() {
             pDialog = new ProgressDialog(Login.this);
-            pDialog.setTitle("");
-            pDialog.setMessage("");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
-
             super.onPreExecute();
             inputPhone1 = inputPhone.getText().toString();
             inputPassword1 = inputPassword.getText().toString();
-
         }
 
         @Override
-        protected JSONObject doInBackground(String... args)
-        {
+        protected JSONObject doInBackground(String... args) {
 
             JSONObject jsonIn = new JSONObject();
-            try
-            {
+            try {
                 jsonIn.put("phone", inputPhone1);
                 jsonIn.put("password", inputPassword1);
             }
-            catch (JSONException e)
-            {
+            catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "login Failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                 return null;
             }
             return jsonIn;
         }
 
         @Override
-        protected void onPostExecute(JSONObject json)
-        {
+        protected void onPostExecute(JSONObject jsonIn) {
+
             RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-            Log.i("Login Success : ", "getting profile jsonIn :"+json.toString());
-
             String urlString = getResources().getString(R.string.network_url) + "signin/";
-            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, json,
-                        new Response.Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    Log.i("Login Success : ", "getting profile jsonIn 1:");
-                                    String status = response.getString("status");
-                                    if (status.compareTo("ok") == 0) {
-                                        if (ch2.isChecked()) {
-                                            e = sf.edit();
-                                            e.putString("phonenum", inputPhone1);
-                                            e.putString("passwordnum", inputPassword1);
-                                            e.putBoolean("rm",true);
-                                            //e.putBoolean("con",true);
-                                            e.commit();
-
-                                        }
-                                        Log.i("Login Success : ", "getting profile jsonIn 2:");
-                                        Intent upanel = new Intent(getApplicationContext(), Home.class);
-                                        Log.i("Login Success : ", "getting profile jsonIn 3:");
-                                        upanel.putExtra("phoneno", inputPhone1);
-                                        Log.i("Login Success : ", "getting profile jsonIn 4:");
-
-                                        startActivity(upanel);
-                                        pDialog.dismiss();
-
-                                    }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(),
-                                                response.getString("message") ,
-                                                Toast.LENGTH_LONG).show();
-                                        pDialog.dismiss();
+            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, jsonIn,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                String status = response.getString("status");
+                                if (status.compareTo("ok") == 0) {
+                                    if (ch2.isChecked()) {
+                                        e = sf.edit();
+                                        e.putString("phonenum", inputPhone1);
+                                        e.putString("passwordnum", inputPassword1);
+                                        e.putBoolean("rm", true);
+                                        e.commit();
                                     }
-                                    else{
-                                        pDialog.setMessage("Server Connection Denied");
-                                        pDialog.setTitle("Exit");
-                                        pDialog.dismiss();
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    Intent upanel = new Intent(getApplicationContext(), Home.class);
+                                    upanel.putExtra("phoneno", inputPhone1);
+                                    startActivity(upanel);
+                                    pDialog.dismiss();
+
+                                } else if (status.compareTo("err") == 0) {
+                                    Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                 }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                             }
-                        }, new Response.ErrorListener() {
+                        }
+                    }, new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        Toast.makeText(getApplicationContext(),
-                                getString(R.string.login_failed),
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-            Log.i("Login Success 77 : ", "getting profile jsonIn 4:");
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                }
+            });
             que.add(jsonObjReq);
-            Log.i("Login Success 87 : ", "getting profile jsonIn 4:");
-
-            //pDialog.dismiss();
-
         }
     }
+
     public void NetAsync(View view){
         new NetCheck().execute();
     }
