@@ -68,13 +68,13 @@ public class buySubcategory extends AppCompatActivity {
         gridView = (GridView) findViewById(R.id.gridView1);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                String subcategoryid = ((TextView) v.findViewById(R.id.grid_item_id)).getText()+"";
+                String subcategoryid1 = ((TextView) v.findViewById(R.id.grid_item_id)).getText()+"";
                 String subcategoryname1 = ((TextView) v.findViewById(R.id.grid_item_label)).getText()+"";
                 Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 upanel.putExtra("category",category1);
                 upanel.putExtra("categoryname",categoryname1);
-                upanel.putExtra("subcategory",subcategoryid);
+                upanel.putExtra("subcategory",subcategoryid1);
                 upanel.putExtra("subcategoryname",subcategoryname1);
                 startActivity(upanel);
             }

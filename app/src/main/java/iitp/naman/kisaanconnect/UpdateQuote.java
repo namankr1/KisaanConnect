@@ -37,21 +37,21 @@ public class UpdateQuote extends AppCompatActivity {
     String is_active1;
     String inputphone1;
 
+    private String serverName;
+    private String serverType;
+    private String serverAddress;
+
     TextView desc;
     EditText price;
     EditText type;
     EditText quantity;
-    EditText is_active;
-
-
     Button yes1;
-    Button no1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.deletequote);
+        setContentView(R.layout.updatequote);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             quoteid1 = extras.getString("quoteid");
@@ -61,32 +61,28 @@ public class UpdateQuote extends AppCompatActivity {
             inputphone1=extras.getString("serverphone");
             type1=extras.getString("type");
             is_active1=extras.getString("is_active");
-
+            serverAddress=extras.getString("serveraddress");
+            serverName=extras.getString("servername");
+            serverType=extras.getString("servertype");
         }
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Delete Quote");
+        getSupportActionBar().setTitle("Update Quote");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-        yes1 = (Button) findViewById(R.id.yes);
-        no1 = (Button) findViewById(R.id.no);
-
-
+        yes1 = (Button) findViewById(R.id.update);
         price = (EditText) findViewById(R.id.price);
         quantity = (EditText) findViewById(R.id.quantity);
         desc = (TextView) findViewById(R.id.description);
         type=(EditText) findViewById(R.id.type);
-        is_active=(EditText) findViewById(R.id.is_active);
 
         price.setText(price1,TextView.BufferType.EDITABLE);
         quantity.setText(quantity1,TextView.BufferType.EDITABLE);
         type.setText(type1,TextView.BufferType.EDITABLE);
-        is_active.setText(is_active1,TextView.BufferType.EDITABLE);
         desc.setText(description1);
-
 
         yes1.setOnClickListener(new View.OnClickListener()
         {
@@ -95,17 +91,6 @@ public class UpdateQuote extends AppCompatActivity {
                 new InterestedNotification().execute();
             }
         });
-
-        no1.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View view)
-            {
-                Intent upanel = new Intent(getApplicationContext(), Home.class);
-                upanel.putExtra("phoneno", inputphone1);
-                startActivity(upanel);
-            }
-        });
-
     }
 
 
@@ -120,8 +105,11 @@ public class UpdateQuote extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), Home.class);
+                Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
                 upanel.putExtra("phoneno", inputphone1);
+                upanel.putExtra("name",serverName);
+                upanel.putExtra("address",serverAddress);
+                upanel.putExtra("type",serverType);
                 startActivity(upanel);
                 this.finish();
                 return true;
@@ -133,7 +121,7 @@ public class UpdateQuote extends AppCompatActivity {
     private class InterestedNotification extends AsyncTask<String,Void,JSONObject> {
         private ProgressDialog pDialog;
         JSONObject resultserver=null;
-        String type2,quantity2,price2,isactive2;
+        String type2,quantity2,price2;
 
         @Override
         protected void onPreExecute() {
@@ -145,7 +133,6 @@ public class UpdateQuote extends AppCompatActivity {
             type2=type.getText().toString();
             quantity2=quantity.getText().toString();
             price2=price.getText().toString();
-            isactive2=is_active.getText().toString();
         }
 
         @Override
@@ -153,13 +140,12 @@ public class UpdateQuote extends AppCompatActivity {
 
             JSONObject jsonIn = new JSONObject();
             try {
-                jsonIn.put("quoteid",quoteid1);
+                jsonIn.put("quoteId",quoteid1);
                 jsonIn.put("type",type2);
                 jsonIn.put("quantity",quantity2);
                 jsonIn.put("price",price2);
-                jsonIn.put("is_active",isactive2);
                 RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-                String urlString = getResources().getString(R.string.network_notification)+"updatequote/";
+                String urlString = getResources().getString(R.string.network_quotes)+"updatequote/";
                 JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, jsonIn,
                         new Response.Listener<JSONObject>() {
                             @Override
@@ -175,8 +161,11 @@ public class UpdateQuote extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                     }
                                     pDialog.dismiss();
-                                    Intent upanel = new Intent(getApplicationContext(), Home.class);
+                                    Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
                                     upanel.putExtra("phoneno", inputphone1);
+                                    upanel.putExtra("name",serverName);
+                                    upanel.putExtra("address",serverAddress);
+                                    upanel.putExtra("type",serverType);
                                     startActivity(upanel);
                                 } catch (JSONException e) {
                                     e.printStackTrace();

@@ -12,11 +12,11 @@ import android.widget.TextView;
 import android.widget.BaseAdapter;
 
 public class Adaptercls extends BaseAdapter {
-    Context context;
-    String []govtnotifbody;
-    String []govtnotifid;
-    String []govtnotiftitle;
-    String []govtnotifurl;
+    private Context context;
+    private String []govtnotifbody;
+    private String []govtnotifid;
+    private String []govtnotiftitle;
+    private String []govtnotifurl;
 
     Adaptercls(Context c,String []govtnotifbody,String []govtnotifid,String []govtnotiftitle,String []govtnotifurl) {
         this.context = c;

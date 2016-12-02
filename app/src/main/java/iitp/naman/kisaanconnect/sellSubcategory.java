@@ -43,8 +43,6 @@ public class sellSubcategory extends AppCompatActivity {
     String inputPhone1;
     String category1;
     String categoryname1;
-    Button btnBack;
-
     String[] subcategoryname = new String[] {};
     String[] subcategorydescription = new String[] {};
     String[] subcategoryid = new String[] {};
@@ -88,16 +86,6 @@ public class sellSubcategory extends AppCompatActivity {
         });
 
 
-        btnBack.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View view)
-            {
-                Intent upanel = new Intent(getApplicationContext(), Sell.class);
-                upanel.putExtra("phoneno", inputPhone1);
-
-                startActivity(upanel);
-            }
-        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

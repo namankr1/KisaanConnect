@@ -1,39 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-    android:text="Are you sure to delete this quote??"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/textView2" />
-    <TextView
-        android:text="Quote Desc"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/description" />
-    <TextView
-        android:text="Quote Quantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/quantity" />
-    <TextView
-        android:text="Quote price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/price" />
+        android:background="#ffffff"
+        >
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
 
-    <Button
-        android:text="Yes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/yes" />
 
-    <Button
-        android:text="No"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/no" />
-</LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/my_toolbar"
+            android:paddingBottom="30dp"
+            android:id="@+id/head"
+            android:background="#49b102">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif"
+                android:text="Delete product"
+                android:textAllCaps="true"
+                android:id="@+id/nameofseller"
+                android:textColor="#fff"
+                android:background="#49b102"
+                android:textSize="40sp"
+
+
+                />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="20dp"
+            android:text="test phone"
+            android:id="@+id/phoneofseller"
+            android:textColor="#000"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/head"
+            android:padding="5dp"
+            android:id="@+id/descbar"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/description"
+                android:layout_gravity="center_vertical"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Description of the product"
+                    android:id="@+id/descriptionlabel"
+                    android:textColor="#000"
+                    android:paddingLeft="15dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="This is a test description of the product to be displayed by this quotation"
+                    android:id="@+id/description"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000"
+                    android:layout_below="@+id/descriptionlabel"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/descbar"
+            android:padding="5dp"
+            android:id="@+id/pricebar"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/price"
+                android:layout_gravity="center_vertical"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Current highest bid of the product"
+                    android:id="@+id/pricelabel"
+                    android:textColor="#000"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rs. 250"
+                    android:layout_below="@+id/pricelabel"
+                    android:id="@+id/currentbid"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pricebar"
+            android:padding="5dp"
+            android:id="@+id/quantitybar"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/quantity"
+                android:layout_gravity="center_vertical"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Present avaliable quantity (in kg.)"
+                    android:id="@+id/quantitylabel"
+                    android:textColor="#000"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/quantitylabel"
+                    android:text="5"
+                    android:id="@+id/availablequantity"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Are you sure you want to delete it? Action cannot be undone"
+            android:textColor="#0786b1"
+            android:gravity="center"
+            android:layout_below="@+id/quantitybar"
+            android:id="@+id/textView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/infotextviewborder"
+            android:padding="10dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+
+            />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView"
+            android:gravity="center" android:padding="20dp">
+
+            <Button
+                android:text="Yes"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/yes"
+                android:background="@drawable/confirmbutton"
+                />
+
+            <Button
+                android:text="No"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/no"
+                android:background="@drawable/cancelbutton"
+                android:layout_marginLeft="40dp"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>
+

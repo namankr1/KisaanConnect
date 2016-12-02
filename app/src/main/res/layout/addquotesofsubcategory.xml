@@ -7,18 +7,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#58B515"
+        android:background="#efefef"
         tools:context="com.register.userprofilekissanconnect.MainActivity">
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
@@ -26,24 +24,30 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Add a Quote"
-            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Thank you for your interest to sell your product with us. Please add the details below"
+            android:textColor="#0786b1"
             android:gravity="center"
             android:layout_below="@+id/my_toolbar"
             android:id="@+id/textView"
-            android:layout_marginTop="50dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:background="@drawable/infotextviewborder"
+            android:padding="10dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+
+            />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="type"
-            android:textColorHint="#ffffff"
+            android:hint="Name of the product"
+            android:textColorHint="#585858"
             android:gravity="center"
             android:ems="10"
             android:id="@+id/type"
@@ -52,66 +56,85 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="50dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/formfieldrectangle"
+            android:padding="10dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="quantity"
-            android:textColorHint="#ffffff"
+            android:hint="Quantity"
+            android:textColorHint="#585858"
             android:gravity="center"
+            android:ems="10"
             android:id="@+id/quantity"
-            android:ems="10"
-            android:layout_marginTop="28dp"
-            android:layout_below="@+id/type"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="price"
-            android:textColorHint="#ffffff"
-            android:gravity="center"
-            android:id="@+id/price"
-            android:ems="10"
-            android:layout_marginTop="28dp"
-            android:layout_below="@+id/quantity"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="description"
-            android:textColorHint="#ffffff"
-            android:gravity="center"
-            android:id="@+id/description"
-            android:ems="10"
             android:layout_below="@+id/price"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="15dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/formfieldrectangle"
+            android:padding="10dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"/>
 
-        <Button
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add"
-            android:id="@+id/add"
-            android:textColor="#58B515"
+            android:inputType="textPersonName"
+            android:hint="Price"
+            android:textColorHint="#585858"
+            android:gravity="center"
+            android:ems="10"
+            android:id="@+id/price"
             android:layout_below="@+id/description"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/formfieldrectangle"
+            android:padding="10dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Description (Optional)"
+            android:textColorHint="#585858"
+            android:gravity="center"
+            android:ems="10"
+            android:id="@+id/description"
+            android:layout_below="@+id/type"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/formfieldrectangle"
+            android:padding="10dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"/>
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:id="@+id/add"
+            android:text="Add"
+            android:textColor="#fff"
+            android:layout_below="@+id/quantity"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="28dp" />
+            android:layout_centerVertical="true"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/proceedbutton"
+
+            />
 
 
     </RelativeLayout>

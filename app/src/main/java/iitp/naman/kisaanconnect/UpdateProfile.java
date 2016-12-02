@@ -71,6 +71,9 @@ public class UpdateProfile extends AppCompatActivity {
             btnconfirm = (Button) findViewById(R.id.btnconfirm);
             name = (TextView) findViewById(R.id.name);
             phone = (TextView) findViewById(R.id.phone);
+            name.setText(serverName);
+            phone.setText(serverPhone);
+            newaddress.setText(serverAddress,TextView.BufferType.EDITABLE);
 
             btnconfirm.setOnClickListener(new View.OnClickListener() {
                 @Override

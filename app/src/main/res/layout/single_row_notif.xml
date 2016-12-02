@@ -3,52 +3,66 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/green"
-    android:padding="5dp">
-
+    android:background="@drawable/entitybox"
+    android:paddingTop="15dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="15dp"
+    >
 
     <TextView
-        android:text="TextView"
+        android:text="ID of notification"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxHeight="72dp"
-        android:id="@+id/body"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp" />
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="1dp"
+        android:visibility="gone"
         android:maxHeight="72dp"
         android:id="@+id/notifid"
-        android:layout_below="@+id/body"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp" />
+        android:textColor="#000"
+        />
     <TextView
-        android:text="TextView"
+        android:text="Central Government Health Scheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxHeight="72dp"
         android:id="@+id/title"
-        android:layout_below="@+id/body"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp" />
+        android:textColor="#cc0d0d"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        />
     <TextView
-        android:text="TextView"
+        android:text="It is a government of india intiative to engage rural youth specially SC/ST and BPL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxHeight="72dp"
-        android:id="@+id/url"
+        android:id="@+id/body"
         android:layout_below="@+id/title"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp" />
-
+        android:textColor="#000"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="For more details : "
+            android:textStyle="bold"
+            android:textColor="#000"/>
+        <TextView
+            android:text="This is the url to visit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="72dp"
+            android:id="@+id/url"
+            android:layout_below="@+id/title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#5c8ebc"
+            />
+    </LinearLayout>
 </LinearLayout>

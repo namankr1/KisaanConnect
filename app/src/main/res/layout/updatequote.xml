@@ -1,50 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <TextView
-        android:text="Description"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/description" />
+        android:layout_height="match_parent"
+        android:background="#e7e7e7">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="type"
-        android:ems="10"
-        android:id="@+id/type" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/my_toolbar"
+            android:paddingBottom="30dp"
+            android:id="@+id/head"
+            android:background="#49b102">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif"
+                android:text="Update product"
+                android:textAllCaps="true"
+                android:id="@+id/nameofseller"
+                android:textColor="#fff"
+                android:background="#49b102"
+                android:textSize="40sp"
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="quantity"
-        android:ems="10"
-        android:id="@+id/quantity" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="price"
-        android:ems="10"
-        android:id="@+id/price" />
+                />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="is_active"
-        android:ems="10"
-        android:id="@+id/is_active" />
+        </RelativeLayout>
 
-    <Button
-        android:text="Update"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/update" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="You can edit name, price and quantity of your product here!"
+            android:textColor="#0786b1"
+            android:gravity="center"
+            android:layout_below="@+id/head"
+            android:id="@+id/textView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/infotextviewborder"
+            android:padding="10dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView"
+            android:padding="5dp"
+            android:id="@+id/descbar"
+            android:layout_marginTop="40dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/description"
+                android:layout_gravity="center_vertical"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Description of the product"
+                    android:id="@+id/descriptionlabel"
+                    android:textColor="#000"
+                    android:paddingLeft="15dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="This is a test description of the product to be displayed by this quotation"
+                    android:id="@+id/description"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000"
+                    android:layout_below="@+id/descriptionlabel"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Name of the product"
+            android:textColorHint="#585858"
+            android:gravity="center"
+            android:ems="10"
+            android:id="@+id/type"
+            android:layout_below="@+id/descbar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/formfieldrectangle"
+            android:padding="10dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Price"
+            android:textColorHint="#585858"
+            android:gravity="center"
+            android:ems="10"
+            android:id="@+id/price"
+            android:layout_below="@+id/type"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/formfieldrectangle"
+            android:padding="10dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Avaliable quantity"
+            android:textColorHint="#585858"
+            android:gravity="center"
+            android:ems="10"
+            android:id="@+id/quantity"
+            android:layout_below="@+id/price"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/formfieldrectangle"
+            android:padding="10dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"/>
+
+
+
+        <Button
+            android:text="Update"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/proceedbutton"
+            android:id="@+id/update"
+            android:layout_below="@id/quantity"
+            />
+
+    </RelativeLayout>
+</ScrollView>

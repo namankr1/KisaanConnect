@@ -1,103 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:weightSum="13"
+    android:background="@drawable/entitybox"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:paddingBottom="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:layout_weight="4">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alan Aipe"
+                android:layout_marginTop="5dp"
+                android:id="@+id/type"
+                android:textAllCaps="true"
+                android:textColor="#545454"
+                android:textSize="17dp"
 
-    android:padding="5dp"
-    android:weightSum="2"
-    android:background="@color/green"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center_horizontal"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#0f6bb1"
+                android:text="Price (Rs.)"
+                android:id="@+id/pricelabel"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="250"
+                android:layout_below="@+id/pricelabel"
+                android:id="@+id/bidvalue"
+                android:textColor="#000"
+                android:layout_marginLeft="12dp"
+
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#34ac10"
+                android:text="Quantity (kg)"
+                android:id="@+id/quantitylabel"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="27"
+                android:layout_below="@+id/quantitylabel"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/quantity"
+                android:textColor="#000"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_height="wrap_content"
+                android:text="quote rating"
+                android:visibility="gone"
+                android:id="@+id/quoterating"
+                android:lines="1"
+                android:textColor="#fff"
+                />
 
 
 
-    <TextView
-        android:layout_width="379dp"
-        android:layout_marginTop="25dp"
-        android:layout_height="wrap_content"
-        android:text="quote rating"
-        android:id="@+id/quoterating"
-        android:lines="1"
-        android:textColor="@color/white"
-        />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="Descrption"
+                android:visibility="gone"
+                android:id="@+id/description"
+                android:layout_marginTop="5dp"
+                android:textColor="#fff"
+                />
 
-    <TextView
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="Phone Number"
+                android:visibility="gone"
+                android:id="@+id/phone"
+                android:layout_marginTop="5dp"
+                android:textColor="#fff"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="Address"
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:id="@+id/address"
+                android:textColor="#fff"
+                />
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text=""
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:id="@+id/quoteid"
+                android:textColor="#fff"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="1"
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:id="@+id/price"
+                android:textColor="#fff"
+
+                />
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Descrption"
-        android:id="@+id/description"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/white"
-        />
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+        <Button
+            android:text="delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/delete"
+            android:background="#e11111"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Phone Number"
-        android:id="@+id/phone"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/white"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Address"
-        android:layout_marginTop="5dp"
-        android:id="@+id/address"
-        android:textColor="@color/white"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Quantity Available"
-        android:layout_marginTop="5dp"
-        android:id="@+id/quantity"
-        android:textColor="@color/white"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Bid Value"
-        android:layout_marginTop="5dp"
-        android:id="@+id/bidvalue"
-        android:textColor="@color/white"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginTop="5dp"
-        android:id="@+id/quoteid"
-        android:textColor="@color/white"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginTop="5dp"
-        android:id="@+id/price"
-        android:textColor="@color/white"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginTop="5dp"
-        android:id="@+id/nameofseller"
-        android:textColor="@color/white"
-        />
-
-    <Button
-        android:text="delete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/delete" />
-
-    <Button
-        android:text="update"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/update" />
+        <Button
+            android:text="update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update"
+            android:layout_marginLeft="30dp"
+            android:background="#f97c1c"/>
+    </LinearLayout>
 </LinearLayout>

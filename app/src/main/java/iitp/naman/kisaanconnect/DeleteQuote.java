@@ -33,6 +33,10 @@ public class DeleteQuote extends AppCompatActivity {
     String description1 ;
     String inputphone1;
 
+    private String serverName;
+    private String serverType;
+    private String serverAddress;
+
     TextView currentprice;
     TextView availablequantity;
     TextView description;
@@ -52,6 +56,9 @@ public class DeleteQuote extends AppCompatActivity {
             quantity1=extras.getString("quantity");
             description1=extras.getString("desc");
             inputphone1=extras.getString("serverphone");
+            serverAddress=extras.getString("serveraddress");
+            serverName=extras.getString("servername");
+            serverType=extras.getString("servertype");
         }
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -65,10 +72,9 @@ public class DeleteQuote extends AppCompatActivity {
         no1 = (Button) findViewById(R.id.no);
 
 
-        currentprice = (TextView) findViewById(R.id.price);
-        availablequantity = (TextView) findViewById(R.id.quantity);
+        currentprice = (TextView) findViewById(R.id.currentbid);
+        availablequantity = (TextView) findViewById(R.id.availablequantity);
         description = (TextView) findViewById(R.id.description);
-        currentprice.setText(price1);
 
         availablequantity.setText((quantity1));
         description.setText(description1);
@@ -86,8 +92,11 @@ public class DeleteQuote extends AppCompatActivity {
         {
             public void onClick(View view)
             {
-                Intent upanel = new Intent(getApplicationContext(), Home.class);
+                Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
                 upanel.putExtra("phoneno", inputphone1);
+                upanel.putExtra("name",serverName);
+                upanel.putExtra("address",serverAddress);
+                upanel.putExtra("type",serverType);
                 startActivity(upanel);
             }
         });
@@ -106,8 +115,11 @@ public class DeleteQuote extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), Home.class);
+                Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
                 upanel.putExtra("phoneno", inputphone1);
+                upanel.putExtra("name",serverName);
+                upanel.putExtra("address",serverAddress);
+                upanel.putExtra("type",serverType);
                 startActivity(upanel);
                 this.finish();
                 return true;
@@ -134,9 +146,9 @@ public class DeleteQuote extends AppCompatActivity {
 
             JSONObject jsonIn = new JSONObject();
             try {
-                jsonIn.put("quoteid",quoteid1);
+                jsonIn.put("quoteId",quoteid1);
                 RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-                String urlString = getResources().getString(R.string.network_notification)+"deletequote/";
+                String urlString = getResources().getString(R.string.network_quotes)+"deletequote/";
                 JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, jsonIn,
                         new Response.Listener<JSONObject>() {
                             @Override
@@ -152,8 +164,11 @@ public class DeleteQuote extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                     }
                                     pDialog.dismiss();
-                                    Intent upanel = new Intent(getApplicationContext(), Home.class);
+                                    Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
                                     upanel.putExtra("phoneno", inputphone1);
+                                    upanel.putExtra("name",serverName);
+                                    upanel.putExtra("address",serverAddress);
+                                    upanel.putExtra("type",serverType);
                                     startActivity(upanel);
                                 } catch (JSONException e) {
                                     e.printStackTrace();

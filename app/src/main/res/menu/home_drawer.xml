@@ -4,31 +4,31 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_home"
+            android:icon="@drawable/ic_homef"
             android:title="Home" />
         <item
             android:id="@+id/nav_my_profile"
-            android:icon="@drawable/ic_profile"
+            android:icon="@drawable/ic_profilef"
             android:title="My_Profile" />
         <item
             android:id="@+id/nav_gov_not"
-            android:icon="@drawable/ic_noti"
+            android:icon="@drawable/ic_notif"
             android:title="Govt. Notf." />
         <item
             android:id="@+id/nav_buy"
-            android:icon="@drawable/ic_buy"
+            android:icon="@drawable/ic_buyf"
             android:title="Buy Resources" />
         <item
             android:id="@+id/nav_sell"
-            android:icon="@drawable/ic_sell"
+            android:icon="@drawable/ic_sellf"
             android:title="Sell Resources" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_logout"
+            android:icon="@drawable/ic_logoutf"
             android:title="Logout" />
         <item
             android:id="@+id/nav_exit"
-            android:icon="@drawable/ic_exit"
+            android:icon="@drawable/ic_exitf"
             android:title="Exit" />
     </group>
 

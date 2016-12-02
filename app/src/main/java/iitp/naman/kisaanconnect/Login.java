@@ -93,7 +93,6 @@ public class Login extends AppCompatActivity {
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Log.i("bt register","on click");
                 Intent myIntent = new Intent(getApplicationContext(), Register.class);
                 startActivity(myIntent);
             }
@@ -135,9 +134,12 @@ public class Login extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            nDialog = new ProgressDialog(Login.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog = new ProgressDialog(Login.this){
+                @Override
+                public void onBackPressed() {
+                    nDialog.dismiss();
+                }};
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -187,8 +189,7 @@ public class Login extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(Login.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
             super.onPreExecute();
             inputPhone1 = inputPhone.getText().toString();
@@ -233,15 +234,14 @@ public class Login extends AppCompatActivity {
                                     Intent upanel = new Intent(getApplicationContext(), Home.class);
                                     upanel.putExtra("phoneno", inputPhone1);
                                     startActivity(upanel);
-                                    pDialog.dismiss();
-
+                                    finish();
                                 } else if (status.compareTo("err") == 0) {
                                     Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                    pDialog.dismiss();
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                    pDialog.dismiss();
+
                                 }
+                                pDialog.dismiss();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();

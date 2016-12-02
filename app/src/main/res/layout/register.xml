@@ -5,174 +5,173 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/green"
-    >
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#49b102"
+        >
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/kisan"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/my_toolbar"
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/kisanf"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/my_toolbar"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/logo"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Sign Up"
+            android:textColor="#58b515"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:id="@+id/signupPage"
+            android:layout_below="@+id/logo"
 
-        android:id="@+id/logo"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Sign Up"
-        android:textColor="#58b515"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:id="@+id/signupPage"
-        android:layout_below="@+id/logo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:padding="5dp"
 
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:padding="5dp"
+            android:background="#b0ffffff"/>
 
-        android:background="#A8ffffff"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Name"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
+            android:ems="10"
+            android:id="@+id/name"
+            android:layout_below="@+id/signupPage"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Name"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:ems="10"
-        android:id="@+id/name"
-        android:layout_below="@+id/signupPage"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/phone"
+            android:layout_below="@+id/name"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:hint="Contact number"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
+            />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/phone"
-        android:layout_below="@+id/name"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:hint="phone number"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
+            android:ems="10"
+            android:id="@+id/password"
+            android:layout_below="@+id/phone"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="password"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:ems="10"
-        android:id="@+id/password"
-        android:layout_below="@+id/phone"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Re-type password"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
+            android:ems="10"
+            android:id="@+id/cpassword"
+            android:layout_below="@+id/password"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="Retype password"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:ems="10"
-        android:id="@+id/cpassword"
-        android:layout_below="@+id/password"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Address"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
+            android:ems="10"
+            android:id="@+id/address"
+            android:layout_below="@+id/cpassword"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Address"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:ems="10"
-        android:id="@+id/address"
-        android:layout_below="@+id/cpassword"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="City"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
+            android:ems="10"
+            android:id="@+id/city"
+            android:layout_below="@+id/address"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="city"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:ems="10"
-        android:id="@+id/city"
-        android:layout_below="@+id/address"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Zip code"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
+            android:ems="10"
+            android:id="@+id/zip"
+            android:layout_below="@+id/city"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="zipcode"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:ems="10"
-        android:id="@+id/zip"
-        android:layout_below="@+id/city"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:background="#fff"
+            android:textColor="#49b102"
+            android:textStyle="bold"
+            android:id="@+id/register"
+            android:layout_below="@+id/zip"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"/>
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:background="@color/white"
-        android:textColor="@color/green"
-        android:textStyle="bold"
-        android:id="@+id/register"
-        android:layout_below="@+id/zip"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
-
-
-
-</RelativeLayout>
+    </RelativeLayout>
 </ScrollView>

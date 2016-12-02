@@ -126,10 +126,9 @@ public class PasswordReset extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean th)
         {
-
+            nDialog.dismiss();
             if(th == true)
             {
-                nDialog.dismiss();
                 new ProcessRegister().execute();
             }
             else
@@ -172,15 +171,15 @@ public class PasswordReset extends AppCompatActivity {
                                     if (status.compareTo("ok") == 0) {
                                         Intent upanel = new Intent(getApplicationContext(), ForgotPassword.class);
                                         upanel.putExtra("phoneno", inputPhone1);
-                                        pDialog.dismiss();
                                         startActivity(upanel);
+                                        pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_LONG).show();
                                         pDialog.dismiss();
                                     }
                                     else{
-                                        pDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -208,7 +207,6 @@ public class PasswordReset extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject json) {
-            Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
         }
     }
     public void NetAsync(View view){

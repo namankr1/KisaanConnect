@@ -1,100 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
+    android:weightSum="13"
+    android:background="@drawable/entitybox"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp">
 
-    android:padding="5dp"
-    android:weightSum="2"
-    android:background="@color/green"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:layout_weight="7">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alan Aipe"
+            android:id="@+id/nameofseller"
+            android:textAllCaps="true"
+            android:textColor="#c90505"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameofseller"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Successful orders : "
+                android:textColor="#595959"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="7"
+                android:id="@+id/userrating"
+                android:textColor="#5c5c5c"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:gravity="center_horizontal"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#0f6bb1"
+            android:text="Price (Rs.)"
+            android:id="@+id/pricelabel"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="250"
+            android:layout_below="@+id/pricelabel"
+            android:id="@+id/bidvalue"
+            android:textColor="#000"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#34ac10"
+            android:text="Quantity (kg)"
+            android:id="@+id/quantitylabel"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="27"
+            android:layout_below="@+id/quantitylabel"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/quantity"
+            android:textColor="#000"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_height="wrap_content"
+            android:text="quote rating"
+            android:visibility="gone"
+            android:id="@+id/quoterating"
+            android:lines="1"
+            android:textColor="#fff"
+            />
 
 
 
-    <TextView
-        android:layout_width="379dp"
-        android:layout_marginTop="25dp"
-        android:layout_height="wrap_content"
-        android:text="quote rating"
-        android:id="@+id/quoterating"
-        android:lines="1"
-        android:textColor="@color/white"
-        />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Descrption"
+            android:visibility="gone"
+            android:id="@+id/description"
+            android:layout_marginTop="5dp"
+            android:textColor="#fff"
+            />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="user rating"
-        android:id="@+id/userrating"
-        android:textColor="@color/white"
-        />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Phone Number"
+            android:visibility="gone"
+            android:id="@+id/phone"
+            android:layout_marginTop="5dp"
+            android:textColor="#fff"
+            />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Descrption"
-        android:id="@+id/description"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/white"
-        />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Address"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"
+            android:id="@+id/address"
+            android:textColor="#fff"
+            />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Phone Number"
-        android:id="@+id/phone"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/white"
-        />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Address"
-        android:layout_marginTop="5dp"
-        android:id="@+id/address"
-        android:textColor="@color/white"
-        />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Quantity Available"
-        android:layout_marginTop="5dp"
-        android:id="@+id/quantity"
-        android:textColor="@color/white"
-        />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text=""
+            android:layout_marginTop="5dp"
+            android:visibility="gone"
+            android:id="@+id/quoteid"
+            android:textColor="#fff"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:text="1"
+            android:layout_marginTop="5dp"
+            android:id="@+id/price"
+            android:textColor="#fff"
+            />
+    </RelativeLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Bid Value"
-        android:layout_marginTop="5dp"
-        android:id="@+id/bidvalue"
-        android:textColor="@color/white"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginTop="5dp"
-        android:id="@+id/quoteid"
-        android:textColor="@color/white"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:layout_marginTop="5dp"
-        android:id="@+id/price"
-        android:textColor="@color/white"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:layout_marginTop="5dp"
-        android:id="@+id/nameofseller"
-        android:textColor="@color/white"
-        />
 </LinearLayout>

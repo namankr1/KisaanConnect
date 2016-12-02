@@ -24,7 +24,6 @@ public class MyProfile extends AppCompatActivity{
     TextView name1;
     TextView phone1;
     TextView address1;
-    TextView type1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +58,8 @@ public class MyProfile extends AppCompatActivity{
         name1 = (TextView) findViewById(R.id.name);
         phone1  = (TextView) findViewById(R.id.phone);
         address1 = (TextView) findViewById(R.id.address);
-        type1  = (TextView) findViewById(R.id.type);
         name1.setText(serverName);
         address1.setText(serverAddress);
-        type1.setText(serverType);
         phone1.setText(serverPhone);
 
     }
@@ -85,7 +82,7 @@ public class MyProfile extends AppCompatActivity{
                 return true;
             }
             case R.id.change_password: {
-                Intent upanel = new Intent(getApplicationContext(), Home.class);
+                Intent upanel = new Intent(getApplicationContext(), ChangePassword.class);
                 upanel.putExtra("phoneno", serverPhone);
                 upanel.putExtra("name",serverName);
                 upanel.putExtra("address",serverAddress);
@@ -95,8 +92,11 @@ public class MyProfile extends AppCompatActivity{
                 return true;
             }
             case R.id.update_profile: {
-                Intent upanel = new Intent(getApplicationContext(), Home.class);
+                Intent upanel = new Intent(getApplicationContext(), UpdateProfile.class);
                 upanel.putExtra("phoneno", serverPhone);
+                upanel.putExtra("name",serverName);
+                upanel.putExtra("address",serverAddress);
+                upanel.putExtra("type",serverType);
                 startActivity(upanel);
                 this.finish();
                 return true;

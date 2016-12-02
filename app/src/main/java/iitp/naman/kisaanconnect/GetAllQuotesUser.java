@@ -219,7 +219,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
                                         }
 
                                         resultserver=true;
-                                        gridView.setAdapter(new AdapterUserQuotes(getApplicationContext(), quotebidvalue,quotedescription,quoteid,quoteprice,quotequantity,quoterating,userphone,username,useraddress,quotetype,serverPhone));
+                                        gridView.setAdapter(new AdapterUserQuotes(getApplicationContext(), quotebidvalue,quotedescription,quoteid,quoteprice,quotequantity,quoterating,userphone,username,useraddress,quotetype,serverPhone,serverName,serverType,serverAddress));
                                         pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();

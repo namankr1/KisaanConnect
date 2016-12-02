@@ -24,7 +24,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_below="@+id/my_toolbar"
-            android:src="@drawable/kisan"
+            android:src="@drawable/kisanf"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:id="@+id/logo"/>

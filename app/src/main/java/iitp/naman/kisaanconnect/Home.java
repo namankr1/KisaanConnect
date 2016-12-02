@@ -43,7 +43,11 @@ public class Home extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Log.i("Hi","Ther3");
         super.onCreate(savedInstanceState);
+
+        Log.i("Hi","Ther4");
         setContentView(R.layout.home);
 
         Bundle extras = getIntent().getExtras();
@@ -94,7 +98,6 @@ public class Home extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
         return super.onOptionsItemSelected(item);
     }
 

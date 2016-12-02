@@ -92,7 +92,7 @@ public class InterestedQuote extends AppCompatActivity {
         description = (TextView) findViewById(R.id.description);
         category = (TextView) findViewById(R.id.description);
         subcategory= (TextView) findViewById(R.id.description);
-        currentprice.setText(price1);
+        currentprice.setText(bidvalue1);
         availablequantity.setText((quantity1));
         quoterating.setText(quoterating1);
         nameofseller.setText(nameofseller1);

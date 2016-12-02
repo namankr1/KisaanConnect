@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,17 +33,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class AddQuotesofSubcategory extends AppCompatActivity {
-    GridView gridView;
-    String inputPhone1;
-    String category1;
-    String categoryname1;
-    String subcategoryname1;
-    String subcategory1;
-    EditText type1;
-    EditText quantity1;
-    EditText price1;
-    EditText description1;
-    Button add;
+    private String inputPhone1;
+    private String category1;
+    private String categoryname1;
+    private String subcategoryname1;
+    private String subcategory1;
+    private EditText type1;
+    private EditText quantity1;
+    private EditText price1;
+    private EditText description1;
+    private Button add;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -110,11 +108,10 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
 
         @Override
         protected void onPreExecute(){
-            super.onPreExecute();
             nDialog = new ProgressDialog(AddQuotesofSubcategory.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
+            super.onPreExecute();
         }
 
         @Override
@@ -163,11 +160,10 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
             pDialog = new ProgressDialog(AddQuotesofSubcategory.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
+            super.onPreExecute();
             type2=type1.getText().toString();
             desc2=description1.getText().toString();
             quantity2=quantity1.getText().toString();
@@ -195,14 +191,12 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                         Intent upanel = new Intent(getApplicationContext(), Home.class);
                                         upanel.putExtra("phoneno", inputPhone1);
                                         startActivity(upanel);
                                     }
                                     else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                     else {
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
