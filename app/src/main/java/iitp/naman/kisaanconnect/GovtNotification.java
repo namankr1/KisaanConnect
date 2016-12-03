@@ -4,6 +4,7 @@ package iitp.naman.kisaanconnect;
  * Created by naman on 01-Oct-16.
  */
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
@@ -34,6 +35,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import static iitp.naman.kisaanconnect.R.id.url;
 
 public class GovtNotification extends AppCompatActivity {
     private String inputPhone1;
@@ -66,9 +69,18 @@ public class GovtNotification extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                String url1 = ((TextView) v.findViewById(R.id.url)).getText()+"";
-                Toast.makeText(getApplicationContext(), url1, Toast.LENGTH_LONG).show();
-                //open url using browser
+                try {
+                    String url1 = ((TextView) v.findViewById(url)).getText() + "";
+                    if (!url1.startsWith("http://") && !url1.startsWith("https://"))
+                        url1 = "http://" + url1;
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url1));
+                    startActivity(i);
+                    //open url using browser
+                }
+                catch (Exception e){
+                    Toast.makeText(getApplicationContext(), "Open given URL in your browser", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

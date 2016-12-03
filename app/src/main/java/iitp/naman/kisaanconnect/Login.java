@@ -46,6 +46,7 @@ public class Login extends AppCompatActivity {
     SharedPreferences.Editor e;
     SharedPreferences sf;
     private int restrictlogin=0;//to ensure only one click
+    private ProgressDialog iDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -105,8 +106,12 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 if (  ( !inputPhone.getText().toString().equals("")) && ( !inputPassword.getText().toString().equals("")) ) {
                     if(restrictlogin==0) {
-                        restrictlogin=1;
+                        //restrictlogin=1;
+                        iDialog = new ProgressDialog(Login.this);
+                        iDialog.setCancelable(false);
+                        iDialog.show();
                         NetAsync(view);
+
                     }
                 }
                 else if ( ( !inputPhone.getText().toString().equals("")) ) {
@@ -146,7 +151,7 @@ public class Login extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             nDialog = new ProgressDialog(Login.this);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -197,7 +202,7 @@ public class Login extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(Login.this);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
             super.onPreExecute();
             inputPhone1 = inputPhone.getText().toString();
@@ -238,6 +243,7 @@ public class Login extends AppCompatActivity {
 
                                         Intent upanel = new Intent(getApplicationContext(), Home.class);
                                         upanel.putExtra("phoneno", inputPhone1);
+                                        iDialog.dismiss();
                                         startActivity(upanel);
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                                         finish();

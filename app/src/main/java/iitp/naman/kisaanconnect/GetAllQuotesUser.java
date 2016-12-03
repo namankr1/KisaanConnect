@@ -71,7 +71,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Your Products!");
+        getSupportActionBar().setTitle("Your Products");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         NetAsync(this.findViewById(android.R.id.content));
