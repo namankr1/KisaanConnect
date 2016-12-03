@@ -105,7 +105,44 @@ public class InterestedQuote extends AppCompatActivity {
         {
             public void onClick(View view)
             {
-                new InterestedNotification().execute();
+                String yourprice1 = yourprice.getText().toString();
+                String yourquantity1=yourquantity.getText().toString();
+                try{
+                    float baseprice=0;
+                    float basequantity=0;
+                    try{
+                        baseprice = Float.parseFloat(bidvalue1);
+                    }
+                    catch (Exception e){
+                        try{
+                            baseprice = Float.parseFloat(price1);
+                        }
+                        catch (Exception e1){
+                            baseprice = 0;
+                        }
+                    }
+                    try{
+                        basequantity = Float.parseFloat(quantity1);
+                    }
+                    catch (Exception e1){
+                        basequantity = 0;
+                    }
+                    float yourprice2 = Float.parseFloat(yourprice1);
+                    float yourquantity2 = Float.parseFloat(yourquantity1);
+                    if(yourprice2>=baseprice && yourquantity2<=basequantity){
+                        new InterestedNotification().execute();
+                    }
+                    else if(yourprice2<baseprice){
+                        Toast.makeText(getApplicationContext(), "You must bid higher or equal than previous bid", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Given quantity is not currently availbale with seller", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                catch (Exception e){
+                    Toast.makeText(getApplicationContext(), "Invalid Data Given", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

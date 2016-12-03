@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
     android:id="@+id/content_home"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -12,5 +14,66 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="iitp.naman.kisaanconnect.Home"
     tools:showIn="@layout/app_bar_home">
+<LinearLayout
 
-</RelativeLayout>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#e7e7e7"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical"
+    android:layout_weight="20"
+    android:gravity="center_horizontal"
+    >
+
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:src="@drawable/farmer"
+    android:scaleType="centerCrop"
+
+    />
+<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How can KisaanConect help you?"
+
+        android:textStyle="bold"
+        android:background="@drawable/endbutton"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:padding="8dp"
+        android:textSize="15sp"
+        android:background="#fff"
+        android:text="KisaanConnect, with the aim of 'touching the hearts of rural india', forms a reliable and full-fledged platform for agriculatural marketting. It gives you a virtual marketplace, tailored for the use of Indian farmers by easing their cost overhead and loss factors. Users can buy, sell or rent resources like crops, agricultural equipments etc. KisaanConnect also forms an ideal community for farmers, helping them to get more profit by resource bidding strategy. For a customer, this platform serves as cheap marketplace with no middleman included. This gives direct access to fresh and reliable resources. Explore the app to find more... "/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How to use KisaanConnect?"
+
+        android:textStyle="bold"
+        android:background="@drawable/iminterested"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:padding="8dp"
+        android:textSize="15sp"
+        android:background="#fff"
+        android:text="Using KisaanConnect is easy and intuitive. To buy a particular resource, go to quick links at the top left of this page. Select 'Buy Resources'. A categories of identified sectors will be displayed. Click on the desired category. Sub-categories of that category will be shown. Select desired sub-subcategory. This will fetch all user products that you need. Click on desired one. Details page will show up. You can raise interest from that page followed by negotiation and acceptence. To sell resources, same path is followed. Add your product by going in to the sub-category via category and it will be instantly avaliable online. Have a look around..."
+        />
+</LinearLayout>
+</ScrollView>

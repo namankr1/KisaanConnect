@@ -19,10 +19,6 @@
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-
-
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -195,6 +191,7 @@
                 android:layout_height="60dp"
                 android:id="@+id/yes"
                 android:background="@drawable/confirmbutton"
+                android:textColor="#fff"
                 />
 
             <Button
@@ -204,6 +201,7 @@
                 android:id="@+id/no"
                 android:background="@drawable/cancelbutton"
                 android:layout_marginLeft="40dp"
+                android:textColor="#fff"
                 />
         </LinearLayout>
 

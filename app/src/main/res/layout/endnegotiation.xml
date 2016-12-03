@@ -9,27 +9,273 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#58B515"
+        android:background="#ffffff"
         >
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:elevation="4dp"
+
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/my_toolbar"
-            android:src="@drawable/kisanf"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:id="@+id/logo"/>
+            android:id="@+id/head">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif"
+                android:text="End negotiation"
+                android:textAllCaps="true"
+                android:id="@+id/nameofseller"
+                android:textColor="#fff"
+                android:background="#49b102"
+                android:textSize="40sp"
 
 
+                />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="20dp"
+            android:text="test phone"
+            android:id="@+id/phoneofseller"
+            android:textColor="#000"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/head"
+            android:padding="5dp"
+            android:id="@+id/namebar"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/profile"
+                android:layout_gravity="center_vertical"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name of negotiator"
+                    android:id="@+id/namelabel"
+                    android:textColor="#000"
+                    android:paddingLeft="15dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="John Doe"
+                    android:id="@+id/sendername"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000"
+                    android:layout_below="@+id/namelabel"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/namebar"
+            android:padding="5dp"
+            android:id="@+id/phonebar"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/phone"
+                android:layout_gravity="center_vertical"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cotact number of neotiator"
+                    android:id="@+id/phonelabel"
+                    android:textColor="#000"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="9999001122"
+                    android:layout_below="@+id/phonelabel"
+                    android:id="@+id/senderphone"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phonebar"
+            android:padding="5dp"
+            android:id="@+id/addressbar"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/address"
+                android:layout_gravity="center_vertical"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Present address of negotiator"
+                    android:id="@+id/addresslabel"
+                    android:textColor="#000"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/addresslabel"
+                    android:text="Bihta, India. 801103"
+                    android:id="@+id/senderaddress"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addressbar"
+            android:padding="5dp"
+            android:id="@+id/pricebar"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/price"
+                android:layout_gravity="center_vertical"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Current highest bid of the product"
+                    android:id="@+id/pricelabel"
+                    android:textColor="#000"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rs. 250"
+                    android:layout_below="@+id/pricelabel"
+                    android:id="@+id/price"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pricebar"
+            android:padding="5dp"
+            android:id="@+id/quantitybar"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/quantity"
+                android:layout_gravity="center_vertical"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Present avaliable quantity (in kg.)"
+                    android:id="@+id/quantitylabel"
+                    android:textColor="#000"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/quantitylabel"
+                    android:text="5"
+                    android:id="@+id/quantity"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Do you want to accept or reject the product? Action cannot be undone"
+            android:textColor="#0786b1"
+            android:gravity="center"
+            android:layout_below="@+id/quantitybar"
+            android:id="@+id/textView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/infotextviewborder"
+            android:padding="10dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+
+            />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView"
+            android:gravity="center" android:padding="20dp">
+
+            <Button
+                android:text="Accept"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:id="@+id/accept"
+                android:background="@drawable/confirmbutton"
+                />
+
+            <Button
+                android:text="Reject"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:id="@+id/reject"
+                android:background="@drawable/cancelbutton"
+                android:layout_marginLeft="40dp"
+                />
+        </LinearLayout>
 
     </RelativeLayout>
 </ScrollView>
+

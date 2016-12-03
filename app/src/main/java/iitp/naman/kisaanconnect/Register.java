@@ -52,7 +52,7 @@ public class Register extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Password reset");
+        getSupportActionBar().setTitle("Sign Up");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         inputName = (EditText) findViewById(R.id.name);

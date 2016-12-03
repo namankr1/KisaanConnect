@@ -58,7 +58,7 @@ public class Negotiate extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Negotiate");
+        getSupportActionBar().setTitle("Negotiate with Seller");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
 

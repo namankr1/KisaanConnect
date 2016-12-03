@@ -172,6 +172,7 @@
             android:background="@drawable/proceedbutton"
             android:id="@+id/update"
             android:layout_below="@id/quantity"
+            android:textColor="#fff"
             />
 
     </RelativeLayout>

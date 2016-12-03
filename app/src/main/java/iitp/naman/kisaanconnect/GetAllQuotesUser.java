@@ -71,7 +71,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Your all quotes!");
+        getSupportActionBar().setTitle("Your Proucts!");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         NetAsync(this.findViewById(android.R.id.content));

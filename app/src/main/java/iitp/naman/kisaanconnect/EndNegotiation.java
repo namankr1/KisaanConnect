@@ -15,6 +15,9 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,6 +43,16 @@ public class EndNegotiation extends AppCompatActivity {
     private String notificationstatus;
     private String inputPhone1;
 
+    private int yourstatus=0;
+
+    private TextView quotedprice;
+    private TextView quotedquantity;
+    private TextView sendername;
+    private TextView senderphone;
+    private TextView senderaddress;
+    private Button btnaccept;
+    private Button btnreject;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +77,31 @@ public class EndNegotiation extends AppCompatActivity {
             notificationsenderphone = extras.getString("notificationsenderphone");
             notificationstatus = extras.getString("notificationstatus");
         }
-        new NetCheck().execute();
+
+        quotedprice=(TextView) findViewById(R.id.price);
+        quotedquantity=(TextView) findViewById(R.id.quantity);
+        sendername=(TextView) findViewById(R.id.sendername);
+        senderphone=(TextView) findViewById(R.id.senderphone);
+        senderaddress=(TextView) findViewById(R.id.senderaddress);
+        btnaccept=(Button) findViewById(R.id.accept);
+        btnreject=(Button) findViewById(R.id.reject);
+
+        btnaccept.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View view)
+            {
+                yourstatus=1;
+                new NetCheck().execute();
+            }
+        });
+        btnreject.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View view)
+            {
+                yourstatus=-1;
+                new NetCheck().execute();
+            }
+        });
     }
 
 
@@ -156,7 +193,7 @@ public class EndNegotiation extends AppCompatActivity {
                 jsonIn.put("senderphone", inputPhone1);
                 jsonIn.put("recieverphone", notificationsenderphone);
                 jsonIn.put("quoteid", notificationquoteid);
-                jsonIn.put("status", notificationstatus);
+                jsonIn.put("status", yourstatus);
                 RequestQueue que = Volley.newRequestQueue(getApplicationContext());
                 String urlString = getResources().getString(R.string.network_notification) + "endnegotiation/";
                 JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, jsonIn,

@@ -6,7 +6,7 @@
     android:weightSum="20"
     android:background="@drawable/entitybox"
     android:gravity="center"
-    android:padding="5dp">
+    android:padding="7dp">
 
     <ImageView
         android:id="@+id/grid_item_image"

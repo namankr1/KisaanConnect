@@ -9,171 +9,211 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#58B515"
+        android:background="#ffffff"
         >
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/my_toolbar"
-            android:src="@drawable/kisanf"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:id="@+id/logo"/>
+            android:id="@+id/head">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif"
+                android:text="Test Seller"
+                android:textAllCaps="true"
+                android:id="@+id/sendername"
+                android:textColor="#fff"
+                android:background="#49b102"
+                android:textSize="40dp"
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:fontFamily="sans-serif"
+                android:text="987654310"
+                android:visibility="gone"
+                android:textAllCaps="true"
+                android:id="@+id/senderphone"
+                android:layout_below="@+id/sendername"
+                android:textColor="#fff"
+                android:background="#49b102"
+                android:textSize="12sp"
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif"
+                android:text="Test Seller address"
+                android:layout_below="@+id/senderphone"
+                android:visibility="gone"
+                android:textAllCaps="true"
+                android:id="@+id/senderaddress"
+                android:textColor="#fff"
+                android:background="#49b102"
+                android:textSize="12sp"
+
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/head"
+            android:padding="5dp"
+            android:id="@+id/pricebar"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/price"
+                android:layout_gravity="center_vertical"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Negotiator's price per kg (in Rs.)"
+                    android:id="@+id/pricelabel"
+                    android:textColor="#000"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rs. 250"
+                    android:layout_below="@+id/pricelabel"
+                    android:id="@+id/quotedprice"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pricebar"
+            android:padding="5dp"
+            android:id="@+id/quantitybar"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/quantity"
+                android:layout_gravity="center_vertical"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Quantity (in kg.)"
+                    android:id="@+id/quantitylabel"
+                    android:textColor="#000"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/quantitylabel"
+                    android:text="5"
+                    android:id="@+id/quotedquantity"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000"/>
+                
+            </RelativeLayout>
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Negotiation"
-            android:textColor="#58b515"
-            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Enter price and quantity below that you are willing to purchase"
+            android:textColor="#0786b1"
             android:gravity="center"
-            android:background="#A8ffffff"
-            android:id="@+id/t"
-            android:layout_below="@+id/logo"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_below="@+id/quantitybar"
+            android:id="@+id/textView"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"/>
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/t1"
-            android:layout_below="@+id/t"
-            android:gravity="left"
-            android:layout_marginLeft="15dp"
-            android:text="Sender Name         :"
-            android:layout_marginTop="20dp"
-            />
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/t2"
-            android:layout_below="@+id/sendername"
-            android:gravity="left"
-            android:layout_marginLeft="15dp"
-            android:text="Sender Address     :"
-            android:layout_marginTop="20dp"
-            />
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/t3"
-            android:layout_below="@+id/senderaddress"
-            android:gravity="left"
-            android:layout_marginLeft="15dp"
-            android:text="Sender phone        :"
-            android:layout_marginTop="20dp"
-
-            />
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/t4"
-            android:layout_below="@+id/senderphone"
-            android:gravity="left"
-            android:layout_marginLeft="15dp"
-            android:text="Quoted price          :"
-            android:layout_marginTop="20dp"
-            />
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/t5"
-            android:layout_below="@+id/quotedprice"
-            android:gravity="left"
-            android:layout_marginLeft="15dp"
-            android:text="Quoted Qnantity    :"
-            android:layout_marginTop="20dp"
-            />
-
-        <TextView
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/t"
-            android:layout_marginLeft="145dp"
-            android:layout_marginTop="20dp"
-            android:text="test"
-            android:id="@+id/sendername"
-            />
-        <TextView
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/sendername"
-            android:layout_marginLeft="145dp"
-            android:layout_marginTop="20dp"
-            android:text="test"
-            android:id="@+id/senderaddress"
-            />
-        <TextView
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/senderaddress"
-            android:layout_marginLeft="145dp"
-            android:layout_marginTop="20dp"
-            android:text="test"
-            android:id="@+id/senderphone"
-            />
-        <TextView
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/senderphone"
-            android:layout_marginLeft="145dp"
-            android:layout_marginTop="20dp"
-            android:text="test"
-            android:id="@+id/quotedprice"
-            />
-        <TextView
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/quotedprice"
-            android:layout_marginLeft="145dp"
-            android:layout_marginTop="20dp"
-            android:text="test"
-            android:id="@+id/quotedquantity"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="your price"
-            android:gravity="center"
-            android:textColorHint="#ffffff"
-            android:id="@+id/yourprice"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/quotedquantity" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/yourquantity"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="25dp"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/btnnegotiate"
-            android:text="Negotiate"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="your quantity"
-            android:gravity="center"
-            android:textColorHint="#ffffff"
-            android:id="@+id/yourquantity"
-            android:layout_marginTop="18dp"
-            android:layout_below="@+id/yourprice"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:background="@drawable/infotextviewborder"
+            android:padding="10dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
 
+            />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="How much are you willing to pay?"
+            android:gravity="center"
+            android:textColorHint="#6b6b6b"
+            android:id="@+id/yourprice"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="15dp"
+            android:padding="5dp"
+            android:layout_below="@+id/textView"
+            android:background="@drawable/formfieldrectangle"
+            android:textSize="14dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="How much quantity will you purchase?"
+            android:gravity="center"
+            android:textColorHint="#6b6b6b"
+            android:id="@+id/yourquantity"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/yourprice"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:padding="5dp"
+            android:background="@drawable/formfieldrectangle"
+            android:textSize="14dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/yourquantity"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/yourquantity"
+                android:background="@drawable/iminterested"
+                android:text="Negotiate"
+                android:padding="5dp"
+                android:textColor="#fff"
+                android:id="@+id/btnnegotiate"
+                
+                />
+        </LinearLayout>
     </RelativeLayout>
 </ScrollView>

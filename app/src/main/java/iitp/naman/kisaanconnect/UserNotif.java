@@ -38,6 +38,7 @@ public class UserNotif extends AppCompatActivity {
     private String[] notificationsendername = new String[]{""};
     private String[] notificationsenderaddress = new String[]{""};
     private String[] notificationstatus = new String[]{""};
+    private String[] notificationtype = new String[]{""};
     private Activity myactivity;
 
     @Override
@@ -122,6 +123,7 @@ public class UserNotif extends AppCompatActivity {
                                             notificationsendername = new String[len];
                                             notificationsenderaddress = new String[len];
                                             notificationstatus = new String[len];
+                                            notificationtype = new String[len];
 
                                             for (int i = 0; i < len; i++) {
                                                 notificationid[i] = tempdata.getJSONObject(i).getString("id");
@@ -133,10 +135,11 @@ public class UserNotif extends AppCompatActivity {
                                                 notificationprice[i] = tempdata.getJSONObject(i).getString("price");
                                                 notificationquoteid[i] = tempdata.getJSONObject(i).getString("quoteid");
                                                 notificationstatus[i] = tempdata.getJSONObject(i).getString("status");
+                                                notificationtype[i] = tempdata.getJSONObject(i).getString("type");
 
                                             }
 
-                                            gridView.setAdapter( new UserNotifAdapter(myactivity,getApplicationContext(),inputPhone1,notificationid,notificationsenderphone,notificationsendername,notificationsenderaddress,notificationquantity,notificationprice,notificationquoteid,notificationstatus));
+                                            gridView.setAdapter( new UserNotifAdapter(myactivity,getApplicationContext(),inputPhone1,notificationid,notificationsenderphone,notificationsendername,notificationsenderaddress,notificationquantity,notificationprice,notificationquoteid,notificationstatus,notificationtype));
 
                                         }
 

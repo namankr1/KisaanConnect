@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/entitybox"
+    android:orientation="horizontal"
+    android:layout_weight="15"
+    android:gravity="center"
+    android:padding="12dp"
+    >
 
     <TextView
         android:id="@+id/list_item_string"
@@ -9,9 +15,10 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:paddingLeft="8dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_weight="10"
+        android:textSize="18dp"
+        android:textColor="#000"
+        android:text="User1 wants to buy 2 kg of basumati rice for Rs. 10"/>
 
     <Button
         android:id="@+id/delete_btn"
@@ -20,7 +27,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:text="End Negotiation" />
+        android:text="End"
+        android:layout_weight="1"
+        android:background="@drawable/endbutton"
+        />
 
     <Button
         android:id="@+id/add_btn"
@@ -29,7 +39,9 @@
         android:layout_below="@id/list_item_string"
         android:layout_toLeftOf="@id/delete_btn"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:text="Negotiate" />
+        android:background="@drawable/iminterested"
+        android:text="Negotiate"
+        android:layout_weight="0.01"
+        android:layout_marginLeft="5dp"/>
 
-</RelativeLayout>
+</LinearLayout>
