@@ -105,6 +105,17 @@ public class DeleteQuote extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
+        upanel.putExtra("phoneno", inputphone1);
+        upanel.putExtra("name",serverName);
+        upanel.putExtra("address",serverAddress);
+        upanel.putExtra("type",serverType);
+        startActivity(upanel);
+        startActivity(upanel);
+        finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -48,7 +48,7 @@ public class ForgotPassword extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Forgot password");
+        getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         inputOtp = (EditText) findViewById(R.id.otp);
@@ -79,6 +79,12 @@ public class ForgotPassword extends AppCompatActivity {
                 }
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), PasswordReset.class);
+        startActivity(upanel);
+        finish();
     }
 
     @Override

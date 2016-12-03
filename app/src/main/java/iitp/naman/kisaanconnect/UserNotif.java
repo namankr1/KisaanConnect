@@ -62,6 +62,15 @@ public class UserNotif extends AppCompatActivity {
         gridView = (GridView) findViewById(R.id.gridView11);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), Home.class);
+        upanel.putExtra("phoneno", inputPhone1);
+        startActivity(upanel);
+        finish();
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

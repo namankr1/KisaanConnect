@@ -53,7 +53,7 @@ public class GovtNotification extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Public Notification");
+        getSupportActionBar().setTitle("Public Notifications");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         Bundle extras = getIntent().getExtras();
@@ -89,6 +89,15 @@ public class GovtNotification extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.govtnotification, menu);
         return true;
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), Home.class);
+        upanel.putExtra("phoneno", inputPhone1);
+        startActivity(upanel);
+        finish();
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

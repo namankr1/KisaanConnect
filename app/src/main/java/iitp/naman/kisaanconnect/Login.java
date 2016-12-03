@@ -45,9 +45,12 @@ public class Login extends AppCompatActivity {
     private CheckBox ch2;
     SharedPreferences.Editor e;
     SharedPreferences sf;
+    private int restrictlogin=0;//to ensure only one click
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.i("44","called");
+        restrictlogin=0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -62,7 +65,7 @@ public class Login extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         String ph = sf.getString("phonenum","");
@@ -101,7 +104,10 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 if (  ( !inputPhone.getText().toString().equals("")) && ( !inputPassword.getText().toString().equals("")) ) {
-                    NetAsync(view);
+                    if(restrictlogin==0) {
+                        restrictlogin=1;
+                        NetAsync(view);
+                    }
                 }
                 else if ( ( !inputPhone.getText().toString().equals("")) ) {
                     Toast.makeText(getApplicationContext(), "Password field cant be empty", Toast.LENGTH_SHORT).show();
@@ -114,6 +120,11 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
     @Override
@@ -193,6 +204,7 @@ public class Login extends AppCompatActivity {
             inputPassword1 = inputPassword.getText().toString();
         }
 
+
         @Override
         protected JSONObject doInBackground(String... args) {
 
@@ -209,13 +221,21 @@ public class Login extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
+
                                         if (ch2.isChecked()) {
+                                            SharedPreferences preferences = getSharedPreferences("PREFERENCE", 0);
+                                            SharedPreferences.Editor editor = preferences.edit();
+                                            editor.clear();
+                                            editor.commit();
+
+
                                             e = sf.edit();
                                             e.putString("phonenum", inputPhone1);
                                             e.putString("passwordnum", inputPassword1);
                                             e.putBoolean("rm", true);
                                             e.commit();
                                         }
+
                                         Intent upanel = new Intent(getApplicationContext(), Home.class);
                                         upanel.putExtra("phoneno", inputPhone1);
                                         startActivity(upanel);

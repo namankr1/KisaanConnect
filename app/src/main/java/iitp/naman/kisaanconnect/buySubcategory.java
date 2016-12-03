@@ -93,6 +93,13 @@ public class buySubcategory extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), Buy.class);
+        upanel.putExtra("phoneno", inputPhone1);
+        startActivity(upanel);
+        finish();
+    }
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.govtnotification, menu);
         return true;

@@ -41,6 +41,7 @@ public class Home extends AppCompatActivity
     private String serverType;
     private String serverAddress;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,9 +84,17 @@ public class Home extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
         }
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i("pause","called");
+        finish();
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,10 +113,7 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Intent upanel = new Intent(getApplicationContext(), Home.class);
-            upanel.putExtra("phoneno", inputPhone1);
-            startActivity(upanel);
-            finish();
+
         } else if (id == R.id.nav_my_profile) {
             Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
             upanel.putExtra("phoneno", inputPhone1);
@@ -115,35 +121,36 @@ public class Home extends AppCompatActivity
             upanel.putExtra("address",serverAddress);
             upanel.putExtra("type",serverType);
             startActivity(upanel);
-            finish();
+            Log.i("started :"," my profile");
         } else if (id == R.id.nav_gov_not) {
             Intent upanel = new Intent(getApplicationContext(), GovtNotification.class);
             upanel.putExtra("phoneno", inputPhone1);
             startActivity(upanel);
-            finish();
-
+            Log.i("started :"," govt notif");
         } else if (id == R.id.nav_buy) {
            Intent upanel = new Intent(getApplicationContext(), Buy.class);
             upanel.putExtra("phoneno", inputPhone1);
             startActivity(upanel);
-            finish();
 
         } else if (id == R.id.nav_sell) {
             Intent upanel = new Intent(getApplicationContext(), Sell.class);
             upanel.putExtra("phoneno", inputPhone1);
             startActivity(upanel);
-            finish();
 
         } else if (id == R.id.nav_logout) {
             Intent upanel = new Intent(getApplicationContext(), Login.class);
+            Log.i("1","called");
             startActivity(upanel);
-            finish();
         }
         else if (id == R.id.nav_exit) {
+            finish();
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            System.exit(0);
+            int pid = android.os.Process.myPid();//=====> use this if you want to kill your activity. But its not a good one to do.
+             android.os.Process.killProcess(pid);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

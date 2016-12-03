@@ -5,9 +5,11 @@ package iitp.naman.kisaanconnect;
  */
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -62,7 +64,7 @@ public class EndNegotiation extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("End Negotiation");
+        getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         Bundle extras = getIntent().getExtras();
@@ -83,6 +85,11 @@ public class EndNegotiation extends AppCompatActivity {
         sendername=(TextView) findViewById(R.id.sendername);
         senderphone=(TextView) findViewById(R.id.senderphone);
         senderaddress=(TextView) findViewById(R.id.senderaddress);
+        quotedprice.setText(notificationprice);
+        quotedquantity.setText(notificationquantity);
+        sendername.setText(notificationsendername);
+        senderaddress.setText(notificationsenderaddress);
+        senderphone.setText(notificationsenderphone);
         btnaccept=(Button) findViewById(R.id.accept);
         btnreject=(Button) findViewById(R.id.reject);
 
@@ -102,6 +109,14 @@ public class EndNegotiation extends AppCompatActivity {
                 new NetCheck().execute();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
+        upanel.putExtra("phoneno", inputPhone1);
+        startActivity(upanel);
+        finish();
     }
 
 

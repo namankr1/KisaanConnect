@@ -13,10 +13,8 @@
         android:id="@+id/list_item_string"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
         android:layout_weight="10"
-        android:textSize="18dp"
+        android:textSize="15sp"
         android:textColor="#000"
         android:text="User1 wants to buy 2 kg of basumati rice for Rs. 10"/>
 
@@ -25,8 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_below="@id/list_item_string"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
         android:text="End"
         android:layout_weight="1"
         android:background="@drawable/endbutton"
@@ -36,12 +32,10 @@
         android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/list_item_string"
-        android:layout_toLeftOf="@id/delete_btn"
-        android:layout_centerVertical="true"
         android:background="@drawable/iminterested"
         android:text="Negotiate"
         android:layout_weight="0.01"
+        android:padding="4dp"
         android:layout_marginLeft="5dp"/>
 
 </LinearLayout>

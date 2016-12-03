@@ -96,6 +96,17 @@ public class UpdateQuote extends AppCompatActivity {
 
 
     @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
+        upanel.putExtra("phoneno", inputphone1);
+        upanel.putExtra("name",serverName);
+        upanel.putExtra("address",serverAddress);
+        upanel.putExtra("type",serverType);
+        startActivity(upanel);
+        finish();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.govtnotification, menu);
         return true;

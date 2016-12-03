@@ -16,8 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            app:theme="@style/ActionBarThemeOverlay"
+            app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
@@ -33,11 +33,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/my_toolbar"
             android:id="@+id/head"
+            android:paddingBottom="30dp"
             android:background="#49b102">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:fontFamily="sans-serif"
                 android:text="Profile"
                 android:textAllCaps="true"

@@ -149,6 +149,18 @@ public class InterestedQuote extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
+        upanel.putExtra("phoneno", senderPhone1);
+        upanel.putExtra("category", category1);
+        upanel.putExtra("subcategory", subcategory1);
+        upanel.putExtra("subcategoryname",subcategoryname1);
+        upanel.putExtra("categoryname",categoryname1);
+        startActivity(upanel);
+        finish();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.govtnotification, menu);
         return true;

@@ -52,7 +52,7 @@ public class Register extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Sign Up");
+        getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         inputName = (EditText) findViewById(R.id.name);
@@ -89,6 +89,13 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), Login.class);
+        startActivity(upanel);
+        finish();
     }
 
     @Override

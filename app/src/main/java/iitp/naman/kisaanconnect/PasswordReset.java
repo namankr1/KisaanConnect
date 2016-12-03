@@ -46,7 +46,7 @@ public class PasswordReset extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Password reset");
+        getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         inputPhone = (EditText) findViewById(R.id.phone);
@@ -65,6 +65,13 @@ public class PasswordReset extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.govtnotification, menu);
         return true;
     }
+    @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), Login.class);
+        startActivity(upanel);
+        finish();
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

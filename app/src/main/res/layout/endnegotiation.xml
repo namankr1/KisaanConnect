@@ -16,19 +16,20 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            app:theme="@style/ActionBarThemeOverlay"
+            app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/my_toolbar"
+            android:paddingBottom="30dp"
+            android:background="#49b102"
             android:id="@+id/head">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:fontFamily="sans-serif"
                 android:text="End negotiation"
                 android:textAllCaps="true"
@@ -256,6 +257,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textView"
+            android:layout_marginBottom="70dp"
             android:gravity="center" android:padding="20dp">
 
             <Button

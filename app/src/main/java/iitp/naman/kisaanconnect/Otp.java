@@ -49,7 +49,7 @@ public class Otp extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Otp");
+        getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         inputOtp = (EditText) findViewById(R.id.otp);
@@ -84,6 +84,14 @@ public class Otp extends AppCompatActivity {
 
 
     }
+    @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), Buy.class);
+        upanel.putExtra("phoneno", inputPhone1);
+        startActivity(upanel);
+        finish();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

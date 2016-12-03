@@ -118,6 +118,14 @@ public class sellSubcategory extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), Sell.class);
+        upanel.putExtra("phoneno", inputPhone1);
+        startActivity(upanel);
+        finish();
+    }
+
     private class NetCheck extends AsyncTask<String, Void, Boolean>
     {
         private ProgressDialog nDialog;

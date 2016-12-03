@@ -66,6 +66,14 @@ public class MyProfile extends AppCompatActivity{
 
 
     @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), Home.class);
+        upanel.putExtra("phoneno", serverPhone);
+        startActivity(upanel);
+        finish();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.myprofilebase, menu);
         return true;

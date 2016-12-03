@@ -107,6 +107,17 @@ public class UpdateProfile extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
+        upanel.putExtra("phoneno", serverPhone);
+        upanel.putExtra("name",serverName);
+        upanel.putExtra("address",serverAddress);
+        upanel.putExtra("type",serverType);
+        startActivity(upanel);
+        finish();
+    }
+
     private class NetCheck extends AsyncTask<String, Void, Boolean>
     {
         private ProgressDialog nDialog;

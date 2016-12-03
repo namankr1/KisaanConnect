@@ -87,6 +87,17 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), sellSubcategory.class);
+        upanel.putExtra("phoneno", inputPhone1);
+        upanel.putExtra("category", category1);
+        upanel.putExtra("categoryname",categoryname1);
+        startActivity(upanel);
+        finish();
+    }
+
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

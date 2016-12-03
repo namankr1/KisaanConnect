@@ -16,8 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            app:theme="@style/ActionBarThemeOverlay"
+            app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
 
 
 
@@ -28,6 +28,7 @@
             android:id="@+id/searchpath"
             android:background="#49b102"
             android:paddingTop="5dp"
+            android:visibility="gone"
             android:paddingBottom="5dp"
             android:paddingLeft="13dp"
             >
@@ -36,10 +37,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="test category"
+                android:visibility="gone"
                 android:id="@+id/categoryname"
                 android:textColor="#fff"/>
             <TextView
                 android:layout_width="wrap_content"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:text=" > "
                 android:textColor="#fff"
@@ -47,16 +50,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/categoryname"
-
+                android:layout_below="@+id/my_toolbar"
                 android:text="test subcategory"
+                android:visibility="gone"
                 android:id="@+id/subcategoryname"
                 android:textColor="#fff"/>
         </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/searchpath"
+            android:layout_below="@+id/my_toolbar"
             android:id="@+id/head">
             <TextView
                 android:layout_width="match_parent"
@@ -265,12 +268,11 @@
             android:gravity="center"
             android:layout_below="@+id/quantity"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="70dp"
             >
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/quantity"
                 android:background="@drawable/iminterested"
                 android:text="I'M INTERESTED"
                 android:padding="5dp"

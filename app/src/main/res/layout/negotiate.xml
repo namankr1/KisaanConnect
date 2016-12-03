@@ -16,8 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            app:theme="@style/ActionBarThemeOverlay"
+            app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
 
 
 
@@ -25,18 +25,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/my_toolbar"
+            android:paddingBottom="30dp"
+            android:background="@color/green"
             android:id="@+id/head">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:fontFamily="sans-serif"
                 android:text="Test Seller"
                 android:textAllCaps="true"
                 android:id="@+id/sendername"
                 android:textColor="#fff"
                 android:background="#49b102"
-                android:textSize="40dp"
+                android:textSize="40sp"
 
                 />
             <TextView
@@ -194,7 +196,7 @@
             android:layout_marginRight="13dp"
             android:padding="5dp"
             android:background="@drawable/formfieldrectangle"
-            android:textSize="14dp"
+            android:textSize="14sp"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -202,11 +204,10 @@
             android:gravity="center"
             android:layout_below="@+id/yourquantity"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="70dp">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/yourquantity"
                 android:background="@drawable/iminterested"
                 android:text="Negotiate"
                 android:padding="5dp"

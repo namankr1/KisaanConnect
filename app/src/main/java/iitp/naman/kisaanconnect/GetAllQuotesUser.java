@@ -71,7 +71,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Your Proucts!");
+        getSupportActionBar().setTitle("Your Products!");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         NetAsync(this.findViewById(android.R.id.content));
@@ -87,6 +87,18 @@ public class GetAllQuotesUser extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
+        upanel.putExtra("phoneno", serverPhone);
+        upanel.putExtra("name",serverName);
+        upanel.putExtra("address",serverAddress);
+        upanel.putExtra("type",serverType);
+        startActivity(upanel);
+        finish();
     }
 
     @Override

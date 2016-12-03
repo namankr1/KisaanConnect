@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            app:theme="@style/ActionBarThemeOverlay"
+            app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
 
 
         <RelativeLayout
@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:fontFamily="sans-serif"
                 android:text="Update Profile"
                 android:textAllCaps="true"
@@ -51,7 +51,7 @@
             android:id="@+id/headlabel"
             android:textColor="#888988"
             android:textAllCaps="true"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:gravity="center_horizontal"
             android:padding="5dp"/>
         <LinearLayout
@@ -175,6 +175,7 @@
             android:id="@+id/btnconfirm"
             android:text="Confirm"
             android:layout_below="@+id/address"
+            android:layout_marginBottom="70dp"
             android:layout_centerHorizontal="true" />
 
 

@@ -57,6 +57,7 @@ public class UserNotifAdapter extends BaseAdapter {
         }
 
         TextView textView = (TextView) gridView.findViewById(R.id.list_item_string);
+
         Button btnendnegotiation  = ((Button) gridView.findViewById(R.id.delete_btn));
         Button btnnegotiate = ((Button) gridView.findViewById(R.id.add_btn));
 
@@ -68,14 +69,17 @@ public class UserNotifAdapter extends BaseAdapter {
         }
 
         if(notifstatus==1 || notifstatus==-1){
+            btnendnegotiation.setVisibility(View.INVISIBLE);
+            btnnegotiate.setVisibility(View.INVISIBLE);
+
             if(notifstatus==1){
                 textView.setText(notificationsendername[position]+" Has Accepted your quotation of "+notificationtype[position]+"( Quantity :" +notificationquantity[position]+" on Price :"+notificationprice[position]+")");
             }
             else{
                 textView.setText(notificationsendername[position]+" Has Rejected your quotation of "+notificationtype[position]);
             }
-            btnendnegotiation.setVisibility(View.INVISIBLE);
-            btnnegotiate.setVisibility(View.INVISIBLE);
+
+
         }
         else {
             textView.setText(notificationsendername[position]+" is interested to negotiate about "+notificationtype[position]+"( Quantity :" +notificationquantity[position]+" on Price :"+notificationprice[position]+")");

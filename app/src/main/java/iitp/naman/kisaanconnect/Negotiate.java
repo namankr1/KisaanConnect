@@ -104,6 +104,15 @@ public class Negotiate extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
+        upanel.putExtra("phoneno", inputPhone1);
+        startActivity(upanel);
+        finish();
+    }
+
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -129,7 +138,7 @@ public class Negotiate extends AppCompatActivity {
             pDialog.setCancelable(true);
             pDialog.show();
             price2=yourprice.getText().toString();
-            quantity2=yourprice.getText().toString();
+            quantity2=yourquantity.getText().toString();
         }
 
         @Override

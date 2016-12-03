@@ -12,10 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-
+        app:theme="@style/ActionBarThemeOverlay"
+        app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
 
 
     <GridView
@@ -26,7 +24,7 @@
         android:layout_height="match_parent"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
-        android:background="@color/colorAccent"
+        android:background="#e7e7e7"
         android:layout_below="@+id/my_toolbar"
         android:paddingTop="9dp"
         android:paddingLeft="9dp"

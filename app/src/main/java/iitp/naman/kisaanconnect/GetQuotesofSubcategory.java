@@ -124,6 +124,17 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public void onBackPressed() {
+        Intent upanel = new Intent(getApplicationContext(), buySubcategory.class);
+        upanel.putExtra("phoneno", inputPhone1);
+        upanel.putExtra("category", category1);
+        upanel.putExtra("categoryname",categoryname1);
+        startActivity(upanel);
+        finish();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.govtnotification, menu);
