@@ -14,12 +14,10 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,14 +37,14 @@ import java.net.URL;
 
 public class sellSubcategory extends AppCompatActivity {
 
-    GridView gridView;
-    String inputPhone1;
-    String category1;
-    String categoryname1;
-    String[] subcategoryname = new String[] {};
-    String[] subcategorydescription = new String[] {};
-    String[] subcategoryid = new String[] {};
-    String[] subcategorypicture = new String[] {};
+    private GridView gridView;
+    private String inputPhone1;
+    private String category1;
+    private String categoryname1;
+    private String[] subcategoryname = new String[] {};
+    private String[] subcategorydescription = new String[] {};
+    private String[] subcategoryid = new String[] {};
+    private String[] subcategorypicture = new String[] {};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,18 +80,20 @@ public class sellSubcategory extends AppCompatActivity {
                 upanel.putExtra("subcategory",subcategoryid);
                 upanel.putExtra("subcategoryname",subcategoryname1);
                 startActivity(upanel);
+                finish();
             }
         });
 
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 startActivity(upanel);
+                finish();
             }
         });
     }
@@ -126,8 +126,7 @@ public class sellSubcategory extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(sellSubcategory.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -175,8 +174,7 @@ public class sellSubcategory extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(sellSubcategory.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -212,19 +210,16 @@ public class sellSubcategory extends AppCompatActivity {
                                         }
 
                                         gridView.setAdapter(new ImageAdapter(getApplicationContext(), subcategoryname,subcategorydescription,subcategoryid,subcategorypicture));
-                                        pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                 }
                                 catch (JSONException e) {
                                     e.printStackTrace();
-                                    pDialog.dismiss();
+                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -246,6 +241,7 @@ public class sellSubcategory extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(JSONObject json) {
+            pDialog.dismiss();
 
         }
     }

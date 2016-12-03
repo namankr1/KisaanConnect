@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class AdapterUserQuotes extends BaseAdapter {
+    private Activity myactivity;
     private Context context;
     private String[] quotebidvalue;
     private String[] quotedescription;
@@ -31,8 +32,9 @@ public class AdapterUserQuotes extends BaseAdapter {
     private String serverType;
     private String serverAddress;
 
-    public AdapterUserQuotes(Context context, String[] quotebidvalue,String[] quotedescription,String[] quoteid,String[] quoteprice,String[] quotequantity,String[] quoterating,String[] userphone,String[] username,String[] useraddress,String[] quotetype,String serverPhone,String serverName,String serverType,String serverAddress) {
+    public AdapterUserQuotes(Activity myactivity,Context context, String[] quotebidvalue,String[] quotedescription,String[] quoteid,String[] quoteprice,String[] quotequantity,String[] quoterating,String[] userphone,String[] username,String[] useraddress,String[] quotetype,String serverPhone,String serverName,String serverType,String serverAddress) {
         this.context = context;
+        this.myactivity=myactivity;
         this.quotebidvalue=quotebidvalue;
         this.quotedescription=quotedescription;
         this.quoteid=quoteid;
@@ -97,8 +99,8 @@ public class AdapterUserQuotes extends BaseAdapter {
                 upanel.putExtra("price",quoteprice[position]);
                 upanel.putExtra("quantity",quotequantity[position]);
                 upanel.putExtra("type",quotetype[position]);
-                context.startActivity(upanel);
-                ((Activity)context).finish();
+                myactivity.startActivity(upanel);
+                myactivity.finish();
             }
         });
 
@@ -116,8 +118,8 @@ public class AdapterUserQuotes extends BaseAdapter {
                 upanel.putExtra("desc",quotedescription[position]);
                 upanel.putExtra("price",quoteprice[position]);
                 upanel.putExtra("quantity",quotequantity[position]);
-                context.startActivity(upanel);
-                ((Activity)context).finish();//finishes the activity
+                myactivity.startActivity(upanel);
+                myactivity.finish();//finishes the activity
             }
         });
         return gridView;

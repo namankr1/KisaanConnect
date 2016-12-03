@@ -36,13 +36,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class GovtNotification extends AppCompatActivity {
-    String inputPhone1;
+    private String inputPhone1;
 
-    String govtnotifid[] = new String[]{};
-    String govtnotiftitle[] = new String[]{};
-    String govtnotifbody[] = new String[]{};
-    String govtnotifurl[] = new String[]{};
-    GridView gridView;
+    private String govtnotifid[] = new String[]{};
+    private String govtnotiftitle[] = new String[]{};
+    private String govtnotifbody[] = new String[]{};
+    private String govtnotifurl[] = new String[]{};
+    private GridView gridView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +68,7 @@ public class GovtNotification extends AppCompatActivity {
                                     int position, long id) {
                 String url1 = ((TextView) v.findViewById(R.id.url)).getText()+"";
                 Toast.makeText(getApplicationContext(), url1, Toast.LENGTH_LONG).show();
+                //open url using browser
             }
         });
 
@@ -78,6 +79,7 @@ public class GovtNotification extends AppCompatActivity {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 startActivity(upanel);
+                finish();
             }
         });
     }
@@ -110,8 +112,7 @@ public class GovtNotification extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(GovtNotification.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -140,12 +141,13 @@ public class GovtNotification extends AppCompatActivity {
         protected void onPostExecute(Boolean th){
 
             if(th == true){
-                nDialog.dismiss();
                 new ProcessRegister().execute();
             }
             else{
                 Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
             }
+            nDialog.dismiss();
+
         }
     }
 
@@ -157,8 +159,7 @@ public class GovtNotification extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(GovtNotification.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -195,14 +196,11 @@ public class GovtNotification extends AppCompatActivity {
 
                                         gridView.setAdapter( new Adaptercls(getApplicationContext(),govtnotifbody,govtnotifid,govtnotiftitle,govtnotifurl));
                                         resultserver=true;
-                                        pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
@@ -229,6 +227,7 @@ public class GovtNotification extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(Boolean json) {
+            pDialog.dismiss();
 
         }
     }

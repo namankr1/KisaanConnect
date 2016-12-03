@@ -13,24 +13,20 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -38,13 +34,13 @@ import java.net.URL;
 
 public class Register extends AppCompatActivity {
 
-    EditText inputName;
-    EditText inputPhone;
-    EditText inputPassword;
-    EditText inputCPassword;
-    EditText inputAddress;
-    EditText inputCity;
-    EditText inputZip;
+    private EditText inputName;
+    private EditText inputPhone;
+    private EditText inputPassword;
+    private EditText inputCPassword;
+    private EditText inputAddress;
+    private EditText inputCity;
+    private EditText inputZip;
 
     Button btnRegister;
 
@@ -122,8 +118,7 @@ public class Register extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(Register.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -153,12 +148,13 @@ public class Register extends AppCompatActivity {
         protected void onPostExecute(Boolean th){
 
             if(th == true){
-                nDialog.dismiss();
                 new ProcessRegister().execute();
             }
             else{
                 Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
             }
+            nDialog.dismiss();
+
         }
     }
 
@@ -166,10 +162,13 @@ public class Register extends AppCompatActivity {
 
         private ProgressDialog pDialog;
 
-        String inputName1,inputPhone1,inputPassword1,inputAddress1,inputCity1,inputZip1;
+        private String inputName1,inputPhone1,inputPassword1,inputAddress1,inputCity1,inputZip1;
 
         @Override
         protected void onPreExecute() {
+            pDialog = new ProgressDialog(Register.this);
+            pDialog.setCancelable(false);
+            pDialog.show();
             super.onPreExecute();
             inputName1 = inputName.getText().toString();
             inputPhone1 = inputPhone.getText().toString();
@@ -177,10 +176,7 @@ public class Register extends AppCompatActivity {
             inputAddress1 = inputAddress.getText().toString();
             inputCity1 = inputCity.getText().toString();
             inputZip1 = inputZip.getText().toString();
-            pDialog = new ProgressDialog(Register.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
-            pDialog.show();
+
         }
 
         @Override
@@ -205,20 +201,18 @@ public class Register extends AppCompatActivity {
                                     if (status.compareTo("ok") == 0) {
                                         Intent upanel = new Intent(getApplicationContext(), Otp.class);
                                         upanel.putExtra("phoneno", inputPhone1);
-                                        pDialog.dismiss();
                                         startActivity(upanel);
+                                        Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_SHORT).show();
+                                        finish();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                     else{
-                                        pDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -241,6 +235,7 @@ public class Register extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(JSONObject json) {
+            pDialog.dismiss();
 
         }
     }

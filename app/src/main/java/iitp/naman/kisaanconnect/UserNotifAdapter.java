@@ -4,6 +4,7 @@ package iitp.naman.kisaanconnect;
  * Created by naman on 30-Nov-16.
  */
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,19 +15,21 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class UserNotifAdapter extends BaseAdapter {
+    private Activity myactivity;
     private Context context;
-    String[] notificationid;
-    String[] notificationsenderphone;
-    String[] notificationsendername;
-    String[] notificationsenderaddress;
-    String[] notificationquantity;
-    String[] notificationprice;
-    String[] notificationquoteid;
-    String[] notificationstatus;
-    String inputphone1;
+    private String[] notificationid;
+    private String[] notificationsenderphone;
+    private String[] notificationsendername;
+    private String[] notificationsenderaddress;
+    private String[] notificationquantity;
+    private String[] notificationprice;
+    private String[] notificationquoteid;
+    private String[] notificationstatus;
+    private String inputphone1;
 
-    public UserNotifAdapter(Context context,String inputphone1, String[] notificationid,String[] notificationsenderphone,String[] notificationsendername,String[] notificationsenderaddress,String[] notificationquantity,String[] notificationprice,String[] notificationquoteid,String[] notificationstatus) {
+    public UserNotifAdapter(Activity myactivity,Context context,String inputphone1, String[] notificationid,String[] notificationsenderphone,String[] notificationsendername,String[] notificationsenderaddress,String[] notificationquantity,String[] notificationprice,String[] notificationquoteid,String[] notificationstatus) {
         this.context = context;
+        this.myactivity=myactivity;
         this.notificationid=notificationid;
         this.notificationsenderphone=notificationsenderphone;
         this.notificationsendername=notificationsendername;
@@ -68,7 +71,8 @@ public class UserNotifAdapter extends BaseAdapter {
                 upanel.putExtra("notificationquoteid", notificationquoteid[position]);
                 upanel.putExtra("notificationstatus",notificationstatus[position]);
                 upanel.putExtra("inputPhone1",inputphone1);
-                context.startActivity(upanel);
+                myactivity.startActivity(upanel);
+                myactivity.finish();
             }
         });
         btnendnegotiation.setOnClickListener(new View.OnClickListener()
@@ -86,7 +90,8 @@ public class UserNotifAdapter extends BaseAdapter {
                 upanel.putExtra("notificationquoteid", notificationquoteid[position]);
                 upanel.putExtra("notificationstatus",notificationstatus[position]);
                 upanel.putExtra("inputPhone1",inputphone1);
-                context.startActivity(upanel);
+                myactivity.startActivity(upanel);
+                myactivity.finish();
             }
         });
         return gridView;

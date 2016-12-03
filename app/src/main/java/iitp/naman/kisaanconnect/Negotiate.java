@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.android.volley.Request;
@@ -31,24 +30,24 @@ import org.json.JSONObject;
 
 public class Negotiate extends AppCompatActivity {
 
-    String notificationid;
-    String notificationsenderphone;
-    String notificationsendername;
-    String notificationsenderaddress;
-    String notificationquantity;
-    String notificationprice;
-    String notificationquoteid;
-    String notificationstatus;
-    String inputPhone1;
+    private String notificationid;
+    private String notificationsenderphone;
+    private String notificationsendername;
+    private String notificationsenderaddress;
+    private String notificationquantity;
+    private String notificationprice;
+    private String notificationquoteid;
+    private String notificationstatus;
+    private String inputPhone1;
 
-    EditText yourprice;
-    EditText yourquantity;
-    TextView quotedprice;
-    TextView quotedquantity;
-    TextView sendername;
-    TextView senderphone;
-    TextView senderaddress;
-    Button btnnegotiate;
+    private EditText yourprice;
+    private EditText yourquantity;
+    private TextView quotedprice;
+    private TextView quotedquantity;
+    private TextView sendername;
+    private TextView senderphone;
+    private TextView senderaddress;
+    private Button btnnegotiate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,14 +119,13 @@ public class Negotiate extends AppCompatActivity {
 
     private class ProcessNotification extends AsyncTask<String, Void, JSONObject> {
         private ProgressDialog pDialog;
-        String price2;
-        String quantity2;
+        private String price2;
+        private String quantity2;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(Negotiate.this);
-            pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
             price2=yourprice.getText().toString();
@@ -152,17 +150,16 @@ public class Negotiate extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 try {
                                     String status = response.getString("status");
-                                    if (status.compareTo("ok") == 0) {pDialog.dismiss();
+                                    if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_LONG).show();
                                         Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                                         upanel.putExtra("phoneno", inputPhone1);
                                         startActivity(upanel);
+                                        finish();
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_LONG).show();
-                                        pDialog.dismiss();
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
@@ -188,6 +185,7 @@ public class Negotiate extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject json) {
+            pDialog.dismiss();
 
         }
     }

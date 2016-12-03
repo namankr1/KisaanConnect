@@ -36,13 +36,13 @@ import com.android.volley.toolbox.Volley;
 
 
 public class Login extends AppCompatActivity {
-    Button btnLogin;
-    Button btnRegister;
-    Button btnReset;
-    EditText inputPhone;
-    EditText inputPassword;
-    ToggleButton tb;
-    CheckBox ch2;
+    private Button btnLogin;
+    private Button btnRegister;
+    private Button btnReset;
+    private EditText inputPhone;
+    private EditText inputPassword;
+    private ToggleButton tb;
+    private CheckBox ch2;
     SharedPreferences.Editor e;
     SharedPreferences sf;
 
@@ -85,9 +85,8 @@ public class Login extends AppCompatActivity {
         btnReset.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(getApplicationContext(), PasswordReset.class);
-                myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(myIntent);
+                finish();
             }
         });
 
@@ -95,6 +94,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myIntent = new Intent(getApplicationContext(), Register.class);
                 startActivity(myIntent);
+                finish();
             }
         });
 
@@ -104,13 +104,13 @@ public class Login extends AppCompatActivity {
                     NetAsync(view);
                 }
                 else if ( ( !inputPhone.getText().toString().equals("")) ) {
-                    Toast.makeText(getApplicationContext(), "Password field empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Password field cant be empty", Toast.LENGTH_SHORT).show();
                 }
                 else if ( ( !inputPassword.getText().toString().equals("")) ) {
-                    Toast.makeText(getApplicationContext(), "Phone field empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Phone field cant be empty", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "Phone and Password field are empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Phone and Password field cant be empty", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -134,12 +134,8 @@ public class Login extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            nDialog = new ProgressDialog(Login.this){
-                @Override
-                public void onBackPressed() {
-                    nDialog.dismiss();
-                }};
-            nDialog.setCancelable(false);
+            nDialog = new ProgressDialog(Login.this);
+            nDialog.setCancelable(true);
             nDialog.show();
         }
 
@@ -171,25 +167,26 @@ public class Login extends AppCompatActivity {
         protected void onPostExecute(Boolean th) {
 
             if(th == true) {
-                nDialog.dismiss();
                 new ProcessLogin().execute();
             }
             else {
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
             }
+            nDialog.dismiss();
+
         }
     }
 
     private class ProcessLogin extends AsyncTask<String,Void,JSONObject> {
 
         private ProgressDialog pDialog;
-        String inputPhone1,inputPassword1;
-        JSONObject resultserver=null;
+        private String inputPhone1,inputPassword1;
+        private JSONObject resultserver=null;
 
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(Login.this);
-            pDialog.setCancelable(false);
+            pDialog.setCancelable(true);
             pDialog.show();
             super.onPreExecute();
             inputPhone1 = inputPhone.getText().toString();
@@ -203,6 +200,45 @@ public class Login extends AppCompatActivity {
             try {
                 jsonIn.put("phone", inputPhone1);
                 jsonIn.put("password", inputPassword1);
+                RequestQueue que = Volley.newRequestQueue(getApplicationContext());
+                String urlString = getResources().getString(R.string.network_url) + "signin/";
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, jsonIn,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    String status = response.getString("status");
+                                    if (status.compareTo("ok") == 0) {
+                                        if (ch2.isChecked()) {
+                                            e = sf.edit();
+                                            e.putString("phonenum", inputPhone1);
+                                            e.putString("passwordnum", inputPassword1);
+                                            e.putBoolean("rm", true);
+                                            e.commit();
+                                        }
+                                        Intent upanel = new Intent(getApplicationContext(), Home.class);
+                                        upanel.putExtra("phoneno", inputPhone1);
+                                        startActivity(upanel);
+                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    } else if (status.compareTo("err") == 0) {
+                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                que.add(jsonObjReq);
             }
             catch (JSONException e) {
                 e.printStackTrace();
@@ -214,47 +250,9 @@ public class Login extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject jsonIn) {
+            pDialog.dismiss();
 
-            RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-            String urlString = getResources().getString(R.string.network_url) + "signin/";
-            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, jsonIn,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                String status = response.getString("status");
-                                if (status.compareTo("ok") == 0) {
-                                    if (ch2.isChecked()) {
-                                        e = sf.edit();
-                                        e.putString("phonenum", inputPhone1);
-                                        e.putString("passwordnum", inputPassword1);
-                                        e.putBoolean("rm", true);
-                                        e.commit();
-                                    }
-                                    Intent upanel = new Intent(getApplicationContext(), Home.class);
-                                    upanel.putExtra("phoneno", inputPhone1);
-                                    startActivity(upanel);
-                                    finish();
-                                } else if (status.compareTo("err") == 0) {
-                                    Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
 
-                                }
-                                pDialog.dismiss();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                }
-            });
-            que.add(jsonObjReq);
         }
     }
 

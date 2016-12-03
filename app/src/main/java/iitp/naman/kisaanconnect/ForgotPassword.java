@@ -33,11 +33,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ForgotPassword extends AppCompatActivity {
-    EditText inputOtp;
-    EditText inputNewpassword;
-    Button btnVerify;
-    Button btnResend;
-    String inputPhone1;
+    private EditText inputOtp;
+    private EditText inputNewpassword;
+    private Button btnVerify;
+    private Button btnResend;
+    private String inputPhone1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,6 +66,7 @@ public class ForgotPassword extends AppCompatActivity {
                 Intent upanel = new Intent(getApplicationContext(), ForgotPassword.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 startActivity(upanel);
+                finish();
             }
         });
 
@@ -106,8 +107,7 @@ public class ForgotPassword extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(ForgotPassword.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -136,21 +136,21 @@ public class ForgotPassword extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean th){
             if(th == true){
-                nDialog.dismiss();
                 new ProcessRegister().execute();
             }
             else{
                 Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
             }
+            nDialog.dismiss();
         }
     }
 
     private class ProcessRegister extends AsyncTask<String,Void,Boolean> {
 
         private ProgressDialog pDialog;
-        Boolean resultserver=false;
-        String inputOtp1;
-        String inputNewpassword1;
+        private Boolean resultserver=false;
+        private String inputOtp1;
+        private String inputNewpassword1;
 
         @Override
         protected void onPreExecute() {
@@ -158,10 +158,7 @@ public class ForgotPassword extends AppCompatActivity {
             inputOtp1 = inputOtp.getText().toString();
             inputNewpassword1 = inputNewpassword.getText().toString();
             pDialog = new ProgressDialog(ForgotPassword.this);
-            pDialog.setTitle("Contacting Servers");
-            pDialog.setMessage("Registering ...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -186,17 +183,15 @@ public class ForgotPassword extends AppCompatActivity {
                                         resultserver=true;
                                         Intent upanel = new Intent(getApplicationContext(), Home.class);
                                         upanel.putExtra("phoneno", inputPhone1);
-                                        pDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                                         startActivity(upanel);
+                                        finish();
                                     }
                                     else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
@@ -221,6 +216,7 @@ public class ForgotPassword extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(Boolean json) {
+            pDialog.dismiss();
 
         }
     }

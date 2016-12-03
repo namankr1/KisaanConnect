@@ -12,18 +12,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class MyProfile extends AppCompatActivity{
-    String serverName;
-    String serverPhone;
-    String serverType;
-    String serverAddress;
+    private String serverName;
+    private String serverPhone;
+    private String serverType;
+    private String serverAddress;
 
-    TextView name1;
-    TextView phone1;
-    TextView address1;
+    private TextView name1;
+    private TextView phone1;
+    private TextView address1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +51,7 @@ public class MyProfile extends AppCompatActivity{
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", serverPhone);
                 startActivity(upanel);
+                finish();
             }
         });
 

@@ -37,15 +37,15 @@ import java.net.URL;
  */
 
 public class UpdateProfile extends AppCompatActivity {
-    EditText newaddress;
-    TextView name;
-    TextView phone;
-    Button btnconfirm;
+    private EditText newaddress;
+    private TextView name;
+    private TextView phone;
+    private Button btnconfirm;
 
-    String serverName;
-    String serverPhone;
-    String serverType;
-    String serverAddress;
+    private String serverName;
+    private String serverPhone;
+    private String serverType;
+    private String serverAddress;
 
 
     @Override
@@ -115,8 +115,7 @@ public class UpdateProfile extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(UpdateProfile.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -158,14 +157,13 @@ public class UpdateProfile extends AppCompatActivity {
 
     private class ProcessRegister extends AsyncTask<String,Void,JSONObject> {
         private ProgressDialog pDialog;
-        String newaddress2;
-        JSONObject resultserver=null;
+        private String newaddress2;
+        private JSONObject resultserver=null;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(UpdateProfile.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
             newaddress2 = newaddress.getText().toString();
         }
@@ -187,7 +185,6 @@ public class UpdateProfile extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
-                                        pDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                                         Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
                                         upanel.putExtra("phoneno", serverPhone);
@@ -195,32 +192,16 @@ public class UpdateProfile extends AppCompatActivity {
                                         upanel.putExtra("address",serverAddress);
                                         upanel.putExtra("type",serverType);
                                         startActivity(upanel);
+                                        finish();
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-                                        upanel.putExtra("phoneno", serverPhone);
-                                        upanel.putExtra("name",serverName);
-                                        upanel.putExtra("address",serverAddress);
-                                        upanel.putExtra("type",serverType);
-                                        startActivity(upanel);
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-                                        upanel.putExtra("phoneno", serverPhone);
-                                        upanel.putExtra("name",serverName);
-                                        upanel.putExtra("address",serverAddress);
-                                        upanel.putExtra("type",serverType);
-                                        startActivity(upanel);
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -242,6 +223,7 @@ public class UpdateProfile extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject response) {
+            pDialog.dismiss();
         }
     }
     public void NetAsync(View view){

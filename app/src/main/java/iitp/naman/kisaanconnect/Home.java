@@ -35,19 +35,15 @@ import java.net.URL;
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    String inputPhone1;
-    String serverName;
-    String serverPhone;
-    String serverType;
-    String serverAddress;
+    private String inputPhone1;
+    private String serverName;
+    private String serverPhone;
+    private String serverType;
+    private String serverAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        Log.i("Hi","Ther3");
         super.onCreate(savedInstanceState);
-
-        Log.i("Hi","Ther4");
         setContentView(R.layout.home);
 
         Bundle extras = getIntent().getExtras();
@@ -67,6 +63,7 @@ public class Home extends AppCompatActivity
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 startActivity(upanel);
+                finish();
             }
         });
 
@@ -108,10 +105,9 @@ public class Home extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             Intent upanel = new Intent(getApplicationContext(), Home.class);
-            upanel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            upanel.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             upanel.putExtra("phoneno", inputPhone1);
             startActivity(upanel);
+            finish();
         } else if (id == R.id.nav_my_profile) {
             Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
             upanel.putExtra("phoneno", inputPhone1);
@@ -119,30 +115,29 @@ public class Home extends AppCompatActivity
             upanel.putExtra("address",serverAddress);
             upanel.putExtra("type",serverType);
             startActivity(upanel);
+            finish();
         } else if (id == R.id.nav_gov_not) {
             Intent upanel = new Intent(getApplicationContext(), GovtNotification.class);
-            upanel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            upanel.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             upanel.putExtra("phoneno", inputPhone1);
             startActivity(upanel);
+            finish();
 
         } else if (id == R.id.nav_buy) {
            Intent upanel = new Intent(getApplicationContext(), Buy.class);
-            upanel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            upanel.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             upanel.putExtra("phoneno", inputPhone1);
             startActivity(upanel);
+            finish();
 
         } else if (id == R.id.nav_sell) {
             Intent upanel = new Intent(getApplicationContext(), Sell.class);
-            upanel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            upanel.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             upanel.putExtra("phoneno", inputPhone1);
             startActivity(upanel);
+            finish();
 
         } else if (id == R.id.nav_logout) {
             Intent upanel = new Intent(getApplicationContext(), Login.class);
             startActivity(upanel);
+            finish();
         }
         else if (id == R.id.nav_exit) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -165,8 +160,7 @@ public class Home extends AppCompatActivity
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(Home.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -195,24 +189,24 @@ public class Home extends AppCompatActivity
         @Override
         protected void onPostExecute(Boolean th){
             if(th == true){
-                nDialog.dismiss();
                 new ProcessRegister().execute();
             }
             else{
                 Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
             }
+            nDialog.dismiss();
+
         }
     }
 
     private class ProcessRegister extends AsyncTask<String,Void,JSONObject> {
         private ProgressDialog pDialog;
-        JSONObject resultserver=null;
+        private JSONObject resultserver=null;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(Home.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -237,14 +231,11 @@ public class Home extends AppCompatActivity
                                         serverName = tempdata.getString("name");
                                         serverType = tempdata.getString("type").equals("i")?"Individual":"Company";
                                         serverPhone = tempdata.getString("phone");
-                                        pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
@@ -270,6 +261,7 @@ public class Home extends AppCompatActivity
         }
         @Override
         protected void onPostExecute(JSONObject response) {
+            pDialog.dismiss();
 
         }
     }

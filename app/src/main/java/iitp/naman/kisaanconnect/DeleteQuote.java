@@ -27,22 +27,22 @@ import org.json.JSONObject;
  */
 
 public class DeleteQuote extends AppCompatActivity {
-    String quoteid1 ;
-    String price1 ;
-    String quantity1 ;
-    String description1 ;
-    String inputphone1;
+    private String quoteid1 ;
+    private String price1 ;
+    private String quantity1 ;
+    private String description1 ;
+    private String inputphone1;
 
     private String serverName;
     private String serverType;
     private String serverAddress;
 
-    TextView currentprice;
-    TextView availablequantity;
-    TextView description;
+    private TextView currentprice;
+    private TextView availablequantity;
+    private TextView description;
 
-    Button yes1;
-    Button no1;
+    private Button yes1;
+    private Button no1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,6 +98,7 @@ public class DeleteQuote extends AppCompatActivity {
                 upanel.putExtra("address",serverAddress);
                 upanel.putExtra("type",serverType);
                 startActivity(upanel);
+                finish();
             }
         });
 
@@ -130,14 +131,13 @@ public class DeleteQuote extends AppCompatActivity {
 
     private class InterestedNotification extends AsyncTask<String,Void,JSONObject> {
         private ProgressDialog pDialog;
-        JSONObject resultserver=null;
+        private JSONObject resultserver=null;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(DeleteQuote.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -157,19 +157,20 @@ public class DeleteQuote extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
+                                        upanel.putExtra("phoneno", inputphone1);
+                                        upanel.putExtra("name",serverName);
+                                        upanel.putExtra("address",serverAddress);
+                                        upanel.putExtra("type",serverType);
+                                        startActivity(upanel);
+                                        finish();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                     }
-                                    pDialog.dismiss();
-                                    Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
-                                    upanel.putExtra("phoneno", inputphone1);
-                                    upanel.putExtra("name",serverName);
-                                    upanel.putExtra("address",serverAddress);
-                                    upanel.putExtra("type",serverType);
-                                    startActivity(upanel);
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
@@ -192,7 +193,7 @@ public class DeleteQuote extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(JSONObject response) {
-
+            pDialog.dismiss();
         }
     }
 }

@@ -37,12 +37,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 public class Buy extends AppCompatActivity {
-    GridView gridView;
-    String inputPhone1;
-    String[] categoryname = new String[] {};
-    String[] categorydescription = new String[] {};
-    String[] categoryid = new String[] {};
-    String[] categorypicture = new String[] {};
+    private GridView gridView;
+    private String inputPhone1;
+    private String[] categoryname = new String[] {};
+    private String[] categorydescription = new String[] {};
+    private String[] categoryid = new String[] {};
+    private String[] categorypicture = new String[] {};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +74,7 @@ public class Buy extends AppCompatActivity {
                 upanel.putExtra("category",categoryid);
                 upanel.putExtra("categoryname",categoryname);
                 startActivity(upanel);
+                finish();
             }
         });
 
@@ -84,6 +85,7 @@ public class Buy extends AppCompatActivity {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 startActivity(upanel);
+                finish();
             }
         });
     }
@@ -116,8 +118,7 @@ public class Buy extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(Buy.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -165,8 +166,7 @@ public class Buy extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(Buy.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -199,19 +199,16 @@ public class Buy extends AppCompatActivity {
                                         }
                                         gridView.setAdapter(new ImageAdapter(getApplicationContext(), categoryname, categorydescription, categoryid, categorypicture));
                                         resultserver=true;
-                                        pDialog.dismiss();
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                     else {
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                 }
                                 catch (JSONException e) {
                                     e.printStackTrace();
-
+                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -232,6 +229,7 @@ public class Buy extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(Boolean response) {
+            pDialog.dismiss();
 
         }
     }

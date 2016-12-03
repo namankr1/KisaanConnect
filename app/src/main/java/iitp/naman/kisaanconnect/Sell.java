@@ -38,12 +38,12 @@ import java.net.URL;
 
 public class Sell extends AppCompatActivity {
 
-    GridView gridView;
-    String inputPhone1;
-    String[] categoryname = new String[] {};
-    String[] categorydescription = new String[] {};
-    String[] categoryid = new String[] {};
-    String[] categorypicture = new String[] {};
+    private GridView gridView;
+    private String inputPhone1;
+    private String[] categoryname = new String[] {};
+    private String[] categorydescription = new String[] {};
+    private String[] categoryid = new String[] {};
+    private String[] categorypicture = new String[] {};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,16 +76,18 @@ public class Sell extends AppCompatActivity {
                 upanel.putExtra("category",categoryid);
                 upanel.putExtra("categoryname",categoryname);
                 startActivity(upanel);
+                finish();
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 startActivity(upanel);
+                finish();
 
             }
         });
@@ -119,8 +121,7 @@ public class Sell extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(Sell.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -150,12 +151,12 @@ public class Sell extends AppCompatActivity {
         protected void onPostExecute(Boolean th){
 
             if(th == true){
-                nDialog.dismiss();
                 new ProcessRegister().execute();
             }
             else{
                 Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
             }
+            nDialog.dismiss();
         }
     }
 
@@ -167,8 +168,7 @@ public class Sell extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(Sell.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -200,23 +200,19 @@ public class Sell extends AppCompatActivity {
                                             categoryid[i]=tempdata.getJSONObject(i).getString("id");
                                             categorydescription[i]=tempdata.getJSONObject(i).getString("description");
                                             categorypicture[i]=getResources().getString(R.string.network_home)+tempdata.getJSONObject(i).getString("picture");
-                                            Log.i("Response4 :","Status : "+categoryid[i]+" "+categoryname[i]+" "+categorydescription[i]+" "+categorypicture[i]);
-
                                         }
 
                                         gridView.setAdapter(new ImageAdapter(getApplicationContext(), categoryname,categorydescription,categoryid,categorypicture));
-                                        pDialog.dismiss();
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                     else {
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                 }
                                 catch (JSONException e) {
                                     e.printStackTrace();
+                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
 
                                 }
                             }
@@ -238,7 +234,7 @@ public class Sell extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(JSONObject response) {
-
+            pDialog.dismiss();
         }
     }
 

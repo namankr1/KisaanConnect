@@ -23,31 +23,31 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class InterestedQuote extends AppCompatActivity {
-    String senderPhone1;
-    String category1;
+    private String senderPhone1;
+    private String category1;
 
-    String categoryname1;
-    String subcategoryname1;
-    String subcategory1;
-    String quoteid1 ;
-    String nameofseller1 ;
-    String price1 ;
-    String bidvalue1;
-    String quantity1 ;
-    String description1 ;
-    String quoterating1;
-    String receiverphone1 ;
-    Button btnInterested;
-    EditText yourprice;
-    EditText yourquantity;
-    TextView currentprice;
-    TextView availablequantity;
-    TextView quoterating;
-    TextView nameofseller;
-    TextView phoneseller;
-    TextView description;
-    TextView category;
-    TextView subcategory;
+    private String categoryname1;
+    private String subcategoryname1;
+    private String subcategory1;
+    private String quoteid1 ;
+    private String nameofseller1 ;
+    private String price1 ;
+    private String bidvalue1;
+    private String quantity1 ;
+    private String description1 ;
+    private String quoterating1;
+    private String receiverphone1 ;
+    private Button btnInterested;
+    private EditText yourprice;
+    private EditText yourquantity;
+    private TextView currentprice;
+    private TextView availablequantity;
+    private TextView quoterating;
+    private TextView nameofseller;
+    private TextView phoneseller;
+    private TextView description;
+    private TextView category;
+    private TextView subcategory;
 
 
 
@@ -106,9 +106,6 @@ public class InterestedQuote extends AppCompatActivity {
             public void onClick(View view)
             {
                 new InterestedNotification().execute();
-                Intent upanel = new Intent(getApplicationContext(), Home.class);
-                upanel.putExtra("phoneno", senderPhone1);
-                startActivity(upanel);
             }
         });
 
@@ -140,15 +137,14 @@ public class InterestedQuote extends AppCompatActivity {
 
     private class InterestedNotification extends AsyncTask<String,Void,JSONObject> {
         private ProgressDialog pDialog;
-        String yourprice1,yourquantity1;
-        JSONObject resultserver=null;
+        private String yourprice1,yourquantity1;
+        private JSONObject resultserver=null;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(InterestedQuote.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
             yourprice1 = yourprice.getText().toString();
             yourquantity1=yourquantity.getText().toString();
@@ -174,13 +170,21 @@ public class InterestedQuote extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
+                                        upanel.putExtra("phoneno", senderPhone1);
+                                        upanel.putExtra("category", category1);
+                                        upanel.putExtra("subcategory", subcategory1);
+                                        upanel.putExtra("subcategoryname",subcategoryname1);
+                                        upanel.putExtra("categoryname",categoryname1);
+                                        startActivity(upanel);
+                                        finish();
+
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                     }
-                                    pDialog.dismiss();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
@@ -203,6 +207,7 @@ public class InterestedQuote extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(JSONObject response) {
+            pDialog.dismiss();
 
         }
     }

@@ -34,15 +34,15 @@ import java.net.URL;
 
 public class buySubcategory extends AppCompatActivity {
 
-    GridView gridView;
-    String inputPhone1;
-    String category1;
-    String categoryname1;
+    private GridView gridView;
+    private String inputPhone1;
+    private String category1;
+    private String categoryname1;
 
-    String[] subcategoryname = new String[] {};
-    String[] subcategorydescription = new String[] {};
-    String[] subcategoryid = new String[] {};
-    String[] subcategorypicture = new String[] {};
+    private String[] subcategoryname = new String[] {};
+    private String[] subcategorydescription = new String[] {};
+    private String[] subcategoryid = new String[] {};
+    private String[] subcategorypicture = new String[] {};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,6 +77,7 @@ public class buySubcategory extends AppCompatActivity {
                 upanel.putExtra("subcategory",subcategoryid1);
                 upanel.putExtra("subcategoryname",subcategoryname1);
                 startActivity(upanel);
+                finish();
             }
         });
 
@@ -119,8 +120,7 @@ public class buySubcategory extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(buySubcategory.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -168,10 +168,7 @@ public class buySubcategory extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(buySubcategory.this);
-            pDialog.setTitle("Contacting Servers");
-            pDialog.setMessage("Registering ...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -207,19 +204,15 @@ public class buySubcategory extends AppCompatActivity {
                                         }
                                         gridView.setAdapter(new ImageAdapter(getApplicationContext(), subcategoryname,subcategorydescription,subcategoryid,subcategorypicture));
                                         resultserver=true;
-                                        pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                 }
                                 catch (JSONException e) {
                                     e.printStackTrace();
-                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -241,7 +234,7 @@ public class buySubcategory extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(Boolean json) {
-
+            pDialog.dismiss();
         }
     }
 

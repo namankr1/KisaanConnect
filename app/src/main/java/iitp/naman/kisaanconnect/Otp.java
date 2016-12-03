@@ -35,10 +35,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Otp extends AppCompatActivity {
-    EditText inputOtp;
-    Button btnVerify;
-    Button btnResend;
-    String inputPhone1;
+    private EditText inputOtp;
+    private Button btnVerify;
+    private Button btnResend;
+    private String inputPhone1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,6 +66,7 @@ public class Otp extends AppCompatActivity {
                 Intent upanel = new Intent(getApplicationContext(), Otp.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 startActivity(upanel);
+                finish();
             }
 
         });
@@ -112,8 +113,7 @@ public class Otp extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(Otp.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -143,26 +143,26 @@ public class Otp extends AppCompatActivity {
         protected void onPostExecute(Boolean th){
 
             if(th == true){
-                nDialog.dismiss();
                 new ProcessRegister().execute();
             }
             else{
                 Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
             }
+            nDialog.dismiss();
         }
     }
 
     private class ProcessRegister extends AsyncTask<String,Void,JSONObject> {
 
         private ProgressDialog pDialog;
-        String inputOtp1;
+        private String inputOtp1;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             inputOtp1 = inputOtp.getText().toString();
             pDialog = new ProgressDialog(Otp.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -185,15 +185,14 @@ public class Otp extends AppCompatActivity {
                                     if (status.compareTo("ok") == 0) {
                                         Intent upanel = new Intent(getApplicationContext(), Home.class);
                                         upanel.putExtra("phoneno", inputPhone1);
-                                        pDialog.dismiss();
                                         startActivity(upanel);
+                                        Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_LONG).show();
+                                        finish();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_LONG).show();
-                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
@@ -219,6 +218,7 @@ public class Otp extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(JSONObject json) {
+            pDialog.dismiss();
 
         }
     }

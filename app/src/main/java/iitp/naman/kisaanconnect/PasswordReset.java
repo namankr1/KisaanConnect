@@ -35,8 +35,8 @@ import java.net.URL;
 
 public class PasswordReset extends AppCompatActivity {
 
-    EditText inputPhone;
-    Button btnReset;
+    private EditText inputPhone;
+    private Button btnReset;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,8 +88,7 @@ public class PasswordReset extends AppCompatActivity {
         {
             super.onPreExecute();
             nDialog = new ProgressDialog(PasswordReset.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -126,7 +125,6 @@ public class PasswordReset extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean th)
         {
-            nDialog.dismiss();
             if(th == true)
             {
                 new ProcessRegister().execute();
@@ -135,6 +133,7 @@ public class PasswordReset extends AppCompatActivity {
             {
                 Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
             }
+            nDialog.dismiss();
         }
     }
 
@@ -142,14 +141,13 @@ public class PasswordReset extends AppCompatActivity {
     private class ProcessRegister extends AsyncTask<String,Void,JSONObject> {
 
         private ProgressDialog pDialog;
-        String inputPhone1;
+        private String inputPhone1;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             inputPhone1 = inputPhone.getText().toString();
             pDialog = new ProgressDialog(PasswordReset.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -172,19 +170,16 @@ public class PasswordReset extends AppCompatActivity {
                                         Intent upanel = new Intent(getApplicationContext(), ForgotPassword.class);
                                         upanel.putExtra("phoneno", inputPhone1);
                                         startActivity(upanel);
-                                        pDialog.dismiss();
+                                        finish();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_LONG).show();
-                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -207,6 +202,7 @@ public class PasswordReset extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject json) {
+            pDialog.dismiss();
         }
     }
     public void NetAsync(View view){

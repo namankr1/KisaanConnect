@@ -33,28 +33,28 @@ import java.net.URL;
 
 public class GetQuotesofSubcategory extends AppCompatActivity {
 
-    GridView gridView;
-    String inputPhone1;
-    String category1;
-    String categoryname1;
-    String subcategoryname1;
-    String subcategory1;
+    private GridView gridView;
+    private String inputPhone1;
+    private String category1;
+    private String categoryname1;
+    private String subcategoryname1;
+    private String subcategory1;
 
-    String[] quoteid= new String[]{};
-    String[] quotetype= new String[]{};
-    String[] quotequantity= new String[]{};
-    String[] quoteprice= new String[]{};
-    String[] quotedescription= new String[]{};
-    String[] quotesubcategory= new String[]{};
-    String[] quoteisactive= new String[]{};
-    String[] quotebidvalue= new String[]{};
-    String[] quoterating= new String[]{};
-    String[] userrating= new String[] {};
-    String[] userdistance= new String[] {};
-    String[] userid=new String[]{};
-    String[] userphone= new String[]{};
-    String[] useraddress =  new String[]{};
-    String[] username = new String[]{};
+    private String[] quoteid= new String[]{};
+    private String[] quotetype= new String[]{};
+    private String[] quotequantity= new String[]{};
+    private String[] quoteprice= new String[]{};
+    private String[] quotedescription= new String[]{};
+    private String[] quotesubcategory= new String[]{};
+    private String[] quoteisactive= new String[]{};
+    private String[] quotebidvalue= new String[]{};
+    private String[] quoterating= new String[]{};
+    private String[] userrating= new String[] {};
+    private String[] userdistance= new String[] {};
+    private String[] userid=new String[]{};
+    private String[] userphone= new String[]{};
+    private String[] useraddress =  new String[]{};
+    private String[] username = new String[]{};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -108,16 +108,18 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
                 upanel.putExtra("subcategoryname",subcategoryname1);
                 upanel.putExtra("categoryname",categoryname1);
                 startActivity(upanel);
+                finish();
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 startActivity(upanel);
+                finish();
             }
         });
     }
@@ -152,8 +154,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(GetQuotesofSubcategory.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -183,25 +184,24 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         protected void onPostExecute(Boolean th){
 
             if(th == true){
-                nDialog.dismiss();
                 new ProcessRegister().execute();
             }
             else{
                 Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
             }
+            nDialog.dismiss();
         }
     }
 
     private class ProcessRegister extends AsyncTask<String,Void,Boolean> {
         private ProgressDialog pDialog;
-        Boolean resultserver=false;
+        private Boolean resultserver=false;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(GetQuotesofSubcategory.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -260,14 +260,11 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
 
                                         resultserver=true;
                                         gridView.setAdapter(new AdapterQuotes(getApplicationContext(), quotebidvalue,quotedescription,quoteid,quoteprice,quotequantity,quoterating,userphone,username,useraddress,userrating));
-                                        pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -293,6 +290,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(Boolean json) {
+            pDialog.dismiss();
 
         }
     }

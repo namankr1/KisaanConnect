@@ -30,15 +30,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class EndNegotiation extends AppCompatActivity {
-    String notificationid;
-    String notificationsenderphone;
-    String notificationsendername;
-    String notificationsenderaddress;
-    String notificationquantity;
-    String notificationprice;
-    String notificationquoteid;
-    String notificationstatus;
-    String inputPhone1;
+    private String notificationid;
+    private String notificationsenderphone;
+    private String notificationsendername;
+    private String notificationsenderaddress;
+    private String notificationquantity;
+    private String notificationprice;
+    private String notificationquoteid;
+    private String notificationstatus;
+    private String inputPhone1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +96,7 @@ public class EndNegotiation extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(EndNegotiation.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -139,14 +138,13 @@ public class EndNegotiation extends AppCompatActivity {
 
     private class ProcessNotification extends AsyncTask<String, Void, Boolean> {
         private ProgressDialog pDialog;
-        Boolean resultserver=false;
+        private Boolean resultserver=false;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(EndNegotiation.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -170,17 +168,21 @@ public class EndNegotiation extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
+                                        upanel.putExtra("phoneno", inputPhone1);
+                                        startActivity(upanel);
+                                        finish();
                                         resultserver=true;
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                                     }
-                                    pDialog.dismiss();
-                                    Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
-                                    upanel.putExtra("phoneno", inputPhone1);
-                                    startActivity(upanel);
-                                    finish();
+                                    else{
+                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    }
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -202,8 +204,7 @@ public class EndNegotiation extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Boolean json) {
-
-
+            pDialog.dismiss();
         }
     }
 }

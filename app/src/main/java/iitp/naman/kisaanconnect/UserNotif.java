@@ -4,6 +4,7 @@ package iitp.naman.kisaanconnect;
  * Created by naman on 30-Nov-16.
  */
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,21 +28,23 @@ import org.json.JSONObject;
 
 public class UserNotif extends AppCompatActivity {
     private GridView gridView;
-    String inputPhone1;
+    private String inputPhone1;
 
-    String[] notificationid = new String[]{""};
-    String[] notificationquoteid = new String[]{"No new Notifications"};
-    String[] notificationprice = new String[]{""};
-    String[] notificationquantity = new String[]{""};
-    String[] notificationsenderphone = new String[]{""};
-    String[] notificationsendername = new String[]{""};
-    String[] notificationsenderaddress = new String[]{""};
-    String[] notificationstatus = new String[]{""};
+    private String[] notificationid = new String[]{""};
+    private String[] notificationquoteid = new String[]{"No new Notifications"};
+    private String[] notificationprice = new String[]{""};
+    private String[] notificationquantity = new String[]{""};
+    private String[] notificationsenderphone = new String[]{""};
+    private String[] notificationsendername = new String[]{""};
+    private String[] notificationsenderaddress = new String[]{""};
+    private String[] notificationstatus = new String[]{""};
+    private Activity myactivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.usernotif);
+        myactivity=this;
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -88,8 +91,7 @@ public class UserNotif extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(UserNotif.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -98,7 +100,6 @@ public class UserNotif extends AppCompatActivity {
 
             JSONObject jsonIn = new JSONObject();
             try {
-
                 jsonIn.put("phone", inputPhone1);
                 RequestQueue que = Volley.newRequestQueue(getApplicationContext());
                 String urlString = getResources().getString(R.string.network_notification) + "getnotifications/";
@@ -132,21 +133,17 @@ public class UserNotif extends AppCompatActivity {
                                                 notificationprice[i] = tempdata.getJSONObject(i).getString("price");
                                                 notificationquoteid[i] = tempdata.getJSONObject(i).getString("quoteid");
                                                 notificationstatus[i] = tempdata.getJSONObject(i).getString("status");
-                                                Log.i("Response4 :4", "Status : got notification");
 
                                             }
 
-                                            gridView.setAdapter( new UserNotifAdapter(getApplicationContext(),inputPhone1,notificationid,notificationsenderphone,notificationsendername,notificationsenderaddress,notificationquantity,notificationprice,notificationquoteid,notificationstatus));
+                                            gridView.setAdapter( new UserNotifAdapter(myactivity,getApplicationContext(),inputPhone1,notificationid,notificationsenderphone,notificationsendername,notificationsenderaddress,notificationquantity,notificationprice,notificationquoteid,notificationstatus));
 
                                         }
-                                        pDialog.dismiss();
 
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_LONG).show();
-                                        pDialog.dismiss();
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
@@ -173,6 +170,7 @@ public class UserNotif extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject json) {
+            pDialog.dismiss();
         }
     }
 }

@@ -1,5 +1,6 @@
 package iitp.naman.kisaanconnect;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,30 +32,32 @@ import java.net.URL;
 
 public class GetAllQuotesUser extends AppCompatActivity {
 
-    GridView gridView;
-    String serverName;
-    String serverPhone;
-    String serverType;
-    String serverAddress;
+    private GridView gridView;
+    private String serverName;
+    private String serverPhone;
+    private String serverType;
+    private String serverAddress;
 
-    String[] quoteid= new String[]{};
-    String[] quotetype= new String[]{};
-    String[] quotequantity= new String[]{};
-    String[] quoteprice= new String[]{};
-    String[] quotedescription= new String[]{};
-    String[] quotesubcategory= new String[]{};
-    String[] quoteisactive= new String[]{};
-    String[] quotebidvalue= new String[]{};
-    String[] quoterating= new String[]{};
-    String[] userid=new String[]{};
-    String[] userphone= new String[]{};
-    String[] useraddress =  new String[]{};
-    String[] username = new String[]{};
+    private String[] quoteid= new String[]{};
+    private String[] quotetype= new String[]{};
+    private String[] quotequantity= new String[]{};
+    private String[] quoteprice= new String[]{};
+    private String[] quotedescription= new String[]{};
+    private String[] quotesubcategory= new String[]{};
+    private String[] quoteisactive= new String[]{};
+    private String[] quotebidvalue= new String[]{};
+    private String[] quoterating= new String[]{};
+    private String[] userid=new String[]{};
+    private String[] userphone= new String[]{};
+    private String[] useraddress =  new String[]{};
+    private String[] username = new String[]{};
+    private Activity myactivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.getquotesofsubcategory);
+        myactivity=this;
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -83,6 +84,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", serverPhone);
                 startActivity(upanel);
+                finish();
             }
         });
     }
@@ -118,8 +120,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(GetAllQuotesUser.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -149,25 +150,25 @@ public class GetAllQuotesUser extends AppCompatActivity {
         protected void onPostExecute(Boolean th){
 
             if(th == true){
-                nDialog.dismiss();
                 new ProcessRegister().execute();
             }
             else{
                 Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
             }
+
+            nDialog.dismiss();
         }
     }
 
     private class ProcessRegister extends AsyncTask<String,Void,Boolean> {
         private ProgressDialog pDialog;
-        Boolean resultserver=false;
+        private Boolean resultserver=false;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(GetAllQuotesUser.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -219,15 +220,12 @@ public class GetAllQuotesUser extends AppCompatActivity {
                                         }
 
                                         resultserver=true;
-                                        gridView.setAdapter(new AdapterUserQuotes(getApplicationContext(), quotebidvalue,quotedescription,quoteid,quoteprice,quotequantity,quoterating,userphone,username,useraddress,quotetype,serverPhone,serverName,serverType,serverAddress));
-                                        pDialog.dismiss();
+                                        gridView.setAdapter(new AdapterUserQuotes(myactivity,getApplicationContext(), quotebidvalue,quotedescription,quoteid,quoteprice,quotequantity,quoterating,userphone,username,useraddress,quotetype,serverPhone,serverName,serverType,serverAddress));
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -253,6 +251,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(Boolean json) {
+            pDialog.dismiss();
 
         }
     }

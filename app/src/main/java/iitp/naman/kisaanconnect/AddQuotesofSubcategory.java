@@ -194,6 +194,7 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
                                         Intent upanel = new Intent(getApplicationContext(), Home.class);
                                         upanel.putExtra("phoneno", inputPhone1);
                                         startActivity(upanel);
+                                        finish();
                                     }
                                     else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
@@ -204,6 +205,7 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
                                 }
                                 catch (JSONException e) {
                                     e.printStackTrace();
+                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -225,6 +227,7 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject response) {
+            pDialog.dismiss();
         }
     }
 

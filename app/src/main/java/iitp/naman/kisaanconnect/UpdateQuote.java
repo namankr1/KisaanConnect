@@ -29,23 +29,23 @@ import org.json.JSONObject;
  */
 
 public class UpdateQuote extends AppCompatActivity {
-    String quoteid1 ;
-    String price1 ;
-    String quantity1 ;
-    String description1 ;
-    String type1;
-    String is_active1;
-    String inputphone1;
+    private String quoteid1 ;
+    private String price1 ;
+    private String quantity1 ;
+    private String description1 ;
+    private String type1;
+    private String is_active1;
+    private String inputphone1;
 
     private String serverName;
     private String serverType;
     private String serverAddress;
 
-    TextView desc;
-    EditText price;
-    EditText type;
-    EditText quantity;
-    Button yes1;
+    private TextView desc;
+    private EditText price;
+    private EditText type;
+    private EditText quantity;
+    private Button yes1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -120,15 +120,14 @@ public class UpdateQuote extends AppCompatActivity {
 
     private class InterestedNotification extends AsyncTask<String,Void,JSONObject> {
         private ProgressDialog pDialog;
-        JSONObject resultserver=null;
-        String type2,quantity2,price2;
+        private JSONObject resultserver=null;
+        private String type2,quantity2,price2;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(UpdateQuote.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
             type2=type.getText().toString();
             quantity2=quantity.getText().toString();
@@ -154,19 +153,20 @@ public class UpdateQuote extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
+                                        upanel.putExtra("phoneno", inputphone1);
+                                        upanel.putExtra("name",serverName);
+                                        upanel.putExtra("address",serverAddress);
+                                        upanel.putExtra("type",serverType);
+                                        startActivity(upanel);
+                                        finish();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                     }
-                                    pDialog.dismiss();
-                                    Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
-                                    upanel.putExtra("phoneno", inputphone1);
-                                    upanel.putExtra("name",serverName);
-                                    upanel.putExtra("address",serverAddress);
-                                    upanel.putExtra("type",serverType);
-                                    startActivity(upanel);
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
@@ -189,7 +189,7 @@ public class UpdateQuote extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(JSONObject response) {
-
+            pDialog.dismiss();
         }
     }
 }

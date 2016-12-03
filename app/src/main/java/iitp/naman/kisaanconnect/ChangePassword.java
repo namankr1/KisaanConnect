@@ -33,15 +33,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ChangePassword extends AppCompatActivity {
-    EditText newpass;
-    EditText oldpass;
-    EditText confirmnewpass;
-    Button btnconfirm;
+    private EditText newpass;
+    private EditText oldpass;
+    private EditText confirmnewpass;
+    private Button btnconfirm;
 
-    String serverName;
-    String serverPhone;
-    String serverType;
-    String serverAddress;
+    private String serverName;
+    private String serverPhone;
+    private String serverType;
+    private String serverAddress;
 
 
     @Override
@@ -78,12 +78,6 @@ public class ChangePassword extends AppCompatActivity {
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "Password and Confirm Password Dont match ", Toast.LENGTH_SHORT).show();
-                        Intent upanel = new Intent(getApplicationContext(), Home.class);
-                        upanel.putExtra("phoneno", serverPhone);
-                        upanel.putExtra("name",serverName);
-                        upanel.putExtra("address",serverAddress);
-                        upanel.putExtra("type",serverType);
-                        startActivity(upanel);
                     }
                 }
             });
@@ -121,8 +115,7 @@ public class ChangePassword extends AppCompatActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             nDialog = new ProgressDialog(ChangePassword.this);
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
+            nDialog.setCancelable(false);
             nDialog.show();
         }
 
@@ -164,16 +157,15 @@ public class ChangePassword extends AppCompatActivity {
 
     private class ProcessRegister extends AsyncTask<String,Void,JSONObject> {
         private ProgressDialog pDialog;
-        String newpass2;
-        String oldpass2;
-        JSONObject resultserver=null;
+        private String newpass2;
+        private String oldpass2;
+        private JSONObject resultserver=null;
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
             pDialog = new ProgressDialog(ChangePassword.this);
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
+            super.onPreExecute();
             newpass2 = newpass.getText().toString();
             oldpass2=oldpass.getText().toString();
         }
@@ -196,7 +188,6 @@ public class ChangePassword extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
-                                        pDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                                         Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
                                         upanel.putExtra("phoneno", serverPhone);
@@ -204,32 +195,16 @@ public class ChangePassword extends AppCompatActivity {
                                         upanel.putExtra("address",serverAddress);
                                         upanel.putExtra("type",serverType);
                                         startActivity(upanel);
+                                        finish();
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-                                        upanel.putExtra("phoneno", serverPhone);
-                                        upanel.putExtra("name",serverName);
-                                        upanel.putExtra("address",serverAddress);
-                                        upanel.putExtra("type",serverType);
-                                        startActivity(upanel);
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                        pDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-                                        upanel.putExtra("phoneno", serverPhone);
-                                        upanel.putExtra("name",serverName);
-                                        upanel.putExtra("address",serverAddress);
-                                        upanel.putExtra("type",serverType);
-                                        startActivity(upanel);
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -251,6 +226,7 @@ public class ChangePassword extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject response) {
+            pDialog.dismiss();
         }
     }
     public void NetAsync(View view){
