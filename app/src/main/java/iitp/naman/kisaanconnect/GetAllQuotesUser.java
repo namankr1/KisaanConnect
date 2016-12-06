@@ -1,8 +1,10 @@
 package iitp.naman.kisaanconnect;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -74,7 +77,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
         getSupportActionBar().setTitle("Your Products");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-        NetAsync(this.findViewById(android.R.id.content));
+        //NetAsync(this.findViewById(android.R.id.content));
 
         gridView = (GridView) findViewById(R.id.gridView1);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -84,26 +87,30 @@ public class GetAllQuotesUser extends AppCompatActivity {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", serverPhone);
                 startActivity(upanel);
-                finish();
+                //finish();
             }
         });
     }
-
+    @Override
+    protected void onResume(){
+        super.onResume();
+        NetAsync(this.findViewById(android.R.id.content));
+    }
 
     @Override
     public void onBackPressed() {
-        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-        upanel.putExtra("phoneno", serverPhone);
-        upanel.putExtra("name",serverName);
-        upanel.putExtra("address",serverAddress);
-        upanel.putExtra("type",serverType);
-        startActivity(upanel);
+//        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
+//        upanel.putExtra("phoneno", serverPhone);
+//        upanel.putExtra("name",serverName);
+//        upanel.putExtra("address",serverAddress);
+//        upanel.putExtra("type",serverType);
+//        startActivity(upanel);
         finish();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.govtnotification, menu);
+        getMenuInflater().inflate(R.menu.refreshnotification, menu);
         return true;
     }
 
@@ -111,13 +118,16 @@ public class GetAllQuotesUser extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-                upanel.putExtra("phoneno", serverPhone);
-                upanel.putExtra("name",serverName);
-                upanel.putExtra("address",serverAddress);
-                upanel.putExtra("type",serverType);
-                startActivity(upanel);
+//                Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
+//                upanel.putExtra("phoneno", serverPhone);
+//                upanel.putExtra("name",serverName);
+//                upanel.putExtra("address",serverAddress);
+//                upanel.putExtra("type",serverType);
+//                startActivity(upanel);
                 this.finish();
+                return true;
+            case R.id.menuRefresh:
+                NetAsync(this.findViewById(android.R.id.content));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -131,7 +141,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(GetAllQuotesUser.this);
+            nDialog = MyCustomProgressDialog.ctor(GetAllQuotesUser.this);
             nDialog.setCancelable(false);
             nDialog.show();
         }
@@ -179,7 +189,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(GetAllQuotesUser.this);
+            pDialog = MyCustomProgressDialog.ctor(GetAllQuotesUser.this);
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -201,6 +211,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
                                     if (status.compareTo("ok") == 0) {
                                         JSONArray temp =  response.getJSONArray("quote");
                                         int len=temp.length();
+
                                         quoteid=new String[len];
                                         quotetype=new String[len];
                                         quotequantity=new String[len];
@@ -233,15 +244,36 @@ public class GetAllQuotesUser extends AppCompatActivity {
 
                                         resultserver=true;
                                         gridView.setAdapter(new AdapterUserQuotes(myactivity,getApplicationContext(), quotebidvalue,quotedescription,quoteid,quoteprice,quotequantity,quoterating,userphone,username,useraddress,quotetype,serverPhone,serverName,serverType,serverAddress));
+
+                                        if(len>0){
+                                            pDialog.dismiss();
+                                        }
+                                        else{
+                                            pDialog.dismiss();
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(GetAllQuotesUser.this);
+                                            builder.setMessage("No products added yet")
+                                                    .setCancelable(false)
+                                                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                        public void onClick(DialogInterface dialog, int id) {
+                                                            dialog.cancel();
+                                                        }
+                                                    });
+                                            AlertDialog alert = builder.create();
+                                            alert.show();
+                                        }
+
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -249,6 +281,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
@@ -256,6 +289,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return false;
             }
             return resultserver;
@@ -263,7 +297,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(Boolean json) {
-            pDialog.dismiss();
+
 
         }
     }

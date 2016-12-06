@@ -88,11 +88,11 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent upanel = new Intent(getApplicationContext(), sellSubcategory.class);
-        upanel.putExtra("phoneno", inputPhone1);
-        upanel.putExtra("category", category1);
-        upanel.putExtra("categoryname",categoryname1);
-        startActivity(upanel);
+//        Intent upanel = new Intent(getApplicationContext(), sellSubcategory.class);
+//        upanel.putExtra("phoneno", inputPhone1);
+//        upanel.putExtra("category", category1);
+//        upanel.putExtra("categoryname",categoryname1);
+//        startActivity(upanel);
         finish();
     }
 
@@ -101,11 +101,11 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), sellSubcategory.class);
-                upanel.putExtra("phoneno", inputPhone1);
-                upanel.putExtra("category", category1);
-                upanel.putExtra("categoryname",categoryname1);
-                startActivity(upanel);
+//                Intent upanel = new Intent(getApplicationContext(), sellSubcategory.class);
+//                upanel.putExtra("phoneno", inputPhone1);
+//                upanel.putExtra("category", category1);
+//                upanel.putExtra("categoryname",categoryname1);
+//                startActivity(upanel);
                 this.finish();
                 return true;
             default:
@@ -119,7 +119,7 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
 
         @Override
         protected void onPreExecute(){
-            nDialog = new ProgressDialog(AddQuotesofSubcategory.this);
+            nDialog = MyCustomProgressDialog.ctor(AddQuotesofSubcategory.this);
             nDialog.setCancelable(false);
             nDialog.show();
             super.onPreExecute();
@@ -171,7 +171,7 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            pDialog = new ProgressDialog(AddQuotesofSubcategory.this);
+            pDialog = MyCustomProgressDialog.ctor(AddQuotesofSubcategory.this);
             pDialog.setCancelable(false);
             pDialog.show();
             super.onPreExecute();
@@ -202,21 +202,25 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        Intent upanel = new Intent(getApplicationContext(), Home.class);
-                                        upanel.putExtra("phoneno", inputPhone1);
-                                        startActivity(upanel);
-                                        finish();
+//                                        Intent upanel = new Intent(getApplicationContext(), Home.class);
+//                                        upanel.putExtra("phoneno", inputPhone1);
+//                                        startActivity(upanel);
+                                        pDialog.dismiss();
+                                       finish();
                                     }
                                     else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                     else {
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 }
                                 catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -224,6 +228,7 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                pDialog.dismiss();
                             }
                         });
                 que.add(jsonObjReq);
@@ -231,6 +236,7 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
             catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return null;
             }
             return resultserver;
@@ -238,7 +244,7 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject response) {
-            pDialog.dismiss();
+
         }
     }
 

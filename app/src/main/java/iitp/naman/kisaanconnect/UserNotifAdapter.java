@@ -26,7 +26,7 @@ public class UserNotifAdapter extends BaseAdapter {
     private String[] notificationquoteid;
     private String[] notificationstatus;
     private String inputphone1;
-    private int notifstatus=0;
+
     private String[] notificationtype;
 
     public UserNotifAdapter(Activity myactivity,Context context,String inputphone1, String[] notificationid,String[] notificationsenderphone,String[] notificationsendername,String[] notificationsenderaddress,String[] notificationquantity,String[] notificationprice,String[] notificationquoteid,String[] notificationstatus,String[] notificationtype) {
@@ -47,20 +47,8 @@ public class UserNotifAdapter extends BaseAdapter {
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
+        int notifstatus=0;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View gridView;
-        if (convertView == null) {
-            gridView = new View(context);
-            gridView = inflater.inflate(R.layout.singlerowusernotif, null);
-        } else {
-            gridView = (View) convertView;
-        }
-
-        TextView textView = (TextView) gridView.findViewById(R.id.list_item_string);
-
-        Button btnendnegotiation  = ((Button) gridView.findViewById(R.id.delete_btn));
-        Button btnnegotiate = ((Button) gridView.findViewById(R.id.add_btn));
-
         try{
             notifstatus=Integer.parseInt(notificationstatus[position]);
         }
@@ -68,21 +56,41 @@ public class UserNotifAdapter extends BaseAdapter {
             notifstatus=0;
         }
 
-        if(notifstatus==1 || notifstatus==-1){
-            btnendnegotiation.setVisibility(View.INVISIBLE);
-            btnnegotiate.setVisibility(View.INVISIBLE);
 
+        View gridView;
+        if (convertView == null) {
+            gridView = new View(context);
+            if(notifstatus==1) {
+                gridView = inflater.inflate(R.layout.singlerowusernotifaccept, null);
+            }
+            else if(notifstatus==-1){
+                gridView = inflater.inflate(R.layout.singlerowusernotifreject, null);
+            }
+            else {
+                gridView = inflater.inflate(R.layout.singlerowusernotif, null);
+            }
+        } else {
+            gridView = (View) convertView;
+        }
+
+        TextView textView = (TextView) gridView.findViewById(R.id.list_item_string);
+
+
+
+
+
+        if(notifstatus==1 || notifstatus==-1){
             if(notifstatus==1){
-                textView.setText(notificationsendername[position]+" Has Accepted your quotation of "+notificationtype[position]+"( Quantity :" +notificationquantity[position]+" on Price :"+notificationprice[position]+")");
+                textView.setText(notificationsendername[position]+" has accepted your quotation of "+notificationtype[position]+" and wants " +notificationquantity[position]+" kg at rate Rs. "+notificationprice[position]+" ");
             }
             else{
-                textView.setText(notificationsendername[position]+" Has Rejected your quotation of "+notificationtype[position]);
+                textView.setText(notificationsendername[position]+" has rejected your quotation of "+notificationtype[position]);
             }
-
-
         }
         else {
-            textView.setText(notificationsendername[position]+" is interested to negotiate about "+notificationtype[position]+"( Quantity :" +notificationquantity[position]+" on Price :"+notificationprice[position]+")");
+            Button btnendnegotiation  = ((Button) gridView.findViewById(R.id.delete_btn));
+            Button btnnegotiate = ((Button) gridView.findViewById(R.id.add_btn));
+            textView.setText(notificationsendername[position]+" is interested to negotiate about "+notificationtype[position]+" and wants " +notificationquantity[position]+"  kg at rate Rs. "+notificationprice[position]+" ");
             btnnegotiate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -97,7 +105,7 @@ public class UserNotifAdapter extends BaseAdapter {
                     upanel.putExtra("notificationstatus", notificationstatus[position]);
                     upanel.putExtra("inputPhone1", inputphone1);
                     myactivity.startActivity(upanel);
-                    myactivity.finish();
+                    //myactivity.finish();
                 }
             });
             btnendnegotiation.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +122,7 @@ public class UserNotifAdapter extends BaseAdapter {
                     upanel.putExtra("notificationstatus", notificationstatus[position]);
                     upanel.putExtra("inputPhone1", inputphone1);
                     myactivity.startActivity(upanel);
-                    myactivity.finish();
+                    //myactivity.finish();
                 }
             });
         }

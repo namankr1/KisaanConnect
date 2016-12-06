@@ -3,8 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/entitybox"
-    android:orientation="horizontal"
-    android:layout_weight="15"
+    android:orientation="vertical"
     android:gravity="center"
     android:padding="12dp"
     >
@@ -13,29 +12,35 @@
         android:id="@+id/list_item_string"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="10"
         android:textSize="15sp"
         android:textColor="#000"
-        android:text="User1 wants to buy 2 kg of basumati rice for Rs. 10"/>
-
-    <Button
-        android:id="@+id/delete_btn"
-        android:layout_width="wrap_content"
-        android:layout_below="@id/list_item_string"
+        android:text=""/>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="End"
-        android:layout_weight="1"
-        android:background="@drawable/endbutton"
-        />
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="4"
+        android:layout_marginTop="10dp">
+        <Button
+            android:id="@+id/delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End Negotiation"
+            android:layout_weight="3"
+            android:textAllCaps="true"
+            android:background="@drawable/endbutton"
+            />
 
-    <Button
-        android:id="@+id/add_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/iminterested"
-        android:text="Negotiate"
-        android:layout_weight="0.01"
-        android:padding="4dp"
-        android:layout_marginLeft="5dp"/>
-
+        <Button
+            android:id="@+id/add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/iminterested"
+            android:text="Negotiate"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:textAllCaps="true"
+            android:layout_marginLeft="15dp"/>
+    </LinearLayout>
 </LinearLayout>

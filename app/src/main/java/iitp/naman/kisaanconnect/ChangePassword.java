@@ -86,12 +86,12 @@ public class ChangePassword extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-        upanel.putExtra("phoneno", serverPhone);
-        upanel.putExtra("name",serverName);
-        upanel.putExtra("address",serverAddress);
-        upanel.putExtra("type",serverType);
-        startActivity(upanel);
+//        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
+//        upanel.putExtra("phoneno", serverPhone);
+//        upanel.putExtra("name",serverName);
+//        upanel.putExtra("address",serverAddress);
+//        upanel.putExtra("type",serverType);
+//        startActivity(upanel);
         finish();
     }
 
@@ -105,12 +105,12 @@ public class ChangePassword extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-                upanel.putExtra("phoneno", serverPhone);
-                upanel.putExtra("name",serverName);
-                upanel.putExtra("address",serverAddress);
-                upanel.putExtra("type",serverType);
-                startActivity(upanel);
+//                Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
+//                upanel.putExtra("phoneno", serverPhone);
+//                upanel.putExtra("name",serverName);
+//                upanel.putExtra("address",serverAddress);
+//                upanel.putExtra("type",serverType);
+//                startActivity(upanel);
                 this.finish();
                 return true;
             default:
@@ -125,7 +125,7 @@ public class ChangePassword extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(ChangePassword.this);
+            nDialog = MyCustomProgressDialog.ctor(ChangePassword.this);
             nDialog.setCancelable(false);
             nDialog.show();
         }
@@ -173,7 +173,7 @@ public class ChangePassword extends AppCompatActivity {
         private JSONObject resultserver=null;
         @Override
         protected void onPreExecute() {
-            pDialog = new ProgressDialog(ChangePassword.this);
+            pDialog = MyCustomProgressDialog.ctor(ChangePassword.this);
             pDialog.setCancelable(false);
             pDialog.show();
             super.onPreExecute();
@@ -200,22 +200,23 @@ public class ChangePassword extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-                                        upanel.putExtra("phoneno", serverPhone);
-                                        upanel.putExtra("name",serverName);
-                                        upanel.putExtra("address",serverAddress);
-                                        upanel.putExtra("type",serverType);
-                                        startActivity(upanel);
+//                                        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
+//                                        upanel.putExtra("phoneno", serverPhone);
+//                                        startActivity(upanel);
+                                        pDialog.dismiss();
                                         finish();
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -223,6 +224,7 @@ public class ChangePassword extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                pDialog.dismiss();
                             }
                         });
                 que.add(jsonObjReq);
@@ -230,6 +232,7 @@ public class ChangePassword extends AppCompatActivity {
             catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return null;
             }
             return resultserver;
@@ -237,7 +240,7 @@ public class ChangePassword extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject response) {
-            pDialog.dismiss();
+
         }
     }
     public void NetAsync(View view){

@@ -105,9 +105,9 @@ public class Negotiate extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
-        upanel.putExtra("phoneno", inputPhone1);
-        startActivity(upanel);
+//        Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
+//        upanel.putExtra("phoneno", inputPhone1);
+//        startActivity(upanel);
         finish();
     }
 
@@ -116,9 +116,9 @@ public class Negotiate extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
-                upanel.putExtra("phoneno", inputPhone1);
-                startActivity(upanel);
+//                Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
+//                upanel.putExtra("phoneno", inputPhone1);
+//                startActivity(upanel);
                 this.finish();
                 return true;
             default:
@@ -134,7 +134,7 @@ public class Negotiate extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(Negotiate.this);
+            pDialog = MyCustomProgressDialog.ctor(Negotiate.this);
             pDialog.setCancelable(true);
             pDialog.show();
             price2=yourprice.getText().toString();
@@ -161,17 +161,21 @@ public class Negotiate extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_LONG).show();
-                                        Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
-                                        upanel.putExtra("phoneno", inputPhone1);
-                                        startActivity(upanel);
+//                                        Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
+//                                        upanel.putExtra("phoneno", inputPhone1);
+//                                        startActivity(upanel);
+                                        pDialog.dismiss();
                                         finish();
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_LONG).show();
+                                        pDialog.dismiss();
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                     e.printStackTrace();
                                 }
                             }
@@ -180,6 +184,7 @@ public class Negotiate extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
@@ -187,6 +192,7 @@ public class Negotiate extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return null;
             }
             return jsonIn;
@@ -194,7 +200,7 @@ public class Negotiate extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject json) {
-            pDialog.dismiss();
+
 
         }
     }

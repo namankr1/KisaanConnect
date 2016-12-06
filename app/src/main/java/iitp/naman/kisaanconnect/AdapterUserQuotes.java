@@ -96,11 +96,11 @@ public class AdapterUserQuotes extends BaseAdapter {
                 upanel.putExtra("servertype",serverType);
                 upanel.putExtra("quoteid",quoteid[position]);
                 upanel.putExtra("desc",quotedescription[position]);
-                upanel.putExtra("price",quoteprice[position]);
+                upanel.putExtra("price",quotebidvalue[position]);
                 upanel.putExtra("quantity",quotequantity[position]);
                 upanel.putExtra("type",quotetype[position]);
                 myactivity.startActivity(upanel);
-                myactivity.finish();
+                //myactivity.finish();
             }
         });
 
@@ -119,7 +119,7 @@ public class AdapterUserQuotes extends BaseAdapter {
                 upanel.putExtra("price",quoteprice[position]);
                 upanel.putExtra("quantity",quotequantity[position]);
                 myactivity.startActivity(upanel);
-                myactivity.finish();//finishes the activity
+                //myactivity.finish();//finishes the activity
             }
         });
         return gridView;

@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:theme="@style/ActionBarThemeOverlay"
+            android:theme="@style/ActionBarThemeOverlay"
             app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
 
 
@@ -81,7 +81,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="John Doe"
+                    android:text=""
                     android:id="@+id/name"
                     android:paddingLeft="15dp"
                     android:paddingTop="5dp"
@@ -119,7 +119,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="9999001122"
+                    android:text=""
                     android:layout_below="@+id/phonelabel"
                     android:id="@+id/phone"
                     android:paddingLeft="15dp"

@@ -5,6 +5,8 @@ package iitp.naman.kisaanconnect;
  */
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -58,23 +60,27 @@ public class UserNotif extends AppCompatActivity {
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
         }
-        new ProcessNotification().execute();
+        //new ProcessNotification().execute();
         gridView = (GridView) findViewById(R.id.gridView11);
     }
 
     @Override
     public void onBackPressed() {
-        Intent upanel = new Intent(getApplicationContext(), Home.class);
-        upanel.putExtra("phoneno", inputPhone1);
-        startActivity(upanel);
+//        Intent upanel = new Intent(getApplicationContext(), Home.class);
+//        upanel.putExtra("phoneno", inputPhone1);
+//        startActivity(upanel);
         finish();
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new ProcessNotification().execute();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.govtnotification, menu);
+        getMenuInflater().inflate(R.menu.refreshnotification, menu);
         return true;
     }
 
@@ -82,10 +88,13 @@ public class UserNotif extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), Home.class);
-                upanel.putExtra("phoneno", inputPhone1);
-                startActivity(upanel);
+//                Intent upanel = new Intent(getApplicationContext(), Home.class);
+//                upanel.putExtra("phoneno", inputPhone1);
+//                startActivity(upanel);
                 this.finish();
+                return true;
+            case R.id.menuRefresh:
+                new ProcessNotification().execute();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -100,7 +109,7 @@ public class UserNotif extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(UserNotif.this);
+            pDialog = MyCustomProgressDialog.ctor(UserNotif.this);
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -123,42 +132,60 @@ public class UserNotif extends AppCompatActivity {
                                     if (status.compareTo("ok") == 0) {
                                         JSONArray tempdata = response.getJSONArray("notifications");
                                         int len = tempdata.length();
-                                        if (len != 0) {
-                                            notificationid = new String[len];
-                                            notificationprice = new String[len];
-                                            notificationquantity = new String[len];
-                                            notificationquoteid = new String[len];
-                                            notificationsenderphone = new String[len];
-                                            notificationsendername = new String[len];
-                                            notificationsenderaddress = new String[len];
-                                            notificationstatus = new String[len];
-                                            notificationtype = new String[len];
 
-                                            for (int i = 0; i < len; i++) {
-                                                notificationid[i] = tempdata.getJSONObject(i).getString("id");
-                                                JSONObject temp = tempdata.getJSONObject(i).getJSONObject("sender");
-                                                notificationsenderphone[i] = temp.getString("phone");
-                                                notificationsendername[i] = temp.getString("name");
-                                                notificationsenderaddress[i] = temp.getString("address");
-                                                notificationquantity[i] = tempdata.getJSONObject(i).getString("quantity");
-                                                notificationprice[i] = tempdata.getJSONObject(i).getString("price");
-                                                notificationquoteid[i] = tempdata.getJSONObject(i).getString("quoteid");
-                                                notificationstatus[i] = tempdata.getJSONObject(i).getString("status");
-                                                notificationtype[i] = tempdata.getJSONObject(i).getString("type");
+                                        notificationid = new String[len];
+                                        notificationprice = new String[len];
+                                        notificationquantity = new String[len];
+                                        notificationquoteid = new String[len];
+                                        notificationsenderphone = new String[len];
+                                        notificationsendername = new String[len];
+                                        notificationsenderaddress = new String[len];
+                                        notificationstatus = new String[len];
+                                        notificationtype = new String[len];
 
-                                            }
-
-                                            gridView.setAdapter( new UserNotifAdapter(myactivity,getApplicationContext(),inputPhone1,notificationid,notificationsenderphone,notificationsendername,notificationsenderaddress,notificationquantity,notificationprice,notificationquoteid,notificationstatus,notificationtype));
+                                        for (int i = 0; i < len; i++) {
+                                            notificationid[i] = tempdata.getJSONObject(i).getString("id");
+                                            JSONObject temp = tempdata.getJSONObject(i).getJSONObject("sender");
+                                            notificationsenderphone[i] = temp.getString("phone");
+                                            notificationsendername[i] = temp.getString("name");
+                                            notificationsenderaddress[i] = temp.getString("address");
+                                            notificationquantity[i] = tempdata.getJSONObject(i).getString("quantity");
+                                            notificationprice[i] = tempdata.getJSONObject(i).getString("price");
+                                            notificationquoteid[i] = tempdata.getJSONObject(i).getString("quoteid");
+                                            notificationstatus[i] = tempdata.getJSONObject(i).getString("status");
+                                            notificationtype[i] = tempdata.getJSONObject(i).getString("type");
 
                                         }
+                                        gridView.setAdapter(new UserNotifAdapter(myactivity, getApplicationContext(), inputPhone1, notificationid, notificationsenderphone, notificationsendername, notificationsenderaddress, notificationquantity, notificationprice, notificationquoteid, notificationstatus, notificationtype));
+
+                                        if (len >0) {
+                                            pDialog.dismiss();
+                                        }
+                                        else {
+                                            pDialog.dismiss();
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(UserNotif.this);
+                                            builder.setMessage("No new notifications")
+                                                    .setCancelable(false)
+                                                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                        public void onClick(DialogInterface dialog, int id) {
+                                                            dialog.cancel();
+                                                        }
+                                                    });
+                                            AlertDialog alert = builder.create();
+                                            alert.show();
+                                        }
+
 
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_LONG).show();
+                                        pDialog.dismiss();
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                     e.printStackTrace();
                                 }
                             }
@@ -167,6 +194,7 @@ public class UserNotif extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
@@ -174,6 +202,7 @@ public class UserNotif extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return null;
             }
             return jsonIn;
@@ -182,7 +211,7 @@ public class UserNotif extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject json) {
-            pDialog.dismiss();
+
         }
     }
 }

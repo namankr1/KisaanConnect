@@ -19,7 +19,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Alan Aipe"
+                android:text=""
                 android:layout_marginTop="5dp"
                 android:id="@+id/type"
                 android:textAllCaps="true"
@@ -46,7 +46,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="250"
+                android:text=""
                 android:layout_below="@+id/pricelabel"
                 android:id="@+id/bidvalue"
                 android:textColor="#000"
@@ -68,7 +68,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="27"
+                android:text=""
                 android:layout_below="@+id/quantitylabel"
                 android:layout_marginLeft="20dp"
                 android:id="@+id/quantity"
@@ -151,14 +151,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/delete"
-            android:background="#e11111"/>
+            android:background="@drawable/endbutton"/>
 
         <Button
             android:text="update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/update"
-            android:layout_marginLeft="30dp"
-            android:background="#f97c1c"/>
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/iminterested"/>
     </LinearLayout>
 </LinearLayout>

@@ -8,6 +8,7 @@ package iitp.naman.kisaanconnect;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -39,6 +40,8 @@ public class Otp extends AppCompatActivity {
     private Button btnVerify;
     private Button btnResend;
     private String inputPhone1;
+    SharedPreferences.Editor e;
+    SharedPreferences sf;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,8 +89,7 @@ public class Otp extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent upanel = new Intent(getApplicationContext(), Buy.class);
-        upanel.putExtra("phoneno", inputPhone1);
+        Intent upanel = new Intent(getApplicationContext(), Login.class);
         startActivity(upanel);
         finish();
     }
@@ -103,8 +105,7 @@ public class Otp extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), Buy.class);
-                upanel.putExtra("phoneno", inputPhone1);
+                Intent upanel = new Intent(getApplicationContext(), Login.class);
                 startActivity(upanel);
                 this.finish();
                 return true;
@@ -120,7 +121,7 @@ public class Otp extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(Otp.this);
+            nDialog = MyCustomProgressDialog.ctor(Otp.this);
             nDialog.setCancelable(false);
             nDialog.show();
         }
@@ -169,7 +170,7 @@ public class Otp extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             inputOtp1 = inputOtp.getText().toString();
-            pDialog = new ProgressDialog(Otp.this);
+            pDialog = MyCustomProgressDialog.ctor(Otp.this);
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -191,19 +192,29 @@ public class Otp extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
+                                        sf = getSharedPreferences("yaad",MODE_PRIVATE);
+                                        e = sf.edit();
+                                        e.putBoolean("rm", true);
+                                        e.putString("phonenum", inputPhone1);
+                                        e.putString("passwordnum","");
+                                        e.commit();
                                         Intent upanel = new Intent(getApplicationContext(), Home.class);
                                         upanel.putExtra("phoneno", inputPhone1);
                                         startActivity(upanel);
                                         Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_LONG).show();
+                                        pDialog.dismiss();
                                         finish();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_LONG).show();
+                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                     e.printStackTrace();
                                 }
                             }
@@ -212,6 +223,7 @@ public class Otp extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
@@ -219,6 +231,7 @@ public class Otp extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return null;
             }
             return jsonIn;
@@ -226,7 +239,7 @@ public class Otp extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(JSONObject json) {
-            pDialog.dismiss();
+
 
         }
     }

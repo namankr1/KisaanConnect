@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:theme="@style/ActionBarThemeOverlay"
+            android:theme="@style/ActionBarThemeOverlay"
             app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
 
         <RelativeLayout
@@ -78,7 +78,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="This is a test description of the product to be displayed by this quotation"
+                    android:text=""
                     android:id="@+id/description"
                     android:paddingLeft="15dp"
                     android:paddingTop="5dp"
@@ -113,7 +113,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Rs. 250"
+                    android:text=""
                     android:layout_below="@+id/pricelabel"
                     android:id="@+id/currentbid"
                     android:paddingLeft="15dp"
@@ -149,7 +149,7 @@
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/quantitylabel"
-                    android:text="5"
+                    android:text=""
                     android:id="@+id/availablequantity"
                     android:paddingLeft="15dp"
                     android:paddingTop="5dp"

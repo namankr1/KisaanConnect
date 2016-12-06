@@ -94,7 +94,7 @@ public class PasswordReset extends AppCompatActivity {
         protected void onPreExecute()
         {
             super.onPreExecute();
-            nDialog = new ProgressDialog(PasswordReset.this);
+            nDialog = MyCustomProgressDialog.ctor(PasswordReset.this);
             nDialog.setCancelable(false);
             nDialog.show();
         }
@@ -153,7 +153,7 @@ public class PasswordReset extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             inputPhone1 = inputPhone.getText().toString();
-            pDialog = new ProgressDialog(PasswordReset.this);
+            pDialog = MyCustomProgressDialog.ctor(PasswordReset.this);
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -177,16 +177,20 @@ public class PasswordReset extends AppCompatActivity {
                                         Intent upanel = new Intent(getApplicationContext(), ForgotPassword.class);
                                         upanel.putExtra("phoneno", inputPhone1);
                                         startActivity(upanel);
+                                        pDialog.dismiss();
                                         finish();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_LONG).show();
+                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -194,6 +198,7 @@ public class PasswordReset extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
@@ -201,6 +206,7 @@ public class PasswordReset extends AppCompatActivity {
             catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return null;
             }
             return jsonIn;
@@ -209,7 +215,7 @@ public class PasswordReset extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject json) {
-            pDialog.dismiss();
+
         }
     }
     public void NetAsync(View view){

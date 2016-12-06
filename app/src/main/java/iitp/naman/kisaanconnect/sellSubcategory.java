@@ -80,7 +80,7 @@ public class sellSubcategory extends AppCompatActivity {
                 upanel.putExtra("subcategory",subcategoryid);
                 upanel.putExtra("subcategoryname",subcategoryname1);
                 startActivity(upanel);
-                finish();
+                //finish();
             }
         });
 
@@ -93,14 +93,14 @@ public class sellSubcategory extends AppCompatActivity {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 startActivity(upanel);
-                finish();
+                //finish();
             }
         });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.govtnotification, menu);
+        getMenuInflater().inflate(R.menu.refreshnotification, menu);
         return true;
     }
 
@@ -108,10 +108,13 @@ public class sellSubcategory extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), Sell.class);
-                upanel.putExtra("phoneno", inputPhone1);
-                startActivity(upanel);
+//                Intent upanel = new Intent(getApplicationContext(), Sell.class);
+//                upanel.putExtra("phoneno", inputPhone1);
+//                startActivity(upanel);
                 this.finish();
+                return true;
+            case R.id.menuRefresh:
+                NetAsync(this.findViewById(android.R.id.content));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -120,9 +123,9 @@ public class sellSubcategory extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent upanel = new Intent(getApplicationContext(), Sell.class);
-        upanel.putExtra("phoneno", inputPhone1);
-        startActivity(upanel);
+//        Intent upanel = new Intent(getApplicationContext(), Sell.class);
+//        upanel.putExtra("phoneno", inputPhone1);
+//        startActivity(upanel);
         finish();
     }
 
@@ -133,7 +136,7 @@ public class sellSubcategory extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(sellSubcategory.this);
+            nDialog = MyCustomProgressDialog.ctor(sellSubcategory.this);
             nDialog.setCancelable(false);
             nDialog.show();
         }
@@ -181,7 +184,7 @@ public class sellSubcategory extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(sellSubcategory.this);
+            pDialog = MyCustomProgressDialog.ctor(sellSubcategory.this);
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -218,22 +221,27 @@ public class sellSubcategory extends AppCompatActivity {
                                         }
 
                                         gridView.setAdapter(new ImageAdapter(getApplicationContext(), subcategoryname,subcategorydescription,subcategoryid,subcategorypicture));
+                                        pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 }
                                 catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
@@ -242,6 +250,7 @@ public class sellSubcategory extends AppCompatActivity {
             catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return null;
             }
             return jsonIn;
@@ -249,7 +258,7 @@ public class sellSubcategory extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(JSONObject json) {
-            pDialog.dismiss();
+
 
         }
     }

@@ -150,13 +150,13 @@ public class InterestedQuote extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
-        upanel.putExtra("phoneno", senderPhone1);
-        upanel.putExtra("category", category1);
-        upanel.putExtra("subcategory", subcategory1);
-        upanel.putExtra("subcategoryname",subcategoryname1);
-        upanel.putExtra("categoryname",categoryname1);
-        startActivity(upanel);
+//        Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
+//        upanel.putExtra("phoneno", senderPhone1);
+//        upanel.putExtra("category", category1);
+//        upanel.putExtra("subcategory", subcategory1);
+//        upanel.putExtra("subcategoryname",subcategoryname1);
+//        upanel.putExtra("categoryname",categoryname1);
+//        startActivity(upanel);
         finish();
     }
 
@@ -170,13 +170,13 @@ public class InterestedQuote extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
-                upanel.putExtra("phoneno", senderPhone1);
-                upanel.putExtra("category", category1);
-                upanel.putExtra("subcategory", subcategory1);
-                upanel.putExtra("subcategoryname",subcategoryname1);
-                upanel.putExtra("categoryname",categoryname1);
-                startActivity(upanel);
+//                Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
+//                upanel.putExtra("phoneno", senderPhone1);
+//                upanel.putExtra("category", category1);
+//                upanel.putExtra("subcategory", subcategory1);
+//                upanel.putExtra("subcategoryname",subcategoryname1);
+//                upanel.putExtra("categoryname",categoryname1);
+//                startActivity(upanel);
                 this.finish();
                 return true;
             default:
@@ -192,7 +192,7 @@ public class InterestedQuote extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(InterestedQuote.this);
+            pDialog = MyCustomProgressDialog.ctor(InterestedQuote.this);
             pDialog.setCancelable(false);
             pDialog.show();
             yourprice1 = yourprice.getText().toString();
@@ -219,24 +219,28 @@ public class InterestedQuote extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
-                                        upanel.putExtra("phoneno", senderPhone1);
-                                        upanel.putExtra("category", category1);
-                                        upanel.putExtra("subcategory", subcategory1);
-                                        upanel.putExtra("subcategoryname",subcategoryname1);
-                                        upanel.putExtra("categoryname",categoryname1);
-                                        startActivity(upanel);
+//                                        Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
+//                                        upanel.putExtra("phoneno", senderPhone1);
+//                                        upanel.putExtra("category", category1);
+//                                        upanel.putExtra("subcategory", subcategory1);
+//                                        upanel.putExtra("subcategoryname",subcategoryname1);
+//                                        upanel.putExtra("categoryname",categoryname1);
+//                                        startActivity(upanel);
+                                        pDialog.dismiss();
                                         finish();
 
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -244,19 +248,21 @@ public class InterestedQuote extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return null;
             }
             return resultserver;
         }
         @Override
         protected void onPostExecute(JSONObject response) {
-            pDialog.dismiss();
+
 
         }
     }

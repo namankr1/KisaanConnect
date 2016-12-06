@@ -124,7 +124,7 @@ public class Register extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(Register.this);
+            nDialog = MyCustomProgressDialog.ctor(Register.this);
             nDialog.setCancelable(false);
             nDialog.show();
         }
@@ -173,7 +173,7 @@ public class Register extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            pDialog = new ProgressDialog(Register.this);
+            pDialog = MyCustomProgressDialog.ctor(Register.this);
             pDialog.setCancelable(false);
             pDialog.show();
             super.onPreExecute();
@@ -210,16 +210,20 @@ public class Register extends AppCompatActivity {
                                         upanel.putExtra("phoneno", inputPhone1);
                                         startActivity(upanel);
                                         Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                         finish();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -227,6 +231,7 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
@@ -235,6 +240,7 @@ public class Register extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return null;
             }
             return jsonIn;
@@ -242,7 +248,7 @@ public class Register extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(JSONObject json) {
-            pDialog.dismiss();
+
 
         }
     }

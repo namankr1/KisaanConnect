@@ -1,6 +1,7 @@
 package iitp.naman.kisaanconnect;
 
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -54,77 +55,83 @@ public class Login extends AppCompatActivity {
         restrictlogin=0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        inputPhone = (EditText) findViewById(R.id.phone);
-        inputPassword = (EditText) findViewById(R.id.password);
-        btnRegister = (Button) findViewById(R.id.signup);
-        btnLogin = (Button) findViewById(R.id.login);
-        btnReset = (Button)findViewById(R.id.forgotpassword);
-        tb = (ToggleButton) findViewById(R.id.checkBox);
-        ch2 = (CheckBox)findViewById(R.id.checkBox2);
-        sf = getSharedPreferences("yaad",MODE_PRIVATE);
-
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+
+        sf = getSharedPreferences("yaad",MODE_PRIVATE);
+        Boolean cbf = sf.getBoolean("rm",false);
+        // rm.setChecked(sf.getBoolean("rm",false));
         String ph = sf.getString("phonenum","");
-        String ps = sf.getString("passwordnum","");
-        inputPhone.setText(ph);
-        inputPassword.setText(ps);
+        if(cbf == true)
+        {
+            Intent upanel = new Intent(getApplicationContext(), Home.class);
+            upanel.putExtra("phoneno", ph);
+            Log.i("Start","activity");
+            startActivity(upanel);
+            finish();
+        }else {
+            inputPhone = (EditText) findViewById(R.id.phone);
+            inputPassword = (EditText) findViewById(R.id.password);
+            btnRegister = (Button) findViewById(R.id.signup);
+            btnLogin = (Button) findViewById(R.id.login);
+            btnReset = (Button)findViewById(R.id.forgotpassword);
+            tb = (ToggleButton) findViewById(R.id.checkBox);
+            ch2 = (CheckBox)findViewById(R.id.checkBox2);
 
-        tb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    inputPassword.setInputType(InputType.TYPE_CLASS_TEXT);
-                }
-                else {
-                    inputPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                }
-            }
-        });
+            String ps = sf.getString("passwordnum","");
+            inputPhone.setText(ph);
+            inputPassword.setText(ps);
 
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent myIntent = new Intent(getApplicationContext(), PasswordReset.class);
-                startActivity(myIntent);
-                finish();
-            }
-        });
-
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent myIntent = new Intent(getApplicationContext(), Register.class);
-                startActivity(myIntent);
-                finish();
-            }
-        });
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                if (  ( !inputPhone.getText().toString().equals("")) && ( !inputPassword.getText().toString().equals("")) ) {
-                    if(restrictlogin==0) {
-                        //restrictlogin=1;
-                        iDialog = new ProgressDialog(Login.this);
-                        iDialog.setCancelable(false);
-                        iDialog.show();
-                        NetAsync(view);
-
+            tb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        inputPassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                    } else {
+                        inputPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     }
                 }
-                else if ( ( !inputPhone.getText().toString().equals("")) ) {
-                    Toast.makeText(getApplicationContext(), "Password field cant be empty", Toast.LENGTH_SHORT).show();
+            });
+
+            btnReset.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Intent myIntent = new Intent(getApplicationContext(), PasswordReset.class);
+                    startActivity(myIntent);
+                    finish();
                 }
-                else if ( ( !inputPassword.getText().toString().equals("")) ) {
-                    Toast.makeText(getApplicationContext(), "Phone field cant be empty", Toast.LENGTH_SHORT).show();
+            });
+
+            btnRegister.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Intent myIntent = new Intent(getApplicationContext(), Register.class);
+                    startActivity(myIntent);
+                    finish();
                 }
-                else {
-                    Toast.makeText(getApplicationContext(), "Phone and Password field cant be empty", Toast.LENGTH_SHORT).show();
+            });
+
+            btnLogin.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    if ((!inputPhone.getText().toString().equals("")) && (!inputPassword.getText().toString().equals(""))) {
+                        if (restrictlogin == 0) {
+                            //restrictlogin=1;
+                            iDialog = MyCustomProgressDialog.ctor(Login.this);
+                            iDialog.show();
+                            NetAsync(view);
+
+                        }
+                    } else if ((!inputPhone.getText().toString().equals(""))) {
+                        Toast.makeText(getApplicationContext(), "Password field cant be empty", Toast.LENGTH_SHORT).show();
+                    } else if ((!inputPassword.getText().toString().equals(""))) {
+                        Toast.makeText(getApplicationContext(), "Phone field cant be empty", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Phone and Password field cant be empty", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     @Override
@@ -134,13 +141,22 @@ public class Login extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.govtnotification, menu);
+        getMenuInflater().inflate(R.menu.loginbase, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.menuHelp:
+                String url1 = "https://kisaanconnect.herokuapp.com";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url1));
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private class NetCheck extends AsyncTask<String, Void, Boolean>
@@ -150,9 +166,9 @@ public class Login extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            nDialog = new ProgressDialog(Login.this);
-            nDialog.setCancelable(false);
-            nDialog.show();
+            //nDialog =MyCustomProgressDialog.ctor(Login.this);
+            //nDialog.setCancelable(false);
+            //nDialog.show();
         }
 
         @Override
@@ -186,9 +202,10 @@ public class Login extends AppCompatActivity {
                 new ProcessLogin().execute();
             }
             else {
+                iDialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
             }
-            nDialog.dismiss();
+            //nDialog.dismiss();
 
         }
     }
@@ -199,11 +216,12 @@ public class Login extends AppCompatActivity {
         private String inputPhone1,inputPassword1;
         private JSONObject resultserver=null;
 
+
         @Override
         protected void onPreExecute() {
-            pDialog = new ProgressDialog(Login.this);
-            pDialog.setCancelable(false);
-            pDialog.show();
+            //pDialog = MyCustomProgressDialog.ctor(Login.this);
+            //pDialog.setCancelable(false);
+            //pDialog.show();
             super.onPreExecute();
             inputPhone1 = inputPhone.getText().toString();
             inputPassword1 = inputPassword.getText().toString();
@@ -213,46 +231,59 @@ public class Login extends AppCompatActivity {
         @Override
         protected JSONObject doInBackground(String... args) {
 
-            JSONObject jsonIn = new JSONObject();
+            final JSONObject jsonIn = new JSONObject();
             try {
                 jsonIn.put("phone", inputPhone1);
                 jsonIn.put("password", inputPassword1);
                 RequestQueue que = Volley.newRequestQueue(getApplicationContext());
                 String urlString = getResources().getString(R.string.network_url) + "signin/";
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, jsonIn,
+                final JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, jsonIn,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
-
+                                        e = sf.edit();
+                                        e.putBoolean("rm", true);
+                                        e.putString("phonenum", inputPhone1);
                                         if (ch2.isChecked()) {
-                                            SharedPreferences preferences = getSharedPreferences("PREFERENCE", 0);
-                                            SharedPreferences.Editor editor = preferences.edit();
-                                            editor.clear();
-                                            editor.commit();
-
-
-                                            e = sf.edit();
-                                            e.putString("phonenum", inputPhone1);
                                             e.putString("passwordnum", inputPassword1);
-                                            e.putBoolean("rm", true);
-                                            e.commit();
                                         }
+                                        e.commit();
 
                                         Intent upanel = new Intent(getApplicationContext(), Home.class);
                                         upanel.putExtra("phoneno", inputPhone1);
-                                        iDialog.dismiss();
+                                        Log.i("Start","activity");
+                                        resultserver=response;
                                         startActivity(upanel);
+                                        iDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                                         finish();
                                     } else if (status.compareTo("err") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        String resp = response.getString("message");
+                                        if(resp.equals("User account is disabled")){
+                                            resp="Please verify your account first.";
+                                            Intent upanel = new Intent(getApplicationContext(), Otp.class);
+                                            upanel.putExtra("phoneno", inputPhone1);
+                                            startActivity(upanel);
+                                            iDialog.dismiss();
+                                            Toast.makeText(getApplicationContext(),resp , Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        }
+                                        else {
+                                            iDialog.dismiss();
+                                            Toast.makeText(getApplicationContext(), resp, Toast.LENGTH_SHORT).show();
+                                        }
+
                                     } else {
+
+                                        iDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                     }
                                 } catch (JSONException e) {
+
+                                    iDialog.dismiss();
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                 }
@@ -261,6 +292,8 @@ public class Login extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
+
+                        iDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -268,17 +301,15 @@ public class Login extends AppCompatActivity {
             }
             catch (JSONException e) {
                 e.printStackTrace();
+                iDialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                 return null;
             }
-            return jsonIn;
+            return resultserver;
         }
 
         @Override
         protected void onPostExecute(JSONObject jsonIn) {
-            pDialog.dismiss();
-
-
         }
     }
 

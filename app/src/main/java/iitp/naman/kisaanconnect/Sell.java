@@ -76,7 +76,7 @@ public class Sell extends AppCompatActivity {
                 upanel.putExtra("category",categoryid);
                 upanel.putExtra("categoryname",categoryname);
                 startActivity(upanel);
-                finish();
+                //finish();
             }
         });
 
@@ -87,7 +87,7 @@ public class Sell extends AppCompatActivity {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 startActivity(upanel);
-                finish();
+                //finish();
 
             }
         });
@@ -95,15 +95,15 @@ public class Sell extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent upanel = new Intent(getApplicationContext(), Home.class);
-        upanel.putExtra("phoneno", inputPhone1);
-        startActivity(upanel);
+//        Intent upanel = new Intent(getApplicationContext(), Home.class);
+//        upanel.putExtra("phoneno", inputPhone1);
+//        startActivity(upanel);
         finish();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.govtnotification, menu);
+        getMenuInflater().inflate(R.menu.refreshnotification, menu);
         return true;
     }
 
@@ -111,10 +111,13 @@ public class Sell extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), Home.class);
-                upanel.putExtra("phoneno", inputPhone1);
-                startActivity(upanel);
+//                Intent upanel = new Intent(getApplicationContext(), Home.class);
+//                upanel.putExtra("phoneno", inputPhone1);
+//                startActivity(upanel);
                 this.finish();
+                return true;
+            case R.id.menuRefresh:
+                NetAsync(this.findViewById(android.R.id.content));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -128,7 +131,7 @@ public class Sell extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(Sell.this);
+            nDialog = MyCustomProgressDialog.ctor(Sell.this);
             nDialog.setCancelable(false);
             nDialog.show();
         }
@@ -175,7 +178,7 @@ public class Sell extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(Sell.this);
+            pDialog = MyCustomProgressDialog.ctor(Sell.this);
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -211,16 +214,20 @@ public class Sell extends AppCompatActivity {
                                         }
 
                                         gridView.setAdapter(new ImageAdapter(getApplicationContext(), categoryname,categorydescription,categoryid,categorypicture));
+                                        pDialog.dismiss();
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                     else {
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 }
                                 catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
 
                                 }
                             }
@@ -229,6 +236,7 @@ public class Sell extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
@@ -236,13 +244,14 @@ public class Sell extends AppCompatActivity {
             catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return null;
             }
             return jsonIn;
         }
         @Override
         protected void onPostExecute(JSONObject response) {
-            pDialog.dismiss();
+
         }
     }
 

@@ -97,12 +97,12 @@ public class UpdateQuote extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
-        upanel.putExtra("phoneno", inputphone1);
-        upanel.putExtra("name",serverName);
-        upanel.putExtra("address",serverAddress);
-        upanel.putExtra("type",serverType);
-        startActivity(upanel);
+//        Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
+//        upanel.putExtra("phoneno", inputphone1);
+//        upanel.putExtra("name",serverName);
+//        upanel.putExtra("address",serverAddress);
+//        upanel.putExtra("type",serverType);
+//        startActivity(upanel);
         finish();
     }
 
@@ -116,12 +116,12 @@ public class UpdateQuote extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
-                upanel.putExtra("phoneno", inputphone1);
-                upanel.putExtra("name",serverName);
-                upanel.putExtra("address",serverAddress);
-                upanel.putExtra("type",serverType);
-                startActivity(upanel);
+//                Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
+//                upanel.putExtra("phoneno", inputphone1);
+//                upanel.putExtra("name",serverName);
+//                upanel.putExtra("address",serverAddress);
+//                upanel.putExtra("type",serverType);
+//                startActivity(upanel);
                 this.finish();
                 return true;
             default:
@@ -137,7 +137,7 @@ public class UpdateQuote extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(UpdateQuote.this);
+            pDialog = MyCustomProgressDialog.ctor(UpdateQuote.this);
             pDialog.setCancelable(false);
             pDialog.show();
             type2=type.getText().toString();
@@ -164,23 +164,27 @@ public class UpdateQuote extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-                                        Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
-                                        upanel.putExtra("phoneno", inputphone1);
-                                        upanel.putExtra("name",serverName);
-                                        upanel.putExtra("address",serverAddress);
-                                        upanel.putExtra("type",serverType);
-                                        startActivity(upanel);
+//                                        Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
+//                                        upanel.putExtra("phoneno", inputphone1);
+//                                        upanel.putExtra("name",serverName);
+//                                        upanel.putExtra("address",serverAddress);
+//                                        upanel.putExtra("type",serverType);
+//                                        startActivity(upanel);
+                                        pDialog.dismiss();
                                         finish();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -188,19 +192,21 @@ public class UpdateQuote extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return null;
             }
             return resultserver;
         }
         @Override
         protected void onPostExecute(JSONObject response) {
-            pDialog.dismiss();
+
         }
     }
 }

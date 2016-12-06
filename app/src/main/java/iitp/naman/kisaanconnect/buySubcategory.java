@@ -77,7 +77,7 @@ public class buySubcategory extends AppCompatActivity {
                 upanel.putExtra("subcategory",subcategoryid1);
                 upanel.putExtra("subcategoryname",subcategoryname1);
                 startActivity(upanel);
-                finish();
+                //finish();
             }
         });
 
@@ -94,14 +94,14 @@ public class buySubcategory extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent upanel = new Intent(getApplicationContext(), Buy.class);
-        upanel.putExtra("phoneno", inputPhone1);
-        startActivity(upanel);
+        //Intent upanel = new Intent(getApplicationContext(), Buy.class);
+        //upanel.putExtra("phoneno", inputPhone1);
+        //startActivity(upanel);
         finish();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.govtnotification, menu);
+        getMenuInflater().inflate(R.menu.refreshnotification, menu);
         return true;
     }
 
@@ -109,10 +109,13 @@ public class buySubcategory extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), Buy.class);
-                upanel.putExtra("phoneno", inputPhone1);
-                startActivity(upanel);
+                //Intent upanel = new Intent(getApplicationContext(), Buy.class);
+                //upanel.putExtra("phoneno", inputPhone1);
+                //startActivity(upanel);
                 this.finish();
+                return true;
+            case R.id.menuRefresh:
+                NetAsync(this.findViewById(android.R.id.content));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -126,7 +129,7 @@ public class buySubcategory extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(buySubcategory.this);
+            nDialog = MyCustomProgressDialog.ctor(buySubcategory.this);
             nDialog.setCancelable(false);
             nDialog.show();
         }
@@ -174,7 +177,7 @@ public class buySubcategory extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(buySubcategory.this);
+            pDialog = MyCustomProgressDialog.ctor(buySubcategory.this);
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -211,21 +214,26 @@ public class buySubcategory extends AppCompatActivity {
                                         }
                                         gridView.setAdapter(new ImageAdapter(getApplicationContext(), subcategoryname,subcategorydescription,subcategoryid,subcategorypicture));
                                         resultserver=true;
+                                        pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 }
                                 catch (JSONException e) {
                                     e.printStackTrace();
+                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                pDialog.dismiss();
                             }
                         });
                 que.add(jsonObjReq);
@@ -234,6 +242,7 @@ public class buySubcategory extends AppCompatActivity {
             catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return null;
             }
             return resultserver;
@@ -241,7 +250,7 @@ public class buySubcategory extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(Boolean json) {
-            pDialog.dismiss();
+
         }
     }
 

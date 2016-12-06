@@ -33,10 +33,15 @@ public class Adaptercls extends BaseAdapter {
         if (convertView == null) {
             gridView = new View(context);
             gridView = inflater.inflate(R.layout.single_row_notif, null);
-            TextView textView = (TextView) gridView.findViewById(R.id.notifid);
-            textView.setText(govtnotifid[position]);
+            ((TextView) gridView.findViewById(R.id.notifid)).setText(govtnotifid[position]);
             TextView textView1 = (TextView) gridView.findViewById(R.id.body);
-            textView1.setText(govtnotifbody[position]);
+            String temp = govtnotifbody[position];
+            if(temp.length()>120){
+                temp = temp.substring(0,120)+"... (Click to read more)";
+            }
+            else {
+                textView1.setText(temp);
+            }
             TextView textView2 = (TextView) gridView.findViewById(R.id.title);
             textView2.setText(govtnotiftitle[position]);
             TextView textView3 = (TextView) gridView.findViewById(R.id.url);

@@ -1,7 +1,9 @@
 package iitp.naman.kisaanconnect;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -77,7 +79,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         getSupportActionBar().setTitle(subcategoryname1);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-        NetAsync(this.findViewById(android.R.id.content));
+        //NetAsync(this.findViewById(android.R.id.content));
 
         gridView = (GridView) findViewById(R.id.gridView1);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -108,7 +110,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
                 upanel.putExtra("subcategoryname",subcategoryname1);
                 upanel.putExtra("categoryname",categoryname1);
                 startActivity(upanel);
-                finish();
+//                finish();
             }
         });
 
@@ -119,38 +121,48 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 startActivity(upanel);
-                finish();
+//                finish();
             }
         });
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        NetAsync(this.findViewById(android.R.id.content));
     }
 
 
     @Override
     public void onBackPressed() {
-        Intent upanel = new Intent(getApplicationContext(), buySubcategory.class);
-        upanel.putExtra("phoneno", inputPhone1);
-        upanel.putExtra("category", category1);
-        upanel.putExtra("categoryname",categoryname1);
-        startActivity(upanel);
+//        Intent upanel = new Intent(getApplicationContext(), buySubcategory.class);
+//        upanel.putExtra("phoneno", inputPhone1);
+//        upanel.putExtra("category", category1);
+//        upanel.putExtra("categoryname",categoryname1);
+//        startActivity(upanel);
         finish();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.govtnotification, menu);
+        getMenuInflater().inflate(R.menu.refreshnotification, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upanel = new Intent(getApplicationContext(), buySubcategory.class);
-                upanel.putExtra("phoneno", inputPhone1);
-                upanel.putExtra("category", category1);
-                upanel.putExtra("categoryname",categoryname1);
-                startActivity(upanel);
+//                Intent upanel = new Intent(getApplicationContext(), buySubcategory.class);
+//                upanel.putExtra("phoneno", inputPhone1);
+//                upanel.putExtra("category", category1);
+//                upanel.putExtra("categoryname",categoryname1);
+//                startActivity(upanel);
                 this.finish();
+                return true;
+            case R.id.menuRefresh:
+                NetAsync(this.findViewById(android.R.id.content));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -164,7 +176,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(GetQuotesofSubcategory.this);
+            nDialog = MyCustomProgressDialog.ctor(GetQuotesofSubcategory.this);
             nDialog.setCancelable(false);
             nDialog.show();
         }
@@ -211,7 +223,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(GetQuotesofSubcategory.this);
+            pDialog = MyCustomProgressDialog.ctor(GetQuotesofSubcategory.this);
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -234,52 +246,72 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
                                     if (status.compareTo("ok") == 0) {
                                         JSONArray tempdata =  response.getJSONArray("results");
                                         int len=tempdata.length();
-                                        userdistance =new String[len];
-                                        userrating=new String[len];
-                                        quoteid=new String[len];
-                                        quotetype=new String[len];
-                                        quotequantity=new String[len];
-                                        quoteprice=new String[len];
-                                        quotedescription=new String[len];
-                                        userid=new String[len];
-                                        useraddress=new String[len];
-                                        userphone=new String[len];
-                                        username=new String[len];
-                                        quotesubcategory=new String[len];
-                                        quoteisactive=new String[len];
-                                        quotebidvalue=new String[len];
-                                        quoterating=new String[len];
-                                        for(int i=0;i<len;i++){
-                                            userdistance[i]=tempdata.getJSONObject(i).getString("distance");
-                                            userrating[i]=tempdata.getJSONObject(i).getString("rating");
+
+                                        userdistance = new String[len];
+                                        userrating = new String[len];
+                                        quoteid = new String[len];
+                                        quotetype = new String[len];
+                                        quotequantity = new String[len];
+                                        quoteprice = new String[len];
+                                        quotedescription = new String[len];
+                                        userid = new String[len];
+                                        useraddress = new String[len];
+                                        userphone = new String[len];
+                                        username = new String[len];
+                                        quotesubcategory = new String[len];
+                                        quoteisactive = new String[len];
+                                        quotebidvalue = new String[len];
+                                        quoterating = new String[len];
+                                        for (int i = 0; i < len; i++) {
+                                            userdistance[i] = tempdata.getJSONObject(i).getString("distance");
+                                            userrating[i] = tempdata.getJSONObject(i).getString("rating");
                                             JSONObject temp = tempdata.getJSONObject(i).getJSONObject("quote");
-                                            quoteid[i]=temp.getString("id");
-                                            quotetype[i]=temp.getString("type");
-                                            quotequantity[i]=temp.getString("quantity");
-                                            quoteprice[i]=temp.getString("price");
-                                            quotedescription[i]=temp.getString("description");
+                                            quoteid[i] = temp.getString("id");
+                                            quotetype[i] = temp.getString("type");
+                                            quotequantity[i] = temp.getString("quantity");
+                                            quoteprice[i] = temp.getString("price");
+                                            quotedescription[i] = temp.getString("description");
                                             JSONObject temp1 = temp.getJSONObject("profile");
                                             userid[i] = temp1.getString("userid");
                                             useraddress[i] = temp1.getString("address");
                                             userphone[i] = temp1.getString("phone");
                                             username[i] = temp1.getString("name");
-                                            quotesubcategory[i]=temp.getString("subcategoryname");
-                                            quoteisactive[i]=temp.getString("is_active");
-                                            quotebidvalue[i]=temp.getString("bidvalue");
-                                            quoterating[i]=temp.getString("rating");
+                                            quotesubcategory[i] = temp.getString("subcategoryname");
+                                            quoteisactive[i] = temp.getString("is_active");
+                                            quotebidvalue[i] = temp.getString("bidvalue");
+                                            quoterating[i] = temp.getString("rating");
                                         }
 
-                                        resultserver=true;
-                                        gridView.setAdapter(new AdapterQuotes(getApplicationContext(), quotebidvalue,quotedescription,quoteid,quoteprice,quotequantity,quoterating,userphone,username,useraddress,userrating));
+                                        resultserver = true;
+                                        gridView.setAdapter(new AdapterQuotes(getApplicationContext(), quotebidvalue, quotedescription, quoteid, quoteprice, quotequantity, quoterating, userphone, username, useraddress, userrating));
+                                        if(len >0) {
+                                            pDialog.dismiss();
+                                        }
+                                        else {
+                                            pDialog.dismiss();
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(GetQuotesofSubcategory.this);
+                                            builder.setMessage("No quotes of this subcategory added yet")
+                                                    .setCancelable(false)
+                                                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                        public void onClick(DialogInterface dialog, int id) {
+                                                            dialog.cancel();
+                                                        }
+                                                    });
+                                            AlertDialog alert = builder.create();
+                                            alert.show();
+                                        }
                                     }else if(status.compareTo("err") == 0){
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -287,6 +319,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
@@ -294,6 +327,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return false;
             }
             return resultserver;
@@ -301,7 +335,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(Boolean json) {
-            pDialog.dismiss();
+
 
         }
     }

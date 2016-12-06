@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:theme="@style/ActionBarThemeOverlay"
+            android:theme="@style/ActionBarThemeOverlay"
             app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
 
 
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:fontFamily="sans-serif"
-                android:text="987654310"
+                android:text=""
                 android:visibility="gone"
                 android:textAllCaps="true"
                 android:id="@+id/senderphone"
@@ -61,7 +61,7 @@
                 android:layout_height="100dp"
                 android:gravity="center"
                 android:fontFamily="sans-serif"
-                android:text="Test Seller address"
+                android:text=""
                 android:layout_below="@+id/senderphone"
                 android:visibility="gone"
                 android:textAllCaps="true"
@@ -101,7 +101,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Rs. 250"
+                    android:text=""
                     android:layout_below="@+id/pricelabel"
                     android:id="@+id/quotedprice"
                     android:paddingLeft="15dp"
@@ -137,7 +137,7 @@
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/quantitylabel"
-                    android:text="5"
+                    android:text=""
                     android:id="@+id/quotedquantity"
                     android:paddingLeft="15dp"
                     android:paddingTop="5dp"

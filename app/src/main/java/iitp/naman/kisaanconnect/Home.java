@@ -1,5 +1,9 @@
 package iitp.naman.kisaanconnect;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
@@ -36,46 +40,29 @@ public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String inputPhone1;
-    private String serverName;
-    private String serverPhone;
-    private String serverType;
-    private String serverAddress;
-
+    //private String serverName;
+    //private String serverPhone;
+    //private String serverType;
+    //private String serverAddress;
+    SharedPreferences sf;
+    SharedPreferences.Editor e;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
 
+        sf = getSharedPreferences("yaad",MODE_PRIVATE);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
         }
+        //new NetCheck().execute();
 
-        new NetCheck().execute();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
-                upanel.putExtra("phoneno", inputPhone1);
-                startActivity(upanel);
-                finish();
-            }
-        });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -84,16 +71,65 @@ public class Home extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure you want to exit?")
+                    .setCancelable(true)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            System.exit(0);
+                            int pid = android.os.Process.myPid();//=====> use this if you want to kill your activity. But its not a good one to do.
+                            android.os.Process.killProcess(pid);
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+
         }
+
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        Log.i("pause","called");
-        finish();
-    }
+    public void onResume() {
+        super.onResume();
+        setContentView(R.layout.home);
+        FloatingActionButton fab;
+        DrawerLayout drawer;
+        ActionBarDrawerToggle toggle;
+        Toolbar toolbar;
+        NavigationView navigationView;
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+            Log.i("fab created","");
+            fab = (FloatingActionButton) findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
+                    upanel.putExtra("phoneno", inputPhone1);
+                    startActivity(upanel);
+//                finish();
+                }
+            });
+    }
 
 
     @Override
@@ -104,8 +140,18 @@ public class Home extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.menuHelp:
+                String url1 = "https://kisaanconnect.herokuapp.com";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url1));
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -117,9 +163,9 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_my_profile) {
             Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
             upanel.putExtra("phoneno", inputPhone1);
-            upanel.putExtra("name",serverName);
-            upanel.putExtra("address",serverAddress);
-            upanel.putExtra("type",serverType);
+            //upanel.putExtra("name",serverName);
+            //upanel.putExtra("address",serverAddress);
+            //upanel.putExtra("type",serverType);
             startActivity(upanel);
             Log.i("started :"," my profile");
         } else if (id == R.id.nav_gov_not) {
@@ -138,9 +184,8 @@ public class Home extends AppCompatActivity
             startActivity(upanel);
 
         } else if (id == R.id.nav_logout) {
-            Intent upanel = new Intent(getApplicationContext(), Login.class);
-            Log.i("1","called");
-            startActivity(upanel);
+            new NetCheck().execute();
+
         }
         else if (id == R.id.nav_exit) {
             finish();
@@ -166,7 +211,7 @@ public class Home extends AppCompatActivity
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(Home.this);
+            nDialog = MyCustomProgressDialog.ctor(Home.this);
             nDialog.setCancelable(false);
             nDialog.show();
         }
@@ -212,7 +257,7 @@ public class Home extends AppCompatActivity
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(Home.this);
+            pDialog = MyCustomProgressDialog.ctor(Home.this);
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -222,10 +267,9 @@ public class Home extends AppCompatActivity
 
             JSONObject jsonIn = new JSONObject();
             try {
-                jsonIn.put("phone",inputPhone1);
                 RequestQueue que = Volley.newRequestQueue(getApplicationContext());
-                String urlString = getResources().getString(R.string.network_url)+"getprofile/";
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, urlString, jsonIn,
+                String urlString = getResources().getString(R.string.network_url)+"signout/";
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlString, jsonIn,
                         new Response.Listener<JSONObject>() {
 
                             @Override
@@ -233,20 +277,23 @@ public class Home extends AppCompatActivity
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
-                                        JSONObject tempdata =  response.getJSONObject("profile");
-                                        serverAddress = tempdata.getString("address");
-                                        serverName = tempdata.getString("name");
-                                        serverType = tempdata.getString("type").equals("i")?"Individual":"Company";
-                                        serverPhone = tempdata.getString("phone");
-                                    }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Intent upanel = new Intent(getApplicationContext(), Login.class);
+                                        Log.i("1","called");
+                                        e = sf.edit();
+                                        e.putBoolean("rm",false);
+                                        e.commit();
+                                        startActivity(upanel);
+                                        finish();
+                                        pDialog.dismiss();
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
                                     e.printStackTrace();
+                                    pDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -254,13 +301,15 @@ public class Home extends AppCompatActivity
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
-
+                        pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
 
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
                 return null;
             }
             return resultserver;
@@ -268,7 +317,6 @@ public class Home extends AppCompatActivity
         }
         @Override
         protected void onPostExecute(JSONObject response) {
-            pDialog.dismiss();
 
         }
     }

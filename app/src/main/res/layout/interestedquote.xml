@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:theme="@style/ActionBarThemeOverlay"
+            android:theme="@style/ActionBarThemeOverlay"
             app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
 
 
@@ -42,7 +42,6 @@
                 android:textColor="#fff"/>
             <TextView
                 android:layout_width="wrap_content"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:text=" > "
                 android:textColor="#fff"
@@ -66,7 +65,7 @@
                 android:layout_height="100dp"
                 android:gravity="center"
                 android:fontFamily="sans-serif"
-                android:text="Test Seller"
+                android:text=""
                 android:textAllCaps="true"
                 android:id="@+id/nameofseller"
                 android:textColor="#fff"
@@ -90,7 +89,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="7"
+                    android:text=""
                     android:id="@+id/quoterating"
                     android:textColor="#fff"
 
@@ -131,7 +130,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="This is a test description of the product to be displayed by this quotation"
+                    android:text=""
                     android:id="@+id/description"
                     android:paddingLeft="15dp"
                     android:paddingTop="5dp"
@@ -166,7 +165,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Rs. 250"
+                    android:text=""
                     android:layout_below="@+id/pricelabel"
                     android:id="@+id/currentbid"
                     android:paddingLeft="15dp"
@@ -202,7 +201,7 @@
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/quantitylabel"
-                    android:text="5"
+                    android:text=""
                     android:id="@+id/availablequantity"
                     android:paddingLeft="15dp"
                     android:paddingTop="5dp"
