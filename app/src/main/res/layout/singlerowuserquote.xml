@@ -151,6 +151,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/delete"
+            android:textAllCaps="true"
+            android:textColor="#fff"
             android:background="@drawable/endbutton"/>
 
         <Button
@@ -159,6 +161,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/update"
             android:layout_marginLeft="50dp"
+            android:textAllCaps="true"
+            android:textColor="#fff"
             android:background="@drawable/iminterested"/>
     </LinearLayout>
 </LinearLayout>

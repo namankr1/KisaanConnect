@@ -6,6 +6,7 @@ package iitp.naman.kisaanconnect;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -45,6 +46,9 @@ public class MyProfile extends AppCompatActivity{
     private TextView phone1;
     private TextView address1;
 
+    private SharedPreferences.Editor myprofe;
+    private SharedPreferences myprofsf;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +59,7 @@ public class MyProfile extends AppCompatActivity{
         if (extras != null) {
             serverPhone=extras.getString("phoneno");
         }
-        new NetCheck().execute();
+        new ProcessUpdateFromStored().execute();
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -145,6 +149,28 @@ public class MyProfile extends AppCompatActivity{
                 return true;
             }
 
+            case R.id.get_orders: {
+                Intent upanel = new Intent(getApplicationContext(), UserOrder.class);
+                upanel.putExtra("phoneno", serverPhone);
+                upanel.putExtra("name",serverName);
+                upanel.putExtra("address",serverAddress);
+                upanel.putExtra("type",serverType);
+                startActivity(upanel);
+                //this.finish();
+                return true;
+            }
+
+            case R.id.get_negotiations: {
+                Intent upanel = new Intent(getApplicationContext(), UserNegotiation.class);
+                upanel.putExtra("phoneno", serverPhone);
+                upanel.putExtra("name",serverName);
+                upanel.putExtra("address",serverAddress);
+                upanel.putExtra("type",serverType);
+                startActivity(upanel);
+                //this.finish();
+                return true;
+            }
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -212,6 +238,8 @@ public class MyProfile extends AppCompatActivity{
         protected JSONObject doInBackground(String... args) {
 
             JSONObject jsonIn = new JSONObject();
+            myprofsf = getSharedPreferences("myprof"+serverPhone,MODE_PRIVATE);
+            myprofe = myprofsf.edit();
             try {
                 jsonIn.put("phone",serverPhone);
                 RequestQueue que = Volley.newRequestQueue(getApplicationContext());
@@ -224,6 +252,9 @@ public class MyProfile extends AppCompatActivity{
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
+                                        myprofe.putBoolean("alreadypresent",true);
+                                        myprofe.putString("jsondata",response.toString());
+                                        myprofe.commit();
                                         JSONObject tempdata =  response.getJSONObject("profile");
                                         serverAddress = tempdata.getString("address");
                                         serverName = tempdata.getString("name");
@@ -268,6 +299,64 @@ public class MyProfile extends AppCompatActivity{
         }
         @Override
         protected void onPostExecute(JSONObject response) {
+
+        }
+    }
+
+    private class ProcessUpdateFromStored extends AsyncTask<String,Void,Boolean> {
+        private ProgressDialog pDialog;
+        private Boolean resultserver=false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = MyCustomProgressDialog.ctor(MyProfile.this);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... args) {
+            myprofsf = getSharedPreferences("myprof"+serverPhone,MODE_PRIVATE);
+            Boolean alreadypresent1 = myprofsf.getBoolean("alreadypresent",false);
+            JSONObject jsondata;
+            if(alreadypresent1==true){
+                String strjson = myprofsf.getString("jsondata",null);
+                if(strjson!=null){
+                    try{
+                        jsondata= new JSONObject(strjson);
+
+                        JSONObject tempdata =  jsondata.getJSONObject("profile");
+                        serverAddress = tempdata.getString("address");
+                        serverName = tempdata.getString("name");
+                        serverType = tempdata.getString("type").equals("i")?"Individual":"Company";
+
+                        resultserver=true;
+                        //gridView.setAdapter(new ImageAdapter(, categoryname, categorydescription, categoryid, categorypicture));
+                        //pDialog.dismiss();
+                    }
+                    catch(Exception e){
+
+                    }
+
+                }
+            }
+
+            return resultserver;
+        }
+        @Override
+        protected void onPostExecute(Boolean response) {
+            super.onPostExecute(response);
+            if(response==true) {
+                name1.setText(serverName);
+                address1.setText(serverAddress);
+                phone1.setText(serverPhone);
+                pDialog.dismiss();
+            }
+            else{
+                new NetCheck().execute();
+                pDialog.dismiss();
+            }
 
         }
     }

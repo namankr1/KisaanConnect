@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -56,6 +57,9 @@ public class GetAllQuotesUser extends AppCompatActivity {
     private String[] username = new String[]{};
     private Activity myactivity;
 
+    private SharedPreferences.Editor userquotee;
+    private SharedPreferences userquotesf;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +98,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        NetAsync(this.findViewById(android.R.id.content));
+        new NetCheck1().execute();
     }
 
     @Override
@@ -197,6 +201,8 @@ public class GetAllQuotesUser extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... args) {
             JSONObject jsonIn = new JSONObject();
+            userquotesf = getSharedPreferences("userquotes"+serverPhone,MODE_PRIVATE);
+            userquotee = userquotesf.edit();
             try {
                 jsonIn.put("phone",serverPhone);
                 RequestQueue que = Volley.newRequestQueue(getApplicationContext());
@@ -209,6 +215,9 @@ public class GetAllQuotesUser extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
+                                        userquotee.putBoolean("alreadypresent",true);
+                                        userquotee.putString("jsondata",response.toString());
+                                        userquotee.commit();
                                         JSONArray temp =  response.getJSONArray("quote");
                                         int len=temp.length();
 
@@ -304,4 +313,157 @@ public class GetAllQuotesUser extends AppCompatActivity {
     public void NetAsync(View view){
         new NetCheck().execute();
     }
+
+    private class ProcessUpdateFromStored extends AsyncTask<String,Void,String> {
+        private ProgressDialog pDialog;
+        private String resultserver="0";
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = MyCustomProgressDialog.ctor(GetAllQuotesUser.this);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+            userquotesf = getSharedPreferences("userquotes"+serverPhone,MODE_PRIVATE);
+            Boolean alreadypresent1 = userquotesf.getBoolean("alreadypresent",false);
+            JSONObject jsondata;
+            if(alreadypresent1==true){
+                String strjson = userquotesf.getString("jsondata",null);
+                if(strjson!=null){
+                    try{
+                        jsondata= new JSONObject(strjson);
+
+
+                        JSONArray temp =  jsondata.getJSONArray("quote");
+                        int len=temp.length();
+
+                        quoteid=new String[len];
+                        quotetype=new String[len];
+                        quotequantity=new String[len];
+                        quoteprice=new String[len];
+                        quotedescription=new String[len];
+                        userid=new String[len];
+                        useraddress=new String[len];
+                        userphone=new String[len];
+                        username=new String[len];
+                        quotesubcategory=new String[len];
+                        quoteisactive=new String[len];
+                        quotebidvalue=new String[len];
+                        quoterating=new String[len];
+                        for(int i=0;i<len;i++){
+                            quoteid[i]=temp.getJSONObject(i).getString("id");
+                            quotetype[i]=temp.getJSONObject(i).getString("type");
+                            quotequantity[i]=temp.getJSONObject(i).getString("quantity");
+                            quoteprice[i]=temp.getJSONObject(i).getString("price");
+                            quotedescription[i]=temp.getJSONObject(i).getString("description");
+                            JSONObject temp1 = temp.getJSONObject(i).getJSONObject("profile");
+                            userid[i] = temp1.getString("userid");
+                            useraddress[i] = temp1.getString("address");
+                            userphone[i] = temp1.getString("phone");
+                            username[i] = temp1.getString("name");
+                            quotesubcategory[i]=temp.getJSONObject(i).getString("subcategoryname");
+                            quoteisactive[i]=temp.getJSONObject(i).getString("is_active");
+                            quotebidvalue[i]=temp.getJSONObject(i).getString("bidvalue");
+                            quoterating[i]=temp.getJSONObject(i).getString("rating");
+                        }
+
+                        if(len>0){
+                            resultserver="1";
+                        }
+                        else{
+                            resultserver="2";
+                        }
+                        //gridView.setAdapter(new ImageAdapter(, categoryname, categorydescription, categoryid, categorypicture));
+                        //pDialog.dismiss();
+                    }
+                    catch(Exception e){
+
+                    }
+
+                }
+            }
+
+            return resultserver;
+        }
+        @Override
+        protected void onPostExecute(String response) {
+            super.onPostExecute(response);
+            if(response.equals("1")) {
+                gridView.setAdapter(new AdapterUserQuotes(myactivity,getApplicationContext(), quotebidvalue,quotedescription,quoteid,quoteprice,quotequantity,quoterating,userphone,username,useraddress,quotetype,serverPhone,serverName,serverType,serverAddress));
+                pDialog.dismiss();
+            }
+            else if(response.equals("2")) {
+                gridView.setAdapter(new AdapterUserQuotes(myactivity,getApplicationContext(), quotebidvalue,quotedescription,quoteid,quoteprice,quotequantity,quoterating,userphone,username,useraddress,quotetype,serverPhone,serverName,serverType,serverAddress));
+                pDialog.dismiss();
+                AlertDialog.Builder builder = new AlertDialog.Builder(GetAllQuotesUser.this);
+                builder.setMessage("No products added yet")
+                        .setCancelable(false)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+            else{
+                new NetCheck().execute();
+                pDialog.dismiss();
+            }
+
+        }
+    }
+
+    private class NetCheck1 extends AsyncTask<String, Void, Boolean>
+    {
+        private ProgressDialog nDialog;
+
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            nDialog = MyCustomProgressDialog.ctor(GetAllQuotesUser.this);
+            nDialog.setCancelable(false);
+            nDialog.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... args){
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getActiveNetworkInfo();
+            if (netInfo != null && netInfo.isConnected()) {
+                try {
+                    URL url = new URL(getResources().getString(R.string.network_check));
+                    HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
+                    urlc.setConnectTimeout(3000);
+                    urlc.connect();
+                    if (urlc.getResponseCode() == 200) {
+                        return true;
+                    }
+                } catch (MalformedURLException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return false;
+
+        }
+        @Override
+        protected void onPostExecute(Boolean th){
+
+            if(th == true){
+                new ProcessRegister().execute();
+            }
+            else{
+                new ProcessUpdateFromStored().execute();
+            }
+
+            nDialog.dismiss();
+        }
+    }
+
 }

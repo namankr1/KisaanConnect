@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/buy"
     android:layout_width="match_parent"
-    android:background="#e7e7e7"
+    android:background="#eeeeee"
     android:layout_height="match_parent"
     >
     <android.support.v7.widget.Toolbar
@@ -24,7 +24,7 @@
         android:layout_height="match_parent"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
-        android:background="#e7e7e7"
+        android:background="#eeeeee"
         android:layout_below="@+id/my_toolbar"
         android:paddingTop="9dp"
         android:paddingLeft="9dp"

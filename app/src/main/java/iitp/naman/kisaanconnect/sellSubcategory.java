@@ -7,6 +7,7 @@ package iitp.naman.kisaanconnect;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -46,6 +47,9 @@ public class sellSubcategory extends AppCompatActivity {
     private String[] subcategoryid = new String[] {};
     private String[] subcategorypicture = new String[] {};
 
+    private SharedPreferences.Editor buysube;
+    private SharedPreferences buysubsf;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -66,7 +70,7 @@ public class sellSubcategory extends AppCompatActivity {
         getSupportActionBar().setTitle(categoryname1);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-        NetAsync(this.findViewById(android.R.id.content));
+        new ProcessUpdateFromStored().execute();
 
         gridView = (GridView) findViewById(R.id.gridView1);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -193,6 +197,8 @@ public class sellSubcategory extends AppCompatActivity {
         protected JSONObject doInBackground(String... args) {
 
             JSONObject jsonIn = new JSONObject();
+            buysubsf = getSharedPreferences("subcategoriestore"+category1,MODE_PRIVATE);
+            buysube = buysubsf.edit();
             try {
                 jsonIn.put("phone",inputPhone1);
                 jsonIn.put("categoryid",category1);
@@ -206,6 +212,9 @@ public class sellSubcategory extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
+                                        buysube.putBoolean("alreadypresent",true);
+                                        buysube.putString("jsondata",response.toString());
+                                        buysube.commit();
                                         JSONArray tempdata =  response.getJSONArray("subcategories");
                                         int len=tempdata.length();
                                         subcategoryname =new String[len];
@@ -217,7 +226,7 @@ public class sellSubcategory extends AppCompatActivity {
                                             subcategoryname[i]=tempdata.getJSONObject(i).getString("name");
                                             subcategoryid[i]=tempdata.getJSONObject(i).getString("id");
                                             subcategorydescription[i]=tempdata.getJSONObject(i).getString("description");
-                                            subcategorypicture[i]=getResources().getString(R.string.network_home)+tempdata.getJSONObject(i).getString("picture");
+                                            subcategorypicture[i]=tempdata.getJSONObject(i).getString("picture");
                                         }
 
                                         gridView.setAdapter(new ImageAdapter(getApplicationContext(), subcategoryname,subcategorydescription,subcategoryid,subcategorypicture));
@@ -265,5 +274,64 @@ public class sellSubcategory extends AppCompatActivity {
 
     public void NetAsync(View view){
         new NetCheck().execute();
+    }
+
+    private class ProcessUpdateFromStored extends AsyncTask<String,Void,Boolean> {
+        private ProgressDialog pDialog;
+        private Boolean resultserver=false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = MyCustomProgressDialog.ctor(sellSubcategory.this);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... args) {
+            buysubsf = getSharedPreferences("subcategoriestore"+category1,MODE_PRIVATE);
+            Boolean alreadypresent1 = buysubsf.getBoolean("alreadypresent",false);
+            JSONObject jsondata;
+            if(alreadypresent1==true){
+                String strjson = buysubsf.getString("jsondata",null);
+                if(strjson!=null){
+                    try{
+                        jsondata= new JSONObject(strjson);
+                        JSONArray tempdata =  jsondata.getJSONArray("subcategories");
+                        int len=tempdata.length();
+                        subcategoryname =new String[len];
+                        subcategoryid=new String[len];
+                        subcategorypicture=new String[len];
+                        subcategorydescription=new String[len];
+
+                        for(int i=0;i<len;i++){
+                            subcategoryname[i]=tempdata.getJSONObject(i).getString("name");
+                            subcategoryid[i]=tempdata.getJSONObject(i).getString("id");
+                            subcategorydescription[i]=tempdata.getJSONObject(i).getString("description");
+                            subcategorypicture[i]=tempdata.getJSONObject(i).getString("picture");
+                        }
+                        resultserver=true;
+                    }
+                    catch(Exception e){
+
+                    }
+                }
+            }
+
+            return resultserver;
+        }
+        @Override
+        protected void onPostExecute(Boolean response) {
+            super.onPostExecute(response);
+            if(response==true) {
+                gridView.setAdapter(new ImageAdapter(getApplicationContext(), subcategoryname,subcategorydescription,subcategoryid,subcategorypicture));
+                pDialog.dismiss();
+            }
+            else{
+                new NetCheck().execute();
+                pDialog.dismiss();
+            }
+        }
     }
 }

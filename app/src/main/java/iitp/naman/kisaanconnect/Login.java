@@ -179,7 +179,7 @@ public class Login extends AppCompatActivity {
                 try {
                     URL url = new URL(getResources().getString(R.string.network_check));
                     HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-                    urlc.setConnectTimeout(8000);
+                    urlc.setConnectTimeout(3000);
                     urlc.connect();
                     if (urlc.getResponseCode() == 200)
                     {
@@ -245,6 +245,12 @@ public class Login extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         e = sf.edit();
+
+                                        String ph1 = sf.getString("phonenum", null);
+                                        if(!ph1.equals(inputPhone1)){
+                                            e.clear();
+                                            e.commit();
+                                        }
                                         e.putBoolean("rm", true);
                                         e.putString("phonenum", inputPhone1);
                                         if (ch2.isChecked()) {

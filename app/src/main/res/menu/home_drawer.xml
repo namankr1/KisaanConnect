@@ -23,6 +23,11 @@
             android:icon="@drawable/ic_sellf"
             android:title="Sell Resources" />
         <item
+            android:id="@+id/nav_market_insight"
+            android:icon="@drawable/ic_menu_market"
+            android:title="Market Insight" />
+
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logoutf"
             android:title="Logout" />
@@ -30,6 +35,7 @@
             android:id="@+id/nav_exit"
             android:icon="@drawable/ic_exitf"
             android:title="Exit" />
+
     </group>
 
 </menu>

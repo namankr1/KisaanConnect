@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    android:layout_height="fill_parent"
+    android:layout_width="match_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#eeeeee"
+    android:paddingBottom="7dp">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ActionBarThemeOverlay"
+        app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/my_toolbar"
+        android:background="#fff"
+        android:id="@+id/top1"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="This page gives you latest insights about the market near you. Please select a category below."
+            android:textColor="#0786b1"
+            android:gravity="center"
+            android:id="@+id/textView"
+            android:background="@drawable/infotextviewborder"
+            android:padding="10dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            />
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:padding="5dp"
+            android:layout_below="@+id/textView"
+            android:id="@+id/spinner1"
+            android:layout_marginBottom="13dp"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/top1"
+        android:id="@+id/top2"
+        android:background="#fff">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textColor="#fff"
+            android:background="#ed5624"
+            android:id="@+id/top21"
+            android:textStyle="bold"
+            android:text="what are other users selling?"/>
+        <iitp.naman.kisaanconnect.FixedGridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sellList"
+            android:numColumns="1"
+            android:layout_below="@+id/top21"
+            android:verticalSpacing="0dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            >
+
+        </iitp.naman.kisaanconnect.FixedGridView>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="13dp"
+        android:id="@+id/top3"
+        android:layout_below="@+id/top2"
+        android:background="#fff">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textColor="#fff"
+            android:id="@+id/top31"
+            android:background="#01d5f1"
+            android:textStyle="bold"
+            android:text="what are other users buying?"/>
+        <iitp.naman.kisaanconnect.FixedGridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buyList"
+            android:numColumns="1"
+            android:layout_below="@+id/top31"
+            android:verticalSpacing="0dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            >
+
+        </iitp.naman.kisaanconnect.FixedGridView>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/top4"
+        android:layout_below="@+id/top3"
+        android:layout_marginTop="13dp"
+        android:background="#fff">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:id="@+id/top41"
+            android:textColor="#fff"
+            android:background="#ff1550"
+            android:textStyle="bold"
+            android:text="How is price changing in market?"/>
+        <iitp.naman.kisaanconnect.FixedGridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/priceList"
+            android:numColumns="1"
+            android:layout_below="@+id/top41"
+            android:verticalSpacing="0dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            >
+
+        </iitp.naman.kisaanconnect.FixedGridView>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/top5"
+        android:layout_below="@+id/top4"
+        android:layout_marginTop="13dp"
+        android:background="#fff">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:id="@+id/top51"
+            android:textColor="#fff"
+            android:background="#49b102"
+            android:textStyle="bold"
+            android:text="What do we recommend? (in order)"/>
+        <iitp.naman.kisaanconnect.FixedGridviewImage
+            android:id="@+id/recommendationList"
+            android:background="#f5f5f5"
+            android:numColumns="2"
+            android:gravity="center"
+            android:layout_below="@+id/top51"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:verticalSpacing="8dp"
+            android:horizontalSpacing="8dp"
+            android:padding="9dp"/>
+    </RelativeLayout>
+
+</LinearLayout>
+    </ScrollView>

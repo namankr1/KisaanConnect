@@ -4,10 +4,12 @@ package iitp.naman.kisaanconnect;
  * Created by naman on 30-Nov-16.
  */
 
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
@@ -36,6 +38,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+
 public class Buy extends AppCompatActivity {
     private GridView gridView;
     private String inputPhone1;
@@ -43,6 +46,9 @@ public class Buy extends AppCompatActivity {
     private String[] categorydescription = new String[] {};
     private String[] categoryid = new String[] {};
     private String[] categorypicture = new String[] {};
+
+    private SharedPreferences.Editor buye;
+    private SharedPreferences buysf;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +68,7 @@ public class Buy extends AppCompatActivity {
             inputPhone1 = extras.getString("phoneno");
         }
 
-        NetAsync(this.findViewById(android.R.id.content));
+        new ProcessUpdateFromStored().execute();
 
         gridView = (GridView) findViewById(R.id.gridView1);
         gridView.setOnItemClickListener(new OnItemClickListener() {
@@ -184,6 +190,8 @@ public class Buy extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... args) {
             JSONObject jsonIn = new JSONObject();
+            buysf = getSharedPreferences("categoriestore",MODE_PRIVATE);
+            buye = buysf.edit();
             try {
                 jsonIn.put("phone",inputPhone1);
                 RequestQueue que = Volley.newRequestQueue(getApplicationContext());
@@ -196,6 +204,9 @@ public class Buy extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
+                                        buye.putBoolean("alreadypresent",true);
+                                        buye.putString("jsondata",response.toString());
+                                        buye.commit();
                                         JSONArray tempdata = response.getJSONArray("categories");
                                         int len = tempdata.length();
                                         categoryname = new String[len];
@@ -206,7 +217,7 @@ public class Buy extends AppCompatActivity {
                                             categoryname[i] = tempdata.getJSONObject(i).getString("name");
                                             categoryid[i] = tempdata.getJSONObject(i).getString("id");
                                             categorydescription[i] = tempdata.getJSONObject(i).getString("description");
-                                            categorypicture[i] = getResources().getString(R.string.network_home) + tempdata.getJSONObject(i).getString("picture");
+                                            categorypicture[i] =tempdata.getJSONObject(i).getString("picture");
                                         }
                                         gridView.setAdapter(new ImageAdapter(getApplicationContext(), categoryname, categorydescription, categoryid, categorypicture));
                                         resultserver=true;
@@ -252,5 +263,69 @@ public class Buy extends AppCompatActivity {
 
     public void NetAsync(View view){
         new NetCheck().execute();
+    }
+
+
+    private class ProcessUpdateFromStored extends AsyncTask<String,Void,Boolean> {
+        private ProgressDialog pDialog;
+        private Boolean resultserver=false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = MyCustomProgressDialog.ctor(Buy.this);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... args) {
+            buysf = getSharedPreferences("categoriestore",MODE_PRIVATE);
+            Boolean alreadypresent1 = buysf.getBoolean("alreadypresent",false);
+            JSONObject jsondata;
+            if(alreadypresent1==true){
+                String strjson = buysf.getString("jsondata",null);
+                if(strjson!=null){
+                    try{
+                        jsondata= new JSONObject(strjson);
+                        JSONArray tempdata = jsondata.getJSONArray("categories");
+                        int len = tempdata.length();
+                        categoryname = new String[len];
+                        categoryid = new String[len];
+                        categorypicture = new String[len];
+                        categorydescription = new String[len];
+                        for (int i = 0; i < len; i++) {
+                            categoryname[i] = tempdata.getJSONObject(i).getString("name");
+                            categoryid[i] = tempdata.getJSONObject(i).getString("id");
+                            categorydescription[i] = tempdata.getJSONObject(i).getString("description");
+                            categorypicture[i] =tempdata.getJSONObject(i).getString("picture");
+                        }
+
+                        resultserver=true;
+                        //gridView.setAdapter(new ImageAdapter(, categoryname, categorydescription, categoryid, categorypicture));
+                        //pDialog.dismiss();
+                    }
+                    catch(Exception e){
+
+                    }
+
+                }
+            }
+
+            return resultserver;
+        }
+        @Override
+        protected void onPostExecute(Boolean response) {
+            super.onPostExecute(response);
+            if(response==true) {
+                gridView.setAdapter(new ImageAdapter(getApplicationContext(), categoryname, categorydescription, categoryid, categorypicture));
+                pDialog.dismiss();
+            }
+            else{
+                new NetCheck().execute();
+                pDialog.dismiss();
+            }
+
+        }
     }
 }

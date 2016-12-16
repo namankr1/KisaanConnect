@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#efefef"
+        android:background="#eeeeee"
         tools:context="com.register.userprofilekissanconnect.MainActivity">
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"

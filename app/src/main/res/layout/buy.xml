@@ -4,7 +4,7 @@
     android:id="@+id/buy"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e7e7e7">
+    android:background="#eeeeee">
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
 
     <GridView
         android:id="@+id/gridView1"
-        android:background="#e7e7e7"
+        android:background="#eeeeee"
         android:numColumns="2"
         android:gravity="center"
         android:layout_width="match_parent"

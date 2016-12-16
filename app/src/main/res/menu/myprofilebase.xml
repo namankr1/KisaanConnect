@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <item android:id="@+id/menuRefresh"
-        android:icon="@drawable/ic_menu_refresh"
+        android:icon="@drawable/refreshbutton1"
         android:title="Refresh"
         android:alphabeticShortcut="r"
         android:orderInCategory="1"
@@ -22,7 +22,17 @@
     <item
         android:id="@+id/get_quotes"
         android:orderInCategory="100"
-        android:title="View Products"
+        android:title="My Products"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/get_orders"
+        android:orderInCategory="100"
+        android:title="My Orders"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/get_negotiations"
+        android:orderInCategory="100"
+        android:title="My Negotiations"
         app:showAsAction="never" />
 
 

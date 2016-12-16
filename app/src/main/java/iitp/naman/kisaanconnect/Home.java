@@ -58,11 +58,6 @@ public class Home extends AppCompatActivity
         }
         //new NetCheck().execute();
 
-
-
-
-
-
     }
 
     @Override
@@ -183,6 +178,10 @@ public class Home extends AppCompatActivity
             upanel.putExtra("phoneno", inputPhone1);
             startActivity(upanel);
 
+        } else if (id == R.id.nav_market_insight) {
+            Intent upanel = new Intent(getApplicationContext(), MarketInsight.class);
+            upanel.putExtra("phoneno", inputPhone1);
+            startActivity(upanel);
         } else if (id == R.id.nav_logout) {
             new NetCheck().execute();
 

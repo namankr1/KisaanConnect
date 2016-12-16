@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -57,6 +58,9 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
     private String[] userphone= new String[]{};
     private String[] useraddress =  new String[]{};
     private String[] username = new String[]{};
+
+    private SharedPreferences.Editor subcatquotee;
+    private SharedPreferences subcatquotesf;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -129,7 +133,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        NetAsync(this.findViewById(android.R.id.content));
+        new NetCheck1().execute();
     }
 
 
@@ -231,6 +235,8 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... args) {
             JSONObject jsonIn = new JSONObject();
+            subcatquotesf = getSharedPreferences("userquotes"+subcategory1,MODE_PRIVATE);
+            subcatquotee = subcatquotesf.edit();
             try {
                 jsonIn.put("phone",inputPhone1);
                 jsonIn.put("subcategoryId",subcategory1);
@@ -244,6 +250,9 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
+                                        subcatquotee.putBoolean("alreadypresent",true);
+                                        subcatquotee.putString("jsondata",response.toString());
+                                        subcatquotee.commit();
                                         JSONArray tempdata =  response.getJSONArray("results");
                                         int len=tempdata.length();
 
@@ -341,5 +350,182 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
     }
     public void NetAsync(View view){
         new NetCheck().execute();
+    }
+
+
+    private class ProcessUpdateFromStored extends AsyncTask<String,Void,String> {
+        private ProgressDialog pDialog;
+        private String resultserver="0";
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = MyCustomProgressDialog.ctor(GetQuotesofSubcategory.this);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+            subcatquotesf = getSharedPreferences("userquotes"+subcategory1,MODE_PRIVATE);
+            Boolean alreadypresent1 = subcatquotesf.getBoolean("alreadypresent",false);
+            JSONObject jsondata;
+            if(alreadypresent1==true){
+                String strjson = subcatquotesf.getString("jsondata",null);
+                if(strjson!=null){
+                    try{
+                        jsondata= new JSONObject(strjson);
+
+
+                        JSONArray tempdata =  jsondata.getJSONArray("results");
+                        int len=tempdata.length();
+
+                        userdistance = new String[len];
+                        userrating = new String[len];
+                        quoteid = new String[len];
+                        quotetype = new String[len];
+                        quotequantity = new String[len];
+                        quoteprice = new String[len];
+                        quotedescription = new String[len];
+                        userid = new String[len];
+                        useraddress = new String[len];
+                        userphone = new String[len];
+                        username = new String[len];
+                        quotesubcategory = new String[len];
+                        quoteisactive = new String[len];
+                        quotebidvalue = new String[len];
+                        quoterating = new String[len];
+                        for (int i = 0; i < len; i++) {
+                            userdistance[i] = tempdata.getJSONObject(i).getString("distance");
+                            userrating[i] = tempdata.getJSONObject(i).getString("rating");
+                            JSONObject temp = tempdata.getJSONObject(i).getJSONObject("quote");
+                            quoteid[i] = temp.getString("id");
+                            quotetype[i] = temp.getString("type");
+                            quotequantity[i] = temp.getString("quantity");
+                            quoteprice[i] = temp.getString("price");
+                            quotedescription[i] = temp.getString("description");
+                            JSONObject temp1 = temp.getJSONObject("profile");
+                            userid[i] = temp1.getString("userid");
+                            useraddress[i] = temp1.getString("address");
+                            userphone[i] = temp1.getString("phone");
+                            username[i] = temp1.getString("name");
+                            quotesubcategory[i] = temp.getString("subcategoryname");
+                            quoteisactive[i] = temp.getString("is_active");
+                            quotebidvalue[i] = temp.getString("bidvalue");
+                            quoterating[i] = temp.getString("rating");
+                        }
+
+                        //
+                        // gridView.setAdapter(new AdapterQuotes(getApplicationContext(), quotebidvalue, quotedescription, quoteid, quoteprice, quotequantity, quoterating, userphone, username, useraddress, userrating));
+
+                        if(len >0) {
+                            pDialog.dismiss();
+                        }
+                        else {
+                            pDialog.dismiss();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(GetQuotesofSubcategory.this);
+                            builder.setMessage("No quotes of this subcategory added yet")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        }
+                        if(len>0){
+                            resultserver="1";
+                        }
+                        else{
+                            resultserver="2";
+                        }
+                        //gridView.setAdapter(new ImageAdapter(, categoryname, categorydescription, categoryid, categorypicture));
+                        //pDialog.dismiss();
+                    }
+                    catch(Exception e){
+
+                    }
+
+                }
+            }
+
+            return resultserver;
+        }
+        @Override
+        protected void onPostExecute(String response) {
+            super.onPostExecute(response);
+            if(response.equals("1")) {
+                gridView.setAdapter(new AdapterQuotes(getApplicationContext(), quotebidvalue, quotedescription, quoteid, quoteprice, quotequantity, quoterating, userphone, username, useraddress, userrating));
+                pDialog.dismiss();
+            }
+            else if(response.equals("2")) {
+                gridView.setAdapter(new AdapterQuotes(getApplicationContext(), quotebidvalue, quotedescription, quoteid, quoteprice, quotequantity, quoterating, userphone, username, useraddress, userrating));
+                pDialog.dismiss();
+                AlertDialog.Builder builder = new AlertDialog.Builder(GetQuotesofSubcategory.this);
+                builder.setMessage("No quotes of this subcategory added yet")
+                        .setCancelable(false)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+            else{
+                new NetCheck().execute();
+                pDialog.dismiss();
+            }
+
+        }
+    }
+
+    private class NetCheck1 extends AsyncTask<String, Void, Boolean>
+    {
+        private ProgressDialog nDialog;
+
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            nDialog = MyCustomProgressDialog.ctor(GetQuotesofSubcategory.this);
+            nDialog.setCancelable(false);
+            nDialog.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... args){
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getActiveNetworkInfo();
+            if (netInfo != null && netInfo.isConnected()) {
+                try {
+                    URL url = new URL(getResources().getString(R.string.network_check));
+                    HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
+                    urlc.setConnectTimeout(3000);
+                    urlc.connect();
+                    if (urlc.getResponseCode() == 200) {
+                        return true;
+                    }
+                } catch (MalformedURLException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return false;
+
+        }
+        @Override
+        protected void onPostExecute(Boolean th){
+
+            if(th == true){
+                new ProcessRegister().execute();
+            }
+            else{
+                new ProcessUpdateFromStored().execute();
+            }
+
+            nDialog.dismiss();
+        }
     }
 }

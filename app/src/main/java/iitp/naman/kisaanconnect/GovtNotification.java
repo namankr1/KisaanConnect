@@ -4,6 +4,7 @@ package iitp.naman.kisaanconnect;
  * Created by naman on 01-Oct-16.
  */
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -46,6 +47,9 @@ public class GovtNotification extends AppCompatActivity {
     private String govtnotifbody[] = new String[]{};
     private String govtnotifurl[] = new String[]{};
     private GridView gridView;
+
+    private SharedPreferences.Editor govte;
+    private SharedPreferences govtsf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +117,7 @@ public class GovtNotification extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        NetAsync(this.findViewById(android.R.id.content));
+        new NetCheck1().execute();
     }
 
 
@@ -197,6 +201,8 @@ public class GovtNotification extends AppCompatActivity {
         protected Boolean doInBackground(String... args) {
 
             JSONObject jsonIn = new JSONObject();
+            govtsf = getSharedPreferences("govtnotif",MODE_PRIVATE);
+            govte = govtsf.edit();
             try {
                 jsonIn.put("phone",inputPhone1);
                 RequestQueue que = Volley.newRequestQueue(getApplicationContext());
@@ -209,6 +215,9 @@ public class GovtNotification extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
+                                        govte.putBoolean("alreadypresent",true);
+                                        govte.putString("jsondata",response.toString());
+                                        govte.commit();
                                         JSONArray tempdata =  response.getJSONArray("govtNotifications");
                                         int len=tempdata.length();
                                         govtnotifbody =new String[len];
@@ -269,6 +278,120 @@ public class GovtNotification extends AppCompatActivity {
     }
     public void NetAsync(View view){
         new NetCheck().execute();
+    }
+
+    private class ProcessUpdateFromStored extends AsyncTask<String,Void,Boolean> {
+        private ProgressDialog pDialog;
+        private Boolean resultserver=false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = MyCustomProgressDialog.ctor(GovtNotification.this);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... args) {
+            govtsf = getSharedPreferences("govtnotif",MODE_PRIVATE);
+            Boolean alreadypresent1 = govtsf.getBoolean("alreadypresent",false);
+            JSONObject jsondata;
+            if(alreadypresent1==true){
+                String strjson = govtsf.getString("jsondata",null);
+                if(strjson!=null){
+                    try{
+                        jsondata= new JSONObject(strjson);
+
+                        JSONArray tempdata =  jsondata.getJSONArray("govtNotifications");
+                        int len=tempdata.length();
+                        govtnotifbody =new String[len];
+                        govtnotifid=new String[len];
+                        govtnotiftitle=new String[len];
+                        govtnotifurl=new String[len];
+
+                        for(int i=0;i<len;i++){
+                            govtnotifbody[i]=tempdata.getJSONObject(i).getString("body");
+                            govtnotifid[i]=tempdata.getJSONObject(i).getString("id");
+                            govtnotiftitle[i]=tempdata.getJSONObject(i).getString("title");
+                            govtnotifurl[i]=tempdata.getJSONObject(i).getString("url");
+
+                        }
+
+                        resultserver=true;
+                        //gridView.setAdapter(new ImageAdapter(, categoryname, categorydescription, categoryid, categorypicture));
+                        //pDialog.dismiss();
+                    }
+                    catch(Exception e){
+
+                    }
+
+                }
+            }
+
+            return resultserver;
+        }
+        @Override
+        protected void onPostExecute(Boolean response) {
+            super.onPostExecute(response);
+            if(response==true) {
+                gridView.setAdapter( new Adaptercls(getApplicationContext(),govtnotifbody,govtnotifid,govtnotiftitle,govtnotifurl));
+                pDialog.dismiss();
+            }
+            else{
+                new NetCheck().execute();
+                pDialog.dismiss();
+            }
+
+        }
+    }
+
+    private class NetCheck1 extends AsyncTask<String, Void, Boolean>
+    {
+        private ProgressDialog nDialog;
+
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            nDialog = MyCustomProgressDialog.ctor(GovtNotification.this);
+            nDialog.setCancelable(false);
+            nDialog.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... args){
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getActiveNetworkInfo();
+            if (netInfo != null && netInfo.isConnected()) {
+                try {
+                    URL url = new URL(getResources().getString(R.string.network_check));
+                    HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
+                    urlc.setConnectTimeout(3000);
+                    urlc.connect();
+                    if (urlc.getResponseCode() == 200) {
+                        return true;
+                    }
+                } catch (MalformedURLException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return false;
+
+        }
+        @Override
+        protected void onPostExecute(Boolean th){
+
+            if(th == true){
+                new ProcessRegister().execute();
+            }
+            else{
+                new ProcessUpdateFromStored().execute();
+            }
+
+            nDialog.dismiss();
+        }
     }
 
 }

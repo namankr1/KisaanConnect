@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menuHelp"
-        android:icon="@drawable/ic_menu_help"
+        android:icon="@drawable/infobutton1"
         android:title="Help"
         android:alphabeticShortcut="r"
         android:orderInCategory="1"
