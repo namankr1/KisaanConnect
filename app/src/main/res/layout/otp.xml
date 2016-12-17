@@ -4,12 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="#49b102">
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:fontFamily="sans-serif-condensed"
+        >
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
@@ -17,77 +20,150 @@
             android:background="?attr/colorPrimary"
             android:theme="@style/ActionBarThemeOverlay"
             app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
-
-        <ImageView
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:src="@drawable/messagef"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="45dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/my_toolbar"
-            android:id="@+id/logo"
-            android:layout_marginBottom="20dp"
+            android:id="@+id/logobox"
+            android:background="#49b102"
+            android:padding="15dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:contentDescription="@string/image_text"
+                android:layout_height="wrap_content"
+                android:src="@drawable/messagef"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:layout_below="@+id/iconbox"
+            android:id="@+id/highlighticon"
+            android:weightSum="2">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:background="#49b102"
+                android:layout_weight="1"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:background="#49b102"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.75dp"
+            android:background="#49b102"
+            android:layout_below="@id/highlighticon"
+            android:orientation="horizontal"
+            android:id="@+id/h1"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Sit back and relax while we verify your contact number"
-            android:textStyle="bold"
-            android:textColor="#fff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/otp_1"
+            android:textColor="#0786b1"
             android:gravity="center"
-            android:id="@+id/textView"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="220dp"
+            android:layout_below="@+id/h1"
+            android:id="@+id/signupPage"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:padding="10dp"/>
-
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/infotextviewborder"
+            android:padding="7dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            />
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="OTP"
-            android:textColorHint="#fff"
-            android:textColor="#fff"
+            android:inputType="phone"
+            android:hint="@string/otp_2"
+            android:textColorHint="#9e9e9e"
             android:gravity="center"
             android:ems="10"
             android:id="@+id/otp"
-            android:layout_below="@+id/textView"
+            android:layout_below="@+id/signupPage"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="20dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-             />
+            android:background="@drawable/formfieldrectangle"
+            android:padding="10dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:textColor="#49b102"/>
 
-        <Button
-            android:layout_width="200dp"
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Verify"
-            android:textStyle="bold"
-            android:textColor="#49b102"
-            android:background="#fff"
-            android:id="@+id/verify"
             android:layout_below="@+id/otp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp" />
+            android:weightSum="2"
+            android:layout_marginTop="20dp"
+            android:id="@+id/navbuttons">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/otp_3"
+                android:textStyle="bold"
+                android:background="#49b102"
+                android:textColor="#fff"
+                android:layout_weight="2"
+                android:id="@+id/verify"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"/>
 
-        <Button
-            android:layout_width="200dp"
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Resend OTP"
-            android:textStyle="bold"
-            android:textColor="#fff"
+            android:gravity="center"
+            android:layout_below="@+id/navbuttons"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp">
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="@string/otp_4"
+                android:textStyle="bold"
+                android:textColor="#49b102"
+                android:background="#ffffff"
+                android:id="@+id/resend" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
             android:background="#49b102"
-            android:id="@+id/resend"
-            android:layout_below="@+id/verify"
-            android:layout_alignRight="@+id/verify"
-            android:layout_alignEnd="@+id/verify"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="70dp"/>
+            android:gravity="center"
+            android:id="@+id/iconbox"
+            android:layout_below="@+id/logobox"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/otp_5"
+                android:textColor="#fff"
+                android:id="@+id/textView"/>
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 </ScrollView>

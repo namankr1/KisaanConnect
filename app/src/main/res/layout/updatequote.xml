@@ -11,7 +11,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#fff">
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
@@ -33,7 +33,7 @@
                 android:layout_height="100dp"
                 android:gravity="center_horizontal"
                 android:fontFamily="sans-serif"
-                android:text="Update product"
+                android:text="@string/updatequote_1"
                 android:textAllCaps="true"
                 android:id="@+id/nameofseller"
                 android:textColor="#fff"
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="You can edit name, price and quantity of your product here!"
+            android:text="@string/updatequote_2"
             android:textColor="#0786b1"
             android:gravity="center"
             android:layout_below="@+id/head"
@@ -62,6 +62,8 @@
             android:background="@drawable/infotextviewborder"
             android:padding="10dp"
             android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="20dp"
 
@@ -77,6 +79,7 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:contentDescription="@string/image_text"
                 android:src="@drawable/description"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
@@ -85,17 +88,18 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Description of the product"
+                    android:text="@string/updatequote_3"
                     android:id="@+id/descriptionlabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="This is a  test description of the product that was added earlier"
                     android:id="@+id/description"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"
                     android:layout_below="@+id/descriptionlabel"/>
@@ -106,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Name of the product"
+            android:hint="@string/updatequote_4"
             android:textColorHint="#585858"
             android:gravity="center"
             android:ems="10"
@@ -126,7 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Price"
+            android:hint="@string/updatequote_5"
             android:textColorHint="#585858"
             android:gravity="center"
             android:ems="10"
@@ -145,7 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Avaliable quantity"
+            android:hint="@string/updatequote_6"
             android:textColorHint="#585858"
             android:gravity="center"
             android:ems="10"
@@ -164,7 +168,7 @@
 
 
         <Button
-            android:text="Update"
+            android:text="@string/updatequote_7"
             android:layout_width="85dp"
             android:layout_height="85dp"
             android:layout_centerHorizontal="true"

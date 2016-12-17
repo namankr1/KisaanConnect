@@ -17,7 +17,7 @@
         android:text=""/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_weight="4"
@@ -26,11 +26,11 @@
             android:id="@+id/delete_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="End Negotiation"
-            android:layout_weight="3"
+            android:text="@string/singlerowusernotif_1"
             android:textAllCaps="true"
             android:textColor="#fff"
             android:background="@drawable/endbutton"
+            style="?android:attr/buttonBarButtonStyle"
             />
 
         <Button
@@ -38,11 +38,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/iminterested"
-            android:text="Negotiate"
-            android:layout_weight="1"
+            android:text="@string/singlerowusernotif_2"
+            style="?android:attr/buttonBarButtonStyle"
             android:padding="3dp"
             android:textAllCaps="true"
             android:textColor="#fff"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"/>
     </LinearLayout>
 </LinearLayout>

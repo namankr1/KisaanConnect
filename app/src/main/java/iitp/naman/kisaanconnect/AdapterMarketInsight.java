@@ -38,20 +38,19 @@ public class AdapterMarketInsight extends BaseAdapter {
             textView.setText(subcatname[position]);
             TextView textView1 = (TextView) gridView.findViewById(R.id.subcatpercent1);
 
-            if(subcatpercent[position].length()>4){
-                subcatpercent[position] = subcatpercent[position].substring(0,4);
-            }
-            if(!subcatpercent[position].equals("Nil")){
-                subcatpercent[position] = subcatpercent[position]+"%";
-            }
-
-            textView1.setText(subcatpercent[position]);
             if(count==2){
                 try{
                     if(subcatpercent[position].equals("Nil")){
                         textView1.setBackgroundResource(R.drawable.marketinsightnormal);
                     }
-                    float temp = Float.parseFloat(subcatpercent[position]);
+                    float temp;
+                    if(subcatpercent[position].charAt(subcatpercent[position].length()-1)!='%'){
+                        temp = Float.parseFloat(subcatpercent[position]);
+                    }
+                    else{
+                        temp = Float.parseFloat(subcatpercent[position].substring(0,subcatpercent[position].length()-1));
+                    }
+
                     if(temp==0){
                         textView1.setBackgroundResource(R.drawable.marketinsightstagnant);
                     }
@@ -69,6 +68,19 @@ public class AdapterMarketInsight extends BaseAdapter {
 
 
             }
+            else{
+                textView1.setBackgroundResource(R.drawable.marketinsightnormal);
+            }
+
+            if(subcatpercent[position].length()>4){
+                subcatpercent[position] = subcatpercent[position].substring(0,4);
+            }
+            if(!subcatpercent[position].equals("Nil") && subcatpercent[position].charAt(subcatpercent[position].length()-1)!='%'){
+                subcatpercent[position] = subcatpercent[position]+"%";
+            }
+
+            textView1.setText(subcatpercent[position]);
+
 
         }
         else {

@@ -16,6 +16,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/image_text"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@drawable/ic_kisaanconnectf" />
 
@@ -23,13 +24,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="KisaanConnect"
+        android:text="@string/nav_header_home_1"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quick links" />
+        android:text="@string/nav_header_home_2" />
 
 </LinearLayout>

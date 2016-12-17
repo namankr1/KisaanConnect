@@ -6,25 +6,29 @@
     <string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
     <string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
 
-
-    <string name="image_text">KisaanConnect</string>
-
     <string name="app_name">KisaanConnect</string>
     <string name="title_activity_home">Home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <!-- activity login -->
-    <string name="activity_login">Log In</string>
-    <string name="activity_login_1">Log in to your account</string>
-    <string name="activity_login_2">Contact Number</string>
-    <string name="activity_login_3">Password</string>
-    <string name="activity_login_4">Proceed</string>
-    <string name="activity_login_5">Forgot Password?</string>
-    <string name="activity_login_6">Sign Up</string>
-    <string name="activity_login_7">Remember Me</string>
-    <string name="activity_login_8">hide</string>
-    <string name="activity_login_9">show</string>
+    <!-- activity_login -->
+    <string name="activity_login_1">लॉग इन करें</string>
+    <string name="activity_login_2">संपर्क संख्या</string>
+    <string name="activity_login_3">पासवर्ड</string>
+    <string name="activity_login_4">बढ़ना</string>
+    <string name="activity_login_5">पासवर्ड भूल गए?</string>
+    <string name="activity_login_6">साइन अप करें</string>
+    <string name="activity_login_7">मुझे याद रखना</string>
+    <string name="activity_login_8">छिपाना</string>
+    <string name="activity_login_9">दिखाना</string>
+
+    <!-- content_home -->
+
+    <string name="content_home_1">कैसे KisaanConect आपकी  मदद कर सकता  हैं?</string>
+    <string name="content_home_2">KisaanConnect, \'ग्रामीण भारत के दिलों को छू\' के उद्देश्य के साथ, agriculatural विपणन के लिए एक विश्वसनीय और पूर्ण मंच रूपों। इसे आप एक आभासी बाजार, उनकी लागत भूमि के ऊपर और हानि कारक सहजता से भारतीय किसानों के उपयोग के अनुरूप देता है। उपयोगकर्ता खरीद सकते हैं, बेचने या फसलों जैसे संसाधनों का किराया, कृषि उपकरणों आदि KisaanConnect भी एक आदर्श समुदाय किसानों के लिए रूपों, उनकी मदद के लिए संसाधन बोली लगाने की रणनीति से अधिक लाभ पाने के लिए। एक ग्राहक के लिए है, इस मंच के रूप में सस्ते बाज़ार कोई बिचौलिया के साथ शामिल कार्य करता है। यह ताजा और विश्वसनीय संसाधनों के लिए सीधी पहुँच देता है। अधिक लगाने के लिए एप्लिकेशन का पता लगाने &#8230; </string>
+    <string name="content_home_3"> KisaanConnect का उपयोग कैसे करें?</string>
+    <string name="content_home_4">KisaanConnect का उपयोग करना आसान और सहज है। एक विशेष संसाधन खरीदने के लिए, इस पेज के ऊपर छोड़ दिया पर त्वरित लिंक पर जाएँ। चुनें \'खरीदें\' संसाधन। पहचान क्षेत्रों की एक श्रेणियों प्रदर्शित किया जाएगा। वांछित वर्ग पर क्लिक करें। उस श्रेणी के उप-श्रेणियों में दिखाया जाएगा। वांछित उप उपश्रेणी का चयन करें। यह सभी उपयोगकर्ता उत्पादों है कि आप की जरूरत है लेने होंगे। वांछित एक पर क्लिक करें। विवरण पृष्ठ पर दिखाई देगा। आप उस पृष्ठ बातचीत और acceptence के द्वारा पीछा से ब्याज बढ़ा सकते हैं। संसाधनों को बेचने के लिए, एक ही मार्ग का पालन किया जाता है। श्रेणी के माध्यम से उप-श्रेणी में जाकर अपने उत्पाद जोड़ें और इसे तुरंत उपलब्ध ऑनलाइन हो जाएगा। चारों ओर एक नज़र &#8230;</string>
+
 
     <!-- addquotesofsubcategory-->
     <string name="addquotesofsubcategory_1">Thank you for your interest to sell your product with us. Please add the details below</string>
@@ -43,15 +47,6 @@
     <string name="changepassword_5">Confirm New Password</string>
     <string name="changepassword_6">Confirm</string>
 
-
-    <!-- Content Home -->
-
-    <string name="content_home_1">How can KisaanConect help you?</string>
-    <string name="content_home_2">KisaanConnect, with the aim of \'touching the hearts of rural india\', forms a reliable and full-fledged platform for agriculatural marketting. It gives you a virtual marketplace, tailored for the use of Indian farmers by easing their cost overhead and loss factors. Users can buy, sell or rent resources like crops, agricultural equipments etc. KisaanConnect also forms an ideal community for farmers, helping them to get more profit by resource bidding strategy. For a customer, this platform serves as cheap marketplace with no middleman included. This gives direct access to fresh and reliable resources. Explore the app to find more &#8230; </string>
-    <string name="content_home_3">How to use KisaanConnect?</string>
-    <string name="content_home_4">Using KisaanConnect is easy and intuitive. To buy a particular resource, go to quick links at the top left of this page. Select \'Buy Resources\'. A categories of identified sectors will be displayed. Click on the desired category. Sub-categories of that category will be shown. Select desired sub-subcategory. This will fetch all user products that you need. Click on desired one. Details page will show up. You can raise interest from that page followed by negotiation and acceptence. To sell resources, same path is followed. Add your product by going in to the sub-category via category and it will be instantly avaliable online. Have a look around &#8230;</string>
-
-       
 
     <!-- deletequote -->
     <string name="deletequote_1">Delete product</string>
@@ -139,7 +134,6 @@
 
 
     <!-- register -->
-    <string name="register">Sign up</string>
     <string name="register_1">Sign up with us</string>
     <string name="register_2">Full name</string>
     <string name="register_3">Contact number</string>
@@ -214,7 +208,5 @@
     <string name="menu_myproduct_btn">My Products</string>
     <string name="menu_myorder_btn">My Orders</string>
     <string name="menu_mynegotiation_btn">My Negotiations</string>
-
-
-
+       
 </resources>

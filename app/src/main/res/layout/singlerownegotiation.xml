@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:textColor="#000"
-        android:text="You are negotiating with Seller1 for Rice, curently at rate Rs.10 for 20 kg."/>
+         />
 
 
 </LinearLayout>

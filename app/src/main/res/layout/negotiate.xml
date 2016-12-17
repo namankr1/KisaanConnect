@@ -33,7 +33,6 @@
                 android:layout_height="100dp"
                 android:gravity="center_horizontal"
                 android:fontFamily="sans-serif"
-                android:text="Test Seller"
                 android:textAllCaps="true"
                 android:id="@+id/sendername"
                 android:textColor="#fff"
@@ -85,6 +84,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/price"
+                android:contentDescription="@string/image_text"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -92,10 +92,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Negotiator's price per kg (in Rs.)"
+                    android:text="@string/negotiate_1"
                     android:id="@+id/pricelabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingStart="15dp"
                     android:paddingTop="5dp"
                     android:textStyle="bold"/>
                 <TextView
@@ -105,6 +107,8 @@
                     android:layout_below="@+id/pricelabel"
                     android:id="@+id/quotedprice"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingStart="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"/>
             </RelativeLayout>
@@ -119,6 +123,7 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:contentDescription="@string/image_text"
                 android:src="@drawable/quantity"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
@@ -127,10 +132,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Quantity (in kg.)"
+                    android:text="@string/negotiate_2"
                     android:id="@+id/quantitylabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingStart="15dp"
                     android:paddingTop="5dp"
                     android:textStyle="bold"/>
                 <TextView
@@ -140,6 +147,8 @@
                     android:text=""
                     android:id="@+id/quotedquantity"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingStart="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"/>
                 
@@ -150,7 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Enter price and quantity below that you are willing to purchase"
+            android:text="@string/negotiate_3"
             android:textColor="#0786b1"
             android:gravity="center"
             android:layout_below="@+id/quantitybar"
@@ -162,6 +171,8 @@
             android:background="@drawable/infotextviewborder"
             android:padding="10dp"
             android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="20dp"
 
@@ -170,7 +181,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="How much are you willing to pay?"
+            android:hint="@string/negotiate_4"
             android:gravity="center"
             android:textColorHint="#6b6b6b"
             android:id="@+id/yourprice"
@@ -180,13 +191,13 @@
             android:padding="5dp"
             android:layout_below="@+id/textView"
             android:background="@drawable/formfieldrectangle"
-            android:textSize="14dp"
+            android:textSize="14sp"
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="How much quantity will you purchase?"
+            android:hint="@string/negotiate_5"
             android:gravity="center"
             android:textColorHint="#6b6b6b"
             android:id="@+id/yourquantity"
@@ -209,7 +220,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/iminterested"
-                android:text="Negotiate"
+                android:text="@string/negotiate_6"
                 android:padding="5dp"
                 android:textColor="#fff"
                 android:id="@+id/btnnegotiate"

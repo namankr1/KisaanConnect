@@ -14,12 +14,11 @@
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:textColor="#7e0102"
-        android:text=""/>
+        />
     <Button
         android:id="@+id/delete_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:visibility="gone"
         />
 
@@ -27,7 +26,6 @@
         android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:visibility="gone"/>
 
 </LinearLayout>

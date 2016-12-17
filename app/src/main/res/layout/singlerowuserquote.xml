@@ -10,6 +10,7 @@
     android:paddingBottom="5dp">
     <LinearLayout
         android:layout_width="match_parent"
+        android:baselineAligned="false"
         android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="0dp"
@@ -24,7 +25,7 @@
                 android:id="@+id/type"
                 android:textAllCaps="true"
                 android:textColor="#545454"
-                android:textSize="17dp"
+                android:textSize="17sp"
 
                 />
 
@@ -40,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#0f6bb1"
-                android:text="Price (Rs.)"
+                android:text="@string/singlerowuserquote_2"
                 android:id="@+id/pricelabel"
                 android:layout_marginTop="10dp"/>
             <TextView
@@ -51,6 +52,7 @@
                 android:id="@+id/bidvalue"
                 android:textColor="#000"
                 android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
 
                 />
         </RelativeLayout>
@@ -62,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#34ac10"
-                android:text="Quantity (kg)"
+                android:text="@string/singlerowuserquote_3"
                 android:id="@+id/quantitylabel"
                 android:layout_marginTop="10dp"/>
             <TextView
@@ -71,6 +73,7 @@
                 android:text=""
                 android:layout_below="@+id/quantitylabel"
                 android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:id="@+id/quantity"
                 android:textColor="#000"
                 />
@@ -79,7 +82,6 @@
                 android:layout_width="0dp"
                 android:layout_marginTop="0dp"
                 android:layout_height="wrap_content"
-                android:text="quote rating"
                 android:visibility="gone"
                 android:id="@+id/quoterating"
                 android:lines="1"
@@ -91,7 +93,6 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="Descrption"
                 android:visibility="gone"
                 android:id="@+id/description"
                 android:layout_marginTop="5dp"
@@ -101,7 +102,6 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="Phone Number"
                 android:visibility="gone"
                 android:id="@+id/phone"
                 android:layout_marginTop="5dp"
@@ -111,7 +111,6 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="Address"
                 android:visibility="gone"
                 android:layout_marginTop="5dp"
                 android:id="@+id/address"
@@ -123,7 +122,6 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text=""
                 android:visibility="gone"
                 android:layout_marginTop="5dp"
                 android:id="@+id/quoteid"
@@ -132,7 +130,6 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="1"
                 android:visibility="gone"
                 android:layout_marginTop="5dp"
                 android:id="@+id/price"
@@ -147,20 +144,23 @@
         android:gravity="center"
         android:layout_marginTop="10dp">
         <Button
-            android:text="delete"
+            android:text="@string/singlerowuserquote_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/delete"
+            style="?android:attr/buttonBarButtonStyle"
             android:textAllCaps="true"
             android:textColor="#fff"
             android:background="@drawable/endbutton"/>
 
         <Button
-            android:text="update"
+            android:text="@string/singlerowuserquote_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/update"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             android:textAllCaps="true"
             android:textColor="#fff"
             android:background="@drawable/iminterested"/>

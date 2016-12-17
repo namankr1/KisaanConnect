@@ -5,36 +5,36 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_homef"
-            android:title="Home" />
+            android:title="@string/menu_home_btn" />
         <item
             android:id="@+id/nav_my_profile"
             android:icon="@drawable/ic_profilef"
-            android:title="My Profile" />
+            android:title="@string/menu_myprofile_btn" />
         <item
             android:id="@+id/nav_gov_not"
             android:icon="@drawable/ic_notif"
-            android:title="Public Notifications" />
+            android:title="@string/menu_publicnotif_btn" />
         <item
             android:id="@+id/nav_buy"
             android:icon="@drawable/ic_buyf"
-            android:title="Buy Resources" />
+            android:title="@string/menu_buyres_btn" />
         <item
             android:id="@+id/nav_sell"
             android:icon="@drawable/ic_sellf"
-            android:title="Sell Resources" />
+            android:title="@string/menu_sellres_btn" />
         <item
             android:id="@+id/nav_market_insight"
             android:icon="@drawable/ic_menu_market"
-            android:title="Market Insight" />
+            android:title="@string/menu_marketinsight_btn" />
 
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logoutf"
-            android:title="Logout" />
+            android:title="@string/menu_logout_btn" />
         <item
             android:id="@+id/nav_exit"
             android:icon="@drawable/ic_exitf"
-            android:title="Exit" />
+            android:title="@string/menu_exit_btn" />
 
     </group>
 

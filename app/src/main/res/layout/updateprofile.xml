@@ -33,7 +33,7 @@
                 android:layout_height="100dp"
                 android:gravity="center_horizontal"
                 android:fontFamily="sans-serif"
-                android:text="Update Profile"
+                android:text="@string/updateprofile_1"
                 android:textAllCaps="true"
                 android:id="@+id/nameofseller"
                 android:textColor="#fff"
@@ -46,7 +46,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Current Profile Details"
+            android:text="@string/updateprofile_2"
             android:layout_below="@+id/head"
             android:id="@+id/headlabel"
             android:textColor="#888988"
@@ -61,11 +61,13 @@
             android:padding="5dp"
             android:id="@+id/namebar"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/profile"
+                android:contentDescription="@string/image_text"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -73,10 +75,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name of user"
+                    android:text="@string/updateprofile_3"
                     android:id="@+id/namelabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="match_parent"
@@ -84,6 +87,7 @@
                     android:text=""
                     android:id="@+id/name"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"
                     android:layout_below="@+id/namelabel"
@@ -98,11 +102,13 @@
             android:padding="5dp"
             android:id="@+id/phonebar"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/phone"
+                android:contentDescription="@string/image_text"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -110,10 +116,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cotact number of user"
+                    android:text="@string/updateprofile_4"
                     android:id="@+id/phonelabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textStyle="bold"/>
                 <TextView
@@ -123,6 +130,7 @@
                     android:layout_below="@+id/phonelabel"
                     android:id="@+id/phone"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"/>
             </RelativeLayout>
@@ -132,7 +140,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="New Address"
+            android:hint="@string/updateprofile_5"
             android:gravity="center"
             android:textColorHint="#000"
             android:id="@+id/address"
@@ -155,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="You can change your address below"
+                android:text="@string/updateprofile_6"
                 android:textColor="#0786b1"
                 android:gravity="center"
 
@@ -173,7 +181,7 @@
             android:background="@drawable/proceedbutton"
             android:layout_marginTop="16dp"
             android:id="@+id/btnconfirm"
-            android:text="Confirm"
+            android:text="@string/updateprofile_7"
             android:layout_below="@+id/address"
             android:layout_marginBottom="70dp"
             android:layout_centerHorizontal="true" />

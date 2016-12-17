@@ -31,7 +31,7 @@
                 android:layout_height="100dp"
                 android:layout_centerInParent="false"
                 android:fontFamily="sans-serif"
-                android:text="Delete product"
+                android:text="@string/deletequote_1"
                 android:gravity="center_horizontal"
                 android:textAllCaps="true"
                 android:id="@+id/nameofseller"
@@ -48,8 +48,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginLeft="145dp"
+            android:layout_marginStart="145dp"
             android:layout_marginTop="20dp"
-            android:text="test phone"
             android:id="@+id/phoneofseller"
             android:textColor="#000"/>
         <LinearLayout
@@ -63,6 +63,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/description"
+                android:contentDescription="@string/image_text"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -70,10 +71,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Description of the product"
+                    android:text="@string/deletequote_2"
                     android:id="@+id/descriptionlabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingRight="15dp"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="match_parent"
@@ -81,6 +84,8 @@
                     android:text=""
                     android:id="@+id/description"
                     android:paddingLeft="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"
                     android:layout_below="@+id/descriptionlabel"/>
@@ -97,6 +102,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/price"
+                android:contentDescription="@string/image_text"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -104,10 +110,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Current highest bid of the product"
+                    android:text="@string/deletequote_3"
                     android:id="@+id/pricelabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textStyle="bold"/>
                 <TextView
@@ -117,6 +125,8 @@
                     android:layout_below="@+id/pricelabel"
                     android:id="@+id/currentbid"
                     android:paddingLeft="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"/>
             </RelativeLayout>
@@ -132,6 +142,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/quantity"
+                android:contentDescription="@string/image_text"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -139,10 +150,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Present avaliable quantity (in kg.)"
+                    android:text="@string/deletequote_4"
                     android:id="@+id/quantitylabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textStyle="bold"/>
                 <TextView
@@ -152,6 +165,8 @@
                     android:text=""
                     android:id="@+id/availablequantity"
                     android:paddingLeft="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"/>
             </RelativeLayout>
@@ -161,7 +176,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Are you sure you want to delete it? Action cannot be undone"
+            android:text="@string/deletequote_5"
             android:textColor="#0786b1"
             android:gravity="center"
             android:layout_below="@+id/quantitybar"
@@ -173,6 +188,8 @@
             android:background="@drawable/infotextviewborder"
             android:padding="10dp"
             android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="20dp"
 
@@ -188,21 +205,24 @@
             android:gravity="center" android:padding="20dp">
 
             <Button
-                android:text="Yes"
+                android:text="@string/deletequote_6"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:id="@+id/yes"
+                style="?android:attr/buttonBarButtonStyle"
                 android:background="@drawable/confirmbutton"
                 android:textColor="#fff"
                 />
 
             <Button
-                android:text="No"
+                android:text="@string/deletequote_7"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:id="@+id/no"
+                style="?android:attr/buttonBarButtonStyle"
                 android:background="@drawable/cancelbutton"
                 android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp"
                 android:textColor="#fff"
                 />
         </LinearLayout>

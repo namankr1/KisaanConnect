@@ -154,6 +154,11 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ChooseLanguage"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

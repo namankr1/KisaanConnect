@@ -32,7 +32,7 @@
                 android:layout_height="100dp"
                 android:gravity="center_horizontal"
                 android:fontFamily="sans-serif"
-                android:text="Profile"
+                android:text="@string/myprofile_1"
                 android:textAllCaps="true"
                 android:id="@+id/nameofseller"
                 android:textColor="#fff"
@@ -46,8 +46,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginLeft="145dp"
+            android:layout_marginStart="145dp"
             android:layout_marginTop="20dp"
-            android:text="test phone"
             android:id="@+id/phoneofseller"
             android:textColor="#000"/>
         <LinearLayout
@@ -57,11 +57,13 @@
             android:padding="5dp"
             android:id="@+id/namebar"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/profile"
+                android:contentDescription="@string/image_text"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -69,10 +71,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name of user"
+                    android:text="@string/myprofile_2"
                     android:id="@+id/namelabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingStart="15dp"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="match_parent"
@@ -80,6 +84,8 @@
                     android:text=""
                     android:id="@+id/name"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingStart="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"
                     android:layout_below="@+id/namelabel"/>
@@ -92,11 +98,13 @@
             android:padding="5dp"
             android:id="@+id/phonebar"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/phone"
+                android:contentDescription="@string/image_text"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -104,10 +112,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cotact number of user"
+                    android:text="@string/myprofile_3"
                     android:id="@+id/phonelabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingStart="15dp"
                     android:paddingTop="5dp"
                     android:textStyle="bold"/>
                 <TextView
@@ -117,6 +127,8 @@
                     android:layout_below="@+id/phonelabel"
                     android:id="@+id/phone"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingStart="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"/>
             </RelativeLayout>
@@ -128,11 +140,13 @@
             android:padding="5dp"
             android:id="@+id/addressbar"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/address"
+                android:contentDescription="@string/image_text"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -140,10 +154,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Present address of user"
+                    android:text="@string/myprofile_4"
                     android:id="@+id/addresslabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingStart="15dp"
                     android:paddingTop="5dp"
                     android:textStyle="bold"/>
                 <TextView
@@ -153,6 +169,8 @@
                     android:text=""
                     android:id="@+id/address"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingStart="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"/>
             </RelativeLayout>
@@ -163,6 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             app:srcCompat="@drawable/ic_notif" />

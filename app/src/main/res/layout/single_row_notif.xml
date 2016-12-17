@@ -11,7 +11,6 @@
     >
 
     <TextView
-        android:text="ID of notification"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:visibility="gone"
@@ -20,18 +19,14 @@
         android:textColor="#000"
         />
     <TextView
-        android:text="Central Government Health Scheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/title"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:textColor="#cc0d0d"
         android:textAllCaps="true"
         android:textStyle="bold"
         />
     <TextView
-        android:text="It is a government of india intiative to engage rural youth specially SC/ST and BPL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxHeight="72dp"
@@ -46,11 +41,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="For more details : "
+            android:text="@string/single_row_notif_1"
             android:textStyle="bold"
             android:textColor="#000"/>
         <TextView
-            android:text="This is the url to visit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/url"

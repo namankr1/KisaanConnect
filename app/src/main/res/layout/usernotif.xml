@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/buy"
     android:layout_width="match_parent"
@@ -29,6 +28,6 @@
         android:paddingTop="9dp"
         android:paddingLeft="9dp"
         android:paddingRight="9dp"
-        android:paddingBottom="9dp"/> />
+        android:paddingBottom="9dp"/>
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package iitp.naman.kisaanconnect;
 
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +29,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -46,6 +49,8 @@ public class Login extends AppCompatActivity {
     private CheckBox ch2;
     SharedPreferences.Editor e;
     SharedPreferences sf;
+    SharedPreferences sf1;
+    SharedPreferences.Editor e1;
     private int restrictlogin=0;//to ensure only one click
     private ProgressDialog iDialog;
 
@@ -65,6 +70,27 @@ public class Login extends AppCompatActivity {
         Boolean cbf = sf.getBoolean("rm",false);
         // rm.setChecked(sf.getBoolean("rm",false));
         String ph = sf.getString("phonenum","");
+        String choosenlan="en";
+
+        try{
+            sf1 = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+            Log.i("login : ","shared prefernce for language");
+
+            choosenlan = sf1.getString("lan", "en");
+            Log.i("login : ","choosen language "+choosenlan);
+        }
+        catch(Exception e){
+            choosenlan = "en";
+        }
+
+        Log.i("login : ","choosen language "+choosenlan);
+        Locale locale = new Locale(choosenlan);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
         if(cbf == true)
         {
             Intent upanel = new Intent(getApplicationContext(), Home.class);
@@ -120,7 +146,6 @@ public class Login extends AppCompatActivity {
                             iDialog = MyCustomProgressDialog.ctor(Login.this);
                             iDialog.show();
                             NetAsync(view);
-
                         }
                     } else if ((!inputPhone.getText().toString().equals(""))) {
                         Toast.makeText(getApplicationContext(), "Password field cant be empty", Toast.LENGTH_SHORT).show();
@@ -154,6 +179,14 @@ public class Login extends AppCompatActivity {
                 i.setData(Uri.parse(url1));
                 startActivity(i);
                 return true;
+
+            case R.id.menuLan:
+                Intent upanel = new Intent(getApplicationContext(), ChooseLanguage.class);
+                upanel.putExtra("phoneno", "1");
+                startActivity(upanel);
+                finish();
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

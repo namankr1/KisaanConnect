@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:weightSum="25"
+    android:baselineAligned="false"
     android:background="@drawable/entitybox"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -33,7 +34,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No. of orders : "
+                android:text="@string/singlerowquote_1"
                 android:textColor="#595959"/>
             <TextView
                 android:layout_width="match_parent"
@@ -56,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#0f6bb1"
-            android:text="Price (Rs.)"
+            android:text="@string/singlerowquote_2"
             android:id="@+id/pricelabel"
             android:layout_marginTop="10dp"/>
         <TextView
@@ -67,6 +68,7 @@
             android:id="@+id/bidvalue"
             android:textColor="#000"
             android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="4dp"
             />
     </RelativeLayout>
@@ -78,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#34ac10"
-            android:text="Quantity (kg)"
+            android:text="@string/singlerowquote_3"
             android:id="@+id/quantitylabel"
             android:layout_marginTop="10dp"/>
         <TextView
@@ -88,6 +90,7 @@
             android:layout_below="@+id/quantitylabel"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:id="@+id/quantity"
             android:textColor="#000"
             />
@@ -96,7 +99,6 @@
             android:layout_width="0dp"
             android:layout_marginTop="0dp"
             android:layout_height="wrap_content"
-            android:text="quote rating"
             android:visibility="gone"
             android:id="@+id/quoterating"
             android:lines="1"
@@ -108,7 +110,6 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="Descrption"
             android:visibility="gone"
             android:id="@+id/description"
             android:layout_marginTop="5dp"
@@ -118,7 +119,6 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="Phone Number"
             android:visibility="gone"
             android:id="@+id/phone"
             android:layout_marginTop="5dp"
@@ -128,7 +128,6 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="Address"
             android:layout_marginTop="5dp"
             android:visibility="gone"
             android:id="@+id/address"
@@ -140,7 +139,6 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text=""
             android:layout_marginTop="5dp"
             android:visibility="gone"
             android:id="@+id/quoteid"
@@ -150,7 +148,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:visibility="gone"
-            android:text="1"
             android:layout_marginTop="5dp"
             android:id="@+id/price"
             android:textColor="#fff"

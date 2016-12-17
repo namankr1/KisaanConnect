@@ -26,15 +26,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@+id/my_toolbar"
         android:background="#fff"
         android:id="@+id/top1"
         >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="This page gives you latest insights about the market near you. Please select a category below."
+            android:text="@string/marketinsight_1"
             android:textColor="#0786b1"
             android:gravity="center"
             android:id="@+id/textView"
@@ -44,6 +46,12 @@
             android:layout_marginLeft="13dp"
             android:layout_marginRight="13dp"
             />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:background="@drawable/iminterested">
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,13 +63,13 @@
             android:id="@+id/spinner1"
             android:layout_marginBottom="13dp"
             />
+        </LinearLayout>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="13dp"
-        android:layout_below="@+id/top1"
         android:id="@+id/top2"
         android:background="#fff">
         <TextView
@@ -74,7 +82,7 @@
             android:background="#ed5624"
             android:id="@+id/top21"
             android:textStyle="bold"
-            android:text="what are other users selling?"/>
+            android:text="@string/marketinsight_2"/>
         <iitp.naman.kisaanconnect.FixedGridView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -97,7 +105,6 @@
         android:orientation="vertical"
         android:layout_marginTop="13dp"
         android:id="@+id/top3"
-        android:layout_below="@+id/top2"
         android:background="#fff">
         <TextView
             android:layout_width="match_parent"
@@ -109,7 +116,7 @@
             android:id="@+id/top31"
             android:background="#01d5f1"
             android:textStyle="bold"
-            android:text="what are other users buying?"/>
+            android:text="@string/marketinsight_3"/>
         <iitp.naman.kisaanconnect.FixedGridView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -131,7 +138,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/top4"
-        android:layout_below="@+id/top3"
         android:layout_marginTop="13dp"
         android:background="#fff">
         <TextView
@@ -144,7 +150,7 @@
             android:textColor="#fff"
             android:background="#ff1550"
             android:textStyle="bold"
-            android:text="How is price changing in market?"/>
+            android:text="@string/marketinsight_4"/>
         <iitp.naman.kisaanconnect.FixedGridView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -166,7 +172,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/top5"
-        android:layout_below="@+id/top4"
         android:layout_marginTop="13dp"
         android:background="#fff">
         <TextView
@@ -179,7 +184,7 @@
             android:textColor="#fff"
             android:background="#49b102"
             android:textStyle="bold"
-            android:text="What do we recommend? (in order)"/>
+            android:text="@string/marketinsight_5"/>
         <iitp.naman.kisaanconnect.FixedGridviewImage
             android:id="@+id/recommendationList"
             android:background="#f5f5f5"

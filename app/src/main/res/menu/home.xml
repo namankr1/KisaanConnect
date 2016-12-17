@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menuHelp"
         android:icon="@drawable/infobutton1"
-        android:title="Help"
+        android:title="@string/menu_help_btn"
+        android:alphabeticShortcut="r"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/menuLan"
+        android:icon="@drawable/infobutton1"
+        android:title="@string/menu_language_btn"
         android:alphabeticShortcut="r"
         android:orderInCategory="1"
         app:showAsAction="always" />

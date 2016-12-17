@@ -31,7 +31,7 @@
                 android:layout_height="100dp"
                 android:gravity="center_horizontal"
                 android:fontFamily="sans-serif"
-                android:text="Order Summary"
+                android:text="@string/ordersummary_1"
                 android:textAllCaps="true"
                 android:id="@+id/nameofseller"
                 android:textColor="#fff"
@@ -47,6 +47,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginLeft="145dp"
+            android:layout_marginStart="145dp"
             android:layout_marginTop="20dp"
             android:text=""
             android:id="@+id/phoneofseller"
@@ -58,10 +59,12 @@
             android:padding="5dp"
             android:id="@+id/namebar"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:contentDescription="@string/image_text"
                 android:src="@drawable/profile"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
@@ -70,10 +73,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name of negotiator"
+                    android:text="@string/ordersummary_2"
                     android:id="@+id/namelabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="match_parent"
@@ -81,6 +85,7 @@
                     android:text=""
                     android:id="@+id/sendername"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"
                     android:layout_below="@+id/namelabel"/>
@@ -93,10 +98,12 @@
             android:padding="5dp"
             android:id="@+id/phonebar"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:contentDescription="@string/image_text"
                 android:src="@drawable/phone"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
@@ -105,10 +112,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cotact number of neotiator"
+                    android:text="@string/ordersummary_3"
                     android:id="@+id/phonelabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textStyle="bold"/>
                 <TextView
@@ -118,6 +126,7 @@
                     android:layout_below="@+id/phonelabel"
                     android:id="@+id/senderphone"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"/>
             </RelativeLayout>
@@ -129,10 +138,12 @@
             android:padding="5dp"
             android:id="@+id/addressbar"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:contentDescription="@string/image_text"
                 android:src="@drawable/address"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
@@ -141,10 +152,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Present address of negotiator"
+                    android:text="@string/ordersummary_4"
                     android:id="@+id/addresslabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textStyle="bold"/>
                 <TextView
@@ -154,6 +166,7 @@
                     android:text=""
                     android:id="@+id/senderaddress"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"/>
             </RelativeLayout>
@@ -169,6 +182,7 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:contentDescription="@string/image_text"
                 android:src="@drawable/price"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
@@ -177,10 +191,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Current highest bid of the product"
+                    android:text="@string/ordersummary_5"
                     android:id="@+id/pricelabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textStyle="bold"/>
                 <TextView
@@ -190,6 +205,7 @@
                     android:layout_below="@+id/pricelabel"
                     android:id="@+id/price"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"/>
             </RelativeLayout>
@@ -205,6 +221,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/quantity"
+                android:contentDescription="@string/image_text"
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -212,10 +229,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Present avaliable quantity (in kg.)"
+                    android:text="@string/ordersummary_6"
                     android:id="@+id/quantitylabel"
                     android:textColor="#000"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textStyle="bold"/>
                 <TextView
@@ -225,6 +243,7 @@
                     android:text=""
                     android:id="@+id/quantity"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"/>
             </RelativeLayout>
@@ -234,7 +253,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="You can call the negotiator by clicking the button below"
+            android:text="@string/ordersummary_7"
             android:textColor="#0786b1"
             android:gravity="center"
             android:layout_below="@+id/quantitybar"
@@ -246,6 +265,8 @@
             android:background="@drawable/infotextviewborder"
             android:padding="10dp"
             android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="20dp"
 
@@ -261,7 +282,7 @@
             android:gravity="center" android:padding="20dp">
 
             <Button
-                android:text="Call Negotiator"
+                android:text="@string/ordersummary_8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="9dp"

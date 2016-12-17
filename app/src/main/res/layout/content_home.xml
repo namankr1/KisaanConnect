@@ -17,7 +17,6 @@
     android:background="#eeeeee"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:orientation="vertical"
-    android:layout_weight="20"
     android:gravity="center_horizontal"
     >
 
@@ -26,12 +25,13 @@
     android:layout_height="300dp"
     android:src="@drawable/farmer"
     android:scaleType="centerCrop"
+    android:contentDescription="@string/app_name"
 
     />
 <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How can KisaanConect help you?"
+        android:text="@string/content_home_1"
 
         android:textStyle="bold"
         android:background="@drawable/endbutton"
@@ -48,11 +48,11 @@
         android:padding="8dp"
         android:textSize="15sp"
         android:background="#fff"
-        android:text="KisaanConnect, with the aim of 'touching the hearts of rural india', forms a reliable and full-fledged platform for agriculatural marketting. It gives you a virtual marketplace, tailored for the use of Indian farmers by easing their cost overhead and loss factors. Users can buy, sell or rent resources like crops, agricultural equipments etc. KisaanConnect also forms an ideal community for farmers, helping them to get more profit by resource bidding strategy. For a customer, this platform serves as cheap marketplace with no middleman included. This gives direct access to fresh and reliable resources. Explore the app to find more... "/>
+        android:text="@string/content_home_2"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How to use KisaanConnect?"
+        android:text="@string/content_home_3"
 
         android:textStyle="bold"
         android:background="@drawable/iminterested"
@@ -69,7 +69,7 @@
         android:padding="8dp"
         android:textSize="15sp"
         android:background="#fff"
-        android:text="Using KisaanConnect is easy and intuitive. To buy a particular resource, go to quick links at the top left of this page. Select 'Buy Resources'. A categories of identified sectors will be displayed. Click on the desired category. Sub-categories of that category will be shown. Select desired sub-subcategory. This will fetch all user products that you need. Click on desired one. Details page will show up. You can raise interest from that page followed by negotiation and acceptence. To sell resources, same path is followed. Add your product by going in to the sub-category via category and it will be instantly avaliable online. Have a look around..."
+        android:text="@string/content_home_4"
         />
 </LinearLayout>
 </ScrollView>

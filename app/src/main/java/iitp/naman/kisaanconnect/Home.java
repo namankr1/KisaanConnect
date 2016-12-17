@@ -3,6 +3,7 @@ package iitp.naman.kisaanconnect;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -35,6 +36,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -141,6 +143,12 @@ public class Home extends AppCompatActivity
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url1));
                 startActivity(i);
+                return true;
+            case R.id.menuLan:
+                Intent upanel = new Intent(getApplicationContext(), ChooseLanguage.class);
+                upanel.putExtra("phoneno", inputPhone1);
+                startActivity(upanel);
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
