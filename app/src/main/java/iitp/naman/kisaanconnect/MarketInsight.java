@@ -4,11 +4,8 @@ package iitp.naman.kisaanconnect;
  * Created by naman on 15-Dec-16.
  */
 
-
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -16,10 +13,8 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.GridView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,12 +24,11 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
@@ -44,7 +38,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemSelectedListener;
+
 
 
 public class MarketInsight extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -102,19 +96,16 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Market Insight");
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        getSupportActionBar().setTitle(getResources().getString(R.string.javamarketinsight_1));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-
-        //NetAsync(this.findViewById(android.R.id.content));
 
         gridViewbuyList = (FixedGridView) findViewById(R.id.buyList);
         gridViewpriceList = (FixedGridView) findViewById(R.id.priceList);
         gridViewrecommendationList = (FixedGridviewImage) findViewById(R.id.recommendationList);
         gridViewsellList = (FixedGridView) findViewById(R.id.sellList);
-
-
 
         // Spinner element
         spinner = (Spinner) findViewById(R.id.spinner1);
@@ -129,12 +120,6 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onBackPressed() {
-//        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-//        upanel.putExtra("phoneno", serverPhone);
-//        upanel.putExtra("name",serverName);
-//        upanel.putExtra("address",serverAddress);
-//        upanel.putExtra("type",serverType);
-//        startActivity(upanel);
         finish();
     }
 
@@ -146,32 +131,14 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
-
-
-        //gridViewsellList.setAdapter(new AdapterMarketInsight(getApplicationContext(),whatOthersSellid[0],whatOthersSellname[0],whatOthersSellpercent[0]));
-        //gridViewpriceList.setAdapter(new AdapterMarketInsight(getApplicationContext(),pricechangeid[0],pricechangename[0],pricechangepercent[0]));
-        //gridViewbuyList.setAdapter(new AdapterMarketInsight(getApplicationContext(),whatOthersBuyid[0],whatOthersBuyname[0],whatOthersBuypercent[0]));
-
-
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
     public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-//                Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-//                upanel.putExtra("phoneno", serverPhone);
-//                upanel.putExtra("name",serverName);
-//                upanel.putExtra("address",serverAddress);
-//                upanel.putExtra("type",serverType);
-//                startActivity(upanel);
                 this.finish();
                 return true;
             case R.id.menuRefresh:
@@ -207,9 +174,7 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
                     if (urlc.getResponseCode() == 200) {
                         return true;
                     }
-                } catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -219,11 +184,11 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
         @Override
         protected void onPostExecute(Boolean th){
 
-            if(th == true){
+            if(th){
                 new ProcessRegister().execute();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.cantconnect), Toast.LENGTH_SHORT).show();
             }
 
             nDialog.dismiss();
@@ -358,30 +323,20 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
                                                         break;
                                                     }
                                                 }
-
                                             }
-
-
-
                                         }
-
-
-                                        categories1 = new ArrayList<String>();
-                                        for(int i=0;i<categoryname.length;i++){
-                                            categories1.add(categoryname[i]);
-                                        }
-                                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(myactivity, android.R.layout.simple_spinner_item, categories1);
+                                        categories1 = new ArrayList<>();
+                                        Collections.addAll(categories1,categoryname);
+                                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(myactivity, android.R.layout.simple_spinner_item, categories1);
                                         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                         spinner.setAdapter(dataAdapter);
                                         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                             @Override
                                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                String item = parent.getItemAtPosition(position).toString();
-
                                                 gridViewsellList.setAdapter(new AdapterMarketInsight(getApplicationContext(),whatOthersSellid[position],whatOthersSellname[position],whatOthersSellpercent[position],1));
                                                 gridViewpriceList.setAdapter(new AdapterMarketInsight(getApplicationContext(),pricechangeid[position],pricechangename[position],pricechangepercent[position],2));
                                                 gridViewbuyList.setAdapter(new AdapterMarketInsight(getApplicationContext(),whatOthersBuyid[position],whatOthersBuyname[position],whatOthersBuypercent[position],3));
-                                                gridViewrecommendationList.setAdapter(new ImageAdapter(getApplicationContext(),recommendationname[position],null,recommendationid[position],recommendationpict[position]));
+                                                gridViewrecommendationList.setAdapter(new ImageAdapter(myactivity,getApplicationContext(),recommendationname[position],recommendationid[position],recommendationpict[position]));
                                                 gridViewrecommendationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                                                         String subcategoryid1 = ((TextView) v.findViewById(R.id.grid_item_id)).getText()+"";
@@ -393,7 +348,6 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
                                                         upanel.putExtra("subcategory",subcategoryid1);
                                                         upanel.putExtra("subcategoryname",subcategoryname1);
                                                         startActivity(upanel);
-                                                        //finish();
                                                     }
                                                 });
                                             }
@@ -410,12 +364,12 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
                                         pDialog.dismiss();
                                     }
                                     else{
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                     pDialog.dismiss();
                                 }
                             }
@@ -423,7 +377,7 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                         pDialog.dismiss();
                     }
                 });
@@ -431,7 +385,7 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
                 return false;
             }
@@ -465,7 +419,7 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
             marketinsightsf = getSharedPreferences("userorder"+serverPhone,MODE_PRIVATE);
             Boolean alreadypresent1 = marketinsightsf.getBoolean("alreadypresent",false);
             JSONObject jsondata;
-            if(alreadypresent1==true){
+            if(alreadypresent1){
                 String strjson = marketinsightsf.getString("jsondata",null);
                 if(strjson!=null){
                     try{
@@ -567,15 +521,10 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
 
                             }
                         }
-
-
-
                         resultserver="1";
-                        //gridView.setAdapter(new ImageAdapter(, categoryname, categorydescription, categoryid, categorypicture));
-                        //pDialog.dismiss();
                     }
                     catch(Exception e){
-
+                        e.printStackTrace();
                     }
 
                 }
@@ -587,22 +536,19 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
         protected void onPostExecute(String response) {
             super.onPostExecute(response);
             if(response.equals("1")) {
-                categories1 = new ArrayList<String>();
-                for(int i=0;i<categoryname.length;i++){
-                    categories1.add(categoryname[i]);
-                }
-                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(myactivity, android.R.layout.simple_spinner_item, categories1);
+                categories1 = new ArrayList<>();
+                Collections.addAll(categories1,categoryname);
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(myactivity, android.R.layout.simple_spinner_item, categories1);
                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(dataAdapter);
                 spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        String item = parent.getItemAtPosition(position).toString();
 
                         gridViewsellList.setAdapter(new AdapterMarketInsight(getApplicationContext(),whatOthersSellid[position],whatOthersSellname[position],whatOthersSellpercent[position],1));
                         gridViewpriceList.setAdapter(new AdapterMarketInsight(getApplicationContext(),pricechangeid[position],pricechangename[position],pricechangepercent[position],2));
                         gridViewbuyList.setAdapter(new AdapterMarketInsight(getApplicationContext(),whatOthersBuyid[position],whatOthersBuyname[position],whatOthersBuypercent[position],3));
-                        gridViewrecommendationList.setAdapter(new ImageAdapter(getApplicationContext(),recommendationname[position],null,recommendationid[position],recommendationpict[position]));
+                        gridViewrecommendationList.setAdapter(new ImageAdapter(myactivity,getApplicationContext(),recommendationname[position],recommendationid[position],recommendationpict[position]));
 
                         gridViewrecommendationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -615,7 +561,6 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
                                 upanel.putExtra("subcategory",subcategoryid1);
                                 upanel.putExtra("subcategoryname",subcategoryname1);
                                 startActivity(upanel);
-                                //finish();
                             }
                         });
                     }

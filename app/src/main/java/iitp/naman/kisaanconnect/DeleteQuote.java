@@ -1,7 +1,10 @@
 package iitp.naman.kisaanconnect;
 
+/**
+ * Created by naman on 02-Dec-16.
+ */
+
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,24 +21,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-/**
- * Created by naman on 02-Dec-16.
- */
 
 public class DeleteQuote extends AppCompatActivity {
     private String quoteid1 ;
     private String price1 ;
     private String quantity1 ;
     private String description1 ;
-    private String inputphone1;
-
-    private String serverName;
-    private String serverType;
-    private String serverAddress;
 
     private TextView currentprice;
     private TextView availablequantity;
@@ -55,23 +48,19 @@ public class DeleteQuote extends AppCompatActivity {
             price1=extras.getString("price");
             quantity1=extras.getString("quantity");
             description1=extras.getString("desc");
-            inputphone1=extras.getString("serverphone");
-            serverAddress=extras.getString("serveraddress");
-            serverName=extras.getString("servername");
-            serverType=extras.getString("servertype");
         }
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         yes1 = (Button) findViewById(R.id.yes);
         no1 = (Button) findViewById(R.id.no);
-
-
         currentprice = (TextView) findViewById(R.id.currentbid);
         availablequantity = (TextView) findViewById(R.id.availablequantity);
         description = (TextView) findViewById(R.id.description);
@@ -92,27 +81,14 @@ public class DeleteQuote extends AppCompatActivity {
         {
             public void onClick(View view)
             {
-//                Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
-//                upanel.putExtra("phoneno", inputphone1);
-//                upanel.putExtra("name",serverName);
-//                upanel.putExtra("address",serverAddress);
-//                upanel.putExtra("type",serverType);
-//                startActivity(upanel);
                 finish();
             }
         });
-
     }
 
 
     @Override
     public void onBackPressed() {
-//        Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
-//        upanel.putExtra("phoneno", inputphone1);
-//        upanel.putExtra("name",serverName);
-//        upanel.putExtra("address",serverAddress);
-//        upanel.putExtra("type",serverType);
-//        startActivity(upanel);
         finish();
     }
 
@@ -126,12 +102,6 @@ public class DeleteQuote extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-//                Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
-//                upanel.putExtra("phoneno", inputphone1);
-//                upanel.putExtra("name",serverName);
-//                upanel.putExtra("address",serverAddress);
-//                upanel.putExtra("type",serverType);
-//                startActivity(upanel);
                 this.finish();
                 return true;
             default:
@@ -167,12 +137,6 @@ public class DeleteQuote extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-//                                        Intent upanel = new Intent(getApplicationContext(), GetAllQuotesUser.class);
-//                                        upanel.putExtra("phoneno", inputphone1);
-//                                        upanel.putExtra("name",serverName);
-//                                        upanel.putExtra("address",serverAddress);
-//                                        upanel.putExtra("type",serverType);
-//                                        startActivity(upanel);
                                         pDialog.dismiss();
                                         finish();
                                     }else if(status.compareTo("err") == 0){
@@ -180,13 +144,13 @@ public class DeleteQuote extends AppCompatActivity {
                                         pDialog.dismiss();
                                     }
                                     else{
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                     pDialog.dismiss();
                                 }
                             }
@@ -194,14 +158,14 @@ public class DeleteQuote extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                         pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
                 return null;
             }

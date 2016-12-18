@@ -43,7 +43,6 @@ public class AdapterQuotes extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View gridView;
         if (convertView == null) {
-            gridView = new View(context);
             gridView = inflater.inflate(R.layout.singlerowquote, null);
             TextView textView = (TextView) gridView.findViewById(R.id.userrating);
             textView.setText(userrating[position]);
@@ -67,7 +66,7 @@ public class AdapterQuotes extends BaseAdapter {
             textView9.setText(userphone[position]);
         }
         else {
-            gridView = (View) convertView;
+            gridView =  convertView;
         }
         return gridView;
     }

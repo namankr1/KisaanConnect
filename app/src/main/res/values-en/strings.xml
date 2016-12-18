@@ -1,220 +1,236 @@
 <resources>
-    <string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
-    <string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
-    <string name="network_check">https://www.google.co.in/</string>
-    <string name="network_home">https://kisaanconnect.herokuapp.com/</string>
-    <string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
-    <string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
-
-
-    <string name="image_text">KisaanConnect</string>
-
-    <string name="app_name">KisaanConnect</string>
-    <string name="title_activity_home">Home</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <!-- activity login -->
-    <string name="activity_login">Log In</string>
-    <string name="activity_login_1">Log in to your account</string>
-    <string name="activity_login_2">Contact Number</string>
-    <string name="activity_login_3">Password</string>
-    <string name="activity_login_4">Proceed</string>
-    <string name="activity_login_5">Forgot Password?</string>
-    <string name="activity_login_6">Sign Up</string>
-    <string name="activity_login_7">Remember Me</string>
-    <string name="activity_login_8">hide</string>
-    <string name="activity_login_9">show</string>
-
-    <!-- addquotesofsubcategory-->
-    <string name="addquotesofsubcategory_1">Thank you for your interest to sell your product with us. Please add the details below</string>
-    <string name="addquotesofsubcategory_2">Name of the product</string>
-    <string name="addquotesofsubcategory_3">Quantity</string>
-    <string name="addquotesofsubcategory_4">Price</string>
-    <string name="addquotesofsubcategory_5">Description (Optional)</string>
-    <string name="addquotesofsubcategory_6">Add</string>
-
-
-    <!-- changepassword -->
-    <string name="changepassword_1">Change Password</string>
-    <string name="changepassword_2">New password will be accepted for next login attempt onwards if successfully changed</string>
-    <string name="changepassword_3">Current Password</string>
-    <string name="changepassword_4">New Password (Min. 8 characters)</string>
-    <string name="changepassword_5">Confirm New Password</string>
-    <string name="changepassword_6">Confirm</string>
-
-
-    <!-- Content Home -->
-
-    <string name="content_home_1">How can KisaanConect help you?</string>
-    <string name="content_home_2">KisaanConnect, with the aim of \'touching the hearts of rural india\', forms a reliable and full-fledged platform for agriculatural marketting. It gives you a virtual marketplace, tailored for the use of Indian farmers by easing their cost overhead and loss factors. Users can buy, sell or rent resources like crops, agricultural equipments etc. KisaanConnect also forms an ideal community for farmers, helping them to get more profit by resource bidding strategy. For a customer, this platform serves as cheap marketplace with no middleman included. This gives direct access to fresh and reliable resources. Explore the app to find more &#8230; </string>
+<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+<string name="network_check">https://www.google.co.in/</string>
+<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+<string name="image_text">Connect race</string>
+<string name="app_name">KisaanConnect</string>
+<string name="title_activity_home">Home</string>
+<string name="navigation_drawer_open">Open navigation drawer</string>
+<string name="navigation_drawer_close">Close navigation drawer</string>
+<string name="activity_login">Log In</string>
+<string name="activity_login_1">Log in to your account</string>
+<string name="activity_login_2">Contact Number</string>
+<string name="activity_login_3">Password</string>
+<string name="activity_login_4">Proceed</string>
+<string name="activity_login_5">Forgot Password?</string>
+<string name="activity_login_6">Sign Up</string>
+<string name="activity_login_7">Remember Me</string>
+<string name="activity_login_8">Hide</string>
+<string name="activity_login_9">Show</string>
+<string name="addquotesofsubcategory_1">Thank you for your interest to sell your product with us. Please add the details below.</string>
+<string name="addquotesofsubcategory_2">Name of the product</string>
+<string name="addquotesofsubcategory_3">Quantity (in kg or nos)</string>
+<string name="addquotesofsubcategory_4">Price (in Rs)</string>
+<string name="addquotesofsubcategory_5">Description (Optional)</string>
+<string name="addquotesofsubcategory_6">Add</string>
+<string name="changepassword_1">Change Password</string>
+<string name="changepassword_2">New password will be accepted for next login attempt onwards if successfully changed</string>
+<string name="changepassword_3">Current Password</string>
+<string name="changepassword_4">New Password</string>
+<string name="changepassword_5">Re-type New Password</string>
+<string name="changepassword_6">Confirm</string>
+<string name="content_home_1">How can KisaanConnect help you?</string>
     <string name="content_home_3">How to use KisaanConnect?</string>
-    <string name="content_home_4">Using KisaanConnect is easy and intuitive. To buy a particular resource, go to quick links at the top left of this page. Select \'Buy Resources\'. A categories of identified sectors will be displayed. Click on the desired category. Sub-categories of that category will be shown. Select desired sub-subcategory. This will fetch all user products that you need. Click on desired one. Details page will show up. You can raise interest from that page followed by negotiation and acceptence. To sell resources, same path is followed. Add your product by going in to the sub-category via category and it will be instantly avaliable online. Have a look around &#8230;</string>
-
-       
-
-    <!-- deletequote -->
     <string name="deletequote_1">Delete product</string>
-    <string name="deletequote_2">Description of the product</string>
-    <string name="deletequote_3">Current highest bid of the product</string>
-    <string name="deletequote_4">Present available quantity (in kg.)</string>
-    <string name="deletequote_5">Are you sure you want to delete it? Action cannot be undone</string>
-    <string name="deletequote_6">Yes</string>
-    <string name="deletequote_7">No</string>
+<string name="deletequote_2">Description of the product</string>
+<string name="deletequote_3">Current highest bid of the product (in Rs)</string>
+<string name="deletequote_4">Present available quantity</string>
+<string name="deletequote_5">Are you sure you want to delete it? Action cannot be undone.</string>
+<string name="deletequote_6">Yes</string>
+<string name="deletequote_7">No</string>
+<string name="endnegotiation_1">End negotiation</string>
+<string name="endnegotiation_2">Name of negotiator</string>
+<string name="endnegotiation_3">Contact number of negotiator</string>
+<string name="endnegotiation_4">Present address of negotiator</string>
+<string name="endnegotiation_5">Current highest bid of the product (in Rs)</string>
+<string name="endnegotiation_6">Present available quantity</string>
+<string name="endnegotiation_7">Do you want to accept or reject the product? Action cannot be undone.</string>
+<string name="endnegotiation_8">Accept</string>
+<string name="endnegotiation_9">Reject</string>
+<string name="forgotpassword_1">Enter received OTP and new password</string>
+<string name="forgotpassword_2">OTP</string>
+<string name="forgotpassword_3">New password</string>
+<string name="forgotpassword_4">Verify</string>
+<string name="interestedquote_1">Number of successful orders :</string>
+<string name="interestedquote_2">Description of the product</string>
+<string name="interestedquote_3">Current highest bid of the product (in Rs)</string>
+<string name="interestedquote_4">Present available quantity</string>
+<string name="interestedquote_5">If you are interested in this product, enter the details below</string>
+<string name="interestedquote_6">How much are you willing to pay?</string>
+<string name="interestedquote_7">How much quantity will you purchase?</string>
+<string name="interestedquote_8">I\'M INTERESTED</string>
+<string name="marketinsight_1">This page gives you latest insights about the your market. Please select a category below.</string>
+<string name="marketinsight_2">What are other users selling?</string>
+<string name="marketinsight_3">what are other users buying?</string>
+<string name="marketinsight_4">How is price changing in market?</string>
+<string name="marketinsight_5">What do we recommend?</string>
+<string name="myprofile_1">Profile</string>
+<string name="myprofile_2">Full name</string>
+<string name="myprofile_3">Contact number</string>
+<string name="myprofile_4">Present address</string>
+<string name="nav_header_home_1">Connect race</string>
+<string name="nav_header_home_2">Quick links</string>
+<string name="negotiate_1">Price (in Rs)</string>
+<string name="negotiate_2">Quantity (in kg or nos)</string>
+<string name="negotiate_3">Enter price and quantity below that you are willing to purchase.</string>
+<string name="negotiate_4">How much are you willing to pay?</string>
+<string name="negotiate_5">How much quantity will you purchase?</string>
+<string name="negotiate_6">Negotiate</string>
+<string name="ordersummary_1">Summary</string>
+<string name="ordersummary_2">Name of negotiator</string>
+<string name="ordersummary_3">Contact number of negotiator</string>
+<string name="ordersummary_4">Present address of negotiator</string>
+<string name="ordersummary_5">Current highest bid of the product (in Rs)</string>
+<string name="ordersummary_6">Present available quantity (in kg or nos)</string>
+<string name="ordersummary_7">You can call the negotiator by clicking the button below</string>
+<string name="ordersummary_8">Call Negotiator</string>
+<string name="otp_1">Enter the OTP received in your phone</string>
+<string name="otp_2">OTP</string>
+<string name="otp_3">Verify</string>
+<string name="otp_4">resend OTP</string>
+<string name="otp_5">Sit back and relax while we verify your contact number</string>
+<string name="passwordreset_1">Reset password</string>
+<string name="passwordreset_2">Contact number</string>
+<string name="passwordreset_3">Send OTP</string>
+<string name="register">Sign up</string>
+<string name="register_1">Sign up with us</string>
+<string name="register_2">Full name</string>
+<string name="register_3">Contact number</string>
+<string name="register_4">Password</string>
+<string name="register_5">Re-type password</string>
+<string name="register_6">Village or city name</string>
+<string name="register_7">State or Province</string>
+<string name="register_8">Zip or Pin code</string>
+<string name="register_9">Sign Up</string>
+<string name="single_row_notif_1">For more details :</string>
+<string name="singleroworder_1">View Summary</string>
+<string name="singlerowquote_1">No. of orders :</string>
+<string name="singlerowquote_2">Price (Rs)</string>
+<string name="singlerowquote_3">Quantity (kg)</string>
+<string name="singlerowusernotif_1">End Negotiation</string>
+<string name="singlerowusernotif_2">Negotiate</string>
+<string name="singlerowuserquote_1">Delete</string>
+<string name="singlerowuserquote_2">Price (Rs.)</string>
+<string name="singlerowuserquote_3">Quantity (kg)</string>
+<string name="singlerowuserquote_4">Update</string>
+<string name="updateprofile_1">Update Profile</string>
+<string name="updateprofile_2">Current Profile Details</string>
+<string name="updateprofile_3">Full name</string>
+<string name="updateprofile_4">Contact number</string>
+<string name="updateprofile_5">New Address</string>
+<string name="updateprofile_6">You can change your address below.</string>
+<string name="updateprofile_7">Confirm</string>
+<string name="updatequote_1">Update product</string>
+<string name="updatequote_2">You can edit name, price and quantity of your product here.</string>
+<string name="updatequote_3">Description of the product</string>
+<string name="updatequote_4">Name of the product</string>
+<string name="updatequote_5">Price</string>
+<string name="updatequote_6">Available quantity</string>
+<string name="updatequote_7">Update</string>
+<string name="chooselanguage_1">OK</string>
+<string name="menu_help_btn">Help</string>
+<string name="menu_language_btn">Language</string>
+<string name="menu_home_btn">Home</string>
+<string name="menu_myprofile_btn">My Profile</string>
+<string name="menu_publicnotif_btn">Public Notifications</string>
+<string name="menu_buyres_btn">Buy Resources</string>
+<string name="menu_sellres_btn">Sell Resources</string>
+<string name="menu_marketinsight_btn">Market Insights</string>
+<string name="menu_logout_btn">Logout</string>
+<string name="menu_exit_btn">Exit</string>
+<string name="menu_refresh_btn">Refresh</string>
+<string name="menu_changepass_btn">Change Password</string>
+<string name="menu_updateprof_btn">Update Profile</string>
+<string name="menu_myproduct_btn">My Products</string>
+<string name="menu_myorder_btn">My Orders</string>
+<string name="menu_mynegotiation_btn">My Negotiations</string>
+<string name="cantconnect">Cannot connect to internet</string>
+<string name="connectionfail">Connection fail</string>
+<string name="readmore">… (Click to read more)</string>
+<string name="buy_1">Categories</string>
+<string name="javachangepassword_1">Both passwords do not match</string>
+<string name="javachooselanguage_1">Choose a language</string>
+<string name="javaforgotpassword_1">OTP is mandatory</string>
+<string name="javagetallquotesuser_1">Your Products</string>
+<string name="javagetallquotesuser_2">You have not added any products yet</string>
+<string name="javagetallquotesuser_3">OK</string>
+<string name="getquotesofsubcategory_1">You have not added any products yet</string>
+<string name="getquotesofsubcategory_2">OK</string>
+<string name="govtnotif_1">Public Notifications</string>
+<string name="govtnotif_2">Open given URL in your browser</string>
+<string name="javahome_1">Are you sure you want to exit?</string>
+<string name="javahome_2">Yes</string>
+<string name="javahome_3">No</string>
+<string name="javainterestedquote_1">Details</string>
+<string name="javainterestedquote_2">You must bid an equal or higher price</string>
+<string name="javainterestedquote_3">Quantity should be less than or equal to available quantity</string>
+<string name="javainterestedquote_4">Invalid Data Given</string>
+<string name="javalogin_1">Password is mandatory</string>
+<string name="javalogin_2">Phone is mandatory</string>
+<string name="javalogin_3">Phone and password are mandatory</string>
+<string name="javalogin_4">Please verify your account first.</string>
+<string name="javamarketinsight_1">Market Insights</string>
+<string name="javaregistert_1">Contact number should have 10 digits</string>
+<string name="javaregistert_2">Passwords do not match</string>
+<string name="javaregistert_3">One or more fields are empty</string>
+<string name="javasell_1">Categories</string>
+<string name="javausernegotiation_1">You are not negotiating with anyone yet.</string>
+<string name="javausernegotiation_2">OK</string>
+<string name="javausernotif_1">No new notifications</string>
+<string name="javausernotif_2">OK</string>
+<string name="javausernotif_3">Your Notifications</string>
+<string name="javauserorder_1">You have not purchased any products yet</string>
+<string name="javauserorder_2">OK</string>
+<string name="javauserorder_3">My Orders</string>
+<string-array name="languagestotranslate">
+        <item> English </item>
+        <item> हिन्दी </item>
+        <item> বাঙালি </item>
+        <item> తెలుగు </item>
+        <item> मराठी </item>
+        <item> தமிழ் </item>
+        <item> اردو </item>
+        <item> ગુજરાતી </item>
+        <item> ಕನ್ನಡ </item>
+        <item> മലയാളം </item>
+        <item> ਪੰਜਾਬੀ ਦੇ </item>
+        <item> नेपाली </item>
+        <item> سنڌي </item>
+    </string-array>
 
-    <!-- endnegotiation -->
-    <string name="endnegotiation_1">End negotiation</string>
-    <string name="endnegotiation_2">Name of negotiator</string>
-    <string name="endnegotiation_3">Cotact number of neotiator</string>
-    <string name="endnegotiation_4">Present address of negotiator</string>
-    <string name="endnegotiation_5">Current highest bid of the product</string>
-    <string name="endnegotiation_6">Present available quantity (in kg.)</string>
-    <string name="endnegotiation_7">Do you want to accept or reject the product? Action cannot be undone</string>
-    <string name="endnegotiation_8">Accept</string>
-    <string name="endnegotiation_9">Reject</string>
-
-
-    <!-- forgotpassword -->
-    <string name="forgotpassword_1">Enter recieved OTP and new password</string>
-    <string name="forgotpassword_2">OTP</string>
-    <string name="forgotpassword_3">New password</string>
-    <string name="forgotpassword_4">Verify</string>
-
-    <!-- interestedquote -->
-    <string name="interestedquote_1">Number of successful orders :</string>
-    <string name="interestedquote_2">Description of the product</string>
-    <string name="interestedquote_3">Current highest bid of the product</string>
-    <string name="interestedquote_4">Present avaliable quantity (in kg.)</string>
-    <string name="interestedquote_5">If you are interested in this product, enter the details below</string>
-    <string name="interestedquote_6">How much are you willing to pay?</string>
-    <string name="interestedquote_7">How much quantity will you purchase?</string>
-    <string name="interestedquote_8">I\'M INTERESTED</string>
-
-    <!-- marketinsight -->
-    <string name="marketinsight_1">This page gives you latest insights about the market near you. Please select a category below.</string>
-    <string name="marketinsight_2">what are other users selling?</string>
-    <string name="marketinsight_3">what are other users buying?</string>
-    <string name="marketinsight_4">How is price changing in market?</string>
-    <string name="marketinsight_5">What do we recommend? (in order)</string>
-
-    <!-- myprofile -->
-    <string name="myprofile_1">Profile</string>
-    <string name="myprofile_2">Name of user</string>
-    <string name="myprofile_3">Cotact number of user</string>
-    <string name="myprofile_4">Present address of user</string>
-
-    <!-- nav_header_home -->
-    <string name="nav_header_home_1">KisaanConnect</string>
-    <string name="nav_header_home_2">Quick links</string>
-
-    <!-- negotiate -->
-    <string name="negotiate_1">Negotiator\'s price per kg (in Rs.)</string>
-    <string name="negotiate_2">Quantity (in kg.)</string>
-    <string name="negotiate_3">Enter price and quantity below that you are willing to purchase</string>
-    <string name="negotiate_4">How much are you willing to pay?</string>
-    <string name="negotiate_5">How much quantity will you purchase?</string>
-    <string name="negotiate_6">Negotiate</string>
-
-    <!-- ordersummary -->
-    <string name="ordersummary_1">Order Summary</string>
-    <string name="ordersummary_2">Name of negotiator</string>
-    <string name="ordersummary_3">Cotact number of neotiator</string>
-    <string name="ordersummary_4">Present address of negotiator</string>
-    <string name="ordersummary_5">Current highest bid of the product</string>
-    <string name="ordersummary_6">Present available quantity (in kg.)</string>
-    <string name="ordersummary_7">You can call the negotiator by clicking the button below</string>
-    <string name="ordersummary_8">Call Negotiator</string>
-
-    <!-- otp -->
-    <string name="otp_1">Enter the OTP received in your phone</string>
-    <string name="otp_2">OTP</string>
-    <string name="otp_3">Verify</string>
-    <string name="otp_4">Resend OTP</string>
-    <string name="otp_5">Sit back and relax while we verify your contact number</string>
-
-    <!-- passwordreset -->
-    <string name="passwordreset_1">Reset password</string>
-    <string name="passwordreset_2">Contact number</string>
-    <string name="passwordreset_3">Send OTP</string>
-
-
-    <!-- register -->
-    <string name="register">Sign up</string>
-    <string name="register_1">Sign up with us</string>
-    <string name="register_2">Full name</string>
-    <string name="register_3">Contact number</string>
-    <string name="register_4">Password</string>
-    <string name="register_5">Re-type password</string>
-    <string name="register_6">Village or city name</string>
-    <string name="register_7">State or Province</string>
-    <string name="register_8">Zip or Pin code</string>
-    <string name="register_9">Sign Up</string>
-
-    <!-- single_row_notif -->
-    <string name="single_row_notif_1">For more details :</string>
-
-    <!-- singleroworder -->
-    <string name="singleroworder_1">View Order Summary</string>
-
-    <!-- singlerowquote -->
-    <string name="singlerowquote_1">No. of orders : </string>
-    <string name="singlerowquote_2">Price (Rs.)</string>
-    <string name="singlerowquote_3">Quantity (kg)</string>
-
-    <!-- singlerowusernotif -->
-    <string name="singlerowusernotif_1">End Negotiation</string>
-    <string name="singlerowusernotif_2">Negotiate</string>
-
-    <!-- singlerowuserquote -->
-    <string name="singlerowuserquote_1">delete</string>
-    <string name="singlerowuserquote_2">Price (Rs.)</string>
-    <string name="singlerowuserquote_3">Quantity (kg)</string>
-    <string name="singlerowuserquote_4">update</string>
-
-    <!-- updateprofile -->
-    <string name="updateprofile_1">Update Profile</string>
-    <string name="updateprofile_2">Current Profile Details</string>
-    <string name="updateprofile_3">Name of user</string>
-    <string name="updateprofile_4">Cotact number of user</string>
-    <string name="updateprofile_5">New Address</string>
-    <string name="updateprofile_6">You can change your address below</string>
-    <string name="updateprofile_7">Confirm</string>
-
-    <!-- updatequote -->
-    <string name="updatequote_1">Update product</string>
-    <string name="updatequote_2">You can edit name, price and quantity of your product here!</string>
-    <string name="updatequote_3">Description of the product</string>
-    <string name="updatequote_4">Name of the product</string>
-    <string name="updatequote_5">Price</string>
-    <string name="updatequote_6">Avaliable quantity</string>
-    <string name="updatequote_7">Update</string>
-
-    <!-- chooselanguage -->
-    <string name="chooselanguage_1">OK</string>
-
-
-
-    <!-- menu -->
-
-    <string name="menu_help_btn">Help</string>
-    <string name="menu_language_btn">Language</string>
-
-    <string name="menu_home_btn">Home</string>
-    <string name="menu_myprofile_btn">My Profile</string>
-    <string name="menu_publicnotif_btn">Public Notifications</string>
-    <string name="menu_buyres_btn">Buy Resources</string>
-    <string name="menu_sellres_btn">Sell Resources</string>
-    <string name="menu_marketinsight_btn">Market Insight</string>
-    <string name="menu_logout_btn">Logout</string>
-    <string name="menu_exit_btn">Exit</string>
-
-    <string name="menu_refresh_btn">Refresh</string>
-    <string name="menu_changepass_btn">Change Password</string>
-    <string name="menu_updateprof_btn">Update Profile</string>
-    <string name="menu_myproduct_btn">My Products</string>
-    <string name="menu_myorder_btn">My Orders</string>
-    <string name="menu_mynegotiation_btn">My Negotiations</string>
-
-
-
+    <string-array name="codelanguagestotranslate">
+        <item>en</item>
+        <item>hi</item>
+        <item>bn</item>
+        <item>te</item>
+        <item>mr</item>
+        <item>ta</item>
+        <item>ur</item>
+        <item>gu</item>
+        <item>kn</item>
+        <item>ml</item>
+        <item>pa</item>
+        <item>ne</item>
+        <item>sd</item>  
+    </string-array>
+<string name="javausernotifadpater_1">has accepted your quotation of</string>
+<string name="javausernotifadpater_2">and wants</string>
+<string name="javausernotifadpater_3">kg at rate Rs</string>
+<string name="javausernotifadpater_4">has rejected your quotation of</string>
+<string name="javausernotifadpater_5">is interested to negotiate about</string>
+<string name="javausernegotiationadapter_1">You are negotiating with</string>
+<string name="javausernegotiationadapter_2">for</string>
+<string name="javausernegotiationadapter_3">, currently for</string>
+<string name="javausernegotiationadapter_4">kg at rate Rs.</string>
+<string name="javausernorderadapter_1">has accepted your quotation of</string>
+<string name="javausernorderadapter_2">and wants</string>
+<string name="javausernorderadapter_3">kg at rate Rs</string>
+<string name="javausernorderadapter_4">has accepted you bid of</string>
+<string name="javausernorderadapter_5">and has finalised</string>
+    <string name="content_home_2">KisaanConnect, with the aim of touching the hearts of rural india, forms a reliable and full-fledged platform for agricultural marketing. It gives you a virtual marketplace, tailored for the use of Indian farmers by easing their cost overhead and loss factors. Users can buy, sell or rent resources like crops, agricultural equipments etc. KisaanConnect also forms an ideal community for farmers, helping them to get more profit by resource bidding strategy. For a customer, this platform serves as cheap marketplace with no middleman included. This gives direct access to fresh and reliable resources.</string>
+    <string name="content_home_4">Using KisaanConnect is easy and intuitive. To buy a particular resource, go to quick links at the top left of this page. Select Buy Resources. A categories of identified sectors will be displayed. Click on the desired category. Sub-categories of that category will be shown. Select desired sub-subcategory. This will fetch all optimized search results. Click on desired one. Details page will show up. You can raise interest from that page followed by negotiation and acceptance. To sell resources, same path is followed. Add your product by going in to the sub-category via category and it will be instantly available online.</string>
+    <string name="chooselanguage_2">Select the application language from the drop down list below</string>
 </resources>

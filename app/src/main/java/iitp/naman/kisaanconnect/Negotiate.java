@@ -1,7 +1,5 @@
 package iitp.naman.kisaanconnect;
 
-
-
 /**
  * Created by naman on 01-Dec-16.
  */
@@ -12,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
 import android.widget.Button;
 import android.widget.TextView;
 import android.app.ProgressDialog;
@@ -30,14 +27,12 @@ import org.json.JSONObject;
 
 public class Negotiate extends AppCompatActivity {
 
-    private String notificationid;
     private String notificationsenderphone;
     private String notificationsendername;
     private String notificationsenderaddress;
     private String notificationquantity;
     private String notificationprice;
     private String notificationquoteid;
-    private String notificationstatus;
     private String inputPhone1;
 
     private EditText yourprice;
@@ -56,8 +51,9 @@ public class Negotiate extends AppCompatActivity {
         setContentView(R.layout.negotiate);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setTitle("Negotiate");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
@@ -65,14 +61,12 @@ public class Negotiate extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             inputPhone1 = extras.getString("inputPhone1");
-            notificationid = extras.getString("notificationid");
             notificationprice = extras.getString("notificationprice");
             notificationquantity = extras.getString("notificationquantity");
             notificationquoteid = extras.getString("notificationquoteid");
             notificationsenderaddress = extras.getString("notificationsenderaddress");
             notificationsendername = extras.getString("notificationsendername");
             notificationsenderphone = extras.getString("notificationsenderphone");
-            notificationstatus = extras.getString("notificationstatus");
         }
 
         yourprice = (EditText) findViewById(R.id.yourprice);
@@ -105,9 +99,6 @@ public class Negotiate extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
-//        upanel.putExtra("phoneno", inputPhone1);
-//        startActivity(upanel);
         finish();
     }
 
@@ -116,9 +107,6 @@ public class Negotiate extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-//                Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
-//                upanel.putExtra("phoneno", inputPhone1);
-//                startActivity(upanel);
                 this.finish();
                 return true;
             default:
@@ -161,20 +149,17 @@ public class Negotiate extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_LONG).show();
-//                                        Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
-//                                        upanel.putExtra("phoneno", inputPhone1);
-//                                        startActivity(upanel);
                                         pDialog.dismiss();
                                         finish();
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_LONG).show();
                                         pDialog.dismiss();
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                     pDialog.dismiss();
                                     e.printStackTrace();
                                 }
@@ -183,7 +168,7 @@ public class Negotiate extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                         pDialog.dismiss();
                     }
                 });
@@ -191,7 +176,7 @@ public class Negotiate extends AppCompatActivity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
                 return null;
             }
@@ -200,7 +185,6 @@ public class Negotiate extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject json) {
-
 
         }
     }

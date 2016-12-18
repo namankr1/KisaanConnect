@@ -3,7 +3,6 @@ package iitp.naman.kisaanconnect;
 /**
  * Created by naman on 30-Nov-16.
  */
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -47,7 +46,7 @@ public class UserNotifAdapter extends BaseAdapter {
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
-        int notifstatus=0;
+        int notifstatus;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         try{
             notifstatus=Integer.parseInt(notificationstatus[position]);
@@ -59,7 +58,6 @@ public class UserNotifAdapter extends BaseAdapter {
 
         View gridView;
         if (convertView == null) {
-            gridView = new View(context);
             if(notifstatus==1) {
                 gridView = inflater.inflate(R.layout.singlerowusernotifaccept, null);
             }
@@ -70,27 +68,23 @@ public class UserNotifAdapter extends BaseAdapter {
                 gridView = inflater.inflate(R.layout.singlerowusernotif, null);
             }
         } else {
-            gridView = (View) convertView;
+            gridView =convertView;
         }
 
         TextView textView = (TextView) gridView.findViewById(R.id.list_item_string);
 
-
-
-
-
         if(notifstatus==1 || notifstatus==-1){
             if(notifstatus==1){
-                textView.setText(notificationsendername[position]+" has accepted your quotation of "+notificationtype[position]+" and wants " +notificationquantity[position]+" kg at rate Rs. "+notificationprice[position]+" ");
+                textView.setText(notificationsendername[position]+" "+context.getResources().getString(R.string.javausernotifadpater_1)+" "+notificationtype[position]+" "+context.getResources().getString(R.string.javausernotifadpater_2) +" "+notificationquantity[position]+" "+context.getResources().getString(R.string.javausernotifadpater_3)+" "+notificationprice[position]+" ");
             }
             else{
-                textView.setText(notificationsendername[position]+" has rejected your quotation of "+notificationtype[position]);
+                textView.setText(notificationsendername[position]+" "+context.getResources().getString(R.string.javausernotifadpater_4)+" "+notificationtype[position]);
             }
         }
         else {
             Button btnendnegotiation  = ((Button) gridView.findViewById(R.id.delete_btn));
             Button btnnegotiate = ((Button) gridView.findViewById(R.id.add_btn));
-            textView.setText(notificationsendername[position]+" is interested to negotiate about "+notificationtype[position]+" and wants " +notificationquantity[position]+"  kg at rate Rs. "+notificationprice[position]+" ");
+            textView.setText(notificationsendername[position]+" "+context.getResources().getString(R.string.javausernotifadpater_5)+" "+notificationtype[position]+" "+context.getResources().getString(R.string.javausernotifadpater_2)+" "+notificationquantity[position]+" "+context.getResources().getString(R.string.javausernotifadpater_3)+" "+notificationprice[position]+" ");
             btnnegotiate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -105,7 +99,6 @@ public class UserNotifAdapter extends BaseAdapter {
                     upanel.putExtra("notificationstatus", notificationstatus[position]);
                     upanel.putExtra("inputPhone1", inputphone1);
                     myactivity.startActivity(upanel);
-                    //myactivity.finish();
                 }
             });
             btnendnegotiation.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +115,6 @@ public class UserNotifAdapter extends BaseAdapter {
                     upanel.putExtra("notificationstatus", notificationstatus[position]);
                     upanel.putExtra("inputPhone1", inputphone1);
                     myactivity.startActivity(upanel);
-                    //myactivity.finish();
                 }
             });
         }

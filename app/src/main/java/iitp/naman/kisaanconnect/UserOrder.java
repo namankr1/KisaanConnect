@@ -18,7 +18,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,19 +32,14 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 
 public class UserOrder extends AppCompatActivity {
 
     private GridView gridView;
-    private String serverName;
     private String serverPhone;
-    private String serverType;
-    private String serverAddress;
 
     private String[] notificationid = new String[]{""};
     private String[] notificationquoteid = new String[]{"No new Notifications"};
@@ -69,20 +63,18 @@ public class UserOrder extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            serverName = extras.getString("name");
             serverPhone=extras.getString("phoneno");
-            serverAddress=extras.getString("address");
-            serverType=extras.getString("type");
         }
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("My Orders");
+        getSupportActionBar().setTitle(getResources().getString(R.string.javauserorder_3));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-        //NetAsync(this.findViewById(android.R.id.content));
 
         gridView = (GridView) findViewById(R.id.gridView13);
 
@@ -93,7 +85,6 @@ public class UserOrder extends AppCompatActivity {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", serverPhone);
                 startActivity(upanel);
-                //finish();
             }
         });
     }
@@ -105,12 +96,6 @@ public class UserOrder extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-//        upanel.putExtra("phoneno", serverPhone);
-//        upanel.putExtra("name",serverName);
-//        upanel.putExtra("address",serverAddress);
-//        upanel.putExtra("type",serverType);
-//        startActivity(upanel);
         finish();
     }
 
@@ -124,12 +109,6 @@ public class UserOrder extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-//                Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-//                upanel.putExtra("phoneno", serverPhone);
-//                upanel.putExtra("name",serverName);
-//                upanel.putExtra("address",serverAddress);
-//                upanel.putExtra("type",serverType);
-//                startActivity(upanel);
                 this.finish();
                 return true;
             case R.id.menuRefresh:
@@ -165,9 +144,7 @@ public class UserOrder extends AppCompatActivity {
                     if (urlc.getResponseCode() == 200) {
                         return true;
                     }
-                } catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -177,11 +154,11 @@ public class UserOrder extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean th){
 
-            if(th == true){
+            if(th){
                 new ProcessRegister().execute();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),  getResources().getString(R.string.cantconnect), Toast.LENGTH_SHORT).show();
             }
 
             nDialog.dismiss();
@@ -255,9 +232,9 @@ public class UserOrder extends AppCompatActivity {
                                         else{
                                             pDialog.dismiss();
                                             AlertDialog.Builder builder = new AlertDialog.Builder(UserOrder.this);
-                                            builder.setMessage("No products purchased yet")
+                                            builder.setMessage(getResources().getString(R.string.javauserorder_1))
                                                     .setCancelable(false)
-                                                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                    .setPositiveButton(getResources().getString(R.string.javauserorder_2), new DialogInterface.OnClickListener() {
                                                         public void onClick(DialogInterface dialog, int id) {
                                                             dialog.cancel();
                                                         }
@@ -271,12 +248,12 @@ public class UserOrder extends AppCompatActivity {
                                         pDialog.dismiss();
                                     }
                                     else{
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                     pDialog.dismiss();
                                 }
                             }
@@ -284,7 +261,7 @@ public class UserOrder extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                         pDialog.dismiss();
                     }
                 });
@@ -292,7 +269,7 @@ public class UserOrder extends AppCompatActivity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
                 return false;
             }
@@ -327,7 +304,7 @@ public class UserOrder extends AppCompatActivity {
             userquotesf = getSharedPreferences("userorder"+serverPhone,MODE_PRIVATE);
             Boolean alreadypresent1 = userquotesf.getBoolean("alreadypresent",false);
             JSONObject jsondata;
-            if(alreadypresent1==true){
+            if(alreadypresent1){
                 String strjson = userquotesf.getString("jsondata",null);
                 if(strjson!=null){
                     try{
@@ -367,10 +344,9 @@ public class UserOrder extends AppCompatActivity {
                         else{
                             resultserver="2";
                         }
-                        //gridView.setAdapter(new ImageAdapter(, categoryname, categorydescription, categoryid, categorypicture));
-                        //pDialog.dismiss();
                     }
                     catch(Exception e){
+                        e.printStackTrace();
 
                     }
 
@@ -382,29 +358,37 @@ public class UserOrder extends AppCompatActivity {
         @Override
         protected void onPostExecute(String response) {
             super.onPostExecute(response);
-            if(response.equals("1")) {
-                gridView.setAdapter(new UserOrderAdapter(myactivity, getApplicationContext(), serverPhone, notificationid, notificationsenderphone, notificationsendername, notificationsenderaddress, notificationquantity, notificationprice, notificationquoteid, notificationstatus, notificationtype));
-                pDialog.dismiss();
+
+            try {
+                switch (Integer.parseInt(response)) {
+                    case 1:
+                        gridView.setAdapter(new UserOrderAdapter(myactivity, getApplicationContext(), serverPhone, notificationid, notificationsenderphone, notificationsendername, notificationsenderaddress, notificationquantity, notificationprice, notificationquoteid, notificationstatus, notificationtype));
+                        pDialog.dismiss();
+                        break;
+                    case 2:
+                        gridView.setAdapter(new UserOrderAdapter(myactivity, getApplicationContext(), serverPhone, notificationid, notificationsenderphone, notificationsendername, notificationsenderaddress, notificationquantity, notificationprice, notificationquoteid, notificationstatus, notificationtype));
+                        pDialog.dismiss();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(UserOrder.this);
+                        builder.setMessage(getResources().getString(R.string.javauserorder_1))
+                                .setCancelable(false)
+                                .setPositiveButton(getResources().getString(R.string.javauserorder_2), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                        break;
+                    default:
+                        new NetCheck().execute();
+                        pDialog.dismiss();
+                }
             }
-            else if(response.equals("2")) {
-                gridView.setAdapter(new UserOrderAdapter(myactivity, getApplicationContext(), serverPhone, notificationid, notificationsenderphone, notificationsendername, notificationsenderaddress, notificationquantity, notificationprice, notificationquoteid, notificationstatus, notificationtype));
-                pDialog.dismiss();
-                AlertDialog.Builder builder = new AlertDialog.Builder(UserOrder.this);
-                builder.setMessage("No products purchased yet")
-                        .setCancelable(false)
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
-            }
-            else{
+            catch (Exception e){
+                e.printStackTrace();
                 new NetCheck().execute();
                 pDialog.dismiss();
             }
-
         }
     }
 
@@ -433,9 +417,7 @@ public class UserOrder extends AppCompatActivity {
                     if (urlc.getResponseCode() == 200) {
                         return true;
                     }
-                } catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -445,7 +427,7 @@ public class UserOrder extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean th){
 
-            if(th == true){
+            if(th){
                 new ProcessRegister().execute();
             }
             else{

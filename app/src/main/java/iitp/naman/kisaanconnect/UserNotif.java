@@ -12,11 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
 import android.widget.GridView;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -51,24 +49,22 @@ public class UserNotif extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Your Notifications");
+        getSupportActionBar().setTitle(getResources().getString(R.string.javausernotif_3));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
         }
-        //new ProcessNotification().execute();
         gridView = (GridView) findViewById(R.id.gridView11);
     }
 
     @Override
     public void onBackPressed() {
-//        Intent upanel = new Intent(getApplicationContext(), Home.class);
-//        upanel.putExtra("phoneno", inputPhone1);
-//        startActivity(upanel);
         finish();
     }
 
@@ -88,9 +84,6 @@ public class UserNotif extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-//                Intent upanel = new Intent(getApplicationContext(), Home.class);
-//                upanel.putExtra("phoneno", inputPhone1);
-//                startActivity(upanel);
                 this.finish();
                 return true;
             case R.id.menuRefresh:
@@ -164,9 +157,9 @@ public class UserNotif extends AppCompatActivity {
                                         else {
                                             pDialog.dismiss();
                                             AlertDialog.Builder builder = new AlertDialog.Builder(UserNotif.this);
-                                            builder.setMessage("No new notifications")
+                                            builder.setMessage(getResources().getString(R.string.javausernotif_1))
                                                     .setCancelable(false)
-                                                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                    .setPositiveButton(getResources().getString(R.string.javausernotif_2), new DialogInterface.OnClickListener() {
                                                         public void onClick(DialogInterface dialog, int id) {
                                                             dialog.cancel();
                                                         }
@@ -180,11 +173,11 @@ public class UserNotif extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_LONG).show();
                                         pDialog.dismiss();
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                     pDialog.dismiss();
                                     e.printStackTrace();
                                 }
@@ -193,7 +186,7 @@ public class UserNotif extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                         pDialog.dismiss();
                     }
                 });
@@ -201,7 +194,7 @@ public class UserNotif extends AppCompatActivity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
                 return null;
             }

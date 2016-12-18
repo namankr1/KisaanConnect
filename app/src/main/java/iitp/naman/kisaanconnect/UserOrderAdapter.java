@@ -47,7 +47,7 @@ public class UserOrderAdapter extends BaseAdapter {
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
-        int notifstatus=0;
+        int notifstatus;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         try{
             notifstatus=Integer.parseInt(notificationstatus[position]);
@@ -59,20 +59,19 @@ public class UserOrderAdapter extends BaseAdapter {
 
         View gridView;
         if (convertView == null) {
-            gridView = new View(context);
                 gridView = inflater.inflate(R.layout.singleroworder, null);
         } else {
-            gridView = (View) convertView;
+            gridView = convertView;
         }
 
         TextView textView = (TextView) gridView.findViewById(R.id.list_item_string);
 
         if(notifstatus==1 || notifstatus==2){
             if(notifstatus==1){
-                textView.setText(notificationsendername[position]+" has accepted your quotation of "+notificationtype[position]+" and wants " +notificationquantity[position]+" kg at rate Rs. "+notificationprice[position]+" ");
+                textView.setText(notificationsendername[position]+" "+context.getResources().getString(R.string.javausernorderadapter_1)+" "+notificationtype[position]+" "+context.getResources().getString(R.string.javausernorderadapter_2) +" "+notificationquantity[position]+" "+context.getResources().getString(R.string.javausernorderadapter_3)+" "+notificationprice[position]+" ");
             }
             else{
-                textView.setText(notificationsendername[position]+" has accepted you bid of "+notificationtype[position]+" and has finalised " +notificationquantity[position]+" kg at rate Rs. "+notificationprice[position]+" ");
+                textView.setText(notificationsendername[position]+" "+context.getResources().getString(R.string.javausernorderadapter_4)+" "+notificationtype[position]+" "+context.getResources().getString(R.string.javausernorderadapter_5) +" "+notificationquantity[position]+" "+context.getResources().getString(R.string.javausernorderadapter_3)+" "+notificationprice[position]+" ");
             }
         }
 
@@ -92,7 +91,6 @@ public class UserOrderAdapter extends BaseAdapter {
                     upanel.putExtra("notificationstatus", notificationstatus[position]);
                     upanel.putExtra("inputPhone1", inputphone1);
                     myactivity.startActivity(upanel);
-                    //myactivity.finish();
                 }
             });
         return gridView;

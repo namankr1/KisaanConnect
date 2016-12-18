@@ -2,7 +2,6 @@ package iitp.naman.kisaanconnect;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -16,20 +15,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -44,7 +38,6 @@ public class UpdateProfile extends AppCompatActivity {
 
     private String serverName;
     private String serverPhone;
-    private String serverType;
     private String serverAddress;
 
 
@@ -55,7 +48,9 @@ public class UpdateProfile extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -65,7 +60,6 @@ public class UpdateProfile extends AppCompatActivity {
             serverName = extras.getString("name");
             serverPhone=extras.getString("phoneno");
             serverAddress=extras.getString("address");
-            serverType=extras.getString("type");
 
             newaddress = (EditText) findViewById(R.id.address);
             btnconfirm = (Button) findViewById(R.id.btnconfirm);
@@ -94,12 +88,6 @@ public class UpdateProfile extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-//                Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-//                upanel.putExtra("phoneno", serverPhone);
-//                upanel.putExtra("name",serverName);
-//                upanel.putExtra("address",serverAddress);
-//                upanel.putExtra("type",serverType);
-//                startActivity(upanel);
                 this.finish();
                 return true;
             default:
@@ -109,12 +97,6 @@ public class UpdateProfile extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-//        upanel.putExtra("phoneno", serverPhone);
-//        upanel.putExtra("name",serverName);
-//        upanel.putExtra("address",serverAddress);
-//        upanel.putExtra("type",serverType);
-//        startActivity(upanel);
         finish();
     }
 
@@ -144,10 +126,7 @@ public class UpdateProfile extends AppCompatActivity {
                         return true;
                     }
                 }
-                catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                }
-                catch (IOException e) {
+                catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -156,11 +135,11 @@ public class UpdateProfile extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Boolean th){
-            if(th == true){
+            if(th){
                 new ProcessRegister().execute();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),  getResources().getString(R.string.cantconnect), Toast.LENGTH_SHORT).show();
             }
             nDialog.dismiss();
         }
@@ -197,9 +176,6 @@ public class UpdateProfile extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-//                                        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-//                                        upanel.putExtra("phoneno", serverPhone);
-//                                        startActivity(upanel);
                                         pDialog.dismiss();
                                         finish();
                                     } else if (status.compareTo("err") == 0) {
@@ -207,12 +183,12 @@ public class UpdateProfile extends AppCompatActivity {
                                         pDialog.dismiss();
                                     }
                                     else{
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                     pDialog.dismiss();
                                 }
                             }
@@ -220,7 +196,7 @@ public class UpdateProfile extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                         pDialog.dismiss();
                     }
                 });
@@ -228,7 +204,7 @@ public class UpdateProfile extends AppCompatActivity {
             }
             catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
                 return null;
             }

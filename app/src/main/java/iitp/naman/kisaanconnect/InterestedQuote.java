@@ -1,7 +1,6 @@
 package iitp.naman.kisaanconnect;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,11 +23,9 @@ import org.json.JSONObject;
 
 public class InterestedQuote extends AppCompatActivity {
     private String senderPhone1;
-    private String category1;
 
     private String categoryname1;
     private String subcategoryname1;
-    private String subcategory1;
     private String quoteid1 ;
     private String nameofseller1 ;
     private String price1 ;
@@ -59,8 +56,6 @@ public class InterestedQuote extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             senderPhone1 = extras.getString("senderphone");
-            category1=extras.getString("category");
-            subcategory1=extras.getString("subcategory");
             quoteid1 = extras.getString("quoteid");
             nameofseller1=extras.getString("nameofseller");
             price1=extras.getString("price");
@@ -75,9 +70,10 @@ public class InterestedQuote extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Quote Details");
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        getSupportActionBar().setTitle(getResources().getString(R.string.javainterestedquote_1));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         btnInterested = (Button) findViewById(R.id.interested);
@@ -90,8 +86,8 @@ public class InterestedQuote extends AppCompatActivity {
         nameofseller = (TextView) findViewById(R.id.nameofseller);
         phoneseller = (TextView) findViewById(R.id.phoneofseller);
         description = (TextView) findViewById(R.id.description);
-        category = (TextView) findViewById(R.id.description);
-        subcategory= (TextView) findViewById(R.id.description);
+        category = (TextView) findViewById(R.id.categoryname);
+        subcategory= (TextView) findViewById(R.id.subcategoryname);
         currentprice.setText(bidvalue1);
         availablequantity.setText((quantity1));
         quoterating.setText(quoterating1);
@@ -108,8 +104,8 @@ public class InterestedQuote extends AppCompatActivity {
                 String yourprice1 = yourprice.getText().toString();
                 String yourquantity1=yourquantity.getText().toString();
                 try{
-                    float baseprice=0;
-                    float basequantity=0;
+                    float baseprice;
+                    float basequantity;
                     try{
                         baseprice = Float.parseFloat(bidvalue1);
                     }
@@ -133,15 +129,15 @@ public class InterestedQuote extends AppCompatActivity {
                         new InterestedNotification().execute();
                     }
                     else if(yourprice2<baseprice){
-                        Toast.makeText(getApplicationContext(), "You must bid higher or equal than previous bid", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.javainterestedquote_2), Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Toast.makeText(getApplicationContext(), "Given quantity is not currently availbale with seller", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.javainterestedquote_3), Toast.LENGTH_SHORT).show();
                     }
 
                 }
                 catch (Exception e){
-                    Toast.makeText(getApplicationContext(), "Invalid Data Given", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.javainterestedquote_4), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -150,13 +146,6 @@ public class InterestedQuote extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
-//        upanel.putExtra("phoneno", senderPhone1);
-//        upanel.putExtra("category", category1);
-//        upanel.putExtra("subcategory", subcategory1);
-//        upanel.putExtra("subcategoryname",subcategoryname1);
-//        upanel.putExtra("categoryname",categoryname1);
-//        startActivity(upanel);
         finish();
     }
 
@@ -170,13 +159,6 @@ public class InterestedQuote extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-//                Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
-//                upanel.putExtra("phoneno", senderPhone1);
-//                upanel.putExtra("category", category1);
-//                upanel.putExtra("subcategory", subcategory1);
-//                upanel.putExtra("subcategoryname",subcategoryname1);
-//                upanel.putExtra("categoryname",categoryname1);
-//                startActivity(upanel);
                 this.finish();
                 return true;
             default:
@@ -219,13 +201,6 @@ public class InterestedQuote extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-//                                        Intent upanel = new Intent(getApplicationContext(), GetQuotesofSubcategory.class);
-//                                        upanel.putExtra("phoneno", senderPhone1);
-//                                        upanel.putExtra("category", category1);
-//                                        upanel.putExtra("subcategory", subcategory1);
-//                                        upanel.putExtra("subcategoryname",subcategoryname1);
-//                                        upanel.putExtra("categoryname",categoryname1);
-//                                        startActivity(upanel);
                                         pDialog.dismiss();
                                         finish();
 
@@ -234,12 +209,12 @@ public class InterestedQuote extends AppCompatActivity {
                                         pDialog.dismiss();
                                     }
                                     else{
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                     pDialog.dismiss();
                                 }
                             }
@@ -247,14 +222,14 @@ public class InterestedQuote extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                         pDialog.dismiss();
                     }
                 });
                 que.add(jsonObjReq);
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
                 return null;
             }
@@ -262,7 +237,6 @@ public class InterestedQuote extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(JSONObject response) {
-
 
         }
     }

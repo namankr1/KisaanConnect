@@ -27,13 +27,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MyProfile extends AppCompatActivity{
@@ -63,7 +59,9 @@ public class MyProfile extends AppCompatActivity{
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -75,7 +73,6 @@ public class MyProfile extends AppCompatActivity{
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", serverPhone);
                 startActivity(upanel);
-//                finish();
             }
         });
 
@@ -93,9 +90,6 @@ public class MyProfile extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-//        Intent upanel = new Intent(getApplicationContext(), Home.class);
-//        upanel.putExtra("phoneno", serverPhone);
-//        startActivity(upanel);
         finish();
     }
 
@@ -109,9 +103,6 @@ public class MyProfile extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
-//                Intent upanel = new Intent(getApplicationContext(), Home.class);
-//                upanel.putExtra("phoneno", serverPhone);
-//                startActivity(upanel);
                 this.finish();
                 return true;
             }
@@ -122,7 +113,6 @@ public class MyProfile extends AppCompatActivity{
                 upanel.putExtra("address",serverAddress);
                 upanel.putExtra("type",serverType);
                 startActivity(upanel);
-                //this.finish();
                 return true;
             }
             case R.id.update_profile: {
@@ -132,7 +122,6 @@ public class MyProfile extends AppCompatActivity{
                 upanel.putExtra("address",serverAddress);
                 upanel.putExtra("type",serverType);
                 startActivity(upanel);
-                //this.finish();
                 return true;
             }
             case R.id.menuRefresh:
@@ -145,7 +134,6 @@ public class MyProfile extends AppCompatActivity{
                 upanel.putExtra("address",serverAddress);
                 upanel.putExtra("type",serverType);
                 startActivity(upanel);
-                //this.finish();
                 return true;
             }
 
@@ -156,7 +144,6 @@ public class MyProfile extends AppCompatActivity{
                 upanel.putExtra("address",serverAddress);
                 upanel.putExtra("type",serverType);
                 startActivity(upanel);
-                //this.finish();
                 return true;
             }
 
@@ -167,7 +154,6 @@ public class MyProfile extends AppCompatActivity{
                 upanel.putExtra("address",serverAddress);
                 upanel.putExtra("type",serverType);
                 startActivity(upanel);
-                //this.finish();
                 return true;
             }
 
@@ -201,9 +187,7 @@ public class MyProfile extends AppCompatActivity{
                     if (urlc.getResponseCode() == 200) {
                         return true;
                     }
-                } catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -212,11 +196,11 @@ public class MyProfile extends AppCompatActivity{
         }
         @Override
         protected void onPostExecute(Boolean th){
-            if(th == true){
+            if(th){
                 new ProcessRegister().execute();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.cantconnect), Toast.LENGTH_SHORT).show();
             }
             nDialog.dismiss();
 
@@ -258,21 +242,21 @@ public class MyProfile extends AppCompatActivity{
                                         JSONObject tempdata =  response.getJSONObject("profile");
                                         serverAddress = tempdata.getString("address");
                                         serverName = tempdata.getString("name");
-                                        serverType = tempdata.getString("type").equals("i")?"Individual":"Company";
+                                        serverType = tempdata.getString("type");
                                         name1.setText(serverName);
                                         address1.setText(serverAddress);
                                         phone1.setText(serverPhone);
                                         pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                     e.printStackTrace();
                                     pDialog.dismiss();
                                 }
@@ -281,7 +265,7 @@ public class MyProfile extends AppCompatActivity{
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                         pDialog.dismiss();
 
                     }
@@ -291,7 +275,7 @@ public class MyProfile extends AppCompatActivity{
             } catch (JSONException e) {
                 e.printStackTrace();
                 pDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 return null;
             }
             return resultserver;
@@ -320,7 +304,7 @@ public class MyProfile extends AppCompatActivity{
             myprofsf = getSharedPreferences("myprof"+serverPhone,MODE_PRIVATE);
             Boolean alreadypresent1 = myprofsf.getBoolean("alreadypresent",false);
             JSONObject jsondata;
-            if(alreadypresent1==true){
+            if(alreadypresent1){
                 String strjson = myprofsf.getString("jsondata",null);
                 if(strjson!=null){
                     try{
@@ -332,13 +316,11 @@ public class MyProfile extends AppCompatActivity{
                         serverType = tempdata.getString("type").equals("i")?"Individual":"Company";
 
                         resultserver=true;
-                        //gridView.setAdapter(new ImageAdapter(, categoryname, categorydescription, categoryid, categorypicture));
-                        //pDialog.dismiss();
                     }
                     catch(Exception e){
+                        e.printStackTrace();
 
                     }
-
                 }
             }
 
@@ -347,7 +329,7 @@ public class MyProfile extends AppCompatActivity{
         @Override
         protected void onPostExecute(Boolean response) {
             super.onPostExecute(response);
-            if(response==true) {
+            if(response) {
                 name1.setText(serverName);
                 address1.setText(serverAddress);
                 phone1.setText(serverPhone);

@@ -4,6 +4,7 @@ package iitp.naman.kisaanconnect;
  * Created by naman on 30-Nov-16.
  */
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +16,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,10 +32,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+
 
 public class Sell extends AppCompatActivity {
 
@@ -47,18 +46,25 @@ public class Sell extends AppCompatActivity {
     private String[] categorypicture = new String[] {};
     private SharedPreferences.Editor buye;
     private SharedPreferences buysf;
+    private Activity myactivity;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buy);
+        myactivity = this;
+
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Categories");
+        getSupportActionBar().setTitle( getResources().getString(R.string.javasell_1));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         Bundle extras = getIntent().getExtras();
@@ -79,7 +85,6 @@ public class Sell extends AppCompatActivity {
                 upanel.putExtra("category",categoryid);
                 upanel.putExtra("categoryname",categoryname);
                 startActivity(upanel);
-                //finish();
             }
         });
 
@@ -90,17 +95,15 @@ public class Sell extends AppCompatActivity {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 startActivity(upanel);
-                //finish();
 
             }
         });
     }
 
+
+
     @Override
     public void onBackPressed() {
-//        Intent upanel = new Intent(getApplicationContext(), Home.class);
-//        upanel.putExtra("phoneno", inputPhone1);
-//        startActivity(upanel);
         finish();
     }
 
@@ -114,9 +117,6 @@ public class Sell extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-//                Intent upanel = new Intent(getApplicationContext(), Home.class);
-//                upanel.putExtra("phoneno", inputPhone1);
-//                startActivity(upanel);
                 this.finish();
                 return true;
             case R.id.menuRefresh:
@@ -152,9 +152,7 @@ public class Sell extends AppCompatActivity {
                     if (urlc.getResponseCode() == 200) {
                         return true;
                     }
-                } catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -164,11 +162,11 @@ public class Sell extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean th){
 
-            if(th == true){
+            if(th){
                 new ProcessRegister().execute();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),  getResources().getString(R.string.cantconnect), Toast.LENGTH_SHORT).show();
             }
             nDialog.dismiss();
         }
@@ -221,20 +219,20 @@ public class Sell extends AppCompatActivity {
                                             categorypicture[i]=tempdata.getJSONObject(i).getString("picture");
                                         }
 
-                                        gridView.setAdapter(new ImageAdapter(getApplicationContext(), categoryname,categorydescription,categoryid,categorypicture));
+                                        gridView.setAdapter(new ImageAdapter(myactivity,getApplicationContext(), categoryname,categoryid,categorypicture));
                                         pDialog.dismiss();
                                     } else if (status.compareTo("err") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else {
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                 }
                                 catch (JSONException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                     pDialog.dismiss();
 
                                 }
@@ -243,7 +241,7 @@ public class Sell extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                         pDialog.dismiss();
                     }
                 });
@@ -251,7 +249,7 @@ public class Sell extends AppCompatActivity {
             }
             catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
                 return null;
             }
@@ -284,7 +282,7 @@ public class Sell extends AppCompatActivity {
             buysf = getSharedPreferences("categoriestore",MODE_PRIVATE);
             Boolean alreadypresent1 = buysf.getBoolean("alreadypresent",false);
             JSONObject jsondata;
-            if(alreadypresent1==true){
+            if(alreadypresent1){
                 String strjson = buysf.getString("jsondata",null);
                 if(strjson!=null){
                     try{
@@ -301,15 +299,12 @@ public class Sell extends AppCompatActivity {
                             categorydescription[i] = tempdata.getJSONObject(i).getString("description");
                             categorypicture[i] =tempdata.getJSONObject(i).getString("picture");
                         }
-
                         resultserver=true;
-                        //gridView.setAdapter(new ImageAdapter(, categoryname, categorydescription, categoryid, categorypicture));
-                        //pDialog.dismiss();
                     }
                     catch(Exception e){
+                        e.printStackTrace();
 
                     }
-
                 }
             }
 
@@ -318,8 +313,8 @@ public class Sell extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean response) {
             super.onPostExecute(response);
-            if(response==true) {
-                gridView.setAdapter(new ImageAdapter(getApplicationContext(), categoryname, categorydescription, categoryid, categorypicture));
+            if(response) {
+                gridView.setAdapter(new ImageAdapter(myactivity,getApplicationContext(), categoryname, categoryid, categorypicture));
                 pDialog.dismiss();
             }
             else{

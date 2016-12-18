@@ -1,0 +1,236 @@
+<resources>
+<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+<string name="network_check">https://www.google.co.in/</string>
+<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+<string name="image_text">مذهب سان ڳنڍڻ</string>
+<string name="app_name">KisaanConnect</string>
+<string name="title_activity_home">گھر جي</string>
+<string name="navigation_drawer_open">اوپن چر ڀريندڙ</string>
+<string name="navigation_drawer_close">بند چر ڀريندڙ</string>
+<string name="activity_login">لاگ ان ۾</string>
+<string name="activity_login_1">توهان جي اڪائونٽ تائين جو لاگ ان</string>
+<string name="activity_login_2">رابطي جو نمبر</string>
+<string name="activity_login_3">پاسورڊ</string>
+<string name="activity_login_4">اڳتي</string>
+<string name="activity_login_5">پاسورڊ وساري ويٺا؟</string>
+<string name="activity_login_6">سائن اپ ڪريو</string>
+<string name="activity_login_7">مونکي ياد ڪيو</string>
+<string name="activity_login_8">لڪايو</string>
+<string name="activity_login_9">نظر</string>
+<string name="addquotesofsubcategory_1">توهان جي دلچسپي اسان سان پنهنجي پيداوار کي وڪرو ڪرڻ لاء توهان جي مهرباني. </string>
+<string name="addquotesofsubcategory_2">جي پيداوار جو نالو</string>
+<string name="addquotesofsubcategory_3">مقدار (رپيا يا نمبر ۾)</string>
+<string name="addquotesofsubcategory_4">قيمت (رپين ۾)</string>
+<string name="addquotesofsubcategory_5">تاريخ (اختياري)</string>
+<string name="addquotesofsubcategory_6">شامل ڪريو</string>
+<string name="changepassword_1">تبديل ڪريو پاسورڊ</string>
+<string name="changepassword_2">نئون پاس ورڊ سنڌ ايندڙ لاگ ان ڪوشش کي قبول ڪيو ويندو ته ڪاميابي تبديل</string>
+<string name="changepassword_3">موجوده پاس ورڊ</string>
+<string name="changepassword_4">نئون پاسورڊ</string>
+<string name="changepassword_5">ٻيهر قسم نئون پاسورڊ</string>
+<string name="changepassword_6">جي تصديق</string>
+<string name="content_home_1">ڪيئن KisaanConnect توهان جي مدد ڪري سگهي ٿو؟</string>
+    <string name="content_home_3">ڪيئن KisaanConnect استعمال ڪرڻ جي؟</string>
+    <string name="deletequote_1">پيداوار کي ختم ڪريو</string>
+<string name="deletequote_2">جي پيداوار جي وضاحت</string>
+<string name="deletequote_3">جي پيداوار جي موجوده ترين بولي (رپين ۾)</string>
+<string name="deletequote_4">موجوده موجود مقدار</string>
+<string name="deletequote_5">اوھان کي پڪ آھي ته ان کي ختم ڪرڻ چاھيو ٿا؟ </string>
+<string name="deletequote_6">ها</string>
+<string name="deletequote_7">نه</string>
+<string name="endnegotiation_1">آخر ڳالهين</string>
+<string name="endnegotiation_2">negotiator جو نالو</string>
+<string name="endnegotiation_3">negotiator جي رابطي جو نمبر</string>
+<string name="endnegotiation_4">negotiator جي موجوده پتو</string>
+<string name="endnegotiation_5">جي پيداوار جي موجوده ترين بولي (رپين ۾)</string>
+<string name="endnegotiation_6">موجوده موجود مقدار</string>
+<string name="endnegotiation_7">اوھان کي قبول يا پيداوار جو انڪار ڪرڻ چاھيو ٿا؟ </string>
+<string name="endnegotiation_8">قبول</string>
+<string name="endnegotiation_9">انڪار</string>
+<string name="forgotpassword_1">ملي OTP ۽ نئين پاسورڊ داخل ڪريو</string>
+<string name="forgotpassword_2">OTP</string>
+<string name="forgotpassword_3">نئون پاس ورڊ</string>
+<string name="forgotpassword_4">جي تصديق ڪريو</string>
+<string name="interestedquote_1">ڪامياب حڪم جو تعداد:</string>
+<string name="interestedquote_2">جي پيداوار جي وضاحت</string>
+<string name="interestedquote_3">جي پيداوار جي موجوده ترين بولي (رپين ۾)</string>
+<string name="interestedquote_4">موجوده موجود مقدار</string>
+<string name="interestedquote_5">توهان هن پيداوار ۾ دلچسپي آهي ته، هيٺ تفصيل ۾ داخل</string>
+<string name="interestedquote_6">اوھان کي ڪيترو ادا ڪرڻ لاء راضي آهن؟</string>
+<string name="interestedquote_7">تون ڪيترو مقدار خريد ڪندو؟</string>
+<string name="interestedquote_8">مون کي دلچسپي ن</string>
+<string name="marketinsight_1">هيء صفحو توهان کي توهان جي مارڪيٽ جي باري ۾ تازي insights ڏئي ٿو. </string>
+<string name="marketinsight_2">ٻين صارفين کي وڪرو ڇا آهي؟</string>
+<string name="marketinsight_3">جيڪي ٻين استعمال ڪندڙن خرید آهن؟</string>
+<string name="marketinsight_4">ڪيئن قيمت مارڪيٽ ۾ تبديل ڪرڻ آهي؟</string>
+<string name="marketinsight_5">اسان کي ڪهڙي صلاح ڪندا آھن؟</string>
+<string name="myprofile_1">پروفائيل</string>
+<string name="myprofile_2">پورو نالو</string>
+<string name="myprofile_3">رابطي جو نمبر</string>
+<string name="myprofile_4">هاڻوڪو پتو</string>
+<string name="nav_header_home_1">مذهب سان ڳنڍڻ</string>
+<string name="nav_header_home_2">تڪڙا لنڪس</string>
+<string name="negotiate_1">قيمت (رپين ۾)</string>
+<string name="negotiate_2">مقدار (رپيا يا نمبر ۾)</string>
+<string name="negotiate_3">قيمت لکو ۽ هيٺ مقدار ته اوھان کي خريد ڪرڻ لاء راضي آهن.</string>
+<string name="negotiate_4">اوھان کي ڪيترو ادا ڪرڻ لاء راضي آهن؟</string>
+<string name="negotiate_5">تون ڪيترو مقدار خريد ڪندو؟</string>
+<string name="negotiate_6">طي</string>
+<string name="ordersummary_1">خلاصو</string>
+<string name="ordersummary_2">negotiator جو نالو</string>
+<string name="ordersummary_3">negotiator جي رابطي جو نمبر</string>
+<string name="ordersummary_4">negotiator جي موجوده پتو</string>
+<string name="ordersummary_5">جي پيداوار جي موجوده ترين بولي (رپين ۾)</string>
+<string name="ordersummary_6">موجوده موجود مقدار (رپيا يا نمبر ۾)</string>
+<string name="ordersummary_7">تون هيٺ جي بٽڻ تي ڪلڪ ڪري negotiator سڏ ڪري سگهو ٿا</string>
+<string name="ordersummary_8">Negotiator دعا</string>
+<string name="otp_1">گھڙو جي OTP توهان جي فون ۾ حاصل</string>
+<string name="otp_2">OTP</string>
+<string name="otp_3">جي تصديق ڪريو</string>
+<string name="otp_4">resend OTP</string>
+<string name="otp_5">واپس ويھ ۽ اسان کي توهان جي رابطي جو نمبر جي تصديق، جڏهن ته آرام</string>
+<string name="passwordreset_1">پاس ورڊ ري سيٽ</string>
+<string name="passwordreset_2">رابطي جو نمبر</string>
+<string name="passwordreset_3">OTP موڪليو</string>
+<string name="register">سائن اپ ڪريو</string>
+<string name="register_1">اسان سان سائن اپ ڪريو</string>
+<string name="register_2">پورو نالو</string>
+<string name="register_3">رابطي جو نمبر</string>
+<string name="register_4">پاسورڊ</string>
+<string name="register_5">ٻيهر قسم جي پاس ورڊ</string>
+<string name="register_6">ڳوٺ يا شهر جو نالو</string>
+<string name="register_7">رياست يا صوبو</string>
+<string name="register_8">زپ يا پن ڪوڊ</string>
+<string name="register_9">سائن اپ ڪريو</string>
+<string name="single_row_notif_1">وڌيڪ تفصيل لاء:</string>
+<string name="singleroworder_1">تت جو ڏيک</string>
+<string name="singlerowquote_1">حڪم جي نمبر:</string>
+<string name="singlerowquote_2">قيمت (روپيا)</string>
+<string name="singlerowquote_3">مقدار (رپيا)</string>
+<string name="singlerowusernotif_1">آخر ڳالهين</string>
+<string name="singlerowusernotif_2">طي</string>
+<string name="singlerowuserquote_1">خارج ڪريو</string>
+<string name="singlerowuserquote_2">قيمت (رپين.)</string>
+<string name="singlerowuserquote_3">مقدار (رپيا)</string>
+<string name="singlerowuserquote_4">ڪاري</string>
+<string name="updateprofile_1">پروفائل جي تازه ڪاري</string>
+<string name="updateprofile_2">موجوده پروفائيل تفصيل</string>
+<string name="updateprofile_3">پورو نالو</string>
+<string name="updateprofile_4">رابطي جو نمبر</string>
+<string name="updateprofile_5">نئون ائڊريس</string>
+<string name="updateprofile_6">توهان جي هيٺان توهان جي پتي کي تبديل ڪري سگهو ٿا.</string>
+<string name="updateprofile_7">جي تصديق</string>
+<string name="updatequote_1">ڪاري پراڊڪٽ</string>
+<string name="updatequote_2">توهان هتي جي نالي سان، قيمت ۽ اوھان جي پيداوار جو مقدار ۾ ترميم ڪري سگهي ٿو.</string>
+<string name="updatequote_3">جي پيداوار جي وضاحت</string>
+<string name="updatequote_4">جي پيداوار جو نالو</string>
+<string name="updatequote_5">قيمت</string>
+<string name="updatequote_6">موجود مقدار</string>
+<string name="updatequote_7">ڪاري</string>
+<string name="chooselanguage_1">ٺيڪ</string>
+<string name="menu_help_btn">مدد</string>
+<string name="menu_language_btn">لئنگئيج</string>
+<string name="menu_home_btn">گھر جي</string>
+<string name="menu_myprofile_btn">منهنجو پروفائل</string>
+<string name="menu_publicnotif_btn">پبلڪ اطلاع</string>
+<string name="menu_buyres_btn">وسيلا خريد</string>
+<string name="menu_sellres_btn">وسيلا وڪرو</string>
+<string name="menu_marketinsight_btn">مارڪيٽ Insights</string>
+<string name="menu_logout_btn">ڪم ڇڏڻ</string>
+<string name="menu_exit_btn">خارجي</string>
+<string name="menu_refresh_btn">ريفريش</string>
+<string name="menu_changepass_btn">تبديل ڪريو پاسورڊ</string>
+<string name="menu_updateprof_btn">پروفائل جي تازه ڪاري</string>
+<string name="menu_myproduct_btn">منهنجي شين</string>
+<string name="menu_myorder_btn">منهنجي حڪمن</string>
+<string name="menu_mynegotiation_btn">منهنجي سوديبازي</string>
+<string name="cantconnect">انٽرنيٽ کي ڳنڍي نه ٿو ڪري سگھجي</string>
+<string name="connectionfail">تعلقي لکان</string>
+<string name="readmore">… (وڌيڪ پڙهڻ لاء ڪلڪ ڪريو)</string>
+<string name="buy_1">قسمون</string>
+<string name="javachangepassword_1">ٻئي پاسورڊ ڪونہ ٿا</string>
+<string name="javachooselanguage_1">هڪ ٻولي چونڊيو</string>
+<string name="javaforgotpassword_1">OTP ضروري آهي</string>
+<string name="javagetallquotesuser_1">توهان جي شين</string>
+<string name="javagetallquotesuser_2">تون اڃان تائين ڪنهن به مصنوعات نه شامل آهن</string>
+<string name="javagetallquotesuser_3">ٺيڪ آهي</string>
+<string name="getquotesofsubcategory_1">تون اڃان تائين ڪنهن به مصنوعات نه شامل آهن</string>
+<string name="getquotesofsubcategory_2">ٺيڪ آهي</string>
+<string name="govtnotif_1">پبلڪ اطلاع</string>
+<string name="govtnotif_2">توهان جو برائوزر ۾ ڏنو URL جو کلي</string>
+<string name="javahome_1">ڇا اوھان کي پڪ نڪرڻ ڪرڻ چاھيو ٿا؟</string>
+<string name="javahome_2">ها</string>
+<string name="javahome_3">نه</string>
+<string name="javainterestedquote_1">تفصيل</string>
+<string name="javainterestedquote_2">توهان هڪ برابر يا اعلي قيمت به ڪنجوسي ڪرڻ ضروري آهي</string>
+<string name="javainterestedquote_3">مقدار کان گهٽ يا موجود مقدار برابر هجڻ گهرجي</string>
+<string name="javainterestedquote_4">غلط ڊيٽا ويهين</string>
+<string name="javalogin_1">پاسورڊ ضروري آهي</string>
+<string name="javalogin_2">فون ضروري آهي</string>
+<string name="javalogin_3">فون ۽ ڳجھو لفظ لازمي آهي</string>
+<string name="javalogin_4">پهرين توهان جي اڪائونٽ جي تصديق ڪريو.</string>
+<string name="javamarketinsight_1">مارڪيٽ Insights</string>
+<string name="javaregistert_1">رابطي جو نمبر 10 ندس ڪيو وڃي</string>
+<string name="javaregistert_2">لفط سان ڀيٽ نه ڪندا آھن</string>
+<string name="javaregistert_3">هڪ يا وڌيڪ شعبن خالي آهن</string>
+<string name="javasell_1">قسمون</string>
+<string name="javausernegotiation_1">تون اڃان تائين ڪنهن سان ڳالهين نه آهن.</string>
+<string name="javausernegotiation_2">ٺيڪ</string>
+<string name="javausernotif_1">ڪو به نئون اطلاع</string>
+<string name="javausernotif_2">ٺيڪ</string>
+<string name="javausernotif_3">توهان جي اطلاع</string>
+<string name="javauserorder_1">توهان ڪنهن به مصنوعات موجود خريد نه ڪيو آهي</string>
+<string name="javauserorder_2">ٺيڪ</string>
+<string name="javauserorder_3">منهنجي حڪمن</string>
+<string-array name="languagestotranslate">
+<item> English </item>
+<item> हिन्दी </item>
+<item> বাঙালি </item>
+<item> తెలుగు </item>
+<item> मराठी </item>
+<item> தமிழ் </item>
+<item> اردو </item>
+<item> ગુજરાતી </item>
+<item> ಕನ್ನಡ </item>
+<item> മലയാളം </item>
+<item> ਪੰਜਾਬੀ ਦੇ </item>
+<item> नेपाली </item>
+<item> سنڌي </item>
+</string-array>
+
+<string-array name="codelanguagestotranslate">
+<item>en</item>
+<item>hi</item>
+<item>bn</item>
+<item>te</item>
+<item>mr</item>
+<item>ta</item>
+<item>ur</item>
+<item>gu</item>
+<item>kn</item>
+<item>ml</item>
+<item>pa</item>
+<item>ne</item>
+<item>sd</item>
+</string-array>
+<string name="javausernotifadpater_1">جي توهان Quotation ڏيندو قبول ڪئي وئي آهي</string>
+<string name="javausernotifadpater_2">۽ گھري</string>
+<string name="javausernotifadpater_3">شرح رپين تي ڪلو</string>
+<string name="javausernotifadpater_4">جي توهان Quotation ڏيندو کي رد ڪري ڇڏيو آهي</string>
+<string name="javausernotifadpater_5">جي باري ۾ طي ڪرڻ جو شوق آهي</string>
+<string name="javausernegotiationadapter_1">توهان سان ڳالهين آهن</string>
+<string name="javausernegotiationadapter_2">لاء</string>
+<string name="javausernegotiationadapter_3">، هن وقت تائين</string>
+<string name="javausernegotiationadapter_4">شرح رپين تي رپيا.</string>
+<string name="javausernorderadapter_1">جي توهان Quotation ڏيندو قبول ڪئي وئي آهي</string>
+<string name="javausernorderadapter_2">۽ گھري</string>
+<string name="javausernorderadapter_3">شرح رپين تي ڪلو</string>
+<string name="javausernorderadapter_4">جي توهان بولي قبول ڪئي وئي آهي</string>
+<string name="javausernorderadapter_5">۽ ٺهيو ڪري ڇڏيو</string>
+    <string name="content_home_2">KisaanConnect، ڳوٺاڻن هندستان جي دلين کي ڇھي جي مقصد سان، زرعي مارڪيٽنگ جي لاء هڪ قابل اعتماد ۽ مڪمل-fledged پليٽ فارم صورتون. اهو توهان کي هڪ مجازي marketplace، سندن خرچ overhead ۽ نقصان عنصر easing جي هندستاني هارين جي استعمال لاء ٽيلر ڏئي ٿو. رڪنن جي پوک وانگر، خريد ڪري سگهو ٿا وڪرو يا ڪرائي تي وسيلن، زرعي سامان وغيره KisaanConnect به هڪ مثالي ساٿ صورتون هارين لاء، کين مدد وسيلن جي حڪم حڪمت عملي پاران وڌيڪ نفعو حاصل ڪري. هڪ صارف لاء، هن پليٽ فارم في middleman شامل سان جيئن سستو marketplace ڏي ٿو. هن تازو ۽ معتبر وسيلن کي سڌو تي گهڻن عملن جي.</string>
+    <string name="content_home_4">KisaanConnect استعمال آسان ۽ وجداني آهي. هڪ خاص وسيلن جي خريد ڪرڻ لاء، هن صفحي جي مٿي کاٻي پاسي تي تڪڙا جوڙي ڏانهن وڃو. فورمز ۾ شاهاڻي کي منتخب ڪريو. سڃاڻپ شعبن جو هڪ ڀاڱا ڏيکاري ويندي. جو ارادو ڪيو درجي تي ڪلڪ ڪريو. ته درجي جي ذيلي ڀاڱا ڪڍيو ويندو. گهربل ذيلي subcategory کي منتخب ڪريو. هي سڀ اصلاحي ڳولا جا نتيجا آڻڻ ۾ ٿيندو. ارادو هڪ تي ڪلڪ ڪريو. تفصيل صفحو مٿي ڏيکاريو ويندو. تون ته صفحو ڳالهين ۽ قبول ڪرڻ جي پٺيان کان دلچسپي پيدا ڪري سگهي ٿو. وسيلن وڪرو ڪرڻ، ساڳئي واٽ جي تابعداري آهي. درجه بندي ذريعي جي ذيلي درجه بندي ڪرڻ ۾ وڃڻ جي پنهنجي پيداوار شامل ڪريو ۽ ان کي آن لائين فوري طور موجود ٿي ويندي.</string>
+    <string name="chooselanguage_2">هيٺ ڏنل فهرست نازل ڪيو ته مان جي درخواست جي ٻولي منتخب ڪريو</string>
+</resources>

@@ -3,9 +3,9 @@ package iitp.naman.kisaanconnect;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -32,20 +32,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Locale;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String inputPhone1;
-    //private String serverName;
-    //private String serverPhone;
-    //private String serverType;
-    //private String serverAddress;
     SharedPreferences sf;
     SharedPreferences.Editor e;
 
@@ -58,7 +51,6 @@ public class Home extends AppCompatActivity
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
         }
-        //new NetCheck().execute();
 
     }
 
@@ -70,9 +62,9 @@ public class Home extends AppCompatActivity
         } else {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Are you sure you want to exit?")
+            builder.setMessage(getResources().getString(R.string.javahome_1))
                     .setCancelable(true)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getResources().getString(R.string.javahome_2), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             finish();
                             Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -84,7 +76,7 @@ public class Home extends AppCompatActivity
                             android.os.Process.killProcess(pid);
                         }
                     })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(getResources().getString(R.string.javahome_3), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
                         }
@@ -113,8 +105,13 @@ public class Home extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_home));
+        }
             Log.i("fab created","");
             fab = (FloatingActionButton) findViewById(R.id.fab);
             fab.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +120,6 @@ public class Home extends AppCompatActivity
                     Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                     upanel.putExtra("phoneno", inputPhone1);
                     startActivity(upanel);
-//                finish();
                 }
             });
     }
@@ -139,7 +135,7 @@ public class Home extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuHelp:
-                String url1 = "https://kisaanconnect.herokuapp.com";
+                String url1 = getResources().getString(R.string.network_home);
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url1));
                 startActivity(i);
@@ -158,7 +154,7 @@ public class Home extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
@@ -166,9 +162,6 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_my_profile) {
             Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
             upanel.putExtra("phoneno", inputPhone1);
-            //upanel.putExtra("name",serverName);
-            //upanel.putExtra("address",serverAddress);
-            //upanel.putExtra("type",serverType);
             startActivity(upanel);
             Log.i("started :"," my profile");
         } else if (id == R.id.nav_gov_not) {
@@ -236,9 +229,7 @@ public class Home extends AppCompatActivity
                     if (urlc.getResponseCode() == 200) {
                         return true;
                     }
-                } catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -247,11 +238,11 @@ public class Home extends AppCompatActivity
         }
         @Override
         protected void onPostExecute(Boolean th){
-            if(th == true){
+            if(th){
                 new ProcessRegister().execute();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.cantconnect), Toast.LENGTH_SHORT).show();
             }
             nDialog.dismiss();
 
@@ -294,11 +285,11 @@ public class Home extends AppCompatActivity
                                         pDialog.dismiss();
                                     }
                                     else{
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                     e.printStackTrace();
                                     pDialog.dismiss();
                                 }
@@ -307,7 +298,7 @@ public class Home extends AppCompatActivity
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                         pDialog.dismiss();
                     }
                 });
@@ -315,7 +306,7 @@ public class Home extends AppCompatActivity
 
             } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
                 return null;
             }

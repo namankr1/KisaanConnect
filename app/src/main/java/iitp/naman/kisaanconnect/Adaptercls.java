@@ -31,13 +31,13 @@ public class Adaptercls extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View gridView;
         if (convertView == null) {
-            gridView = new View(context);
             gridView = inflater.inflate(R.layout.single_row_notif, null);
             ((TextView) gridView.findViewById(R.id.notifid)).setText(govtnotifid[position]);
             TextView textView1 = (TextView) gridView.findViewById(R.id.body);
             String temp = govtnotifbody[position];
             if(temp.length()>120){
-                temp = temp.substring(0,120)+"... (Click to read more)";
+                temp = temp.substring(0,120)+context.getResources().getString(R.string.readmore);
+                textView1.setText(temp);
             }
             else {
                 textView1.setText(temp);
@@ -46,9 +46,10 @@ public class Adaptercls extends BaseAdapter {
             textView2.setText(govtnotiftitle[position]);
             TextView textView3 = (TextView) gridView.findViewById(R.id.url);
             textView3.setText(govtnotifurl[position]);
+            return gridView;
         }
         else {
-            gridView = (View) convertView;
+            gridView = convertView;
         }
         return gridView;
     }

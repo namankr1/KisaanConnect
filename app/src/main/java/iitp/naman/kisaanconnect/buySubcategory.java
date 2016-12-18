@@ -1,5 +1,6 @@
 package iitp.naman.kisaanconnect;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -27,9 +28,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 
@@ -47,11 +46,15 @@ public class buySubcategory extends AppCompatActivity {
 
     private SharedPreferences.Editor buysube;
     private SharedPreferences buysubsf;
+    private Activity myactivity;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buysubcategory);
+        myactivity = this;
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -62,7 +65,9 @@ public class buySubcategory extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(categoryname1);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -81,7 +86,6 @@ public class buySubcategory extends AppCompatActivity {
                 upanel.putExtra("subcategory",subcategoryid1);
                 upanel.putExtra("subcategoryname",subcategoryname1);
                 startActivity(upanel);
-                //finish();
             }
         });
 
@@ -98,9 +102,6 @@ public class buySubcategory extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //Intent upanel = new Intent(getApplicationContext(), Buy.class);
-        //upanel.putExtra("phoneno", inputPhone1);
-        //startActivity(upanel);
         finish();
     }
     @Override
@@ -113,9 +114,6 @@ public class buySubcategory extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                //Intent upanel = new Intent(getApplicationContext(), Buy.class);
-                //upanel.putExtra("phoneno", inputPhone1);
-                //startActivity(upanel);
                 this.finish();
                 return true;
             case R.id.menuRefresh:
@@ -152,10 +150,7 @@ public class buySubcategory extends AppCompatActivity {
                         return true;
                     }
                 }
-                catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                }
-                catch (IOException e) {
+                catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -164,11 +159,11 @@ public class buySubcategory extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Boolean th){
-            if(th == true){
+            if(th){
                 new ProcessRegister().execute();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.cantconnect), Toast.LENGTH_SHORT).show();
             }
             nDialog.dismiss();
         }
@@ -222,7 +217,7 @@ public class buySubcategory extends AppCompatActivity {
                                             subcategorydescription[i]=tempdata.getJSONObject(i).getString("description");
                                             subcategorypicture[i]=tempdata.getJSONObject(i).getString("picture");
                                         }
-                                        gridView.setAdapter(new ImageAdapter(getApplicationContext(), subcategoryname,subcategorydescription,subcategoryid,subcategorypicture));
+                                        gridView.setAdapter(new ImageAdapter(myactivity,getApplicationContext(), subcategoryname,subcategoryid,subcategorypicture));
                                         resultserver=true;
                                         pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
@@ -230,7 +225,7 @@ public class buySubcategory extends AppCompatActivity {
                                         pDialog.dismiss();
                                     }
                                     else{
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                 }
@@ -242,7 +237,7 @@ public class buySubcategory extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                 pDialog.dismiss();
                             }
                         });
@@ -251,7 +246,7 @@ public class buySubcategory extends AppCompatActivity {
             }
             catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
                 return null;
             }
@@ -286,7 +281,7 @@ public class buySubcategory extends AppCompatActivity {
             buysubsf = getSharedPreferences("subcategoriestore"+category1,MODE_PRIVATE);
             Boolean alreadypresent1 = buysubsf.getBoolean("alreadypresent",false);
             JSONObject jsondata;
-            if(alreadypresent1==true){
+            if(alreadypresent1){
                 String strjson = buysubsf.getString("jsondata",null);
                 if(strjson!=null){
                     try{
@@ -307,7 +302,7 @@ public class buySubcategory extends AppCompatActivity {
                         resultserver=true;
                     }
                     catch(Exception e){
-
+                        e.printStackTrace();
                     }
                 }
             }
@@ -317,8 +312,8 @@ public class buySubcategory extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean response) {
             super.onPostExecute(response);
-            if(response==true) {
-                gridView.setAdapter(new ImageAdapter(getApplicationContext(), subcategoryname,subcategorydescription,subcategoryid,subcategorypicture));
+            if(response) {
+                gridView.setAdapter(new ImageAdapter(myactivity,getApplicationContext(), subcategoryname,subcategoryid,subcategorypicture));
                 pDialog.dismiss();
             }
             else{

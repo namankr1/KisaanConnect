@@ -32,9 +32,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import static iitp.naman.kisaanconnect.R.id.url;
@@ -58,16 +56,17 @@ public class GovtNotification extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Public Notifications");
+        getSupportActionBar().setTitle(getResources().getString(R.string.govtnotif_1));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
         }
-        //NetAsync(this.findViewById(android.R.id.content));
 
         gridView = (GridView) findViewById(R.id.gridView1);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -80,10 +79,9 @@ public class GovtNotification extends AppCompatActivity {
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url1));
                     startActivity(i);
-                    //open url using browser
                 }
                 catch (Exception e){
-                    Toast.makeText(getApplicationContext(), "Open given URL in your browser", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.govtnotif_2), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -95,7 +93,6 @@ public class GovtNotification extends AppCompatActivity {
                 Intent upanel = new Intent(getApplicationContext(), UserNotif.class);
                 upanel.putExtra("phoneno", inputPhone1);
                 startActivity(upanel);
-                //finish();
             }
         });
     }
@@ -108,9 +105,6 @@ public class GovtNotification extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        Intent upanel = new Intent(getApplicationContext(), Home.class);
-//        upanel.putExtra("phoneno", inputPhone1);
-//        startActivity(upanel);
         finish();
     }
 
@@ -125,9 +119,6 @@ public class GovtNotification extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-//                Intent upanel = new Intent(getApplicationContext(), Home.class);
-//                upanel.putExtra("phoneno", inputPhone1);
-//                startActivity(upanel);
                 this.finish();
                 return true;
             case R.id.menuRefresh:
@@ -163,9 +154,7 @@ public class GovtNotification extends AppCompatActivity {
                     if (urlc.getResponseCode() == 200) {
                         return true;
                     }
-                } catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -174,11 +163,11 @@ public class GovtNotification extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean th){
 
-            if(th == true){
+            if(th){
                 new ProcessRegister().execute();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getResources().getString(R.string.cantconnect), Toast.LENGTH_SHORT).show();
             }
             nDialog.dismiss();
 
@@ -241,11 +230,11 @@ public class GovtNotification extends AppCompatActivity {
                                         pDialog.dismiss();
                                     }
                                     else{
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                     pDialog.dismiss();
                                     e.printStackTrace();
                                 }
@@ -254,7 +243,7 @@ public class GovtNotification extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                         pDialog.dismiss();
 
                     }
@@ -263,7 +252,7 @@ public class GovtNotification extends AppCompatActivity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
                 return null;
             }
@@ -297,7 +286,7 @@ public class GovtNotification extends AppCompatActivity {
             govtsf = getSharedPreferences("govtnotif",MODE_PRIVATE);
             Boolean alreadypresent1 = govtsf.getBoolean("alreadypresent",false);
             JSONObject jsondata;
-            if(alreadypresent1==true){
+            if(alreadypresent1){
                 String strjson = govtsf.getString("jsondata",null);
                 if(strjson!=null){
                     try{
@@ -317,12 +306,10 @@ public class GovtNotification extends AppCompatActivity {
                             govtnotifurl[i]=tempdata.getJSONObject(i).getString("url");
 
                         }
-
                         resultserver=true;
-                        //gridView.setAdapter(new ImageAdapter(, categoryname, categorydescription, categoryid, categorypicture));
-                        //pDialog.dismiss();
                     }
                     catch(Exception e){
+                        e.printStackTrace();
 
                     }
 
@@ -334,7 +321,7 @@ public class GovtNotification extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean response) {
             super.onPostExecute(response);
-            if(response==true) {
+            if(response) {
                 gridView.setAdapter( new Adaptercls(getApplicationContext(),govtnotifbody,govtnotifid,govtnotiftitle,govtnotifurl));
                 pDialog.dismiss();
             }
@@ -371,9 +358,7 @@ public class GovtNotification extends AppCompatActivity {
                     if (urlc.getResponseCode() == 200) {
                         return true;
                     }
-                } catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -383,16 +368,14 @@ public class GovtNotification extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean th){
 
-            if(th == true){
+            if(th){
                 new ProcessRegister().execute();
             }
             else{
                 new ProcessUpdateFromStored().execute();
             }
-
             nDialog.dismiss();
         }
     }
-
 }
 

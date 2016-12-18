@@ -1,0 +1,236 @@
+<resources>
+<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+<string name="network_check">https://www.google.co.in/</string>
+<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+<string name="image_text">জাতি সংযোগ করুন</string>
+<string name="app_name">KisaanConnect</string>
+<string name="title_activity_home">বাড়ি</string>
+<string name="navigation_drawer_open">নেভিগেশান ড্রয়ার খুলুন</string>
+<string name="navigation_drawer_close">নেভিগেশান ড্রয়ার বন্ধ করুন</string>
+<string name="activity_login">লগইন করুন</string>
+<string name="activity_login_1">আপনার অ্যাকাউন্টে লগ ইন করুন</string>
+<string name="activity_login_2">যোগাযোগ নম্বর</string>
+<string name="activity_login_3">পাসওয়ার্ড</string>
+<string name="activity_login_4">এগিয়ে যান</string>
+<string name="activity_login_5">পাসওয়ার্ড ভুলে গেছেন?</string>
+<string name="activity_login_6">নিবন্ধন করুন</string>
+<string name="activity_login_7">আমাকে মনে কর</string>
+<string name="activity_login_8">লুকান</string>
+<string name="activity_login_9">প্রদর্শনী</string>
+<string name="addquotesofsubcategory_1">আপনার আগ্রহ আমাদের সাথে আপনার পণ্য বিক্রি করার জন্য আপনাকে ধন্যবাদ. </string>
+<string name="addquotesofsubcategory_2">পণ্যের নাম</string>
+<string name="addquotesofsubcategory_3">পরিমাণ (কেজি বা টি এ)</string>
+<string name="addquotesofsubcategory_4">মূল্য (টাকা) এর</string>
+<string name="addquotesofsubcategory_5">বর্ণনা (ঐচ্ছিক)</string>
+<string name="addquotesofsubcategory_6">যোগ</string>
+<string name="changepassword_1">পাসওয়ার্ড পরিবর্তন করুন</string>
+<string name="changepassword_2">নতুন পাসওয়ার্ড পরবর্তী লগইন প্রচেষ্টা অগ্রে জন্য গ্রহণ করা হবে যদি সফলভাবে পরিবর্তন</string>
+<string name="changepassword_3">বর্তমান পাসওয়ার্ড</string>
+<string name="changepassword_4">নতুন পাসওয়ার্ড</string>
+<string name="changepassword_5">পুনরায় টাইপ নতুন পাসওয়ার্ড</string>
+<string name="changepassword_6">নিশ্চিত করা</string>
+<string name="content_home_1">কিভাবে KisaanConnect আপনি সাহায্য করতে পারেন?</string>
+    <string name="content_home_2">KisaanConnect, গ্রামীণ ভারতের হৃদয় স্পর্শ করার উদ্দেশ্য নিয়ে, কৃষি বিপণন জন্য একটি নির্ভরযোগ্য এবং পূর্ণাঙ্গ প্ল্যাটফর্ম গঠন করে. এটা যদি আপনি একটি ভার্চুয়াল নগরচত্বর, তাদের খরচ ওভারহেড ও ক্ষতির বিষয়গুলো ঢিলা দ্বারা ভারতীয় কৃষকদের ব্যবহারের জন্য উপযোগী দেয়. ব্যবহারকারীরা, কিনতে পারেন বিক্রি বা ফসলের মত সম্পদ ভাড়া, কৃষি উপকরণ ইত্যাদি KisaanConnect এছাড়াও একটি আদর্শ সম্প্রদায়ের কৃষকদের জন্য ফর্ম, তাদের সাহায্য রিসোর্স নিলামী রণনীতির দ্বারা অধিক মুনাফা পেতে. একটি গ্রাহকের জন্য, এই প্ল্যাটফর্ম হিসাবে সস্তা বাজারে কোন ফড়িয়া সঙ্গে অন্তর্ভুক্ত করে তোলে. এই তাজা এবং নির্ভরযোগ্য সম্পদ থেকে সরাসরি প্রবেশাধিকার দেয়.</string>
+<string name="content_home_3">কিভাবে KisaanConnect ব্যবহার করতে হয়?</string>
+    <string name="deletequote_1">পণ্য মুছুন</string>
+<string name="deletequote_2">পণ্যের বর্ণনা</string>
+<string name="deletequote_3">পণ্যের বর্তমান সর্বোচ্চ দর (টাকা এর মধ্যে)</string>
+<string name="deletequote_4">বর্তমান উপলব্ধ পরিমাণ</string>
+<string name="deletequote_5">আপনি এটি মুছে ফেলতে চান আপনি কি নিশ্চিত? </string>
+<string name="deletequote_6">হাঁ</string>
+<string name="deletequote_7">না</string>
+<string name="endnegotiation_1">শেষ আপস</string>
+<string name="endnegotiation_2">আলোচক এর নাম</string>
+<string name="endnegotiation_3">আলোচক এর যোগাযোগের নম্বর</string>
+<string name="endnegotiation_4">আলোচক বর্তমান ঠিকানা</string>
+<string name="endnegotiation_5">পণ্যের বর্তমান সর্বোচ্চ দর (টাকা এর মধ্যে)</string>
+<string name="endnegotiation_6">বর্তমান উপলব্ধ পরিমাণ</string>
+<string name="endnegotiation_7">আপনি গ্রহণ বা পণ্য প্রত্যাখ্যান করতে চান? </string>
+<string name="endnegotiation_8">গ্রহণ করা</string>
+<string name="endnegotiation_9">প্রত্যাখ্যান</string>
+<string name="forgotpassword_1">গৃহীত OTP তে এবং নতুন পাসওয়ার্ড লিখুন</string>
+<string name="forgotpassword_2">OTP তে</string>
+<string name="forgotpassword_3">নতুন পাসওয়ার্ড</string>
+<string name="forgotpassword_4">যাচাই করুন</string>
+<string name="interestedquote_1">সফল অর্ডারের সংখ্যা:</string>
+<string name="interestedquote_2">পণ্যের বর্ণনা</string>
+<string name="interestedquote_3">পণ্যের বর্তমান সর্বোচ্চ দর (টাকা এর মধ্যে)</string>
+<string name="interestedquote_4">বর্তমান উপলব্ধ পরিমাণ</string>
+<string name="interestedquote_5">আপনি এই পণ্যের আগ্রহী হন, তাহলে নীচের বিবরণ লিখুন</string>
+<string name="interestedquote_6">আপনি কত দিতে ইচ্ছুক?</string>
+<string name="interestedquote_7">আপনি কত পরিমাণ ক্রয় করবে?</string>
+<string name="interestedquote_8">আমি আগ্রহী</string>
+<string name="marketinsight_1">এই পৃষ্ঠায় আপনি আপনার বাজার সম্পর্কে সর্বশেষ অর্ন্তদৃষ্টি দেয়. </string>
+<string name="marketinsight_2">অন্যান্য ব্যবহারকারীদের কি বিক্রি হয়?</string>
+<string name="marketinsight_3">অন্যান্য ব্যবহারকারীদের কি কিনছেন?</string>
+<string name="marketinsight_4">কিভাবে মূল্য বাজারে পরিবর্তন হয়?</string>
+<string name="marketinsight_5">আমরা কি মত?</string>
+<string name="myprofile_1">প্রোফাইলের</string>
+<string name="myprofile_2">পূর্ণ নাম</string>
+<string name="myprofile_3">যোগাযোগ নম্বর</string>
+<string name="myprofile_4">বর্তমান ঠিকানা</string>
+<string name="nav_header_home_1">জাতি সংযোগ করুন</string>
+<string name="nav_header_home_2">দ্রুত লিঙ্ক</string>
+<string name="negotiate_1">মূল্য (টাকা) এর</string>
+<string name="negotiate_2">পরিমাণ (কেজি বা টি এ)</string>
+<string name="negotiate_3">নিচে যে আপনি ক্রয় করতে ইচ্ছুক মূল্য এবং পরিমাণ লিখুন.</string>
+<string name="negotiate_4">আপনি কত দিতে ইচ্ছুক?</string>
+<string name="negotiate_5">আপনি কত পরিমাণ ক্রয় করবে?</string>
+<string name="negotiate_6">মধ্যস্থতা করা</string>
+<string name="ordersummary_1">সারাংশ</string>
+<string name="ordersummary_2">আলোচক এর নাম</string>
+<string name="ordersummary_3">আলোচক এর যোগাযোগের নম্বর</string>
+<string name="ordersummary_4">আলোচক বর্তমান ঠিকানা</string>
+<string name="ordersummary_5">পণ্যের বর্তমান সর্বোচ্চ দর (টাকা এর মধ্যে)</string>
+<string name="ordersummary_6">বর্তমান উপলব্ধ পরিমাণ (কেজি বা টি এ)</string>
+<string name="ordersummary_7">নিচের বাটনে ক্লিক করে আলোচক কল করতে পারেন</string>
+<string name="ordersummary_8">আলোচক কল</string>
+<string name="otp_1">Enter OTP তে আপনার ফোন পেয়েছি</string>
+<string name="otp_2">OTP তে</string>
+<string name="otp_3">যাচাই করুন</string>
+<string name="otp_4">OTP পুনরায়</string>
+<string name="otp_5">বসুন এবং আমরা আপনার যোগাযোগের নম্বর যাচাই করার সময় শিথিল</string>
+<string name="passwordreset_1">পাসওয়ার্ড রিসেট করুন</string>
+<string name="passwordreset_2">যোগাযোগ নম্বর</string>
+<string name="passwordreset_3">OTP পাঠান</string>
+<string name="register">নিবন্ধন করুন</string>
+<string name="register_1">আমাদের দিয়ে সাইন আপ করুন</string>
+<string name="register_2">পূর্ণ নাম</string>
+<string name="register_3">যোগাযোগ নম্বর</string>
+<string name="register_4">পাসওয়ার্ড</string>
+<string name="register_5">পুনরায় টাইপ পাসওয়ার্ড</string>
+<string name="register_6">গ্রাম বা শহরের নাম</string>
+<string name="register_7">রাজ্য বা প্রদেশ</string>
+<string name="register_8">জিপ বা পিন কোড</string>
+<string name="register_9">নিবন্ধন করুন</string>
+<string name="single_row_notif_1">আরো বিস্তারিত জানার জন্য :</string>
+<string name="singleroworder_1">সংক্ষিপ্তসার দেখুন</string>
+<string name="singlerowquote_1">অর্ডারের সংখ্যা:</string>
+<string name="singlerowquote_2">মূল্য (টাকা)</string>
+<string name="singlerowquote_3">পরিমাণ (কেজি)</string>
+<string name="singlerowusernotif_1">শেষ আলোচনার মাধ্যমে স্থির করা</string>
+<string name="singlerowusernotif_2">মধ্যস্থতা করা</string>
+<string name="singlerowuserquote_1">মুছে ফেলা</string>
+<string name="singlerowuserquote_2">মূল্য (টাকা.)</string>
+<string name="singlerowuserquote_3">পরিমাণ (কেজি)</string>
+<string name="singlerowuserquote_4">হালনাগাদ</string>
+<string name="updateprofile_1">প্রফাইল হালনাগাদ</string>
+<string name="updateprofile_2">বর্তমান প্রোফাইল বিবরণ</string>
+<string name="updateprofile_3">পূর্ণ নাম</string>
+<string name="updateprofile_4">যোগাযোগ নম্বর</string>
+<string name="updateprofile_5">নতুন ঠিকানা</string>
+<string name="updateprofile_6">আপনি নিচে আপনার ঠিকানা পরিবর্তন করতে পারেন.</string>
+<string name="updateprofile_7">নিশ্চিত করা</string>
+<string name="updatequote_1">হালনাগাদ পণ্য</string>
+<string name="updatequote_2">আপনি এখানে নাম, মূল্য এবং আপনার পণ্যের পরিমাণ সম্পাদনা করতে পারেন.</string>
+<string name="updatequote_3">পণ্যের বর্ণনা</string>
+<string name="updatequote_4">পণ্যের নাম</string>
+<string name="updatequote_5">মূল্য</string>
+<string name="updatequote_6">উপলব্ধ পরিমাণ</string>
+<string name="updatequote_7">হালনাগাদ</string>
+<string name="chooselanguage_1">ঠিক আছে</string>
+<string name="menu_help_btn">সাহায্য</string>
+<string name="menu_language_btn">ভাষা</string>
+<string name="menu_home_btn">বাড়ি</string>
+<string name="menu_myprofile_btn">আমার প্রোফাইল</string>
+<string name="menu_publicnotif_btn">জন বিজ্ঞপ্তিগুলি</string>
+<string name="menu_buyres_btn">কিনুন রিসোর্স</string>
+<string name="menu_sellres_btn">সম্পদ বিক্রি</string>
+<string name="menu_marketinsight_btn">বাজার অন্তর্দৃষ্টিগুলির</string>
+<string name="menu_logout_btn">প্রস্থান</string>
+<string name="menu_exit_btn">প্রস্থান</string>
+<string name="menu_refresh_btn">সতেজ করা</string>
+<string name="menu_changepass_btn">পাসওয়ার্ড পরিবর্তন করুন</string>
+<string name="menu_updateprof_btn">প্রফাইল হালনাগাদ</string>
+<string name="menu_myproduct_btn">আমার পণ্য</string>
+<string name="menu_myorder_btn">আমার আদেশ</string>
+<string name="menu_mynegotiation_btn">আমার আলোচনা</string>
+<string name="cantconnect">ইন্টারনেটের সাথে সংযোগ স্থাপন করা যাবে না</string>
+<string name="connectionfail">সংযোগ ব্যর্থ</string>
+<string name="readmore">… (আরও পড়তে ক্লিক করুন)</string>
+<string name="buy_1">বিভাগ</string>
+<string name="javachangepassword_1">উভয় পাসওয়ার্ড মিলছে না</string>
+<string name="javachooselanguage_1">একটি ভাষা নির্বাচন করুন</string>
+<string name="javaforgotpassword_1">OTP বাধ্যতামূলক</string>
+<string name="javagetallquotesuser_1">আপনার পণ্য</string>
+<string name="javagetallquotesuser_2">আপনি এখনো যোগ করেনি কোনো পণ্য</string>
+<string name="javagetallquotesuser_3">ঠিক আছে</string>
+<string name="getquotesofsubcategory_1">আপনি এখনো যোগ করেনি কোনো পণ্য</string>
+<string name="getquotesofsubcategory_2">ঠিক আছে</string>
+<string name="govtnotif_1">জন বিজ্ঞপ্তিগুলি</string>
+<string name="govtnotif_2">আপনার ব্রাউজারে ওপেন প্রদত্ত URL</string>
+<string name="javahome_1">আপনি প্রস্থান করতে চান?</string>
+<string name="javahome_2">হাঁ</string>
+<string name="javahome_3">না</string>
+<string name="javainterestedquote_1">বিস্তারিত</string>
+<string name="javainterestedquote_2">আপনি একটি সমান বা বেশী দাম বিড করতে হবে</string>
+<string name="javainterestedquote_3">পরিমাণ পাওয়া পরিমাণ কম বা সমান হতে হবে</string>
+<string name="javainterestedquote_4">অবৈধ ডেটা প্রদত্ত</string>
+<string name="javalogin_1">পাসওয়ার্ড বাধ্যতামূলক</string>
+<string name="javalogin_2">ফোন বাধ্যতামূলক</string>
+<string name="javalogin_3">ফোন এবং পাসওয়ার্ড বাধ্যতামূলক</string>
+<string name="javalogin_4">প্রথমে আপনার অ্যাকাউন্ট যাচাই করুন.</string>
+<string name="javamarketinsight_1">বাজার অন্তর্দৃষ্টিগুলির</string>
+<string name="javaregistert_1">যোগাযোগ নম্বর 10 সংখ্যার হওয়া উচিত</string>
+<string name="javaregistert_2">পাসওয়ার্ড মিলছে না</string>
+<string name="javaregistert_3">একটি অথবা আরও বেশি ক্ষেত্র খালি হয়</string>
+<string name="javasell_1">বিভাগ</string>
+<string name="javausernegotiation_1">আপনি এখনো কারো সঙ্গে আপস নেই.</string>
+<string name="javausernegotiation_2">ঠিক আছে</string>
+<string name="javausernotif_1">কোন নতুন বিজ্ঞপ্তি</string>
+<string name="javausernotif_2">ঠিক আছে</string>
+<string name="javausernotif_3">আপনার বিজ্ঞপ্তি</string>
+<string name="javauserorder_1">আপনি কোন পণ্য এখনো ক্রয় করেন নি</string>
+<string name="javauserorder_2">ঠিক আছে</string>
+<string name="javauserorder_3">আমার আদেশ</string>
+    <string-array name="languagestotranslate">
+        <item> English </item>
+        <item> हिन्दी </item>
+        <item> বাঙালি </item>
+        <item> తెలుగు </item>
+        <item> मराठी </item>
+        <item> தமிழ் </item>
+        <item> اردو </item>
+        <item> ગુજરાતી </item>
+        <item> ಕನ್ನಡ </item>
+        <item> മലയാളം </item>
+        <item> ਪੰਜਾਬੀ ਦੇ </item>
+        <item> नेपाली </item>
+        <item> سنڌي </item>
+    </string-array>
+
+    <string-array name="codelanguagestotranslate">
+        <item>en</item>
+        <item>hi</item>
+        <item>bn</item>
+        <item>te</item>
+        <item>mr</item>
+        <item>ta</item>
+        <item>ur</item>
+        <item>gu</item>
+        <item>kn</item>
+        <item>ml</item>
+        <item>pa</item>
+        <item>ne</item>
+        <item>sd</item>
+    </string-array>
+    <string name="javausernotifadpater_1">আপনার উদ্ধৃতি স্বীকার করেছে</string>
+<string name="javausernotifadpater_2">এবং চায়</string>
+<string name="javausernotifadpater_3">কেজি হারে টাকা</string>
+<string name="javausernotifadpater_4">আপনার উদ্ধৃতি প্রত্যাখ্যান করেছে</string>
+<string name="javausernotifadpater_5">সম্পর্কে আলোচনা করার জন্য আগ্রহী</string>
+<string name="javausernegotiationadapter_1">আপনার সাথে আলোচনা চালিয়ে যাচ্ছে</string>
+<string name="javausernegotiationadapter_2">জন্য</string>
+<string name="javausernegotiationadapter_3">, বর্তমানে</string>
+<string name="javausernegotiationadapter_4">হার টাকা কেজি.</string>
+<string name="javausernorderadapter_1">আপনার উদ্ধৃতি স্বীকার করেছে</string>
+<string name="javausernorderadapter_2">এবং চায়</string>
+<string name="javausernorderadapter_3">কেজি হারে টাকা</string>
+<string name="javausernorderadapter_4">আপনি বিড স্বীকার করেছে</string>
+<string name="javausernorderadapter_5">এবং চূড়ান্ত করেছে</string>
+    <string name="content_home_4">KisaanConnect ব্যবহার সহজ এবং স্বজ্ঞাত. একটি বিশেষ সম্পদ কিনতে, এই পৃষ্ঠার উপরের বামদিকের দ্রুত লিঙ্ক এ যান. কিনুন সম্পদ নির্বাচন. চিহ্নিত সেক্টরের একটি বিভাগ প্রদর্শন করা হবে. কাঙ্ক্ষিত সূচিপত্রে ক্লিক. যে বিভাগ উপ-বিভাগ ক্ষেত্রেও প্রদর্শন করা হবে. পছন্দসই উপ-উপবিষয়শ্রেণীটি নির্বাচন করুন. এই সব অপ্টিমাইজ অনুসন্ধান ফলাফল আনতে হবে. আকাঙ্ক্ষিত এক উপর ক্লিক করুন. Details পৃষ্ঠার দেখানো হবে. আপনি যে পৃষ্ঠা আপস এবং স্বীকৃতি দ্বারা অনুসৃত থেকে সুদ বাড়াতে পারে. সম্পদ বিক্রি করতে, একই পথ অনুসরণ করা হয়. বিভাগ মাধ্যমে উপ-বিভাগ থেকে এ গিয়ে আপনার পণ্য যোগ করুন এবং এটি অনলাইন অবিলম্বে উপলব্ধ করা হবে.</string>
+    <string name="chooselanguage_2">নিচের তালিকা ড্রপ ডাউন থেকে আবেদন ভাষা নির্বাচন করুন</string>
+</resources>

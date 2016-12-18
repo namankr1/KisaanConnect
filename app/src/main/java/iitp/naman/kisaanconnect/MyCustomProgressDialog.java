@@ -10,7 +10,6 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-//import com.example.customprogressdialog.R;
 
 public class MyCustomProgressDialog extends ProgressDialog {
     private AnimationDrawable animation;

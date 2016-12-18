@@ -6,7 +6,6 @@ package iitp.naman.kisaanconnect;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -27,9 +26,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ChangePassword extends AppCompatActivity {
@@ -38,10 +35,7 @@ public class ChangePassword extends AppCompatActivity {
     private EditText confirmnewpass;
     private Button btnconfirm;
 
-    private String serverName;
     private String serverPhone;
-    private String serverType;
-    private String serverAddress;
 
 
     @Override
@@ -51,17 +45,16 @@ public class ChangePassword extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            serverName = extras.getString("name");
             serverPhone=extras.getString("phoneno");
-            serverAddress=extras.getString("address");
-            serverType=extras.getString("type");
 
             newpass = (EditText) findViewById(R.id.newpass);
             oldpass = (EditText) findViewById(R.id.oldpass) ;
@@ -77,7 +70,7 @@ public class ChangePassword extends AppCompatActivity {
                         NetAsync(view);
                     }
                     else{
-                        Toast.makeText(getApplicationContext(), "Password and Confirm Password Dont match ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.javachangepassword_1), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -86,12 +79,6 @@ public class ChangePassword extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-//        upanel.putExtra("phoneno", serverPhone);
-//        upanel.putExtra("name",serverName);
-//        upanel.putExtra("address",serverAddress);
-//        upanel.putExtra("type",serverType);
-//        startActivity(upanel);
         finish();
     }
 
@@ -105,12 +92,6 @@ public class ChangePassword extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-//                Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-//                upanel.putExtra("phoneno", serverPhone);
-//                upanel.putExtra("name",serverName);
-//                upanel.putExtra("address",serverAddress);
-//                upanel.putExtra("type",serverType);
-//                startActivity(upanel);
                 this.finish();
                 return true;
             default:
@@ -144,10 +125,7 @@ public class ChangePassword extends AppCompatActivity {
                         return true;
                     }
                 }
-                catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                }
-                catch (IOException e) {
+                catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -156,11 +134,11 @@ public class ChangePassword extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Boolean th){
-            if(th == true){
+            if(th){
                 new ProcessRegister().execute();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.cantconnect), Toast.LENGTH_SHORT).show();
             }
             nDialog.dismiss();
         }
@@ -200,9 +178,6 @@ public class ChangePassword extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-//                                        Intent upanel = new Intent(getApplicationContext(), MyProfile.class);
-//                                        upanel.putExtra("phoneno", serverPhone);
-//                                        startActivity(upanel);
                                         pDialog.dismiss();
                                         finish();
                                     } else if (status.compareTo("err") == 0) {
@@ -210,12 +185,12 @@ public class ChangePassword extends AppCompatActivity {
                                         pDialog.dismiss();
                                     }
                                     else{
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                     pDialog.dismiss();
                                 }
                             }
@@ -223,7 +198,7 @@ public class ChangePassword extends AppCompatActivity {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                 pDialog.dismiss();
                             }
                         });
@@ -231,7 +206,7 @@ public class ChangePassword extends AppCompatActivity {
             }
             catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
                 return null;
             }

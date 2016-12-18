@@ -4,6 +4,7 @@ package iitp.naman.kisaanconnect;
  * Created by naman on 26-Nov-16.
  */
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,20 +19,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
 public class ImageAdapter extends BaseAdapter {
     private Context context;
+    private Activity myactivity;
     private final String[] categoryname;
     private final String[] categoryid;
-    private final String[] categorydescription;
     private final String[] categorypicture;
 
-    public ImageAdapter(Context context, String[] categoryname,String[] categorydescription,String[] categoryid,String[] categorypicture) {
+
+    public ImageAdapter(Activity myactivity,Context context, String[] categoryname,String[] categoryid,String[] categorypicture) {
+        this.myactivity=myactivity;
         this.context = context;
-        this.categorydescription=categorydescription;
         this.categoryid=categoryid;
         this.categoryname=categoryname;
         this.categorypicture=categorypicture;
@@ -41,16 +42,15 @@ public class ImageAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View gridView;
         if (convertView == null) {
-            gridView = new View(context);
             gridView = inflater.inflate(R.layout.mobile, null);
             TextView textView = (TextView) gridView.findViewById(R.id.grid_item_label);
             textView.setText(categoryname[position]);
             TextView textView1 = (TextView) gridView.findViewById(R.id.grid_item_id);
             textView1.setText(categoryid[position]);
             new DownloadImageTaskOffline((ImageView) gridView.findViewById(R.id.grid_item_image)).execute(categorypicture[position]);
-            //new DownloadImageTaskOnline((ImageView) gridView.findViewById(R.id.grid_item_image)).execute(categorypicture[position]);
-        } else {
-            gridView = (View) convertView;
+            }
+        else {
+            gridView = convertView;
         }
         return gridView;
     }
@@ -84,12 +84,16 @@ public class ImageAdapter extends BaseAdapter {
             try {
                 InputStream in = new java.net.URL(urldisplay).openStream();
                 mIcon11 = BitmapFactory.decodeStream(in);
+
                 String extr = Environment.getExternalStorageDirectory().toString();
                 File mFolder = new File(extr + "/KisaanConnect");
-
                 if (!mFolder.exists()) {
-                    mFolder.mkdir();
+                    Boolean createfolder = mFolder.mkdirs();
+                    if(!createfolder){
+                        Log.i("Image Adapter : ", "Error creating folder");
+                    }
                 }
+
                 String strF = mFolder.getAbsolutePath();
 
                 String temp = urls[0];
@@ -98,23 +102,24 @@ public class ImageAdapter extends BaseAdapter {
                 int lensubnames = subnames.length;
                 File mSubFolder = new File(strF +"/" +subnames[lensubnames-2]);
                 if (!mSubFolder.exists()) {
-                    mSubFolder.mkdir();
+                    Boolean createsubfolder = mSubFolder.mkdirs();
+                    if(!createsubfolder){
+                        Log.i("Image Adapter : ", "Error creating subfolder");
+                    }
                 }
                 String s = subnames[lensubnames-1];
                 File f = new File(mSubFolder.getAbsolutePath(),s);
-                FileOutputStream fos = null;
+                FileOutputStream fos;
                 try {
                     fos = new FileOutputStream(f);
+                    if(myactivity!=null){
+                        Log.i("imageadapter :","storing image "+s+" to sdcard");
+                    }
                     mIcon11.compress(Bitmap.CompressFormat.JPEG,100, fos);
 
                     fos.flush();
                     fos.close();
-                    //   MediaStore.Images.Media.insertImage(getContentResolver(), b, "Screen", "screen");
-                }catch (FileNotFoundException e) {
-
-                    e.printStackTrace();
-                } catch (Exception e) {
-
+                }catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -138,25 +143,20 @@ public class ImageAdapter extends BaseAdapter {
         }
 
         protected Bitmap doInBackground(String... urls) {
-            Bitmap mIcon11 = null;
+            Bitmap mIcon11;
             urldis=urls[0];
             try {
 
                 String extr = Environment.getExternalStorageDirectory().toString();
                 File mFolder = new File(extr + "/KisaanConnect");
                 String strF = mFolder.getAbsolutePath();
-
                 String temp = urls[0];
-
                 String[] subnames = temp.split("/");
                 int lensubnames = subnames.length;
                 File mSubFolder = new File(strF +"/" +subnames[lensubnames-2]);
                 String s = subnames[lensubnames-1];
                 File f = new File(mSubFolder.getAbsolutePath(),s);
-
                 mIcon11 = BitmapFactory.decodeFile(f.getAbsolutePath());
-
-
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;

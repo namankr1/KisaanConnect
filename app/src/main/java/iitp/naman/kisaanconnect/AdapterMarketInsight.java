@@ -31,7 +31,6 @@ public class AdapterMarketInsight extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View gridView;
         if (convertView == null) {
-            gridView = new View(context);
             gridView = inflater.inflate(R.layout.singlerowmarketinsight, null);
 
             TextView textView = (TextView) gridView.findViewById(R.id.subcatname1);
@@ -63,7 +62,7 @@ public class AdapterMarketInsight extends BaseAdapter {
 
                 }
                 catch (Exception e){
-                    textView1.setBackgroundResource(R.drawable.marketinsightstagnant);
+                    textView1.setBackgroundResource(R.drawable.marketinsightnormal);
                 }
 
 
@@ -84,7 +83,7 @@ public class AdapterMarketInsight extends BaseAdapter {
 
         }
         else {
-            gridView = (View) convertView;
+            gridView =  convertView;
         }
         return gridView;
     }

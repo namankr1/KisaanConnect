@@ -1,0 +1,236 @@
+<resources>
+<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+<string name="network_check">https://www.google.co.in/</string>
+<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+<string name="image_text">இனம் இணைக்கவும்</string>
+<string name="app_name">KisaanConnect</string>
+<string name="title_activity_home">முகப்பு</string>
+<string name="navigation_drawer_open">வழிசெலுத்தல் இடத்தைத் திற</string>
+<string name="navigation_drawer_close">வழிசெலுத்தல் இடத்தை மூடு</string>
+<string name="activity_login">உள் நுழை</string>
+<string name="activity_login_1">உங்கள் கணக்கில் உள்நுழைய</string>
+<string name="activity_login_2">தொடர்பு எண்</string>
+<string name="activity_login_3">கடவுச்சொல்</string>
+<string name="activity_login_4">செயற்படுத்தவும்</string>
+<string name="activity_login_5">கடவுச்சொல் மறந்து விட்டீர்களா?</string>
+<string name="activity_login_6">பதிவு செய்க</string>
+<string name="activity_login_7">என்னை ஞாபகம் வைத்து கொள்</string>
+<string name="activity_login_8">மறை</string>
+<string name="activity_login_9">காட்டு</string>
+<string name="addquotesofsubcategory_1">எங்களுக்கு உங்கள் தயாரிப்பு விற்க உங்கள் ஆர்வத்திற்கு நன்றி. </string>
+<string name="addquotesofsubcategory_2">தயாரிப்பு பெயரை</string>
+<string name="addquotesofsubcategory_3">அளவு (கிலோ அல்லது இலக்கங்கள் உள்ள)</string>
+<string name="addquotesofsubcategory_4">விலை (ரூ)</string>
+<string name="addquotesofsubcategory_5">விவரம் (விரும்பினால்)</string>
+<string name="addquotesofsubcategory_6">கூட்டு</string>
+<string name="changepassword_1">கடவுச்சொல்லை மாற்று</string>
+<string name="changepassword_2">வெற்றிகரமாக மாற்றப்பட்டது என்றால் புதிய கடவுச்சொல்லை முதல் அடுத்த உள்நுழைவு முயற்சி ஏற்றுக்கொள்ளப்படும்</string>
+<string name="changepassword_3">தற்போதைய கடவுச்சொல்</string>
+<string name="changepassword_4">புதிய கடவுச்சொல்</string>
+<string name="changepassword_5">புதிய கடவுச்சொல் மீண்டும் தட்டச்சு</string>
+<string name="changepassword_6">உறுதிப்படுத்தவும்</string>
+<string name="content_home_1">எப்படி KisaanConnect உங்களுக்கு உதவ முடியும்?</string>
+    <string name="content_home_3">எப்படி KisaanConnect பயன்படுத்த?</string>
+    <string name="deletequote_1">தயாரிப்பு நீக்கு</string>
+<string name="deletequote_2">தயாரிப்பு விளக்கம்</string>
+<string name="deletequote_3">தயாரிப்பு தற்போதைய உயர்ந்த முயற்சியில் (ரூ)</string>
+<string name="deletequote_4">தற்போதைய தேவைப்படும் அளவில்</string>
+<string name="deletequote_5">நீங்கள் அதை நீக்க வேண்டும் நீங்கள் உறுதியாக இருக்கிறீர்களா? </string>
+<string name="deletequote_6">ஆம்</string>
+<string name="deletequote_7">இல்லை</string>
+<string name="endnegotiation_1">முடிவு பேச்சுவார்த்தை</string>
+<string name="endnegotiation_2">பேரம் பெயர்</string>
+<string name="endnegotiation_3">பேரம் எண் தொடர்பு</string>
+<string name="endnegotiation_4">பேரம் தற்போதைய முகவரி</string>
+<string name="endnegotiation_5">தயாரிப்பு தற்போதைய உயர்ந்த முயற்சியில் (ரூ)</string>
+<string name="endnegotiation_6">தற்போதைய தேவைப்படும் அளவில்</string>
+<string name="endnegotiation_7">நீங்கள் ஏற்க அல்லது தயாரிப்பு நிராகரிக்க விரும்புகிறீர்களா? </string>
+<string name="endnegotiation_8">ஏற்கவும்</string>
+<string name="endnegotiation_9">நிராகரி</string>
+<string name="forgotpassword_1">Enter சிவகாசி மற்றும் புதிய கடவுச்சொல்லை பெற்றார்</string>
+<string name="forgotpassword_2">சிவகாசி</string>
+<string name="forgotpassword_3">புதிய கடவுச்சொல்</string>
+<string name="forgotpassword_4">சரிபார்க்கவும்</string>
+<string name="interestedquote_1">வெற்றிகரமான ஆர்டர்களின் எண்ணிக்கை:</string>
+<string name="interestedquote_2">தயாரிப்பு விளக்கம்</string>
+<string name="interestedquote_3">தயாரிப்பு தற்போதைய உயர்ந்த முயற்சியில் (ரூ)</string>
+<string name="interestedquote_4">தற்போதைய தேவைப்படும் அளவில்</string>
+<string name="interestedquote_5">இந்த தயாரிப்பு ஆர்வமாக இருந்தால், கீழே உள்ள விவரங்களை உள்ளிடவும்</string>
+<string name="interestedquote_6">நீங்கள் எவ்வளவு கொடுக்க தயாராக இருக்கிறார்கள்?</string>
+<string name="interestedquote_7">நீங்கள் எவ்வளவு அளவு வாங்க வேண்டும்?</string>
+<string name="interestedquote_8">நான் ஆர்வமாக இருக்கிறேன்</string>
+<string name="marketinsight_1">இந்த பக்கம் நீங்கள் உங்கள் சந்தை பற்றி சமீபத்திய நுண்ணறிவு கொடுக்கிறது. </string>
+<string name="marketinsight_2">மற்ற பயனாளிகள் என்ன விற்பனை?</string>
+<string name="marketinsight_3">பிற பயனர்களின் வாங்குவது?</string>
+<string name="marketinsight_4">விலை சந்தையில் எப்படி மாறி வருகிறது?</string>
+<string name="marketinsight_5">நாங்கள் என்ன சாப்பிடலாம்?</string>
+<string name="myprofile_1">பதிவு செய்தது</string>
+<string name="myprofile_2">முழு பெயர்</string>
+<string name="myprofile_3">தொடர்பு எண்</string>
+<string name="myprofile_4">தற்போதைய முகவரியில்</string>
+<string name="nav_header_home_1">இனம் இணைக்கவும்</string>
+<string name="nav_header_home_2">விரைவு இணைப்புகள்</string>
+<string name="negotiate_1">விலை (ரூ)</string>
+<string name="negotiate_2">அளவு (கிலோ அல்லது இலக்கங்கள் உள்ள)</string>
+<string name="negotiate_3">நீங்கள் வாங்க தயாராக இருக்கிறார்கள் என்று கீழே விலை மற்றும் அளவு சேர்க்கவும்.</string>
+<string name="negotiate_4">நீங்கள் எவ்வளவு கொடுக்க தயாராக இருக்கிறார்கள்?</string>
+<string name="negotiate_5">நீங்கள் எவ்வளவு அளவு வாங்க வேண்டும்?</string>
+<string name="negotiate_6">பேரம்</string>
+<string name="ordersummary_1">சுருக்கம்</string>
+<string name="ordersummary_2">பேரம் பெயர்</string>
+<string name="ordersummary_3">பேரம் எண் தொடர்பு</string>
+<string name="ordersummary_4">பேரம் தற்போதைய முகவரி</string>
+<string name="ordersummary_5">தயாரிப்பு தற்போதைய உயர்ந்த முயற்சியில் (ரூ)</string>
+<string name="ordersummary_6">தற்போதைய கிடைக்கும் அளவு (கிலோ அல்லது இலக்கங்கள் உள்ள)</string>
+<string name="ordersummary_7">கீழே உள்ள பட்டனை க்ளிக் செய்வதன் மூலம் பேச்சுவார்த்தையாளர் அழைக்க முடியும்</string>
+<string name="ordersummary_8">கால் பேச்சாளராக</string>
+<string name="otp_1">சிவகாசி உங்கள் தொலைபேசி பெற்றார் Enter</string>
+<string name="otp_2">சிவகாசி</string>
+<string name="otp_3">சரிபார்க்கவும்</string>
+<string name="otp_4">சிவகாசி மீண்டும் அனுப்பி</string>
+<string name="otp_5">மீண்டும் உட்கார்ந்து நாங்கள் உங்கள் தொடர்பு எண் சரிபார்க்க போது ஓய்வெடுக்க</string>
+<string name="passwordreset_1">கடவுச்சொல்லை மீட்டமைக்க</string>
+<string name="passwordreset_2">தொடர்பு எண்</string>
+<string name="passwordreset_3">OTP அனுப்பு</string>
+<string name="register">பதிவு</string>
+<string name="register_1">எங்களுக்கு மூலம் பதிவு செய்க</string>
+<string name="register_2">முழு பெயர்</string>
+<string name="register_3">தொடர்பு எண்</string>
+<string name="register_4">கடவுச்சொல்</string>
+<string name="register_5">கடவுச்சொல்லை மீண்டும் தட்டச்சு செய்க</string>
+<string name="register_6">கிராமம் அல்லது நகரம் பெயர்</string>
+<string name="register_7">மாநிலம் அல்லது பிராந்தியம்</string>
+<string name="register_8">ZIP அல்லது முள் குறியீடு</string>
+<string name="register_9">பதிவு செய்க</string>
+<string name="single_row_notif_1">மேலும் விவரங்களுக்கு:</string>
+<string name="singleroworder_1">காண்க சுருக்கம்</string>
+<string name="singlerowquote_1">ஆர்டர்கள் எண்:</string>
+<string name="singlerowquote_2">விலை (ரூ)</string>
+<string name="singlerowquote_3">அளவு (கிலோ)</string>
+<string name="singlerowusernotif_1">முடிவு பேச்சுவார்த்தைத்</string>
+<string name="singlerowusernotif_2">பேரம்</string>
+<string name="singlerowuserquote_1">அழி</string>
+<string name="singlerowuserquote_2">விலை (ரூ.)</string>
+<string name="singlerowuserquote_3">அளவு (கிலோ)</string>
+<string name="singlerowuserquote_4">புதுப்பிக்கப்பட்டது</string>
+<string name="updateprofile_1">சுயவிவரத்தை புதுப்பிக்கவும்</string>
+<string name="updateprofile_2">தற்போதைய விவரங்களை</string>
+<string name="updateprofile_3">முழு பெயர்</string>
+<string name="updateprofile_4">தொடர்பு எண்</string>
+<string name="updateprofile_5">புதிய முகவரி</string>
+<string name="updateprofile_6">நீங்கள் கீழே உங்கள் முகவரியை மாற்ற முடியும்.</string>
+<string name="updateprofile_7">உறுதிப்படுத்தவும்</string>
+<string name="updatequote_1">தயாரிப்பு புதுப்பிக்கப்பட்டது</string>
+<string name="updatequote_2">நீங்கள் இங்கே உங்கள் தயாரிப்பு என்ற பெயரில், விலை மற்றும் அளவு திருத்த முடியும்.</string>
+<string name="updatequote_3">தயாரிப்பு விளக்கம்</string>
+<string name="updatequote_4">தயாரிப்பு பெயரை</string>
+<string name="updatequote_5">விலை</string>
+<string name="updatequote_6">கிடைக்கும் அளவு</string>
+<string name="updatequote_7">புதுப்பிக்கப்பட்டது</string>
+<string name="chooselanguage_1">சரி</string>
+<string name="menu_help_btn">உதவி</string>
+<string name="menu_language_btn">மொழி</string>
+<string name="menu_home_btn">முகப்பு</string>
+<string name="menu_myprofile_btn">என் சுயவிவரம்</string>
+<string name="menu_publicnotif_btn">பொது அறிவிப்புகள்</string>
+<string name="menu_buyres_btn">வாங்க வளங்கள்</string>
+<string name="menu_sellres_btn">வளங்கள் விற்க</string>
+<string name="menu_marketinsight_btn">சந்தை உள்ளுணர்வை</string>
+<string name="menu_logout_btn">வெளியேறு</string>
+<string name="menu_exit_btn">வெளியேறு</string>
+<string name="menu_refresh_btn">புதுப்பிப்பு</string>
+<string name="menu_changepass_btn">கடவுச்சொல்லை மாற்று</string>
+<string name="menu_updateprof_btn">சுயவிவரத்தை புதுப்பிக்கவும்</string>
+<string name="menu_myproduct_btn">எனது தயாரிப்புகள்</string>
+<string name="menu_myorder_btn">என் கட்டளைகள்</string>
+<string name="menu_mynegotiation_btn">என் பேச்சுவார்த்தைகள்</string>
+<string name="cantconnect">இணைய இணைக்க முடியாது</string>
+<string name="connectionfail">இணைப்பு தோல்வி</string>
+<string name="readmore">… (மேலும் வாசிக்க கிளிக் செய்யவும்)</string>
+<string name="buy_1">வகைகள்</string>
+<string name="javachangepassword_1">இருவரும் கடவுச்சொல் பொருத்தமாக இல்லை</string>
+<string name="javachooselanguage_1">ஒரு மொழி தேர்வு</string>
+<string name="javaforgotpassword_1">சிவகாசி அத்தியாவசியமானதாகும்</string>
+<string name="javagetallquotesuser_1">உங்கள் தயாரிப்புகள்</string>
+<string name="javagetallquotesuser_2">நீங்கள் இதுவரை எந்த பொருட்கள் எதுவும் சேர்க்கவில்லை</string>
+<string name="javagetallquotesuser_3">சரி</string>
+<string name="getquotesofsubcategory_1">நீங்கள் இதுவரை எந்த பொருட்கள் எதுவும் சேர்க்கவில்லை</string>
+<string name="getquotesofsubcategory_2">சரி</string>
+<string name="govtnotif_1">பொது அறிவிப்புகள்</string>
+<string name="govtnotif_2">உங்கள் உலாவியில் கொடுக்கப்பட்ட URL திறந்த</string>
+<string name="javahome_1">நிச்சயமாக நீங்கள் வெளியேற வேண்டுமா?</string>
+<string name="javahome_2">ஆம்</string>
+<string name="javahome_3">இல்லை</string>
+<string name="javainterestedquote_1">விவரங்கள்</string>
+<string name="javainterestedquote_2">நீங்கள் ஒரு சம அல்லது அதிக விலை விடைபெற வேண்டும்</string>
+<string name="javainterestedquote_3">அளவு தேவைப்படும் அளவில் குறைவாக அல்லது சமமாக இருக்க வேண்டும்</string>
+<string name="javainterestedquote_4">கொடுக்கப்பட்ட தவறான தரவு</string>
+<string name="javalogin_1">கடவுச்சொல் அத்தியாவசியமானதாகும்</string>
+<string name="javalogin_2">தொலைபேசி அத்தியாவசியமானதாகும்</string>
+<string name="javalogin_3">தொலைபேசி மற்றும் கடவுச்சொல்லை கட்டாய உள்ளன</string>
+<string name="javalogin_4">முதலில் உங்கள் கணக்கைச் சரிபார்க்கவும்.</string>
+<string name="javamarketinsight_1">சந்தை உள்ளுணர்வை</string>
+<string name="javaregistert_1">தொடர்பு எண் 10 இலக்கங்கள் இருக்க வேண்டும்</string>
+<string name="javaregistert_2">கடவுச்சொற்கள் பொருந்தவில்லை</string>
+<string name="javaregistert_3">ஒன்று அல்லது அதற்கு மேற்பட்ட துறைகள் காலியாக உள்ளன</string>
+<string name="javasell_1">வகைகள்</string>
+<string name="javausernegotiation_1">நீங்கள் இன்னும் யாருடனும் பேச்சுவார்த்தை இல்லை.</string>
+<string name="javausernegotiation_2">சரி</string>
+<string name="javausernotif_1">புதிய அறிவிப்புகள் இல்லை</string>
+<string name="javausernotif_2">சரி</string>
+<string name="javausernotif_3">உங்கள் அறிவிப்புகளை</string>
+<string name="javauserorder_1">நீங்கள் இதுவரை எந்த பொருட்கள் வாங்கிய இல்லை</string>
+<string name="javauserorder_2">சரி</string>
+<string name="javauserorder_3">என் கட்டளைகள்</string>
+<string-array name="languagestotranslate">
+<item> English </item>
+<item> हिन्दी </item>
+<item> বাঙালি </item>
+<item> తెలుగు </item>
+<item> मराठी </item>
+<item> தமிழ் </item>
+<item> اردو </item>
+<item> ગુજરાતી </item>
+<item> ಕನ್ನಡ </item>
+<item> മലയാളം </item>
+<item> ਪੰਜਾਬੀ ਦੇ </item>
+<item> नेपाली </item>
+<item> سنڌي </item>
+</string-array>
+
+<string-array name="codelanguagestotranslate">
+<item>en</item>
+<item>hi</item>
+<item>bn</item>
+<item>te</item>
+<item>mr</item>
+<item>ta</item>
+<item>ur</item>
+<item>gu</item>
+<item>kn</item>
+<item>ml</item>
+<item>pa</item>
+<item>ne</item>
+<item>sd</item>
+</string-array>
+<string name="javausernotifadpater_1">உங்கள் மேற்கோள் ஏற்று கொண்டார்</string>
+<string name="javausernotifadpater_2">மற்றும் விரும்புகிறது</string>
+<string name="javausernotifadpater_3">விகிதம் ரூ கிலோ</string>
+<string name="javausernotifadpater_4">உங்கள் மேற்கோள் நிராகரித்து விட்டது</string>
+<string name="javausernotifadpater_5">பற்றி பேச்சுவார்த்தை நடத்த ஆர்வமாக உள்ளது</string>
+<string name="javausernegotiationadapter_1">நீங்கள் பேச்சுவார்த்தை</string>
+<string name="javausernegotiationadapter_2">ஐந்து</string>
+<string name="javausernegotiationadapter_3">தற்பொழுது</string>
+<string name="javausernegotiationadapter_4">விகிதம் ரூ கிலோ.</string>
+<string name="javausernorderadapter_1">உங்கள் மேற்கோள் ஏற்று கொண்டார்</string>
+<string name="javausernorderadapter_2">மற்றும் விரும்புகிறது</string>
+<string name="javausernorderadapter_3">விகிதம் ரூ கிலோ</string>
+<string name="javausernorderadapter_4">நீங்கள் ஏலம் ஏற்று கொண்டார்</string>
+<string name="javausernorderadapter_5">மற்றும் நிறைவு செய்துள்ளது</string>
+    <string name="content_home_2">KisaanConnect, கிராமப்புற இந்தியாவின் இதயங்களை தொட்டு நோக்கமாக கொண்டு, வேளாண் விற்பனை ஒரு நம்பகமான மற்றும் முழு நீள மேடையில் உருவாக்குகிறது. அதை நீங்கள் இந்திய விவசாயிகள் பயன்படுத்த ஏற்ப ஒரு மெய்நிகர் சந்தையில், தங்கள் செலவு மேல்நிலை மற்றும் இழப்பு காரணிகள் எளிதாக்குவது கொடுக்கிறது. பயனர்கள் வாங்கவோ, விற்கவோ அல்லது பயிர்கள் போன்ற வளங்களை வாடகைக்கு விடலாம், விவசாய உபகரணங்கள் முதலியன KisaanConnect மேலும் ஒரு சிறந்த சமூகம், வள ஏல உத்தியை மூலம் அதிக லாபம் பெற அவர்களுக்கு உதவி உருவாக்குகிறது விவசாயிகளுக்கு. ஒரு வாடிக்கையாளர், இந்த மேடையில் எந்த இடைத்தரகர் சேர்க்கப்பட்டுள்ளது போன்ற மலிவான சந்தையில் உதவுகிறது. இந்த புதிய மற்றும் நம்பகமான வளங்களை நேரடியாக அணுக கொடுக்கிறது.</string>
+    <string name="content_home_4">KisaanConnect பயன்படுத்தி எளிதாக மற்றும் உள்ளுணர்வு உள்ளது. ஒரு குறிப்பிட்ட வள வாங்க, இந்த பக்கம் இடது மேல் விரைவு இணைப்புகள் செல்ல. வாங்க வளங்கள் தேர்ந்தெடுக்கவும். அடையாளம் துறைகளில் பிரிவுகள் காட்டப்படும். விரும்பிய வகை கிளிக் செய்யவும். அந்த வகை துணை பிரிவுகள் காட்டப்படும். விரும்பிய துணை துணை தேர்ந்தெடுக்கவும். இந்த அனைத்து உகந்ததாக தேடல் முடிவுகளை எடுக்க வேண்டும். விரும்பிய ஒரு கிளிக். விவரங்கள் பக்கம் காண்பிக்கும். நீங்கள் பேச்சுவார்த்தை மற்றும் ஏற்பு தொடர்ந்து அந்த பக்கத்தில் இருந்து வட்டி உயர்த்த முடியும். வளங்களை விற்க, அதே பாதையில் தொடர்ந்து வருகிறது. வகை வழியாக துணை வகை உள்ள செல்வதன் மூலம் உங்கள் தயாரிப்பு சேர்க்க மற்றும் அதை உடனடியாக ஆன்லைனில் கிடைக்கும்.</string>
+    <string name="chooselanguage_2">கீழே பட்டியலில் இருந்து விண்ணப்ப மொழி தேர்வு</string>
+</resources>

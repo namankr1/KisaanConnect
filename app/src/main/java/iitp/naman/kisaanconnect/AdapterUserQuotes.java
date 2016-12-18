@@ -24,7 +24,6 @@ public class AdapterUserQuotes extends BaseAdapter {
     private String[] quotequantity;
     private String[] quoterating;
     private String[] userphone;
-    private String[] username;
     private String[] useraddress;
     private String[] quotetype;
     private String serverPhone;
@@ -32,7 +31,7 @@ public class AdapterUserQuotes extends BaseAdapter {
     private String serverType;
     private String serverAddress;
 
-    public AdapterUserQuotes(Activity myactivity,Context context, String[] quotebidvalue,String[] quotedescription,String[] quoteid,String[] quoteprice,String[] quotequantity,String[] quoterating,String[] userphone,String[] username,String[] useraddress,String[] quotetype,String serverPhone,String serverName,String serverType,String serverAddress) {
+    public AdapterUserQuotes(Activity myactivity,Context context, String[] quotebidvalue,String[] quotedescription,String[] quoteid,String[] quoteprice,String[] quotequantity,String[] quoterating,String[] userphone,String[] useraddress,String[] quotetype,String serverPhone,String serverName,String serverType,String serverAddress) {
         this.context = context;
         this.myactivity=myactivity;
         this.quotebidvalue=quotebidvalue;
@@ -42,7 +41,6 @@ public class AdapterUserQuotes extends BaseAdapter {
         this.quoterating=quoterating;
         this.quotequantity=quotequantity;
         this.userphone=userphone;
-        this.username=username;
         this.useraddress=useraddress;
         this.serverPhone=serverPhone;
         this.quotetype=quotetype;
@@ -56,7 +54,6 @@ public class AdapterUserQuotes extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View gridView;
         if (convertView == null) {
-            gridView = new View(context);
             gridView = inflater.inflate(R.layout.singlerowuserquote, null);
             TextView textView1 = (TextView) gridView.findViewById(R.id.bidvalue);
             textView1.setText(quotebidvalue[position]);
@@ -78,7 +75,7 @@ public class AdapterUserQuotes extends BaseAdapter {
             textView9.setText(userphone[position]);
         }
         else {
-            gridView = (View) convertView;
+            gridView =  convertView;
         }
 
         Button btndel  = ((Button) gridView.findViewById(R.id.delete));
@@ -100,7 +97,6 @@ public class AdapterUserQuotes extends BaseAdapter {
                 upanel.putExtra("quantity",quotequantity[position]);
                 upanel.putExtra("type",quotetype[position]);
                 myactivity.startActivity(upanel);
-                //myactivity.finish();
             }
         });
 
@@ -119,7 +115,6 @@ public class AdapterUserQuotes extends BaseAdapter {
                 upanel.putExtra("price",quoteprice[position]);
                 upanel.putExtra("quantity",quotequantity[position]);
                 myactivity.startActivity(upanel);
-                //myactivity.finish();//finishes the activity
             }
         });
         return gridView;

@@ -1,0 +1,236 @@
+<resources>
+<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+<string name="network_check">https://www.google.co.in/</string>
+<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+<string name="image_text">റേസ് ബന്ധിപ്പിക്കുക</string>
+<string name="app_name">KisaanConnect</string>
+<string name="title_activity_home">വീട്</string>
+<string name="navigation_drawer_open">നാവിഗേഷൻ ഡ്രോയർ തുറക്കുക</string>
+<string name="navigation_drawer_close">നാവിഗേഷൻ ഡ്രോയർ അടയ്ക്കുക</string>
+<string name="activity_login">ലോഗിൻ</string>
+<string name="activity_login_1">നിങ്ങളുടെ അക്കൗണ്ടിൽ ലോഗിൻ</string>
+<string name="activity_login_2">കോൺടാക്റ്റ് നമ്പർ</string>
+<string name="activity_login_3">പാസ്വേഡ്</string>
+<string name="activity_login_4">തുടരുക</string>
+<string name="activity_login_5">പാസ്വേഡ് മറന്നോ?</string>
+<string name="activity_login_6">സൈൻ അപ്പ് ചെയ്യുക</string>
+<string name="activity_login_7">എന്നെ ഓർക്കണം</string>
+<string name="activity_login_8">മറയ്ക്കുക</string>
+<string name="activity_login_9">കാണിക്കുക</string>
+<string name="addquotesofsubcategory_1">ഞങ്ങളോടൊപ്പം നിങ്ങളുടെ ഉൽപ്പന്ന വിൽക്കാൻ നിങ്ങളുടെ താൽപ്പര്യത്തിന് നന്ദി. </string>
+<string name="addquotesofsubcategory_2">ഉൽപ്പന്നത്തിന്റെ പേര്</string>
+<string name="addquotesofsubcategory_3">അളവ് (കിലോ അല്ലെങ്കിൽ എണ്ണം ൽ)</string>
+<string name="addquotesofsubcategory_4">വില (രൂപയിൽ)</string>
+<string name="addquotesofsubcategory_5">വിവരണം (ഓപ്ഷണൽ)</string>
+<string name="addquotesofsubcategory_6">ചേർക്കുക</string>
+<string name="changepassword_1">പാസ്വേഡ് മാറ്റുക</string>
+<string name="changepassword_2">വിജയകരമായി മാറ്റി പുതിയ പാസ്വേഡ് അടുത്ത ലോഗിൻ ശ്രമം സ്വീകരിക്കാൻ കഴിയും</string>
+<string name="changepassword_3">ഇപ്പോഴത്തെ പാസ്സ്വേർഡ്</string>
+<string name="changepassword_4">പുതിയ പാസ്വേഡ്</string>
+<string name="changepassword_5">പുതിയ പാസ്സ്വേർഡ് വീണ്ടും ടൈപ്പ് ചെയ്യുക</string>
+<string name="changepassword_6">ഉറപ്പിക്കുക</string>
+<string name="content_home_1">എങ്ങനെ KisaanConnect നിങ്ങളെ സഹായിക്കും?</string>
+    <string name="content_home_3">എങ്ങനെ KisaanConnect ഉപയോഗിക്കാൻ?</string>
+    <string name="deletequote_1">ഉൽപ്പന്നം ഇല്ലാതാക്കുക</string>
+<string name="deletequote_2">ഉൽപ്പന്നത്തിന്റെ വിവരണം</string>
+<string name="deletequote_3">ഉൽപ്പന്നത്തിന്റെ നിലവിൽ ഏറ്റവും ബിഡ് (രൂപയിൽ)</string>
+<string name="deletequote_4">അവതരിപ്പിക്കുക ലഭ്യമാണ് അളവ്</string>
+<string name="deletequote_5">നിങ്ങൾ ഇത് ഇല്ലാതാക്കണമെന്ന് ഉറപ്പാണോ? </string>
+<string name="deletequote_6">അതെ</string>
+<string name="deletequote_7">ഇല്ല</string>
+<string name="endnegotiation_1">അവസാനിപ്പിക്കുക കൂടിയാലോചന</string>
+<string name="endnegotiation_2">negotiator പേര്</string>
+<string name="endnegotiation_3">negotiator എണ്ണം ബന്ധപ്പെടുക</string>
+<string name="endnegotiation_4">negotiator നടപടി ക്രമങ്ങള്</string>
+<string name="endnegotiation_5">ഉൽപ്പന്നത്തിന്റെ നിലവിൽ ഏറ്റവും ബിഡ് (രൂപയിൽ)</string>
+<string name="endnegotiation_6">അവതരിപ്പിക്കുക ലഭ്യമാണ് അളവ്</string>
+<string name="endnegotiation_7">നിങ്ങൾ ഉൽപ്പന്നം അംഗീകരിക്കാൻ അല്ലെങ്കിൽ നിരസിക്കാൻ താൽപ്പര്യമുണ്ടോ? </string>
+<string name="endnegotiation_8">അംഗീകരിക്കുക</string>
+<string name="endnegotiation_9">നിരസിക്കുക</string>
+<string name="forgotpassword_1">ലഭിച്ച OTP: പുതിയ പാസ്വേഡും നൽകുക</string>
+<string name="forgotpassword_2">OTP:</string>
+<string name="forgotpassword_3">പുതിയ പാസ്വേഡ്</string>
+<string name="forgotpassword_4">സ്ഥിരീകരിക്കുക</string>
+<string name="interestedquote_1">വിജയകരമായ ഓർഡറുകൾ എണ്ണം:</string>
+<string name="interestedquote_2">ഉൽപ്പന്നത്തിന്റെ വിവരണം</string>
+<string name="interestedquote_3">ഉൽപ്പന്നത്തിന്റെ നിലവിൽ ഏറ്റവും ബിഡ് (രൂപയിൽ)</string>
+<string name="interestedquote_4">അവതരിപ്പിക്കുക ലഭ്യമാണ് അളവ്</string>
+<string name="interestedquote_5">നിങ്ങൾക്ക് ഈ ഉൽപ്പന്നം താൽപ്പര്യമില്ലെങ്കിൽ, താഴെ വിശദാംശങ്ങൾ നൽകുക</string>
+<string name="interestedquote_6">നിങ്ങൾ നൽകുകയും തയ്യാറാണെങ്കിൽ എത്രയാണ്?</string>
+<string name="interestedquote_7">നിങ്ങൾ എത്ര അളവ് വാങ്ങാൻ ചെയ്യും?</string>
+<string name="interestedquote_8">എനിക്ക് താത്പര്യമുണ്ട്</string>
+<string name="marketinsight_1">ഈ പേജ് നിങ്ങളുടെ വിപണിയിൽ കുറിച്ച് പുതിയ സ്ഥിതിവിവരക്കണക്കുകൾ. </string>
+<string name="marketinsight_2">വിൽക്കുന്ന മറ്റ് ഉപയോക്താക്കളെ എന്തൊക്കെയാണ്?</string>
+<string name="marketinsight_3">മറ്റ് ഉപയോക്താക്കളെ വാങ്ങൽ എന്തൊക്കെയാണ്?</string>
+<string name="marketinsight_4">വില വിപണിയിൽ എങ്ങനെ മാറുകയാണ്?</string>
+<string name="marketinsight_5">ഞങ്ങൾ എന്താണ് ശുപാർശ ചെയ്യുന്നത്?</string>
+<string name="myprofile_1">പ്രൊഫൈൽ</string>
+<string name="myprofile_2">പൂർണ്ണമായ പേര്</string>
+<string name="myprofile_3">കോൺടാക്റ്റ് നമ്പർ</string>
+<string name="myprofile_4">ഇപ്പോഴത്തെ വിലാസം</string>
+<string name="nav_header_home_1">റേസ് ബന്ധിപ്പിക്കുക</string>
+<string name="nav_header_home_2">പെട്ടെന്ന് കണ്ണികൾ</string>
+<string name="negotiate_1">വില (രൂപയിൽ)</string>
+<string name="negotiate_2">അളവ് (കിലോ അല്ലെങ്കിൽ എണ്ണം ൽ)</string>
+<string name="negotiate_3">വിലയേക്കാൾ അളവ് നൽകിയശേഷം വാങ്ങാൻ സമ്മതിക്കുന്ന.</string>
+<string name="negotiate_4">നിങ്ങൾ നൽകുകയും തയ്യാറാണെങ്കിൽ എത്രയാണ്?</string>
+<string name="negotiate_5">നിങ്ങൾ എത്ര അളവ് വാങ്ങാൻ ചെയ്യും?</string>
+<string name="negotiate_6">കൂടിയാലോചിക്കുക</string>
+<string name="ordersummary_1">ചുരുക്കം</string>
+<string name="ordersummary_2">negotiator പേര്</string>
+<string name="ordersummary_3">negotiator എണ്ണം ബന്ധപ്പെടുക</string>
+<string name="ordersummary_4">negotiator നടപടി ക്രമങ്ങള്</string>
+<string name="ordersummary_5">ഉൽപ്പന്നത്തിന്റെ നിലവിൽ ഏറ്റവും ബിഡ് (രൂപയിൽ)</string>
+<string name="ordersummary_6">അവതരിപ്പിക്കുക ലഭ്യമായ അളവ് (കിലോ അല്ലെങ്കിൽ എണ്ണം ൽ)</string>
+<string name="ordersummary_7">ചുവടെയുള്ള ബട്ടൺ ഉപയോഗിച്ച്് negotiator വിളിക്കാം</string>
+<string name="ordersummary_8">വിളിക്കുക Negotiator</string>
+<string name="otp_1">നൽകുക OTP: നിങ്ങളുടെ ഫോണിൽ ലഭിച്ച</string>
+<string name="otp_2">OTP:</string>
+<string name="otp_3">സ്ഥിരീകരിക്കുക</string>
+<string name="otp_4">OTP വീണ്ടും അയയ്ക്കുക</string>
+<string name="otp_5">ഇരുന്ന് ഞങ്ങൾ നിങ്ങളുടെ സമ്പർക്ക നമ്പർ സ്ഥിരീകരിക്കാൻ സമയത്ത് വിശ്രമിക്കാൻ</string>
+<string name="passwordreset_1">പാസ്വേഡ് പുനഃക്രമീകരിക്കുക</string>
+<string name="passwordreset_2">കോൺടാക്റ്റ് നമ്പർ</string>
+<string name="passwordreset_3">OTP അയയ്ക്കുക</string>
+<string name="register">സൈൻ അപ്പ് ചെയ്യുക</string>
+<string name="register_1">ഞങ്ങളോടു കൂടെ ഇൻ</string>
+<string name="register_2">പൂർണ്ണമായ പേര്</string>
+<string name="register_3">കോൺടാക്റ്റ് നമ്പർ</string>
+<string name="register_4">പാസ്വേഡ്</string>
+<string name="register_5">പാസ്വേഡ് വീണ്ടും ടൈപ്പുചെയ്യുക</string>
+<string name="register_6">വില്ലേജ് അല്ലെങ്കിൽ നഗരത്തിന്റെ പേര്</string>
+<string name="register_7">സംസ്ഥാന അല്ലെങ്കിൽ പ്രവിശ്യ</string>
+<string name="register_8">പിൻ അല്ലെങ്കിൽ പിൻ കോഡ്</string>
+<string name="register_9">സൈൻ അപ്പ് ചെയ്യുക</string>
+<string name="single_row_notif_1">കൂടുതൽ വിവരങ്ങൾക്ക്:</string>
+<string name="singleroworder_1">കാണുക ചുരുക്കം</string>
+<string name="singlerowquote_1">ഉത്തരവുകൾ എണ്ണം:</string>
+<string name="singlerowquote_2">വില (രൂപ)</string>
+<string name="singlerowquote_3">അളവ് (കിലോ)</string>
+<string name="singlerowusernotif_1">അവസാനിപ്പിക്കുക കൂടിയാലോചന</string>
+<string name="singlerowusernotif_2">കൂടിയാലോചിക്കുക</string>
+<string name="singlerowuserquote_1">ഇല്ലാതാക്കുക</string>
+<string name="singlerowuserquote_2">വില (രൂപ.)</string>
+<string name="singlerowuserquote_3">അളവ് (കിലോ)</string>
+<string name="singlerowuserquote_4">അപ്ഡേറ്റ്</string>
+<string name="updateprofile_1">പ്രൊഫൈൽ അപ്ഡേറ്റുചെയ്യുക</string>
+<string name="updateprofile_2">നിലവിൽ പ്രൊഫൈൽ വിശദാംശങ്ങൾ</string>
+<string name="updateprofile_3">പൂർണ്ണമായ പേര്</string>
+<string name="updateprofile_4">കോൺടാക്റ്റ് നമ്പർ</string>
+<string name="updateprofile_5">പുതിയ വിലാസം</string>
+<string name="updateprofile_6">ചുവടെയുള്ള നിങ്ങളുടെ വിലാസം മാറ്റാൻ കഴിയും.</string>
+<string name="updateprofile_7">ഉറപ്പിക്കുക</string>
+<string name="updatequote_1">ഉൽപ്പന്ന അപ്ഡേറ്റ്</string>
+<string name="updatequote_2">നിങ്ങൾക്ക് ഇവിടെ ഉൽപ്പന്നത്തിന്റെ പേര്, വിലയും അളവ് എഡിറ്റുചെയ്യാനാകും.</string>
+<string name="updatequote_3">ഉൽപ്പന്നത്തിന്റെ വിവരണം</string>
+<string name="updatequote_4">ഉൽപ്പന്നത്തിന്റെ പേര്</string>
+<string name="updatequote_5">വില</string>
+<string name="updatequote_6">ലഭ്യമായ അളവ്</string>
+<string name="updatequote_7">അപ്ഡേറ്റ്</string>
+<string name="chooselanguage_1">ശരി</string>
+<string name="menu_help_btn">സഹായിക്കൂ</string>
+<string name="menu_language_btn">ഭാഷ</string>
+<string name="menu_home_btn">വീട്</string>
+<string name="menu_myprofile_btn">എന്റെ പ്രൊഫൈൽ</string>
+<string name="menu_publicnotif_btn">പൊതു അറിയിപ്പുകൾ</string>
+<string name="menu_buyres_btn">ഉറവിടങ്ങൾ വാങ്ങുക</string>
+<string name="menu_sellres_btn">ഉറവിടങ്ങൾ വിൽക്കുക</string>
+<string name="menu_marketinsight_btn">മാർക്കറ്റ് സ്ഥിതിവിവരക്കണക്കുകൾ</string>
+<string name="menu_logout_btn">പുറത്തിറങ്ങുക</string>
+<string name="menu_exit_btn">പുറത്ത്</string>
+<string name="menu_refresh_btn">ഉന്മേഷം വീണ്ടെടുക്കുക</string>
+<string name="menu_changepass_btn">പാസ്വേഡ് മാറ്റുക</string>
+<string name="menu_updateprof_btn">പ്രൊഫൈൽ അപ്ഡേറ്റുചെയ്യുക</string>
+<string name="menu_myproduct_btn">എന്റെ ഉൽപ്പന്നങ്ങൾ</string>
+<string name="menu_myorder_btn">എന്റെ ഓർഡറുകൾ</string>
+<string name="menu_mynegotiation_btn">എന്റെ സംഭാഷണം</string>
+<string name="cantconnect">ഇന്റർനെറ്റ് ബന്ധിപ്പിക്കാൻ കഴിയില്ല</string>
+<string name="connectionfail">കണക്ഷൻ പരാജയപ്പെടും</string>
+<string name="readmore">… (കൂടുതൽ വായിക്കാൻ അമർത്തുക)</string>
+<string name="buy_1">വിഭാഗങ്ങൾ</string>
+<string name="javachangepassword_1">രണ്ട് പാസ്വേഡുകൾ പൊരുത്തപ്പെടുന്നില്ല</string>
+<string name="javachooselanguage_1">ഒരു ഭാഷ തിരഞ്ഞെടുക്കുക</string>
+<string name="javaforgotpassword_1">OTP: നിർബന്ധമായും</string>
+<string name="javagetallquotesuser_1">നിങ്ങളുടെ ഉൽപ്പന്നങ്ങൾ</string>
+<string name="javagetallquotesuser_2">നിങ്ങൾ ഇതുവരെ ഏതെങ്കിലും ഉൽപ്പന്നങ്ങൾ ചേർത്തിട്ടില്ല</string>
+<string name="javagetallquotesuser_3">ശരി</string>
+<string name="getquotesofsubcategory_1">നിങ്ങൾ ഇതുവരെ ഏതെങ്കിലും ഉൽപ്പന്നങ്ങൾ ചേർത്തിട്ടില്ല</string>
+<string name="getquotesofsubcategory_2">ശരി</string>
+<string name="govtnotif_1">പൊതു അറിയിപ്പുകൾ</string>
+<string name="govtnotif_2">നിങ്ങളുടെ ബ്രൗസറിൽ URL നൽകിയത് തുറക്കുക</string>
+<string name="javahome_1">തങ്കള് ഉറപ്പായും പുറത്തു പോവാന് ആഗ്രഹിക്കുന്നോ?</string>
+<string name="javahome_2">അതെ</string>
+<string name="javahome_3">ഇല്ല</string>
+<string name="javainterestedquote_1">വിവരങ്ങൾ</string>
+<string name="javainterestedquote_2">നിങ്ങൾ ഒരു തുല്യ അല്ലെങ്കിൽ ഉയർന്ന വില കൽപിക്കുകയും വേണം</string>
+<string name="javainterestedquote_3">ക്വാണ്ടിറ്റി കുറവോ ലഭ്യമായ അളവ് തുല്യമോ വേണം</string>
+<string name="javainterestedquote_4">നൽകപ്പെട്ട അസാധുവായ ഡാറ്റ</string>
+<string name="javalogin_1">പാസ്വേഡ് നിർബന്ധമായും</string>
+<string name="javalogin_2">ഫോൺ നിര്ബന്ധമാണ്</string>
+<string name="javalogin_3">ഫോൺ പാസ്വേഡും നിർബന്ധമാണ്</string>
+<string name="javalogin_4">ആദ്യം നിങ്ങളുടെ അക്കൗണ്ട് സ്ഥിരീകരിക്കുക.</string>
+<string name="javamarketinsight_1">മാർക്കറ്റ് സ്ഥിതിവിവരക്കണക്കുകൾ</string>
+<string name="javaregistert_1">കോൺടാക്റ്റ് നമ്പർ 10 അക്കങ്ങൾ ഉണ്ടായിരിക്കണം</string>
+<string name="javaregistert_2">പാസ്വേഡുകൾ പൊരുത്തപ്പെടുന്നില്ല</string>
+<string name="javaregistert_3">ഒന്നോ അതിലധികമോ ഫീൽഡുകൾ ശൂന്യമാണ്</string>
+<string name="javasell_1">വിഭാഗങ്ങൾ</string>
+<string name="javausernegotiation_1">നിങ്ങൾ ഇതുവരെ ആരെയും തയ്യാറല്ലെന്ന് അല്ല.</string>
+<string name="javausernegotiation_2">ശരി</string>
+<string name="javausernotif_1">പുതിയ അറിയിപ്പുകൾ</string>
+<string name="javausernotif_2">ശരി</string>
+<string name="javausernotif_3">നിങ്ങളുടെ അറിയിപ്പുകൾ</string>
+<string name="javauserorder_1">നിങ്ങൾ ഇതുവരെ ഉൽപ്പന്നങ്ങൾ വാങ്ങിയിട്ടില്ല</string>
+<string name="javauserorder_2">ശരി</string>
+<string name="javauserorder_3">എന്റെ ഓർഡറുകൾ</string>
+<string-array name="languagestotranslate">
+<item> English </item>
+<item> हिन्दी </item>
+<item> বাঙালি </item>
+<item> తెలుగు </item>
+<item> मराठी </item>
+<item> தமிழ் </item>
+<item> اردو </item>
+<item> ગુજરાતી </item>
+<item> ಕನ್ನಡ </item>
+<item> മലയാളം </item>
+<item> ਪੰਜਾਬੀ ਦੇ </item>
+<item> नेपाली </item>
+<item> سنڌي </item>
+</string-array>
+
+<string-array name="codelanguagestotranslate">
+<item>en</item>
+<item>hi</item>
+<item>bn</item>
+<item>te</item>
+<item>mr</item>
+<item>ta</item>
+<item>ur</item>
+<item>gu</item>
+<item>kn</item>
+<item>ml</item>
+<item>pa</item>
+<item>ne</item>
+<item>sd</item>
+</string-array>
+<string name="javausernotifadpater_1">നിങ്ങളുടെ ഉദ്ധരണി സ്വീകരിച്ചു</string>
+<string name="javausernotifadpater_2">ഒപ്പം ആവണില്ല</string>
+<string name="javausernotifadpater_3">നിരക്ക് രൂപ രൂപയ്ക്ക്</string>
+<string name="javausernotifadpater_4">നിങ്ങളുടെ ഉദ്ധരണി തള്ളി</string>
+<string name="javausernotifadpater_5">കുറിച്ച് ശ്രമങ്ങൾ താൽപ്പര്യമുണ്ട്</string>
+<string name="javausernegotiationadapter_1">നിങ്ങൾ തയ്യാറല്ലെന്ന് ചെയ്യുന്നു</string>
+<string name="javausernegotiationadapter_2">വേണ്ടി</string>
+<string name="javausernegotiationadapter_3">, നിലവിൽ വേണ്ടി</string>
+<string name="javausernegotiationadapter_4">  കിലോ. നിരക്ക് രൂപ</string>
+<string name="javausernorderadapter_1">നിങ്ങളുടെ ഉദ്ധരണി സ്വീകരിച്ചു</string>
+<string name="javausernorderadapter_2">ഒപ്പം ആവണില്ല</string>
+<string name="javausernorderadapter_3">നിരക്ക് രൂപ രൂപയ്ക്ക്</string>
+<string name="javausernorderadapter_4">നിങ്ങൾക്ക് ബിഡ് സ്വീകരിച്ചു</string>
+<string name="javausernorderadapter_5">ഒപ്പം തീരുമാനിച്ചിട്ടില്ല ചെയ്തു</string>
+    <string name="content_home_2">KisaanConnect ഗ്രാമീണ ഇന്ത്യ ഹൃദയങ്ങൾ തൊട്ടതു ലക്ഷ്യത്തോടെ, കാർഷിക വിപണനം ഒരു വിശ്വസ്തവും സമ്പൂർണ പ്ലാറ്റ്ഫോം മാറുന്നു. നിങ്ങൾ അവരുടെ കുറഞ്ഞ ഓവർഹെഡ് നഷ്ടവും ഘടകങ്ങളും തടസവും ഇന്ത്യൻ കർഷകരുടെ ഉപയോഗം പോളമമ്മദ്ക്ക വെർച്വൽ ചന്തയിൽ, നൽകുന്നു. ഉപയോക്താക്കൾക്ക് വിളകൾ പോലെ വാങ്ങാം വിൽക്കുന്നതിനും കീറി വിഭവങ്ങൾ, കാർഷിക ഉപകരണങ്ങൾ തുടങ്ങിയവ KisaanConnect പുറമേ അനുയോജ്യമായ കമ്മ്യൂണിറ്റി റിസോഴ്സ് ലേലംവിളി കൂടുതൽ ലാഭം നേടുകയും അവരെ സഹായിക്കുകയും കർഷകർക്ക് മാറുന്നു. ഉപയോക്താവിന്റെ, ഈ പ്ലാറ്റ്ഫോമിൽ ഉൾപ്പെടുത്തിയിട്ടുണ്ട് യാതൊരു ഇടനില എന്നപോലെ കുറഞ്ഞ ചന്തയിൽ ലെ. ഈ പുതിയ വിശ്വസനീയവുമായ വിഭവങ്ങൾ നേരിട്ട് പ്രവേശനം നൽകുന്നു.</string>
+    <string name="content_home_4">KisaanConnect ഉപയോഗിക്കുന്നത് എളുപ്പമാണ് അവബോധജന്യവുമാണ്. ഒരു പ്രത്യേക റിസോഴ്സ് വാങ്ങാൻ, ഈ പേജിന്റെ മുകളിൽ ഇടത് ദ്രുത ലിങ്കുകൾ പോകുക. വാങ്ങുക ഉറവിടങ്ങൾ തിരഞ്ഞെടുക്കുക. തിരിച്ചറിഞ്ഞ മേഖലകളിലാണ് വിഭാഗങ്ങൾ ദൃശ്യമാകും. ആവശ്യമുള്ള വിഭാഗം ക്ലിക്ക് ചെയ്യുക. ആ വിഭാഗത്തിലെ സബ് വിഭാഗങ്ങൾ കാണിക്കും. താൽപ്പര്യപ്പെട്ട ഉപ-ഉപവിഭാഗം തിരഞ്ഞെടുക്കുക. ഇതാണ് എല്ലാ ഒപ്റ്റിമൈസ് തിരയൽ ഫലങ്ങൾ കൊണ്ടുവരും. ആവശ്യമുള്ള ഒറ്റ ക്ലിക്ക് ചെയ്യുക. വിവരങ്ങൾ പേജ് കാണിക്കും. നിങ്ങൾ ചർച്ചകളിലൂടെ സ്വീകാര്യത പിന്നാലെ ആ പേജിൽ നിന്ന് പലിശ ഉണ്ടാകാം. വിഭവങ്ങൾ വിൽക്കാൻ, അതേ പാത പിന്തുടരുന്നത്. വർഗ്ഗം വഴി ഉപ വിഭാഗം ലേക്ക് പോയി നിങ്ങളുടെ ഉൽപ്പന്നം ചേർക്കുക, ഇത് തൽക്ഷണം ലഭ്യമായ ഓൺലൈനിൽ വരും.</string>
+    <string name="chooselanguage_2">ചുവടെയുള്ള ലിസ്റ്റിൽ ഡ്രോപ്പ് നിന്നും അപേക്ഷ ഭാഷ തിരഞ്ഞെടുക്കുക</string>
+</resources>

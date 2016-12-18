@@ -6,7 +6,6 @@ package iitp.naman.kisaanconnect;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -27,15 +26,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class AddQuotesofSubcategory extends AppCompatActivity {
     private String inputPhone1;
-    private String category1;
-    private String categoryname1;
+//    private String category1;
+//    private String categoryname1;
     private String subcategoryname1;
     private String subcategory1;
     private EditText type1;
@@ -52,15 +49,16 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
-            category1=extras.getString("category");
             subcategory1=extras.getString("subcategory");
             subcategoryname1=extras.getString("subcategoryname");
-            categoryname1=extras.getString("categoryname");
+
         }
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(subcategoryname1);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -88,11 +86,6 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        Intent upanel = new Intent(getApplicationContext(), sellSubcategory.class);
-//        upanel.putExtra("phoneno", inputPhone1);
-//        upanel.putExtra("category", category1);
-//        upanel.putExtra("categoryname",categoryname1);
-//        startActivity(upanel);
         finish();
     }
 
@@ -101,11 +94,6 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-//                Intent upanel = new Intent(getApplicationContext(), sellSubcategory.class);
-//                upanel.putExtra("phoneno", inputPhone1);
-//                upanel.putExtra("category", category1);
-//                upanel.putExtra("categoryname",categoryname1);
-//                startActivity(upanel);
                 this.finish();
                 return true;
             default:
@@ -139,10 +127,7 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
                         return true;
                     }
                 }
-                catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                }
-                catch (IOException e) {
+                catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -151,11 +136,11 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Boolean th){
-            if(th == true){
+            if(th){
                 new ProcessRegister().execute();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Cannot Connect to Network", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.cantconnect), Toast.LENGTH_SHORT).show();
             }
             nDialog.dismiss();
         }
@@ -202,9 +187,6 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
-//                                        Intent upanel = new Intent(getApplicationContext(), Home.class);
-//                                        upanel.putExtra("phoneno", inputPhone1);
-//                                        startActivity(upanel);
                                         pDialog.dismiss();
                                        finish();
                                     }
@@ -213,13 +195,13 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
                                         pDialog.dismiss();
                                     }
                                     else {
-                                        Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                 }
                                 catch (JSONException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                     pDialog.dismiss();
                                 }
                             }
@@ -227,7 +209,7 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                                 pDialog.dismiss();
                             }
                         });
@@ -235,7 +217,7 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
             }
             catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Connection fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();
                 pDialog.dismiss();
                 return null;
             }

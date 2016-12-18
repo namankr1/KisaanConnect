@@ -4,43 +4,22 @@ package iitp.naman.kisaanconnect;
  * Created by naman on 16-Dec-16.
  */
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -53,8 +32,8 @@ public class ChooseLanguage extends AppCompatActivity {
     private List<String> categories1;
     private Spinner spinner1;
 
-    private String[] languagesavailable=new String[]{"English","Hindi"};
-    private String[] languagesids=new String[]{"en","hi"};
+    private String[] languagesavailable;
+    private String[] languagesids;
 
     private String choosenlan="en";
 
@@ -69,35 +48,44 @@ public class ChooseLanguage extends AppCompatActivity {
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
         }
-        if(inputPhone1.equals("1")){
-            classtoload=1;
+        if(inputPhone1!=null) {
+            if (inputPhone1.equals("1")) {
+                classtoload = 1;
+            } else {
+                classtoload = 2;
+            }
         }
-        else{
-            classtoload=2;
-        }
+        languagesavailable = getResources().getStringArray(R.array.languagestotranslate);
+        languagesids = getResources().getStringArray(R.array.codelanguagestotranslate);
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Choose language");
+        getSupportActionBar().setTitle(getResources().getString(R.string.javachooselanguage_1));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         btn1 = (Button)findViewById(R.id.btnLan);
         spinner1 = (Spinner) findViewById(R.id.spinnerLan);
 
-        categories1 = new ArrayList<String>();
-        for(int i=0;i<languagesavailable.length;i++){
-            categories1.add(languagesavailable[i]);
-        }
+        categories1 = new ArrayList<>();
+        Collections.addAll(categories1, languagesavailable);
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories1);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories1);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sf = getSharedPreferences("languagechoosen",MODE_PRIVATE);
         spinner1.setAdapter(dataAdapter);
+        int pos = sf.getInt("position",0);
+        spinner1.setSelection(pos);
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
                 choosenlan = languagesids[position];
+                e = sf.edit();
+                e.putInt("position", position);
+                e.commit();
             }
 
             @Override
@@ -106,11 +94,8 @@ public class ChooseLanguage extends AppCompatActivity {
             }
         });
 
-
-
         btn1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                sf = getSharedPreferences("languagechoosen",MODE_PRIVATE);
                 e = sf.edit();
                 e.putString("lan", choosenlan);
                 e.commit();

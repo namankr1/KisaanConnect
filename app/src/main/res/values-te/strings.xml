@@ -1,0 +1,236 @@
+<resources>
+<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+<string name="network_check">https://www.google.co.in/</string>
+<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+<string name="image_text">రేసు కనెక్ట్</string>
+<string name="app_name">KisaanConnect</string>
+<string name="title_activity_home">హోమ్</string>
+<string name="navigation_drawer_open">ఓపెన్ పేజీకి సంబంధించిన లింకులు సొరుగు</string>
+<string name="navigation_drawer_close">నావిగేషన్ను మూసివేయి సొరుగు</string>
+<string name="activity_login">లాగ్ ఇన్</string>
+<string name="activity_login_1">మీ ఖాతాకు లాగిన్</string>
+<string name="activity_login_2">సంప్రదించండి సంఖ్య</string>
+<string name="activity_login_3">పాస్వర్డ్</string>
+<string name="activity_login_4">కొనసాగండి</string>
+<string name="activity_login_5">పాస్వర్డ్ మరిచిపోయారా?</string>
+<string name="activity_login_6">చేరడం</string>
+<string name="activity_login_7">నన్ను గుర్తు పెట్టుకో</string>
+<string name="activity_login_8">దాచు</string>
+<string name="activity_login_9">షో</string>
+<string name="addquotesofsubcategory_1">మాకు మీ ఉత్పత్తి విక్రయించడానికి మీ ఆసక్తికి ధన్యవాదాలు. </string>
+<string name="addquotesofsubcategory_2">ఉత్పత్తి పేరు</string>
+<string name="addquotesofsubcategory_3">పరిమాణం (కేజీలు లేదా nos లో)</string>
+<string name="addquotesofsubcategory_4">ధర (రూ)</string>
+<string name="addquotesofsubcategory_5">వివరణ (ఆప్షనల్)</string>
+<string name="addquotesofsubcategory_6">చేర్చు</string>
+<string name="changepassword_1">పాస్వర్డ్ మార్చండి</string>
+<string name="changepassword_2">విజయవంతంగా మార్చబడింది ఉంటే న్యూ పాస్వర్డ్ను భావిస్తుందని తదుపరి లాగిన్ ప్రయత్నం కోసం అంగీకరించబడుతుంది</string>
+<string name="changepassword_3">ప్రస్తుత పాస్వర్డ్</string>
+<string name="changepassword_4">కొత్త పాస్వర్డ్</string>
+<string name="changepassword_5">మళ్ళీ టైప్ కొత్త పాస్వర్డ్</string>
+<string name="changepassword_6">నిర్ధారించండి</string>
+<string name="content_home_1">ఎలా KisaanConnect మీకు సహాయపడుతుంది?</string>
+    <string name="content_home_3">ఎలా KisaanConnect ఉపయోగించాలి?</string>
+    <string name="deletequote_1">ఉత్పత్తి తొలగించు</string>
+<string name="deletequote_2">ఉత్పత్తి వివరణ</string>
+<string name="deletequote_3">ఉత్పత్తి యొక్క ప్రస్తుత అత్యధిక బిడ్ (రూ)</string>
+<string name="deletequote_4">వర్తమాన అందుబాటులో పరిమాణం</string>
+<string name="deletequote_5">మీరు తొలగించడానికి ఉండాలనుకుంటున్నారా? </string>
+<string name="deletequote_6">అవును</string>
+<string name="deletequote_7">తోబుట్టువుల</string>
+<string name="endnegotiation_1">ఎండ్ చర్చల</string>
+<string name="endnegotiation_2">సంధానకుడు పేరు</string>
+<string name="endnegotiation_3">సంధానకుడు సంప్రదించండి సంఖ్య</string>
+<string name="endnegotiation_4">సంధానకుడు ప్రజంట్ చిరునామా</string>
+<string name="endnegotiation_5">ఉత్పత్తి యొక్క ప్రస్తుత అత్యధిక బిడ్ (రూ)</string>
+<string name="endnegotiation_6">వర్తమాన అందుబాటులో పరిమాణం</string>
+<string name="endnegotiation_7">మీరు అంగీకరించవచ్చు లేదా ఉత్పత్తి తిరస్కరించడానికి అనుకుంటున్నారా? </string>
+<string name="endnegotiation_8">అంగీకరించు</string>
+<string name="endnegotiation_9">తిరస్కరించు</string>
+<string name="forgotpassword_1">ఎంటర్ అందుకున్న ఒటిపి మరియు క్రొత్త పాస్వర్డ్ను</string>
+<string name="forgotpassword_2">ఒటిపి</string>
+<string name="forgotpassword_3">కొత్త పాస్వర్డ్</string>
+<string name="forgotpassword_4">నిర్ధారించండి</string>
+<string name="interestedquote_1">విజయవంతమైన ఆర్డర్ల సంఖ్య:</string>
+<string name="interestedquote_2">ఉత్పత్తి వివరణ</string>
+<string name="interestedquote_3">ఉత్పత్తి యొక్క ప్రస్తుత అత్యధిక బిడ్ (రూ)</string>
+<string name="interestedquote_4">వర్తమాన అందుబాటులో పరిమాణం</string>
+<string name="interestedquote_5">మీరు ఈ ఉత్పత్తి ఆసక్తి ఉంటే, క్రింద వివరాలను ఎంటర్</string>
+<string name="interestedquote_6">మీరు ఎంత చెల్లించటానికి సిద్దంగా ఉన్నాయి?</string>
+<string name="interestedquote_7">మీరు ఎంత పరిమాణంలో కొనుగోలు చేస్తారు?</string>
+<string name="interestedquote_8">నేను \' ఆసక్తి ఉన్నాను</string>
+<string name="marketinsight_1">ఈ పేజీ మీ మార్కెట్ గురించి తాజా మెళుకువలు ఇస్తుంది. </string>
+<string name="marketinsight_2">ఇతర వినియోగదారులు ఏమి అమ్ముతారు?</string>
+<string name="marketinsight_3">ఇతర వినియోగదారులు ఏమి కొనుగోలు చేస్తున్నారు?</string>
+<string name="marketinsight_4">ఎలా ధర మార్కెట్ మారుతోంది?</string>
+<string name="marketinsight_5">మనం ఏం సిఫార్సు చేయాలి?</string>
+<string name="myprofile_1">ప్రొఫైల్</string>
+<string name="myprofile_2">పూర్తి పేరు</string>
+<string name="myprofile_3">సంప్రదించండి సంఖ్య</string>
+<string name="myprofile_4">ప్రస్తుత చిరునామా</string>
+<string name="nav_header_home_1">రేసు కనెక్ట్</string>
+<string name="nav_header_home_2">త్వరిత లింకులు</string>
+<string name="negotiate_1">ధర (రూ)</string>
+<string name="negotiate_2">పరిమాణం (కేజీలు లేదా nos లో)</string>
+<string name="negotiate_3">మీరు కొనుగోలు సిద్ధమయ్యాయి ఆ క్రింద ధర మరియు పరిమాణం ఎంటర్.</string>
+<string name="negotiate_4">మీరు ఎంత చెల్లించటానికి సిద్దంగా ఉన్నాయి?</string>
+<string name="negotiate_5">మీరు ఎంత పరిమాణంలో కొనుగోలు చేస్తారు?</string>
+<string name="negotiate_6">చర్చలు</string>
+<string name="ordersummary_1">సారాంశం</string>
+<string name="ordersummary_2">సంధానకుడు పేరు</string>
+<string name="ordersummary_3">సంధానకుడు సంప్రదించండి సంఖ్య</string>
+<string name="ordersummary_4">సంధానకుడు ప్రజంట్ చిరునామా</string>
+<string name="ordersummary_5">ఉత్పత్తి యొక్క ప్రస్తుత అత్యధిక బిడ్ (రూ)</string>
+<string name="ordersummary_6">వర్తమాన అందుబాటులో పరిమాణం (కేజీలు లేదా nos లో)</string>
+<string name="ordersummary_7">మీరు క్రింద బటన్ క్లిక్ చేయడం ద్వారా సంధానకుడు కాల్ చేయవచ్చు</string>
+<string name="ordersummary_8">నెగోషియేటర్ కాల్</string>
+<string name="otp_1">ఎంటర్ ఒటిపి మీ ఫోన్లో స్వీకరించిన</string>
+<string name="otp_2">ఒటిపి</string>
+<string name="otp_3">నిర్ధారించండి</string>
+<string name="otp_4">ఒటిపి మళ్లీ పంపి</string>
+<string name="otp_5">తిరిగి కూర్చుని మేము మీ పరిచయం సంఖ్య నిర్ధారించే వరకు విశ్రాంతి</string>
+<string name="passwordreset_1">రహస్యపదాన్ని మార్చుకోండి</string>
+<string name="passwordreset_2">సంప్రదించండి సంఖ్య</string>
+<string name="passwordreset_3">ఒటిపి పంపండి</string>
+<string name="register">చేరడం</string>
+<string name="register_1">మాతో సైన్ అప్ చేయండి</string>
+<string name="register_2">పూర్తి పేరు</string>
+<string name="register_3">సంప్రదించండి సంఖ్య</string>
+<string name="register_4">పాస్వర్డ్</string>
+<string name="register_5">పాస్వర్డ్ తిరిగి టైప్ చెయ్యండి</string>
+<string name="register_6">విలేజ్ లేదా నగరం పేరు</string>
+<string name="register_7">రాష్ట్రం లేక రాజ్యము</string>
+<string name="register_8">జిప్ లేదా పిన్ కోడ్</string>
+<string name="register_9">చేరడం</string>
+<string name="single_row_notif_1">మరిన్ని వివరాలకు:</string>
+<string name="singleroworder_1">సారాంశం చూడండి</string>
+<string name="singlerowquote_1">ఆదేశాలు సంఖ్య:</string>
+<string name="singlerowquote_2">ధర (రూ)</string>
+<string name="singlerowquote_3">మొత్తము (కేజీ)</string>
+<string name="singlerowusernotif_1">ఎండ్ నెగోషియేషన్</string>
+<string name="singlerowusernotif_2">చర్చలు</string>
+<string name="singlerowuserquote_1">తొలగించు</string>
+<string name="singlerowuserquote_2">ధర (రూ.)</string>
+<string name="singlerowuserquote_3">మొత్తము (కేజీ)</string>
+<string name="singlerowuserquote_4">నవీకరణ</string>
+<string name="updateprofile_1">నవీకరణ ప్రొఫైల్</string>
+<string name="updateprofile_2">ప్రస్తుత ప్రొఫైల్ వివరాలను</string>
+<string name="updateprofile_3">పూర్తి పేరు</string>
+<string name="updateprofile_4">సంప్రదించండి సంఖ్య</string>
+<string name="updateprofile_5">న్యూ అడ్రస్</string>
+<string name="updateprofile_6">మీరు క్రింద మీ చిరునామా మార్చవచ్చు.</string>
+<string name="updateprofile_7">నిర్ధారించండి</string>
+<string name="updatequote_1">నవీకరణ ఉత్పత్తి</string>
+<string name="updatequote_2">మీరు ఇక్కడ మీ ఉత్పత్తి యొక్క పేరు, ధర మరియు పరిమాణం సవరించవచ్చు.</string>
+<string name="updatequote_3">ఉత్పత్తి వివరణ</string>
+<string name="updatequote_4">ఉత్పత్తి పేరు</string>
+<string name="updatequote_5">ధర</string>
+<string name="updatequote_6">అందుబాటులో పరిమాణం</string>
+<string name="updatequote_7">నవీకరణ</string>
+<string name="chooselanguage_1">అలాగే</string>
+<string name="menu_help_btn">సహాయం</string>
+<string name="menu_language_btn">భాషా</string>
+<string name="menu_home_btn">హోమ్</string>
+<string name="menu_myprofile_btn">నా జీవన వివరణ</string>
+<string name="menu_publicnotif_btn">పబ్లిక్ ప్రకటనలు</string>
+<string name="menu_buyres_btn">వనరుల కొనుగోలు</string>
+<string name="menu_sellres_btn">వనరుల సెల్</string>
+<string name="menu_marketinsight_btn">మార్కెట్ ఇన్సైట్స్</string>
+<string name="menu_logout_btn">లాగౌట్</string>
+<string name="menu_exit_btn">ఎగ్జిట్</string>
+<string name="menu_refresh_btn">రిఫ్రెష్</string>
+<string name="menu_changepass_btn">పాస్వర్డ్ మార్చండి</string>
+<string name="menu_updateprof_btn">నవీకరణ ప్రొఫైల్</string>
+<string name="menu_myproduct_btn">నా ఉత్పత్తులు</string>
+<string name="menu_myorder_btn">నా ఆర్డర్స్</string>
+<string name="menu_mynegotiation_btn">నా చర్చలు</string>
+<string name="cantconnect">ఇంటర్నెట్కు కనెక్ట్ కాదు</string>
+<string name="connectionfail">కనెక్షన్ విఫలం</string>
+<string name="readmore">… (మరింత చదవడానికి క్లిక్ చేయండి)</string>
+<string name="buy_1">వర్గం</string>
+<string name="javachangepassword_1">రెండు సంకేతపదాలు ఒకదానితో మరొకటి సరిపోలడం లేదు</string>
+<string name="javachooselanguage_1">భాషను ఎంచుకోండి</string>
+<string name="javaforgotpassword_1">ఒటిపి తప్పనిసరి</string>
+<string name="javagetallquotesuser_1">మీ ఉత్పత్తులు</string>
+<string name="javagetallquotesuser_2">మీరు ఇంకా ఏ ఉత్పత్తులు జోడించుకోని</string>
+<string name="javagetallquotesuser_3">అలాగే</string>
+<string name="getquotesofsubcategory_1">మీరు ఇంకా ఏ ఉత్పత్తులు జోడించుకోని</string>
+<string name="getquotesofsubcategory_2">అలాగే</string>
+<string name="govtnotif_1">పబ్లిక్ ప్రకటనలు</string>
+<string name="govtnotif_2">మీ బ్రౌజర్లో ఇవ్వబడిన URL ఓపెన్</string>
+<string name="javahome_1">మీరు ఖచ్చితంగా నుండి నిష్క్రమించాలనుకుంటున్నారా?</string>
+<string name="javahome_2">అవును</string>
+<string name="javahome_3">తోబుట్టువుల</string>
+<string name="javainterestedquote_1">వివరాలు</string>
+<string name="javainterestedquote_2">మీరు సమాన లేదా ఎక్కువ ధర బిడ్ ఉండాలి</string>
+<string name="javainterestedquote_3">మొత్తము అందుబాటులో పరిమాణం కంటే తక్కువ లేదా సమానంగా ఉండాలి</string>
+<string name="javainterestedquote_4">ఇచ్చిన చెల్లని డేటా</string>
+<string name="javalogin_1">పాస్వర్డ్ తప్పనిసరి</string>
+<string name="javalogin_2">ఫోన్ తప్పనిసరి</string>
+<string name="javalogin_3">ఫోన్ మరియు పాస్వర్డ్ తప్పనిసరిగా నింపాలి</string>
+<string name="javalogin_4">మొదటి మీ ఖాతా ధృవీకరించండి.</string>
+<string name="javamarketinsight_1">మార్కెట్ ఇన్సైట్స్</string>
+<string name="javaregistert_1">సంప్రదించండి సంఖ్య 10 అంకెలు ఉండాలి</string>
+<string name="javaregistert_2">గుత్త పదములు సరి పోవట్లేదు</string>
+<string name="javaregistert_3">ఒకటి లేదా ఎక్కువ ఖాళీలను ఖాళీగా ఉన్నాయి</string>
+<string name="javasell_1">వర్గం</string>
+<string name="javausernegotiation_1">మీరు ఇంకా ఎవరితోనూ చర్చలు లేదు.</string>
+<string name="javausernegotiation_2">అలాగే</string>
+<string name="javausernotif_1">కొత్త నోటిఫికేషన్లు లేవు</string>
+<string name="javausernotif_2">అలాగే</string>
+<string name="javausernotif_3">మీ నోటిఫికేషన్లు</string>
+<string name="javauserorder_1">మీరు ఇంకా ఏ ఉత్పత్తులు కొనుగోలు చేయలేదు</string>
+<string name="javauserorder_2">అలాగే</string>
+<string name="javauserorder_3">నా ఆర్డర్స్</string>
+<string-array name="languagestotranslate">
+<item> English </item>
+<item> हिन्दी </item>
+<item> বাঙালি </item>
+<item> తెలుగు </item>
+<item> मराठी </item>
+<item> தமிழ் </item>
+<item> اردو </item>
+<item> ગુજરાતી </item>
+<item> ಕನ್ನಡ </item>
+<item> മലയാളം </item>
+<item> ਪੰਜਾਬੀ ਦੇ </item>
+<item> नेपाली </item>
+<item> سنڌي </item>
+</string-array>
+
+<string-array name="codelanguagestotranslate">
+<item>en</item>
+<item>hi</item>
+<item>bn</item>
+<item>te</item>
+<item>mr</item>
+<item>ta</item>
+<item>ur</item>
+<item>gu</item>
+<item>kn</item>
+<item>ml</item>
+<item>pa</item>
+<item>ne</item>
+<item>sd</item>
+</string-array>
+<string name="javausernotifadpater_1">మీ కొటేషన్ అంగీకరించారు</string>
+<string name="javausernotifadpater_2">మరియు కోరుకుంటున్నారు</string>
+<string name="javausernotifadpater_3">రేటు రూ కిలో</string>
+<string name="javausernotifadpater_4">మీ కొటేషన్ తిరస్కరించింది</string>
+<string name="javausernotifadpater_5">గురించి చర్చలు ఆసక్తి</string>
+<string name="javausernegotiationadapter_1">మీతో చర్చిస్తున్నారు</string>
+<string name="javausernegotiationadapter_2">కోసం</string>
+<string name="javausernegotiationadapter_3">, అతడు ప్రస్తుతం</string>
+<string name="javausernegotiationadapter_4">రేటు రూ kg.</string>
+<string name="javausernorderadapter_1">మీ కొటేషన్ అంగీకరించారు</string>
+<string name="javausernorderadapter_2">మరియు కోరుకుంటున్నారు</string>
+<string name="javausernorderadapter_3">రేటు రూ కిలో</string>
+<string name="javausernorderadapter_4">మీరు బిడ్ అంగీకరించారు</string>
+<string name="javausernorderadapter_5">మరియు పూర్తిచేసిన ఉంది</string>
+    <string name="content_home_2">KisaanConnect గ్రామీణ భారతదేశం హృదయాలను తాకడం లక్ష్యంతో, వ్యవసాయ మార్కెటింగ్ కోసం ఒక నమ్మకమైన మరియు పూర్తి స్థాయి ప్లాట్ఫారమ్ ఏర్పరుస్తుంది. ఇది మీరు భారత రైతుల ఉపయోగించడానికి అనుకూలంగా ఒక వాస్తవిక మార్కెట్, వారి ఖర్చు భారాన్ని మరియు నష్టం కారకాలు సులభమైంది ద్వారా ఇస్తుంది. వినియోగదారులు కొనుగోలు, అమ్మకం లేదా పంటలు వంటి వనరులు అద్దెకు చేయవచ్చు, వ్యవసాయ సామగ్రి మొదలైనవి KisaanConnect కూడా ఒక ఆదర్శప్రాయమైన సంఘం రైతులకు, వనరుల బిడ్డింగ్ వ్యూహాన్ని ద్వారా మరింత లాభం పొందండి సహజముగానే ఏర్పరుస్తుంది. వినియోగదారుడు, ఈ వేదిక ఏ మిడిల్ చేర్చారు తో చౌకగా మార్కెట్ పనిచేస్తుంది. ఈ తాజా మరియు విశ్వసనీయ వనరులు నేరుగా యాక్సెస్ ఇస్తుంది.</string>
+    <string name="content_home_4">KisaanConnect ఉపయోగించి సులభమైన మరియు స్పష్టమైన ఉంది. ఒక నిర్దిష్ట వనరును కొనుగోలు, ఈ పేజీ యొక్క ఎడమ ఎగువన శీఘ్ర లింకులు వెళ్ళండి. ఎంచుకోండి వనరుల కొనుగోలు. గుర్తించారు రంగాల ఒక కేతగిరీలు ప్రదర్శించబడుతుంది. కావలసిన వర్గం పై క్లిక్ చేయండి. ఆ వర్గం అసంఖ్యాక ఉప-విభాగాలు చూపబడుతుంది. కావలసిన ఉప ఉపవర్గం ఎంచుకోండి. ఈ అన్ని ఆప్టిమైజ్ శోధన ఫలితాలు నిస్తుంది. కావలసిన ఒక క్లిక్. వివరాలు పేజీ కనిపిస్తాయి. మీరు పేజీ సంధి మరియు అంగీకార తరువాత నుండి ఆసక్తి పెంచుతుందని. వనరులు అమ్మే, అదే మార్గాన్ని అనుసరిస్తున్నారు. వర్గం ద్వారా ఉప వర్గం చేయనున్నట్లు ద్వారా మీ ఉత్పత్తి జోడించండి మరియు ఇది తక్షణమే అందుబాటులో ఉంటుంది.</string>
+    <string name="chooselanguage_2">డ్రాప్ క్రింద జాబితా డౌన్ అప్లికేషన్కు భాషను ఎంచుకోండి</string>
+</resources>
