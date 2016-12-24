@@ -1,10 +1,10 @@
 <resources>
-<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
-<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
-<string name="network_check">https://www.google.co.in/</string>
-<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
-<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
-<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+    <string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+    <string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+    <string name="network_check">https://www.google.com/</string>
+    <string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+    <string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+    <string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
 <string name="image_text">റേസ് ബന്ധിപ്പിക്കുക</string>
 <string name="app_name">KisaanConnect</string>
 <string name="title_activity_home">വീട്</string>
@@ -24,7 +24,7 @@
 <string name="addquotesofsubcategory_2">ഉൽപ്പന്നത്തിന്റെ പേര്</string>
 <string name="addquotesofsubcategory_3">അളവ് (കിലോ അല്ലെങ്കിൽ എണ്ണം ൽ)</string>
 <string name="addquotesofsubcategory_4">വില (രൂപയിൽ)</string>
-<string name="addquotesofsubcategory_5">വിവരണം (ഓപ്ഷണൽ)</string>
+<string name="addquotesofsubcategory_5">"വിവരണം "</string>
 <string name="addquotesofsubcategory_6">ചേർക്കുക</string>
 <string name="changepassword_1">പാസ്വേഡ് മാറ്റുക</string>
 <string name="changepassword_2">വിജയകരമായി മാറ്റി പുതിയ പാസ്വേഡ് അടുത്ത ലോഗിൻ ശ്രമം സ്വീകരിക്കാൻ കഴിയും</string>
@@ -157,7 +157,7 @@
 <string name="javagetallquotesuser_1">നിങ്ങളുടെ ഉൽപ്പന്നങ്ങൾ</string>
 <string name="javagetallquotesuser_2">നിങ്ങൾ ഇതുവരെ ഏതെങ്കിലും ഉൽപ്പന്നങ്ങൾ ചേർത്തിട്ടില്ല</string>
 <string name="javagetallquotesuser_3">ശരി</string>
-<string name="getquotesofsubcategory_1">നിങ്ങൾ ഇതുവരെ ഏതെങ്കിലും ഉൽപ്പന്നങ്ങൾ ചേർത്തിട്ടില്ല</string>
+<string name="getquotesofsubcategory_1">ഇല്ല ഉദ്ധരണികൾ കണ്ടെത്തിയില്ല</string>
 <string name="getquotesofsubcategory_2">ശരി</string>
 <string name="govtnotif_1">പൊതു അറിയിപ്പുകൾ</string>
 <string name="govtnotif_2">നിങ്ങളുടെ ബ്രൗസറിൽ URL നൽകിയത് തുറക്കുക</string>
@@ -233,4 +233,6 @@
     <string name="content_home_2">KisaanConnect ഗ്രാമീണ ഇന്ത്യ ഹൃദയങ്ങൾ തൊട്ടതു ലക്ഷ്യത്തോടെ, കാർഷിക വിപണനം ഒരു വിശ്വസ്തവും സമ്പൂർണ പ്ലാറ്റ്ഫോം മാറുന്നു. നിങ്ങൾ അവരുടെ കുറഞ്ഞ ഓവർഹെഡ് നഷ്ടവും ഘടകങ്ങളും തടസവും ഇന്ത്യൻ കർഷകരുടെ ഉപയോഗം പോളമമ്മദ്ക്ക വെർച്വൽ ചന്തയിൽ, നൽകുന്നു. ഉപയോക്താക്കൾക്ക് വിളകൾ പോലെ വാങ്ങാം വിൽക്കുന്നതിനും കീറി വിഭവങ്ങൾ, കാർഷിക ഉപകരണങ്ങൾ തുടങ്ങിയവ KisaanConnect പുറമേ അനുയോജ്യമായ കമ്മ്യൂണിറ്റി റിസോഴ്സ് ലേലംവിളി കൂടുതൽ ലാഭം നേടുകയും അവരെ സഹായിക്കുകയും കർഷകർക്ക് മാറുന്നു. ഉപയോക്താവിന്റെ, ഈ പ്ലാറ്റ്ഫോമിൽ ഉൾപ്പെടുത്തിയിട്ടുണ്ട് യാതൊരു ഇടനില എന്നപോലെ കുറഞ്ഞ ചന്തയിൽ ലെ. ഈ പുതിയ വിശ്വസനീയവുമായ വിഭവങ്ങൾ നേരിട്ട് പ്രവേശനം നൽകുന്നു.</string>
     <string name="content_home_4">KisaanConnect ഉപയോഗിക്കുന്നത് എളുപ്പമാണ് അവബോധജന്യവുമാണ്. ഒരു പ്രത്യേക റിസോഴ്സ് വാങ്ങാൻ, ഈ പേജിന്റെ മുകളിൽ ഇടത് ദ്രുത ലിങ്കുകൾ പോകുക. വാങ്ങുക ഉറവിടങ്ങൾ തിരഞ്ഞെടുക്കുക. തിരിച്ചറിഞ്ഞ മേഖലകളിലാണ് വിഭാഗങ്ങൾ ദൃശ്യമാകും. ആവശ്യമുള്ള വിഭാഗം ക്ലിക്ക് ചെയ്യുക. ആ വിഭാഗത്തിലെ സബ് വിഭാഗങ്ങൾ കാണിക്കും. താൽപ്പര്യപ്പെട്ട ഉപ-ഉപവിഭാഗം തിരഞ്ഞെടുക്കുക. ഇതാണ് എല്ലാ ഒപ്റ്റിമൈസ് തിരയൽ ഫലങ്ങൾ കൊണ്ടുവരും. ആവശ്യമുള്ള ഒറ്റ ക്ലിക്ക് ചെയ്യുക. വിവരങ്ങൾ പേജ് കാണിക്കും. നിങ്ങൾ ചർച്ചകളിലൂടെ സ്വീകാര്യത പിന്നാലെ ആ പേജിൽ നിന്ന് പലിശ ഉണ്ടാകാം. വിഭവങ്ങൾ വിൽക്കാൻ, അതേ പാത പിന്തുടരുന്നത്. വർഗ്ഗം വഴി ഉപ വിഭാഗം ലേക്ക് പോയി നിങ്ങളുടെ ഉൽപ്പന്നം ചേർക്കുക, ഇത് തൽക്ഷണം ലഭ്യമായ ഓൺലൈനിൽ വരും.</string>
     <string name="chooselanguage_2">ചുവടെയുള്ള ലിസ്റ്റിൽ ഡ്രോപ്പ് നിന്നും അപേക്ഷ ഭാഷ തിരഞ്ഞെടുക്കുക</string>
+    <string name="javausernegotiation_3">എന്റെ സംഭാഷണം</string>
+    <string name="defaultloading">.....</string>
 </resources>

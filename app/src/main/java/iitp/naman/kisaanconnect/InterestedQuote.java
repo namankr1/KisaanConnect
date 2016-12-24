@@ -1,6 +1,7 @@
 package iitp.naman.kisaanconnect;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -45,6 +46,7 @@ public class InterestedQuote extends AppCompatActivity {
     private TextView description;
     private TextView category;
     private TextView subcategory;
+    private int poschooselan;
 
 
 
@@ -75,6 +77,8 @@ public class InterestedQuote extends AppCompatActivity {
         }
         getSupportActionBar().setTitle(getResources().getString(R.string.javainterestedquote_1));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         btnInterested = (Button) findViewById(R.id.interested);
         yourprice = (EditText) findViewById(R.id.price);
@@ -104,32 +108,16 @@ public class InterestedQuote extends AppCompatActivity {
                 String yourprice1 = yourprice.getText().toString();
                 String yourquantity1=yourquantity.getText().toString();
                 try{
-                    float baseprice;
                     float basequantity;
-                    try{
-                        baseprice = Float.parseFloat(bidvalue1);
-                    }
-                    catch (Exception e){
-                        try{
-                            baseprice = Float.parseFloat(price1);
-                        }
-                        catch (Exception e1){
-                            baseprice = 0;
-                        }
-                    }
                     try{
                         basequantity = Float.parseFloat(quantity1);
                     }
                     catch (Exception e1){
                         basequantity = 0;
                     }
-                    float yourprice2 = Float.parseFloat(yourprice1);
                     float yourquantity2 = Float.parseFloat(yourquantity1);
-                    if(yourprice2>=baseprice && yourquantity2<=basequantity){
+                    if(yourquantity2<=basequantity){
                         new InterestedNotification().execute();
-                    }
-                    else if(yourprice2<baseprice){
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.javainterestedquote_2), Toast.LENGTH_SHORT).show();
                     }
                     else{
                         Toast.makeText(getApplicationContext(), getResources().getString(R.string.javainterestedquote_3), Toast.LENGTH_SHORT).show();
@@ -141,7 +129,6 @@ public class InterestedQuote extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     @Override
@@ -200,12 +187,12 @@ public class InterestedQuote extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                         finish();
 
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{

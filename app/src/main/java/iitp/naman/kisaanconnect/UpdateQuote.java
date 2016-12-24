@@ -1,6 +1,7 @@
 package iitp.naman.kisaanconnect;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +40,7 @@ public class UpdateQuote extends AppCompatActivity {
     private EditText type;
     private EditText quantity;
     private Button yes1;
+    private int poschooselan;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,8 @@ public class UpdateQuote extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         yes1 = (Button) findViewById(R.id.update);
         price = (EditText) findViewById(R.id.price);
@@ -78,7 +82,12 @@ public class UpdateQuote extends AppCompatActivity {
         {
             public void onClick(View view)
             {
-                new InterestedNotification().execute();
+                if(price.getText().toString().equals("") || quantity.getText().toString().equals("")|| type.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.javaregistert_3), Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    new InterestedNotification().execute();
+                }
             }
         });
     }
@@ -141,11 +150,11 @@ public class UpdateQuote extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                         finish();
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{

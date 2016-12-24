@@ -1,10 +1,10 @@
 <resources>
-<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
-<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
-<string name="network_check">https://www.google.co.in/</string>
-<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
-<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
-<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+    <string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+    <string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+    <string name="network_check">https://www.google.com/</string>
+    <string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+    <string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+    <string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
 <string name="image_text">शर्यत कनेक्ट</string>
 <string name="app_name">KisaanConnect</string>
 <string name="title_activity_home">घर</string>
@@ -157,7 +157,7 @@
 <string name="javagetallquotesuser_1">आपले उत्पादने</string>
 <string name="javagetallquotesuser_2">आपण अद्याप कोणत्याही उत्पादने जोडले नाहीत</string>
 <string name="javagetallquotesuser_3">ठीक आहे</string>
-<string name="getquotesofsubcategory_1">आपण अद्याप कोणत्याही उत्पादने जोडले नाहीत</string>
+<string name="getquotesofsubcategory_1">नाही कोट आढळले</string>
 <string name="getquotesofsubcategory_2">ठीक आहे</string>
 <string name="govtnotif_1">सार्वजनिक सूचना</string>
 <string name="govtnotif_2">आपल्या ब्राउझरमध्ये दिलेल्या URL उघडा</string>
@@ -233,4 +233,6 @@
     <string name="content_home_2">KisaanConnect, ग्रामीण भारत अंत: करणात स्पर्श हेतू होता कृषी पणन एक विश्वासार्ह आणि पूर्ण वाढ झालेला व्यासपीठ अर्ज. आपण त्यांच्या खर्च ओव्हरहेड आणि तोटा घटक घट करून भारतीय शेतक-यांना वापरासाठी तयार केलेल्या आभासी बाजारपेठ, देते. वापरकर्ते, खरेदी विक्री किंवा पिके जसे संसाधने भाड्याने देऊ शकता, कृषी उपकरणे इ KisaanConnect देखील एक आदर्श समाज, शेतकरी यांना संसाधन बोलीची करून जास्त नफा मिळवण्यासाठी त्यांना मदत अर्ज. एक ग्राहक, या व्यासपीठ नाही मध्यस्थ समाविष्ट असलेल्या म्हणून स्वस्त बाजारात करते. हे ताजे आणि विश्वसनीय स्त्रोत थेट प्रवेश देते.</string>
     <string name="content_home_4">KisaanConnect वापरून सोपे आणि अंतर्ज्ञानी आहे. एका विशिष्ट स्त्रोत खरेदी करण्यासाठी, या पानाच्या डाव्या द्रुत दुवे जा. खरेदी संसाधने निवडा. ओळखले क्षेत्रात एक श्रेणी प्रदर्शित केले जाईल. इच्छित वर्गात वर क्लिक करा. की वर्गात उप-श्रेण्या दर्शविले जाईल. इच्छित उप-उपवर्ग निवडा. हे सर्व अनुकूल शोध परिणाम मिळेल. इच्छित एक वर क्लिक करा. तपशील पृष्ठ दर्शविले जाईल. आपण ते पृष्ठ बोलणी आणि स्वीकृती त्यानंतर व्याज वाढवू शकते. संसाधने विक्री करण्यासाठी, समान मार्ग लागतो. वर्गात द्वारे उप-श्रेणी मध्ये जाऊन आपल्या उत्पादन जोडा आणि तो तत्काळ ऑनलाइन उपलब्ध होईल.</string>
     <string name="chooselanguage_2">ड्रॉप खाली यादी अर्ज भाषा निवडा</string>
+    <string name="javausernegotiation_3">माझे वाटाघाटी</string>
+    <string name="defaultloading">.....</string>
 </resources>

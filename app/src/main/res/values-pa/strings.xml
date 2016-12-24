@@ -1,10 +1,10 @@
 <resources>
-<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
-<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
-<string name="network_check">https://www.google.co.in/</string>
-<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
-<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
-<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+    <string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+    <string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+    <string name="network_check">https://www.google.com/</string>
+    <string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+    <string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+    <string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
 <string name="image_text">ਦੌੜ ਜੁੜੋ</string>
 <string name="app_name">KisaanConnect</string>
 <string name="title_activity_home">ਮੁੱਖ</string>
@@ -24,7 +24,7 @@
 <string name="addquotesofsubcategory_2">ਉਤਪਾਦ ਦੀ ਨਾਮ</string>
 <string name="addquotesofsubcategory_3">ਮਾਤਰਾ (ਕਿਲੋ ਜ ਸੰਖਿਆ \'ਚ)</string>
 <string name="addquotesofsubcategory_4">ਮੁੱਲ (ਰੁਪਏ ਵਿੱਚ)</string>
-<string name="addquotesofsubcategory_5">ਵੇਰਵਾ (ਅਖ਼ਤਿਆਰੀ)</string>
+<string name="addquotesofsubcategory_5">"ਵੇਰਵਾ "</string>
 <string name="addquotesofsubcategory_6">ਜੋੜੋ</string>
 <string name="changepassword_1">ਪਾਸਵਰਡ ਬਦਲੋ</string>
 <string name="changepassword_2">ਨਿਊ ਪਾਸਵਰਡ ਅਗਲੇ ਲਾਗਇਨ ਕੋਸ਼ਿਸ਼ ਬਾਅਦ ਲਈ ਸਵੀਕਾਰ ਕੀਤਾ ਜਾਵੇਗਾ, ਜੇ ਸਫਲਤਾਪੂਰਕ ਤਬਦੀਲ ਹੋ</string>
@@ -157,7 +157,7 @@
 <string name="javagetallquotesuser_1">ਆਪਣੇ ਉਤਪਾਦ</string>
 <string name="javagetallquotesuser_2">ਜੇਕਰ ਤੁਹਾਨੂੰ ਅਜੇ ਵੀ ਨਹੀ ਸ਼ਾਮਿਲ ਕੀਤਾ ਹੈ ਕਿਸੇ ਵੀ ਉਤਪਾਦ</string>
 <string name="javagetallquotesuser_3">ਠੀਕ ਹੈ</string>
-<string name="getquotesofsubcategory_1">ਜੇਕਰ ਤੁਹਾਨੂੰ ਅਜੇ ਵੀ ਨਹੀ ਸ਼ਾਮਿਲ ਕੀਤਾ ਹੈ ਕਿਸੇ ਵੀ ਉਤਪਾਦ</string>
+<string name="getquotesofsubcategory_1">ਕੋਈ ਕਾਮੇ ਨੂੰ ਮਿਲਿਆ</string>
 <string name="getquotesofsubcategory_2">ਠੀਕ ਹੈ</string>
 <string name="govtnotif_1">ਪਬਲਿਕ ਸੂਚਨਾ</string>
 <string name="govtnotif_2">ਤੁਹਾਡੇ ਬਰਾਊਜ਼ਰ ਵਿੱਚ ਖੋਲ੍ਹੋ ਦਿੱਤੇ URL</string>
@@ -233,4 +233,6 @@
     <string name="content_home_2">KisaanConnect, ਦਿਹਾਤੀ ਭਾਰਤ ਦੇ ਦਿਲ ਨੂੰ ਛੂਹਣ ਦੇ ਉਦੇਸ਼ ਨਾਲ, ਖੇਤੀਬਾੜੀ ਮੰਡੀਕਰਨ ਲਈ ਇੱਕ ਭਰੋਸੇਯੋਗ ਹੈ ਅਤੇ ਪੂਰੀ-ਵੱਡੀਆ ਪਲੇਟਫਾਰਮ ਬਣਦਾ ਹੈ. ਇਹ ਤੁਹਾਨੂੰ ਇੱਕ ਵਰਚੁਅਲ ਬਜ਼ਾਰ, ਆਪਣੇ ਦੀ ਓਵਰਹੈੱਡ ਅਤੇ ਨੁਕਸਾਨ ਕਾਰਕ ਵੰਡਿਆ ਕੇ ਭਾਰਤੀ ਕਿਸਾਨ ਦੇ ਵਰਤਣ ਲਈ ਤਿਆਰ ਕਰਦਾ ਹੈ. ਉਪਭੋਗੀ, ਖ਼ਰੀਦ ਸਕਦੇ ਹੋ ਵੇਚਣ ਜ ਫਸਲ ਵਰਗੇ ਸਰੋਤ ਕਿਰਾਏ \', ਖੇਤੀਬਾੜੀ ਸਾਜੋ ਆਦਿ KisaanConnect ਨੂੰ ਵੀ ਇੱਕ ਆਦਰਸ਼ ਭਾਈਚਾਰੇ ਕਿਸਾਨ ਲਈ ਬਣਦਾ ਹੈ, ਨੂੰ ਮਦਦ ਕਰਨ ਸਰੋਤ ਬੋਲੀ ਰਣਨੀਤੀ ਦੁਆਰਾ ਹੋਰ ਲਾਭ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ. ਇੱਕ ਗਾਹਕ ਦੇ ਲਈ, ਇਸ ਪਲੇਟਫਾਰਮ ਦੇ ਤੌਰ ਤੇ ਹੈ ਸਸਤੇ ਬਾਜ਼ਾਰ ਕੋਈ ਵਿਚੋਲੇ ਦੇ ਨਾਲ ਸ਼ਾਮਲ ਹੈ. ਇਹ ਤਾਜ਼ਾ ਅਤੇ ਭਰੋਸੇਯੋਗ ਸਰੋਤ ਤੱਕ ਸਿੱਧੀ ਪਹੁੰਚ ਦਿੰਦਾ ਹੈ.</string>
     <string name="content_home_4">KisaanConnect ਦਾ ਇਸਤੇਮਾਲ ਆਸਾਨ ਅਤੇ ਅਨੁਭਵੀ ਹੈ. ਇੱਕ ਖਾਸ ਸਰੋਤ ਖਰੀਦਣ ਲਈ, ਇਸ ਸਫ਼ੇ ਦੇ ਸਿਖਰ ਖੱਬੇ \'ਤੇ ਤੁਰੰਤ ਲਿੰਕ ਤੇ ਜਾਓ. ਖਰੀਦੋ ਸਰੋਤ ਚੁਣੋ. ਦੀ ਪਛਾਣ ਸੈਕਟਰ ਦੀ ਇੱਕ ਵਰਗ ਵੇਖਾਇਆ ਜਾਵੇਗਾ. ਲੋੜੀਦੀ ਸ਼੍ਰੇਣੀ \'ਤੇ ਕਲਿੱਕ ਕਰੋ. ਹੈ, ਜੋ ਕਿ ਸ਼੍ਰੇਣੀ ਦੇ ਸਬ-ਵਰਗ ਵੇਖਾਇਆ ਜਾਵੇਗਾ. ਲੋੜੀਦੀ ਸਬ-ਉਪਸ਼ਰੇਣੀ ਦੀ ਚੋਣ ਕਰੋ. ਇਹ ਸਭ ਅਨੁਕੂਲ ਖੋਜ ਦੇ ਨਤੀਜੇ ਪ੍ਰਾਪਤ ਕਰੇਗਾ. ਲੋੜੀਦੀ ਇੱਕ \'ਤੇ ਕਲਿੱਕ ਕਰੋ. ਵੇਰਵਾ ਸਫ਼ੇ ਵੇਖਾਈ ਜਾਵੇਗੀ. ਤੁਹਾਨੂੰ ਜੋ ਕਿ ਸਫ਼ੇ ਗੱਲਬਾਤ ਅਤੇ ਸਵੀਕ੍ਰਿਤੀ ਦੇ ਬਾਅਦ ਤੱਕ ਵਿਆਜ ਪੈਦਾ ਕਰ ਸਕਦਾ ਹੈ. ਸਰੋਤ ਨੂੰ ਵੇਚਣ ਲਈ, ਉਸੇ ਹੀ ਮਾਰਗ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ. ਸ਼੍ਰੇਣੀ ਦੁਆਰਾ ਸਬ-ਸ਼੍ਰੇਣੀ ਵਿਚ ਜਾ ਕੇ ਆਪਣੇ ਉਤਪਾਦ ਸ਼ਾਮਲ ਕਰੋ ਅਤੇ ਇਸ ਨੂੰ ਆਨਲਾਈਨ ਤੁਰੰਤ ਉਪਲੱਬਧ ਹੋ ਜਾਵੇਗਾ.</string>
     <string name="chooselanguage_2">ਹੇਠ ਦਿੱਤੀ ਲਿਸਟ ਥੱਲੇ ਬੂੰਦ ਤੱਕ ਦੀ ਅਰਜ਼ੀ ਭਾਸ਼ਾ ਚੁਣੋ</string>
+    <string name="javausernegotiation_3">ਮੇਰੀ ਗੱਲਬਾਤ</string>
+    <string name="defaultloading">.....</string>
 </resources>

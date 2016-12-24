@@ -63,7 +63,7 @@
                 android:layout_height="100dp"
                 android:gravity="center"
                 android:fontFamily="sans-serif"
-                android:text=""
+                android:text="@string/defaultloading"
                 android:textAllCaps="true"
                 android:id="@+id/nameofseller"
                 android:textColor="#fff"
@@ -87,7 +87,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="@string/defaultloading"
                     android:id="@+id/quoterating"
                     android:textColor="#fff"
 
@@ -133,6 +133,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/description"
                     android:paddingLeft="15dp"
+                    android:text="@string/defaultloading"
                     android:paddingRight="15dp"
                     android:paddingStart="15dp"
                     android:paddingTop="5dp"
@@ -155,7 +156,7 @@
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -170,7 +171,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="@string/defaultloading"
                     android:layout_below="@+id/pricelabel"
                     android:id="@+id/currentbid"
                     android:paddingLeft="15dp"
@@ -195,7 +196,7 @@
                 android:layout_gravity="center_vertical"/>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -211,7 +212,7 @@
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/quantitylabel"
-                    android:text=""
+                    android:text="@string/defaultloading"
                     android:id="@+id/availablequantity"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"

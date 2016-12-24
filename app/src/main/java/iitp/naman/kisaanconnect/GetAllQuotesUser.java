@@ -57,6 +57,8 @@ public class GetAllQuotesUser extends AppCompatActivity {
     private SharedPreferences.Editor userquotee;
     private SharedPreferences userquotesf;
 
+    private int poschooselan;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +81,8 @@ public class GetAllQuotesUser extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(getResources().getString(R.string.javagetallquotesuser_1));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         gridView = (GridView) findViewById(R.id.gridView1);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -254,7 +258,7 @@ public class GetAllQuotesUser extends AppCompatActivity {
                                         }
 
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{

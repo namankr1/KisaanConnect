@@ -60,6 +60,8 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
     private SharedPreferences.Editor subcatquotee;
     private SharedPreferences subcatquotesf;
 
+    private int poschooselan;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +84,8 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(subcategoryname1);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         gridView = (GridView) findViewById(R.id.gridView1);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -294,7 +298,7 @@ public class GetQuotesofSubcategory extends AppCompatActivity {
                                             alert.show();
                                         }
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{

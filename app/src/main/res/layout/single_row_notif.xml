@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/title"
+        android:text="@string/defaultloading"
         android:textColor="#cc0d0d"
         android:textAllCaps="true"
         android:textStyle="bold"
@@ -30,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxHeight="72dp"
+        android:text="@string/defaultloading"
         android:id="@+id/body"
         android:textColor="#000"
         />
@@ -48,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/url"
+            android:text="@string/defaultloading"
             android:textColor="#5c8ebc"
             />
     </LinearLayout>

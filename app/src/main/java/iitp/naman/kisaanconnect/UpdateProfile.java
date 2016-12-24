@@ -2,6 +2,7 @@ package iitp.naman.kisaanconnect;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -39,6 +40,7 @@ public class UpdateProfile extends AppCompatActivity {
     private String serverName;
     private String serverPhone;
     private String serverAddress;
+    private int poschooselan;
 
 
     @Override
@@ -54,6 +56,8 @@ public class UpdateProfile extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -72,7 +76,13 @@ public class UpdateProfile extends AppCompatActivity {
             btnconfirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    NetAsync(view);
+
+                    if(newaddress.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.javaregistert_3), Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        NetAsync(view);
+                    }
                 }
             });
         }
@@ -175,11 +185,11 @@ public class UpdateProfile extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                         finish();
                                     } else if (status.compareTo("err") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{

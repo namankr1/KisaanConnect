@@ -54,6 +54,7 @@ public class UserOrder extends AppCompatActivity {
 
     private SharedPreferences.Editor userquotee;
     private SharedPreferences userquotesf;
+    private int poschooselan;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,9 @@ public class UserOrder extends AppCompatActivity {
         getSupportActionBar().setTitle(getResources().getString(R.string.javauserorder_3));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         gridView = (GridView) findViewById(R.id.gridView13);
 
@@ -244,7 +248,7 @@ public class UserOrder extends AppCompatActivity {
                                         }
 
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{

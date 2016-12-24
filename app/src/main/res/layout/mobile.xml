@@ -15,6 +15,7 @@
         android:scaleType="fitXY"
         android:contentDescription="@string/image_text"
         android:adjustViewBounds="true"
+        android:src="@drawable/blurred"
         android:layout_weight="16">
     </ImageView>
     <TextView
@@ -23,7 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textColor="#000"
-        android:textSize="20sp"
+        android:textSize="15sp"
+        android:text="@string/defaultloading"
         android:gravity="center"
         android:layout_weight="4"
         >

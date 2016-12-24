@@ -1,10 +1,10 @@
 <resources>
-<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
-<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
-<string name="network_check">https://www.google.co.in/</string>
-<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
-<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
-<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+    <string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+    <string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+    <string name="network_check">https://www.google.com/</string>
+    <string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+    <string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+    <string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
 <string name="image_text">இனம் இணைக்கவும்</string>
 <string name="app_name">KisaanConnect</string>
 <string name="title_activity_home">முகப்பு</string>
@@ -24,7 +24,7 @@
 <string name="addquotesofsubcategory_2">தயாரிப்பு பெயரை</string>
 <string name="addquotesofsubcategory_3">அளவு (கிலோ அல்லது இலக்கங்கள் உள்ள)</string>
 <string name="addquotesofsubcategory_4">விலை (ரூ)</string>
-<string name="addquotesofsubcategory_5">விவரம் (விரும்பினால்)</string>
+<string name="addquotesofsubcategory_5">விவரம்</string>
 <string name="addquotesofsubcategory_6">கூட்டு</string>
 <string name="changepassword_1">கடவுச்சொல்லை மாற்று</string>
 <string name="changepassword_2">வெற்றிகரமாக மாற்றப்பட்டது என்றால் புதிய கடவுச்சொல்லை முதல் அடுத்த உள்நுழைவு முயற்சி ஏற்றுக்கொள்ளப்படும்</string>
@@ -157,7 +157,7 @@
 <string name="javagetallquotesuser_1">உங்கள் தயாரிப்புகள்</string>
 <string name="javagetallquotesuser_2">நீங்கள் இதுவரை எந்த பொருட்கள் எதுவும் சேர்க்கவில்லை</string>
 <string name="javagetallquotesuser_3">சரி</string>
-<string name="getquotesofsubcategory_1">நீங்கள் இதுவரை எந்த பொருட்கள் எதுவும் சேர்க்கவில்லை</string>
+<string name="getquotesofsubcategory_1">மேற்கோள்கள் எதுவும் காணப்படவில்லை</string>
 <string name="getquotesofsubcategory_2">சரி</string>
 <string name="govtnotif_1">பொது அறிவிப்புகள்</string>
 <string name="govtnotif_2">உங்கள் உலாவியில் கொடுக்கப்பட்ட URL திறந்த</string>
@@ -233,4 +233,6 @@
     <string name="content_home_2">KisaanConnect, கிராமப்புற இந்தியாவின் இதயங்களை தொட்டு நோக்கமாக கொண்டு, வேளாண் விற்பனை ஒரு நம்பகமான மற்றும் முழு நீள மேடையில் உருவாக்குகிறது. அதை நீங்கள் இந்திய விவசாயிகள் பயன்படுத்த ஏற்ப ஒரு மெய்நிகர் சந்தையில், தங்கள் செலவு மேல்நிலை மற்றும் இழப்பு காரணிகள் எளிதாக்குவது கொடுக்கிறது. பயனர்கள் வாங்கவோ, விற்கவோ அல்லது பயிர்கள் போன்ற வளங்களை வாடகைக்கு விடலாம், விவசாய உபகரணங்கள் முதலியன KisaanConnect மேலும் ஒரு சிறந்த சமூகம், வள ஏல உத்தியை மூலம் அதிக லாபம் பெற அவர்களுக்கு உதவி உருவாக்குகிறது விவசாயிகளுக்கு. ஒரு வாடிக்கையாளர், இந்த மேடையில் எந்த இடைத்தரகர் சேர்க்கப்பட்டுள்ளது போன்ற மலிவான சந்தையில் உதவுகிறது. இந்த புதிய மற்றும் நம்பகமான வளங்களை நேரடியாக அணுக கொடுக்கிறது.</string>
     <string name="content_home_4">KisaanConnect பயன்படுத்தி எளிதாக மற்றும் உள்ளுணர்வு உள்ளது. ஒரு குறிப்பிட்ட வள வாங்க, இந்த பக்கம் இடது மேல் விரைவு இணைப்புகள் செல்ல. வாங்க வளங்கள் தேர்ந்தெடுக்கவும். அடையாளம் துறைகளில் பிரிவுகள் காட்டப்படும். விரும்பிய வகை கிளிக் செய்யவும். அந்த வகை துணை பிரிவுகள் காட்டப்படும். விரும்பிய துணை துணை தேர்ந்தெடுக்கவும். இந்த அனைத்து உகந்ததாக தேடல் முடிவுகளை எடுக்க வேண்டும். விரும்பிய ஒரு கிளிக். விவரங்கள் பக்கம் காண்பிக்கும். நீங்கள் பேச்சுவார்த்தை மற்றும் ஏற்பு தொடர்ந்து அந்த பக்கத்தில் இருந்து வட்டி உயர்த்த முடியும். வளங்களை விற்க, அதே பாதையில் தொடர்ந்து வருகிறது. வகை வழியாக துணை வகை உள்ள செல்வதன் மூலம் உங்கள் தயாரிப்பு சேர்க்க மற்றும் அதை உடனடியாக ஆன்லைனில் கிடைக்கும்.</string>
     <string name="chooselanguage_2">கீழே பட்டியலில் இருந்து விண்ணப்ப மொழி தேர்வு</string>
+    <string name="javausernegotiation_3">என் பேச்சுவார்த்தைகள்</string>
+    <string name="defaultloading">.....</string>
 </resources>

@@ -54,6 +54,8 @@ public class UserNegotiation extends AppCompatActivity {
     private SharedPreferences.Editor userquotee;
     private SharedPreferences userquotesf;
 
+    private int poschooselan;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +73,10 @@ public class UserNegotiation extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("My Negotiations");
+        getSupportActionBar().setTitle(getResources().getString(R.string.javausernegotiation_3));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         gridView = (GridView) findViewById(R.id.gridView12);
 
@@ -240,7 +244,7 @@ public class UserNegotiation extends AppCompatActivity {
                                         }
 
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{

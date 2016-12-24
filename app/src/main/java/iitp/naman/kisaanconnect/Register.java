@@ -7,6 +7,7 @@ package iitp.naman.kisaanconnect;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -42,6 +43,8 @@ public class Register extends AppCompatActivity {
 
     Button btnRegister;
 
+    private int poschooselan;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,9 @@ public class Register extends AppCompatActivity {
         }
         getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         inputName = (EditText) findViewById(R.id.name);
         inputPhone = (EditText) findViewById(R.id.phone);
@@ -206,11 +212,11 @@ public class Register extends AppCompatActivity {
                                         Intent upanel = new Intent(getApplicationContext(), Otp.class);
                                         upanel.putExtra("phoneno", inputPhone1);
                                         startActivity(upanel);
-                                        Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan] , Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                         finish();
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan] , Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{

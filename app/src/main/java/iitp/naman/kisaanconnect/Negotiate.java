@@ -4,6 +4,7 @@ package iitp.naman.kisaanconnect;
  * Created by naman on 01-Dec-16.
  */
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,7 @@ public class Negotiate extends AppCompatActivity {
     private TextView senderphone;
     private TextView senderaddress;
     private Button btnnegotiate;
+    private int poschooselan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +56,10 @@ public class Negotiate extends AppCompatActivity {
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        getSupportActionBar().setTitle("Negotiate");
+        getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
 
         Bundle extras = getIntent().getExtras();
@@ -148,11 +152,11 @@ public class Negotiate extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_LONG).show();
                                         pDialog.dismiss();
                                         finish();
                                     } else if (status.compareTo("err") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_LONG).show();
                                         pDialog.dismiss();
                                     } else {
                                         Toast.makeText(getApplicationContext(), getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();

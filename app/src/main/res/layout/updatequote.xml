@@ -102,6 +102,7 @@
                     android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:textColor="#000"
+                    android:text="@string/defaultloading"
                     android:layout_below="@+id/descriptionlabel"/>
             </RelativeLayout>
         </LinearLayout>

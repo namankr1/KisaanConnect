@@ -7,12 +7,15 @@ package iitp.naman.kisaanconnect;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class AdapterUserQuotes extends BaseAdapter {
     private Activity myactivity;
@@ -30,6 +33,7 @@ public class AdapterUserQuotes extends BaseAdapter {
     private String serverName;
     private String serverType;
     private String serverAddress;
+    private int poschooselan;
 
     public AdapterUserQuotes(Activity myactivity,Context context, String[] quotebidvalue,String[] quotedescription,String[] quoteid,String[] quoteprice,String[] quotequantity,String[] quoterating,String[] userphone,String[] useraddress,String[] quotetype,String serverPhone,String serverName,String serverType,String serverAddress) {
         this.context = context;
@@ -47,6 +51,9 @@ public class AdapterUserQuotes extends BaseAdapter {
         this.serverAddress=serverAddress;
         this.serverName=serverName;
         this.serverType=serverType;
+        SharedPreferences sfchoosenlan = context.getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
+
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -55,28 +62,25 @@ public class AdapterUserQuotes extends BaseAdapter {
         View gridView;
         if (convertView == null) {
             gridView = inflater.inflate(R.layout.singlerowuserquote, null);
-            TextView textView1 = (TextView) gridView.findViewById(R.id.bidvalue);
-            textView1.setText(quotebidvalue[position]);
-            TextView textView2 = (TextView) gridView.findViewById(R.id.description);
-            textView2.setText(quotedescription[position]);
-            TextView textView3 = (TextView) gridView.findViewById(R.id.quoteid);
-            textView3.setText(quoteid[position]);
-            TextView textView4 = (TextView) gridView.findViewById(R.id.price);
-            textView4.setText(quoteprice[position]);
-            TextView textView5 = (TextView) gridView.findViewById(R.id.address);
-            textView5.setText(useraddress[position]);
-            TextView textView6 = (TextView) gridView.findViewById(R.id.quoterating);
-            textView6.setText(quoterating[position]);
-            TextView textView7 = (TextView) gridView.findViewById(R.id.quantity);
-            textView7.setText(quotequantity[position]);
-            TextView textView8 = (TextView) gridView.findViewById(R.id.type);
-            textView8.setText(quotetype[position]);
-            TextView textView9 = (TextView) gridView.findViewById(R.id.phone);
-            textView9.setText(userphone[position]);
         }
         else {
             gridView =  convertView;
         }
+
+        ((TextView) gridView.findViewById(R.id.bidvalue)).setText(quotebidvalue[position]);
+        try {
+            ((TextView) gridView.findViewById(R.id.description)).setText(quotedescription[position].split(";")[poschooselan]);
+        }
+        catch (Exception e){
+            ((TextView) gridView.findViewById(R.id.description)).setText(context.getResources().getString(R.string.deletequote_7));
+        }
+        ((TextView) gridView.findViewById(R.id.quoteid)).setText(quoteid[position]);
+        ((TextView) gridView.findViewById(R.id.price)).setText(quoteprice[position]);
+        ((TextView) gridView.findViewById(R.id.address)).setText(useraddress[position]);
+        ((TextView) gridView.findViewById(R.id.quoterating)).setText(quoterating[position]);
+        ((TextView) gridView.findViewById(R.id.quantity)).setText(quotequantity[position]);
+        ((TextView) gridView.findViewById(R.id.type)).setText(quotetype[position].split(";")[poschooselan]);
+        ((TextView) gridView.findViewById(R.id.phone)).setText(userphone[position]);
 
         Button btndel  = ((Button) gridView.findViewById(R.id.delete));
         Button btnupdate = ((Button) gridView.findViewById(R.id.update));
@@ -92,10 +96,20 @@ public class AdapterUserQuotes extends BaseAdapter {
                 upanel.putExtra("serveraddress",serverAddress);
                 upanel.putExtra("servertype",serverType);
                 upanel.putExtra("quoteid",quoteid[position]);
-                upanel.putExtra("desc",quotedescription[position]);
+                try {
+                    upanel.putExtra("desc",quotedescription[position].split(";")[poschooselan]);
+                }
+                catch (Exception e){
+                    upanel.putExtra("desc",context.getResources().getString(R.string.deletequote_7));
+                }
                 upanel.putExtra("price",quotebidvalue[position]);
                 upanel.putExtra("quantity",quotequantity[position]);
-                upanel.putExtra("type",quotetype[position]);
+                try {
+                    upanel.putExtra("type",quotetype[position].split(";")[poschooselan]);
+                }
+                catch (Exception e){
+                    upanel.putExtra("type",context.getResources().getString(R.string.deletequote_7));
+                }
                 myactivity.startActivity(upanel);
             }
         });
@@ -111,12 +125,18 @@ public class AdapterUserQuotes extends BaseAdapter {
                 upanel.putExtra("serveraddress",serverAddress);
                 upanel.putExtra("servertype",serverType);
                 upanel.putExtra("quoteid",quoteid[position]);
-                upanel.putExtra("desc",quotedescription[position]);
-                upanel.putExtra("price",quoteprice[position]);
+                try {
+                    upanel.putExtra("desc",quotedescription[position].split(";")[poschooselan]);
+                }
+                catch (Exception e){
+                    upanel.putExtra("desc",context.getResources().getString(R.string.deletequote_7));
+                }
+                upanel.putExtra("price",quotebidvalue[position]);
                 upanel.putExtra("quantity",quotequantity[position]);
                 myactivity.startActivity(upanel);
             }
         });
+
         return gridView;
     }
 

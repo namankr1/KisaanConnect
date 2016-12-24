@@ -48,6 +48,7 @@ public class Sell extends AppCompatActivity {
     private SharedPreferences buysf;
     private Activity myactivity;
 
+    private int poschooselan;
 
 
     @Override
@@ -66,6 +67,10 @@ public class Sell extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle( getResources().getString(R.string.javasell_1));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -222,7 +227,7 @@ public class Sell extends AppCompatActivity {
                                         gridView.setAdapter(new ImageAdapter(myactivity,getApplicationContext(), categoryname,categoryid,categorypicture));
                                         pDialog.dismiss();
                                     } else if (status.compareTo("err") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else {

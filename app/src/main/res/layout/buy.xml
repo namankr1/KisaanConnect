@@ -13,9 +13,6 @@
         android:theme="@style/ActionBarThemeOverlay"
         app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
 
-
-
-
     <GridView
         android:id="@+id/gridView1"
         android:background="#eeeeee"

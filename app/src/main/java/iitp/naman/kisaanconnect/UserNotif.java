@@ -7,6 +7,7 @@ package iitp.naman.kisaanconnect;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -41,6 +42,7 @@ public class UserNotif extends AppCompatActivity {
     private String[] notificationtype = new String[]{""};
     private Activity myactivity;
 
+    private int poschooselan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,8 @@ public class UserNotif extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(getResources().getString(R.string.javausernotif_3));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -170,7 +174,7 @@ public class UserNotif extends AppCompatActivity {
 
 
                                     } else if (status.compareTo("err") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_LONG).show();
                                         pDialog.dismiss();
                                     } else {
                                         Toast.makeText(getApplicationContext(),  getResources().getString(R.string.connectionfail), Toast.LENGTH_SHORT).show();

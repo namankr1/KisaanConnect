@@ -1,10 +1,10 @@
 <resources>
-<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
-<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
-<string name="network_check">https://www.google.co.in/</string>
-<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
-<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
-<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+    <string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+    <string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+    <string name="network_check">https://www.google.com/</string>
+    <string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+    <string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+    <string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
 <string name="image_text">জাতি সংযোগ করুন</string>
 <string name="app_name">KisaanConnect</string>
 <string name="title_activity_home">বাড়ি</string>
@@ -24,7 +24,7 @@
 <string name="addquotesofsubcategory_2">পণ্যের নাম</string>
 <string name="addquotesofsubcategory_3">পরিমাণ (কেজি বা টি এ)</string>
 <string name="addquotesofsubcategory_4">মূল্য (টাকা) এর</string>
-<string name="addquotesofsubcategory_5">বর্ণনা (ঐচ্ছিক)</string>
+<string name="addquotesofsubcategory_5">"বর্ণনা "</string>
 <string name="addquotesofsubcategory_6">যোগ</string>
 <string name="changepassword_1">পাসওয়ার্ড পরিবর্তন করুন</string>
 <string name="changepassword_2">নতুন পাসওয়ার্ড পরবর্তী লগইন প্রচেষ্টা অগ্রে জন্য গ্রহণ করা হবে যদি সফলভাবে পরিবর্তন</string>
@@ -158,7 +158,7 @@
 <string name="javagetallquotesuser_1">আপনার পণ্য</string>
 <string name="javagetallquotesuser_2">আপনি এখনো যোগ করেনি কোনো পণ্য</string>
 <string name="javagetallquotesuser_3">ঠিক আছে</string>
-<string name="getquotesofsubcategory_1">আপনি এখনো যোগ করেনি কোনো পণ্য</string>
+<string name="getquotesofsubcategory_1">কোন কোট পাওয়া</string>
 <string name="getquotesofsubcategory_2">ঠিক আছে</string>
 <string name="govtnotif_1">জন বিজ্ঞপ্তিগুলি</string>
 <string name="govtnotif_2">আপনার ব্রাউজারে ওপেন প্রদত্ত URL</string>
@@ -233,4 +233,6 @@
 <string name="javausernorderadapter_5">এবং চূড়ান্ত করেছে</string>
     <string name="content_home_4">KisaanConnect ব্যবহার সহজ এবং স্বজ্ঞাত. একটি বিশেষ সম্পদ কিনতে, এই পৃষ্ঠার উপরের বামদিকের দ্রুত লিঙ্ক এ যান. কিনুন সম্পদ নির্বাচন. চিহ্নিত সেক্টরের একটি বিভাগ প্রদর্শন করা হবে. কাঙ্ক্ষিত সূচিপত্রে ক্লিক. যে বিভাগ উপ-বিভাগ ক্ষেত্রেও প্রদর্শন করা হবে. পছন্দসই উপ-উপবিষয়শ্রেণীটি নির্বাচন করুন. এই সব অপ্টিমাইজ অনুসন্ধান ফলাফল আনতে হবে. আকাঙ্ক্ষিত এক উপর ক্লিক করুন. Details পৃষ্ঠার দেখানো হবে. আপনি যে পৃষ্ঠা আপস এবং স্বীকৃতি দ্বারা অনুসৃত থেকে সুদ বাড়াতে পারে. সম্পদ বিক্রি করতে, একই পথ অনুসরণ করা হয়. বিভাগ মাধ্যমে উপ-বিভাগ থেকে এ গিয়ে আপনার পণ্য যোগ করুন এবং এটি অনলাইন অবিলম্বে উপলব্ধ করা হবে.</string>
     <string name="chooselanguage_2">নিচের তালিকা ড্রপ ডাউন থেকে আবেদন ভাষা নির্বাচন করুন</string>
+    <string name="javausernegotiation_3">আমার আলোচনা</string>
+    <string name="defaultloading">.....</string>
 </resources>

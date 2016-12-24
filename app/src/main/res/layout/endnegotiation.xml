@@ -83,7 +83,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="@string/defaultloading"
                     android:id="@+id/sendername"
                     android:paddingLeft="15dp"
                     android:paddingStart="15dp"
@@ -125,7 +125,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="@string/defaultloading"
                     android:layout_below="@+id/phonelabel"
                     android:id="@+id/senderphone"
                     android:paddingLeft="15dp"
@@ -168,7 +168,7 @@
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/addresslabel"
-                    android:text=""
+                    android:text="@string/defaultloading"
                     android:id="@+id/senderaddress"
                     android:paddingLeft="15dp"
                     android:paddingStart="15dp"
@@ -208,7 +208,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="@string/defaultloading"
                     android:layout_below="@+id/pricelabel"
                     android:id="@+id/price"
                     android:paddingLeft="15dp"
@@ -249,7 +249,7 @@
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/quantitylabel"
-                    android:text=""
+                    android:text="@string/defaultloading"
                     android:id="@+id/quantity"
                     android:paddingLeft="15dp"
                     android:paddingStart="15dp"
@@ -260,7 +260,7 @@
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/endnegotiation_7"

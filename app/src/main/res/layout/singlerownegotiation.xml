@@ -12,6 +12,7 @@
         android:id="@+id/list_item_string"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/defaultloading"
         android:textSize="15sp"
         android:textColor="#000"
          />

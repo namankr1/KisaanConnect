@@ -51,6 +51,8 @@ public class sellSubcategory extends AppCompatActivity {
     private SharedPreferences.Editor buysube;
     private SharedPreferences buysubsf;
 
+    private int poschooselan;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -74,6 +76,8 @@ public class sellSubcategory extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(categoryname1);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         new ProcessUpdateFromStored().execute();
 
@@ -226,7 +230,7 @@ public class sellSubcategory extends AppCompatActivity {
                                         gridView.setAdapter(new ImageAdapter(myactivity,getApplicationContext(), subcategoryname,subcategoryid,subcategorypicture));
                                         pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{

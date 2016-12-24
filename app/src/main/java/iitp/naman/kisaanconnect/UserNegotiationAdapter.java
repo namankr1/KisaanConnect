@@ -6,11 +6,14 @@ package iitp.naman.kisaanconnect;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class UserNegotiationAdapter extends BaseAdapter {
     private Activity myactivity;
@@ -22,6 +25,7 @@ public class UserNegotiationAdapter extends BaseAdapter {
     private String[] notificationstatus;
 
     private String[] notificationtype;
+    private int poschooselan;
 
     public UserNegotiationAdapter(Activity myactivity,Context context, String[] notificationid,String[] notificationsendername,String[] notificationquantity,String[] notificationprice,String[] notificationstatus,String[] notificationtype) {
         this.context = context;
@@ -32,6 +36,8 @@ public class UserNegotiationAdapter extends BaseAdapter {
         this.notificationprice=notificationprice;
         this.notificationstatus=notificationstatus;
         this.notificationtype=notificationtype;
+        SharedPreferences sfchoosenlan = context.getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -53,17 +59,17 @@ public class UserNegotiationAdapter extends BaseAdapter {
         } else {
             gridView = convertView;
         }
-
         TextView textView = (TextView) gridView.findViewById(R.id.list_item_string);
 
         if(notifstatus==1 || notifstatus==2){
             if(notifstatus==1){
-                textView.setText(context.getResources().getString(R.string.javausernegotiationadapter_1)+" "+notificationsendername[position]+" "+context.getResources().getString(R.string.javausernegotiationadapter_2)+" "+notificationtype[position]+" "+context.getResources().getString(R.string.javausernegotiationadapter_3) +" "+notificationquantity[position]+" "+context.getResources().getString(R.string.javausernegotiationadapter_4)+" "+notificationprice[position]+" ");
+                textView.setText(context.getResources().getString(R.string.javausernegotiationadapter_1)+" "+notificationsendername[position]+" "+context.getResources().getString(R.string.javausernegotiationadapter_2)+" "+notificationtype[position].split(";")[poschooselan]+" "+context.getResources().getString(R.string.javausernegotiationadapter_3) +" "+notificationquantity[position]+" "+context.getResources().getString(R.string.javausernegotiationadapter_4)+" "+notificationprice[position]+" ");
             }
             else{
-                textView.setText(context.getResources().getString(R.string.javausernegotiationadapter_1)+" "+notificationsendername[position]+" "+context.getResources().getString(R.string.javausernegotiationadapter_2)+" "+notificationtype[position]+" "+context.getResources().getString(R.string.javausernegotiationadapter_3) +" "+notificationquantity[position]+" "+context.getResources().getString(R.string.javausernegotiationadapter_4)+" "+notificationprice[position]+" ");
+                textView.setText(context.getResources().getString(R.string.javausernegotiationadapter_1)+" "+notificationsendername[position]+" "+context.getResources().getString(R.string.javausernegotiationadapter_2)+" "+notificationtype[position].split(";")[poschooselan]+" "+context.getResources().getString(R.string.javausernegotiationadapter_3) +" "+notificationquantity[position]+" "+context.getResources().getString(R.string.javausernegotiationadapter_4)+" "+notificationprice[position]+" ");
             }
         }
+
         return gridView;
     }
 

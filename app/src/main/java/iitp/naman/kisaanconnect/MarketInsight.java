@@ -28,7 +28,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
@@ -46,7 +45,7 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
     private FixedGridView gridViewsellList;
     private FixedGridView gridViewbuyList;
     private FixedGridView gridViewpriceList;
-    private FixedGridviewImage gridViewrecommendationList;
+    private FixedGridView gridViewrecommendationList;
 
     private String serverPhone;
     private Activity myactivity;
@@ -82,6 +81,7 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
     private String[][] recommendationpict = new String[][] {};
     List<String> categories1;
     Spinner spinner;
+    private int poschooselan;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -102,13 +102,17 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
         getSupportActionBar().setTitle(getResources().getString(R.string.javamarketinsight_1));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+
         gridViewbuyList = (FixedGridView) findViewById(R.id.buyList);
         gridViewpriceList = (FixedGridView) findViewById(R.id.priceList);
-        gridViewrecommendationList = (FixedGridviewImage) findViewById(R.id.recommendationList);
+        gridViewrecommendationList = (FixedGridView) findViewById(R.id.recommendationList);
         gridViewsellList = (FixedGridView) findViewById(R.id.sellList);
 
         // Spinner element
         spinner = (Spinner) findViewById(R.id.spinner1);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
+
         new ProcessUpdateFromStored().execute();
 
 
@@ -326,7 +330,10 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
                                             }
                                         }
                                         categories1 = new ArrayList<>();
-                                        Collections.addAll(categories1,categoryname);
+                                        for(String item : categoryname){
+                                            categories1.add(item.split(";")[poschooselan]);
+                                        }
+
                                         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(myactivity, android.R.layout.simple_spinner_item, categories1);
                                         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                         spinner.setAdapter(dataAdapter);
@@ -360,7 +367,7 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
                                         pDialog.dismiss();
                                         resultserver=true;
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{
@@ -537,7 +544,9 @@ public class MarketInsight extends AppCompatActivity implements AdapterView.OnIt
             super.onPostExecute(response);
             if(response.equals("1")) {
                 categories1 = new ArrayList<>();
-                Collections.addAll(categories1,categoryname);
+                for(String item : categoryname){
+                    categories1.add(item.split(";")[poschooselan]);
+                }
                 ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(myactivity, android.R.layout.simple_spinner_item, categories1);
                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(dataAdapter);

@@ -1,10 +1,10 @@
 <resources>
-<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
-<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
-<string name="network_check">https://www.google.co.in/</string>
-<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
-<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
-<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+    <string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+    <string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+    <string name="network_check">https://www.google.com/</string>
+    <string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+    <string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+    <string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
 <string name="image_text">రేసు కనెక్ట్</string>
 <string name="app_name">KisaanConnect</string>
 <string name="title_activity_home">హోమ్</string>
@@ -24,7 +24,7 @@
 <string name="addquotesofsubcategory_2">ఉత్పత్తి పేరు</string>
 <string name="addquotesofsubcategory_3">పరిమాణం (కేజీలు లేదా nos లో)</string>
 <string name="addquotesofsubcategory_4">ధర (రూ)</string>
-<string name="addquotesofsubcategory_5">వివరణ (ఆప్షనల్)</string>
+<string name="addquotesofsubcategory_5">"వివరణ "</string>
 <string name="addquotesofsubcategory_6">చేర్చు</string>
 <string name="changepassword_1">పాస్వర్డ్ మార్చండి</string>
 <string name="changepassword_2">విజయవంతంగా మార్చబడింది ఉంటే న్యూ పాస్వర్డ్ను భావిస్తుందని తదుపరి లాగిన్ ప్రయత్నం కోసం అంగీకరించబడుతుంది</string>
@@ -157,7 +157,7 @@
 <string name="javagetallquotesuser_1">మీ ఉత్పత్తులు</string>
 <string name="javagetallquotesuser_2">మీరు ఇంకా ఏ ఉత్పత్తులు జోడించుకోని</string>
 <string name="javagetallquotesuser_3">అలాగే</string>
-<string name="getquotesofsubcategory_1">మీరు ఇంకా ఏ ఉత్పత్తులు జోడించుకోని</string>
+<string name="getquotesofsubcategory_1">తోబుట్టువుల కోట్స్ దొరకలేదు</string>
 <string name="getquotesofsubcategory_2">అలాగే</string>
 <string name="govtnotif_1">పబ్లిక్ ప్రకటనలు</string>
 <string name="govtnotif_2">మీ బ్రౌజర్లో ఇవ్వబడిన URL ఓపెన్</string>
@@ -233,4 +233,6 @@
     <string name="content_home_2">KisaanConnect గ్రామీణ భారతదేశం హృదయాలను తాకడం లక్ష్యంతో, వ్యవసాయ మార్కెటింగ్ కోసం ఒక నమ్మకమైన మరియు పూర్తి స్థాయి ప్లాట్ఫారమ్ ఏర్పరుస్తుంది. ఇది మీరు భారత రైతుల ఉపయోగించడానికి అనుకూలంగా ఒక వాస్తవిక మార్కెట్, వారి ఖర్చు భారాన్ని మరియు నష్టం కారకాలు సులభమైంది ద్వారా ఇస్తుంది. వినియోగదారులు కొనుగోలు, అమ్మకం లేదా పంటలు వంటి వనరులు అద్దెకు చేయవచ్చు, వ్యవసాయ సామగ్రి మొదలైనవి KisaanConnect కూడా ఒక ఆదర్శప్రాయమైన సంఘం రైతులకు, వనరుల బిడ్డింగ్ వ్యూహాన్ని ద్వారా మరింత లాభం పొందండి సహజముగానే ఏర్పరుస్తుంది. వినియోగదారుడు, ఈ వేదిక ఏ మిడిల్ చేర్చారు తో చౌకగా మార్కెట్ పనిచేస్తుంది. ఈ తాజా మరియు విశ్వసనీయ వనరులు నేరుగా యాక్సెస్ ఇస్తుంది.</string>
     <string name="content_home_4">KisaanConnect ఉపయోగించి సులభమైన మరియు స్పష్టమైన ఉంది. ఒక నిర్దిష్ట వనరును కొనుగోలు, ఈ పేజీ యొక్క ఎడమ ఎగువన శీఘ్ర లింకులు వెళ్ళండి. ఎంచుకోండి వనరుల కొనుగోలు. గుర్తించారు రంగాల ఒక కేతగిరీలు ప్రదర్శించబడుతుంది. కావలసిన వర్గం పై క్లిక్ చేయండి. ఆ వర్గం అసంఖ్యాక ఉప-విభాగాలు చూపబడుతుంది. కావలసిన ఉప ఉపవర్గం ఎంచుకోండి. ఈ అన్ని ఆప్టిమైజ్ శోధన ఫలితాలు నిస్తుంది. కావలసిన ఒక క్లిక్. వివరాలు పేజీ కనిపిస్తాయి. మీరు పేజీ సంధి మరియు అంగీకార తరువాత నుండి ఆసక్తి పెంచుతుందని. వనరులు అమ్మే, అదే మార్గాన్ని అనుసరిస్తున్నారు. వర్గం ద్వారా ఉప వర్గం చేయనున్నట్లు ద్వారా మీ ఉత్పత్తి జోడించండి మరియు ఇది తక్షణమే అందుబాటులో ఉంటుంది.</string>
     <string name="chooselanguage_2">డ్రాప్ క్రింద జాబితా డౌన్ అప్లికేషన్కు భాషను ఎంచుకోండి</string>
+    <string name="javausernegotiation_3">నా చర్చలు</string>
+    <string name="defaultloading">.....</string>
 </resources>

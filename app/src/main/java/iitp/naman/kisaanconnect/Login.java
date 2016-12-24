@@ -57,6 +57,7 @@ public class Login extends AppCompatActivity {
     SharedPreferences sf1;
     private ProgressDialog iDialog;
     public static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
+    private int poschooselan;
 
     private int mkFolder(String folderName){ // make a folder under Environment.DIRECTORY_DCIM
         String state = Environment.getExternalStorageState();
@@ -109,10 +110,10 @@ public class Login extends AppCompatActivity {
             case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.i("login : ", getResources().getString(R.string.sdcardpermissiongranted));
+                    Log.i("login : ", "Permission to read and write on SD card granted");
 
                 } else {
-                    Log.i("login : ", getResources().getString(R.string.sdcardpermissiondenied));
+                    Log.i("login : ", "Permission to read and write on SD card denied");
                 }
             }
         }
@@ -130,6 +131,8 @@ public class Login extends AppCompatActivity {
             getSupportActionBar().setTitle(" ");
         }
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
         sf = getSharedPreferences("yaad",MODE_PRIVATE);
         Boolean cbf = sf.getBoolean("rm",false);
         String ph = sf.getString("phonenum","");
@@ -323,6 +326,7 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
+                                    //for checking
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
                                         e = sf.edit();
@@ -345,10 +349,10 @@ public class Login extends AppCompatActivity {
                                         resultserver=response;
                                         startActivity(upanel);
                                         iDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         finish();
                                     } else if (status.compareTo("err") == 0) {
-                                        String resp = response.getString("message");
+                                        String resp = response.getString("message").split(";")[0];
                                         if(resp.equals("User account is disabled")){
                                             resp=getResources().getString(R.string.javalogin_4);
                                             Intent upanel = new Intent(getApplicationContext(), Otp.class);
@@ -360,7 +364,7 @@ public class Login extends AppCompatActivity {
                                         }
                                         else {
                                             iDialog.dismiss();
-                                            Toast.makeText(getApplicationContext(), resp, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         }
 
                                     } else {

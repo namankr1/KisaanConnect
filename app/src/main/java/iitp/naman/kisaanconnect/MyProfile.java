@@ -46,6 +46,7 @@ public class MyProfile extends AppCompatActivity{
     private SharedPreferences myprofsf;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,7 @@ public class MyProfile extends AppCompatActivity{
         if (extras != null) {
             serverPhone=extras.getString("phoneno");
         }
+
         new ProcessUpdateFromStored().execute();
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);

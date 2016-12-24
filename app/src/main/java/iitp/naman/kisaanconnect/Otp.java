@@ -39,6 +39,7 @@ public class Otp extends AppCompatActivity {
     private String inputPhone1;
     SharedPreferences.Editor e;
     SharedPreferences sf;
+    private int poschooselan;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,10 @@ public class Otp extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
+
 
         inputOtp = (EditText) findViewById(R.id.otp);
         btnVerify = (Button) findViewById(R.id.verify);
@@ -198,11 +203,11 @@ public class Otp extends AppCompatActivity {
                                         Intent upanel = new Intent(getApplicationContext(), Home.class);
                                         upanel.putExtra("phoneno", inputPhone1);
                                         startActivity(upanel);
-                                        Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan] , Toast.LENGTH_LONG).show();
                                         pDialog.dismiss();
                                         finish();
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan] , Toast.LENGTH_LONG).show();
                                         pDialog.dismiss();
                                     }
                                     else{

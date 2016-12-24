@@ -1,10 +1,10 @@
 <resources>
-<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
-<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
-<string name="network_check">https://www.google.co.in/</string>
-<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
-<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
-<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+    <string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+    <string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+    <string name="network_check">https://www.google.com/</string>
+    <string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+    <string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+    <string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
 <string name="image_text">ಓಟದ ಸಂಪರ್ಕಿಸಿ</string>
 <string name="app_name">KisaanConnect</string>
 <string name="title_activity_home">ಮುಖಪುಟ</string>
@@ -24,7 +24,7 @@
 <string name="addquotesofsubcategory_2">ಉತ್ಪನ್ನದ ಹೆಸರು</string>
 <string name="addquotesofsubcategory_3">ಪ್ರಮಾಣ (ಕೆಜಿ ಅಥವಾ ನಮ್ಮನ್ನು ರಲ್ಲಿ)</string>
 <string name="addquotesofsubcategory_4">ಬೆಲೆ (ರೂ)</string>
-<string name="addquotesofsubcategory_5">ವಿವರಣೆ (ಐಚ್ಛಿಕ)</string>
+<string name="addquotesofsubcategory_5">"ವಿವರಣೆ "</string>
 <string name="addquotesofsubcategory_6">ಸೇರಿಸಿ</string>
 <string name="changepassword_1">ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಿ</string>
 <string name="changepassword_2">ಯಶಸ್ವಿಯಾಗಿ ಬದಲಾಯಿಸಿರದೆ ಇದ್ದರೆ ಹೊಸ ಗುಪ್ತಪದವನ್ನು ನಂತರ ಮುಂದಿನ ಲಾಗಿನ್ ಪ್ರಯತ್ನ ಸಮ್ಮತಿಸಲಾಗುತ್ತದೆ</string>
@@ -157,7 +157,7 @@
 <string name="javagetallquotesuser_1">ನಿಮ್ಮ ಉತ್ಪನ್ನಗಳು</string>
 <string name="javagetallquotesuser_2">ನೀವು ಇನ್ನೂ ಯಾವುದೇ ಉತ್ಪನ್ನಗಳನ್ನು ಸೇರಿಸಿಲ್ಲ</string>
 <string name="javagetallquotesuser_3">ಸರಿ</string>
-<string name="getquotesofsubcategory_1">ನೀವು ಇನ್ನೂ ಯಾವುದೇ ಉತ್ಪನ್ನಗಳನ್ನು ಸೇರಿಸಿಲ್ಲ</string>
+<string name="getquotesofsubcategory_1">ಯಾವುದೇ ಉಲ್ಲೇಖಗಳು ಕಂಡುಬಂದಿಲ್ಲ</string>
 <string name="getquotesofsubcategory_2">ಸರಿ</string>
 <string name="govtnotif_1">ಸಾರ್ವಜನಿಕ ಸೂಚನೆಗಳು</string>
 <string name="govtnotif_2">ನಿಮ್ಮ ಬ್ರೌಸರ್ನಲ್ಲಿ ನಿರ್ದಿಷ್ಟ URL ಓಪನ್</string>
@@ -233,4 +233,6 @@
     <string name="content_home_2">KisaanConnect ಗ್ರಾಮೀಣ ಭಾರತ ಹೃದಯದಲ್ಲಿ ತಡೆದು ಗುರಿಯೊಂದಿಗೆ, ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ಒಂದು ವಿಶ್ವಾಸಾರ್ಹ ಮತ್ತು ಪೂರ್ಣ ಪ್ರಮಾಣದ ವೇದಿಕೆ ರೂಪಿಸುತ್ತದೆ. ನೀವು ಭಾರತೀಯ ರೈತರ ಬಳಕೆಗೆ ಅನುಗುಣವಾಗಿ ಒಂದು ವಾಸ್ತವ ಮಾರುಕಟ್ಟೆ, ತಮ್ಮ ವೆಚ್ಚವನ್ನು ಓವರ್ಹೆಡ್ ಮತ್ತು ನಷ್ಟ ಅಂಶಗಳು ಸರಾಗಗೊಳಿಸುವ ಮೂಲಕ ನೀಡುತ್ತದೆ. ಬಳಕೆದಾರರು, ಖರೀದಿ ಮಾರಾಟ ಅಥವಾ ಬೆಳೆಗಳು ರೀತಿಯ ಸಂಪನ್ಮೂಲಗಳನ್ನು ಬಾಡಿಗೆಗೆ ಪಡೆಯಬಹುದು, ಕೃಷಿ ಉಪಕರಣಗಳು etc. KisaanConnect ಸಹ ಆದರ್ಶ ಸಮುದಾಯ ರೈತರಿಗೆ, ಸಂಪನ್ಮೂಲ ಹರಾಜು ತಂತ್ರವನ್ನು ಮೂಲಕ ಹೆಚ್ಚು ಲಾಭ ಪಡೆಯಲು ಅವರಿಗೆ ಸಹಾಯ ರೂಪಿಸುತ್ತದೆ. ಒಂದು ಗ್ರಾಹಕ, ಈ ವೇದಿಕೆ ಯಾವುದೇ ಮಧ್ಯವರ್ತಿ ಒಳಗೊಂಡಿತ್ತು ಅಗ್ಗದ ಮಾರುಕಟ್ಟೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ. ಈ ತಾಜಾ ಮತ್ತು ವಿಶ್ವಾಸಾರ್ಹ ಸಂಪನ್ಮೂಲಗಳಿಗೆ ನೇರ ಪ್ರವೇಶವನ್ನು ನೀಡುತ್ತದೆ.</string>
     <string name="content_home_4">KisaanConnect ಬಳಸಿಕೊಂಡು ಸುಲಭ ಮತ್ತು ಗ್ರಹಿಸಬಹುದಾಗಿದೆ. ನಿರ್ದಿಷ್ಟ ಸಂಪನ್ಮೂಲ ಖರೀದಿಸಲು, ಈ ಪುಟದ ಮೇಲಿನ ಎಡಭಾಗದಲ್ಲಿ ತ್ವರಿತ ಕೊಂಡಿಗಳು ಹೋಗಿ. ಖರೀದಿ ಸಂಪನ್ಮೂಲಗಳು ಆಯ್ಕೆಮಾಡಿ. ಪಿಒ ಕ್ಷೇತ್ರಗಳ ವಿಭಾಗಗಳು ತೋರಿಸಲ್ಪಡುತ್ತದೆ. ಬಯಸಿದ ವರ್ಗದಲ್ಲಿ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ. ಆ ವರ್ಗದಲ್ಲಿ ಉಪ ವಿಭಾಗಗಳು ತೋರಿಸಲಾಗುತ್ತದೆ. ಉಪ ಉಪವಿಭಾಗವಾಗಿದೆ ಬಯಸಿದ ಆಯ್ಕೆಮಾಡಿ. ಈ ಎಲ್ಲಾ ಹೊಂದುವಂತೆ ಹುಡುಕಾಟ ಫಲಿತಾಂಶಗಳು ತರಲು ಕಾಣಿಸುತ್ತದೆ. ಬಯಸಿದ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ. ವಿವರಗಳು ಪುಟ ತೋರಿಸುತ್ತವೆ. ನೀವು ಪುಟ ಸಮಾಲೋಚನಾ ಮತ್ತು ಸಹಮತ ಆಸಕ್ತಿ ಹೆಚ್ಚಿಸಬಹುದು. ಸಂಪನ್ಮೂಲಗಳನ್ನು ಮಾರಾಟ, ಮಾರ್ಗವನ್ನೇ ಹಿಂಬಾಲಿಸುತ್ತದೆ. ವರ್ಗದಲ್ಲಿ ಮೂಲಕ ಉಪ ವರ್ಗದಲ್ಲಿ ಹೋಗುತ್ತಿರುವುದು ಮೂಲಕ ನಿಮ್ಮ ಉತ್ಪನ್ನ ಸೇರಿಸಿ ಮತ್ತು ತಕ್ಷಣ ಲಭ್ಯವಿದೆ ಆನ್ಲೈನ್ ಇರುತ್ತದೆ.</string>
     <string name="chooselanguage_2">ಕೆಳಗಿರುವ ಪಟ್ಟಿಯಿಂದ ಡ್ರಾಪ್ ಡೌನ್ ಅಪ್ಲಿಕೇಶನ್ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆ</string>
+    <string name="javausernegotiation_3">ನನ್ನ ನೆಗೋಷಿಯೇಶನ್ಸ್</string>
+    <string name="defaultloading">.....</string>
 </resources>

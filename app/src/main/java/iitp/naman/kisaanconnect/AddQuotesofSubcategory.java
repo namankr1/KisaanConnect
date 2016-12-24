@@ -6,6 +6,7 @@ package iitp.naman.kisaanconnect;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -31,8 +32,6 @@ import java.net.URL;
 
 public class AddQuotesofSubcategory extends AppCompatActivity {
     private String inputPhone1;
-//    private String category1;
-//    private String categoryname1;
     private String subcategoryname1;
     private String subcategory1;
     private EditText type1;
@@ -40,6 +39,8 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
     private EditText price1;
     private EditText description1;
     private Button add;
+    private int poschooselan;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,9 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
             subcategoryname1=extras.getString("subcategoryname");
 
         }
+
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -73,7 +77,12 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
         {
             public void onClick(View view)
             {
-                NetAsync(view);
+                if(type1.getText().toString().equals("") || description1.getText().toString().equals("") ||quantity1.getText().toString().equals("") || price1.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.javaregistert_3), Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    NetAsync(view);
+                }
             }
         });
     }
@@ -186,12 +195,12 @@ public class AddQuotesofSubcategory extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                        finish();
                                     }
                                     else if (status.compareTo("err") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else {

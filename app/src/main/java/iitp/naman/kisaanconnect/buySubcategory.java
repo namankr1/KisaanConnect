@@ -47,6 +47,7 @@ public class buySubcategory extends AppCompatActivity {
     private SharedPreferences.Editor buysube;
     private SharedPreferences buysubsf;
     private Activity myactivity;
+    private int poschooselan;
 
 
     @Override
@@ -71,6 +72,8 @@ public class buySubcategory extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(categoryname1);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         new ProcessUpdateFromStored().execute();
 
@@ -221,7 +224,7 @@ public class buySubcategory extends AppCompatActivity {
                                         resultserver=true;
                                         pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{

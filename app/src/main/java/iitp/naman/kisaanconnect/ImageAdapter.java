@@ -6,6 +6,7 @@ package iitp.naman.kisaanconnect;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -22,12 +23,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class ImageAdapter extends BaseAdapter {
     private Context context;
     private Activity myactivity;
     private final String[] categoryname;
     private final String[] categoryid;
     private final String[] categorypicture;
+    private int poschooselan;
 
 
     public ImageAdapter(Activity myactivity,Context context, String[] categoryname,String[] categoryid,String[] categorypicture) {
@@ -36,6 +40,8 @@ public class ImageAdapter extends BaseAdapter {
         this.categoryid=categoryid;
         this.categoryname=categoryname;
         this.categorypicture=categorypicture;
+        SharedPreferences sfchoosenlan = context.getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -43,15 +49,15 @@ public class ImageAdapter extends BaseAdapter {
         View gridView;
         if (convertView == null) {
             gridView = inflater.inflate(R.layout.mobile, null);
-            TextView textView = (TextView) gridView.findViewById(R.id.grid_item_label);
-            textView.setText(categoryname[position]);
-            TextView textView1 = (TextView) gridView.findViewById(R.id.grid_item_id);
-            textView1.setText(categoryid[position]);
-            new DownloadImageTaskOffline((ImageView) gridView.findViewById(R.id.grid_item_image)).execute(categorypicture[position]);
             }
         else {
             gridView = convertView;
         }
+
+        ((TextView) gridView.findViewById(R.id.grid_item_label)).setText(categoryname[position].split(";")[poschooselan]);
+        ((TextView) gridView.findViewById(R.id.grid_item_id)).setText(categoryid[position]);
+        new DownloadImageTaskOffline((ImageView) gridView.findViewById(R.id.grid_item_image)).execute(categorypicture[position]);
+
         return gridView;
     }
 
@@ -67,7 +73,7 @@ public class ImageAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     private class DownloadImageTaskOnline extends AsyncTask<String, Void, Bitmap> {
@@ -130,7 +136,9 @@ public class ImageAdapter extends BaseAdapter {
         }
 
         protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
+            if(result!=null) {
+                bmImage.setImageBitmap(result);
+            }
         }
     }
 

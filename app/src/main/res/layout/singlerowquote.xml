@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="@string/defaultloading"
             android:id="@+id/nameofseller"
             android:textAllCaps="true"
             android:textColor="#c90505"
@@ -39,7 +39,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="@string/defaultloading"
                 android:id="@+id/userrating"
                 android:textColor="#5c5c5c"
                 />
@@ -63,7 +63,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="@string/defaultloading"
             android:layout_below="@+id/pricelabel"
             android:id="@+id/bidvalue"
             android:textColor="#000"
@@ -86,7 +86,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="@string/defaultloading"
             android:layout_below="@+id/quantitylabel"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"

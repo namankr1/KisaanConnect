@@ -1,7 +1,7 @@
 <resources>
 <string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
 <string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
-<string name="network_check">https://www.google.co.in/</string>
+<string name="network_check">https://www.google.com/</string>
 <string name="network_home">https://kisaanconnect.herokuapp.com/</string>
 <string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
 <string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
@@ -24,7 +24,7 @@
 <string name="addquotesofsubcategory_2">Name of the product</string>
 <string name="addquotesofsubcategory_3">Quantity (in kg or nos)</string>
 <string name="addquotesofsubcategory_4">Price (in Rs)</string>
-<string name="addquotesofsubcategory_5">Description (Optional)</string>
+<string name="addquotesofsubcategory_5">Description</string>
 <string name="addquotesofsubcategory_6">Add</string>
 <string name="changepassword_1">Change Password</string>
 <string name="changepassword_2">New password will be accepted for next login attempt onwards if successfully changed</string>
@@ -157,7 +157,7 @@
 <string name="javagetallquotesuser_1">Your Products</string>
 <string name="javagetallquotesuser_2">You have not added any products yet</string>
 <string name="javagetallquotesuser_3">OK</string>
-<string name="getquotesofsubcategory_1">You have not added any products yet</string>
+<string name="getquotesofsubcategory_1">No quotes found</string>
 <string name="getquotesofsubcategory_2">OK</string>
 <string name="govtnotif_1">Public Notifications</string>
 <string name="govtnotif_2">Open given URL in your browser</string>
@@ -179,6 +179,7 @@
 <string name="javasell_1">Categories</string>
 <string name="javausernegotiation_1">You are not negotiating with anyone yet.</string>
 <string name="javausernegotiation_2">OK</string>
+    <string name="javausernegotiation_3">My Negotiations</string>
 <string name="javausernotif_1">No new notifications</string>
 <string name="javausernotif_2">OK</string>
 <string name="javausernotif_3">Your Notifications</string>
@@ -231,9 +232,7 @@
 <string name="javausernorderadapter_4">has accepted you bid of</string>
 <string name="javausernorderadapter_5">and has finalised</string>
     <string name="chooselanguage_2">Select the application language from the drop down list below</string>
-
-    <string name="sdcardpermissiongranted">Permission to read and write on SD card granted</string>
-    <string name="sdcardpermissiondenied">Permission to read and write on SD card denied</string>
     <string name="content_home_2">KisaanConnect, with the aim of touching the hearts of rural india, forms a reliable and full-fledged platform for agricultural marketing. It gives you a virtual marketplace, tailored for the use of Indian farmers by easing their cost overhead and loss factors. Users can buy, sell or rent resources like crops, agricultural equipments etc. KisaanConnect also forms an ideal community for farmers, helping them to get more profit by resource bidding strategy. For a customer, this platform serves as cheap marketplace with no middleman included. This gives direct access to fresh and reliable resources.</string>
     <string name="content_home_4">Using KisaanConnect is easy and intuitive. To buy a particular resource, go to quick links at the top left of this page. Select Buy Resources. A categories of identified sectors will be displayed. Click on the desired category. Sub-categories of that category will be shown. Select desired sub-subcategory. This will fetch all optimized search results. Click on desired one. Details page will show up. You can raise interest from that page followed by negotiation and acceptance. To sell resources, same path is followed. Add your product by going in to the sub-category via category and it will be instantly available online.</string>
+<string name="defaultloading">.....</string>
 </resources>

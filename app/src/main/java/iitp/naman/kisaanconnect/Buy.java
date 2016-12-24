@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
@@ -49,6 +50,7 @@ public class Buy extends AppCompatActivity {
     private SharedPreferences.Editor buye;
     private SharedPreferences buysf;
     private Activity myactivity;
+    private int poschooselan;
 
 
 
@@ -72,6 +74,8 @@ public class Buy extends AppCompatActivity {
         if (extras != null) {
             inputPhone1 = extras.getString("phoneno");
         }
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position", 0);
 
         new ProcessUpdateFromStored().execute();
 
@@ -219,7 +223,7 @@ public class Buy extends AppCompatActivity {
                                         resultserver=true;
                                         pDialog.dismiss();
                                     } else if (status.compareTo("err") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else {

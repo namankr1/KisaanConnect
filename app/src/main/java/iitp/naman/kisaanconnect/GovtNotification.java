@@ -48,6 +48,7 @@ public class GovtNotification extends AppCompatActivity {
 
     private SharedPreferences.Editor govte;
     private SharedPreferences govtsf;
+    private int poschooselan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,9 @@ public class GovtNotification extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(getResources().getString(R.string.govtnotif_1));
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -111,7 +115,7 @@ public class GovtNotification extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        new NetCheck1().execute();
+        new ProcessUpdateFromStored().execute();
     }
 
 
@@ -226,7 +230,7 @@ public class GovtNotification extends AppCompatActivity {
                                         resultserver=true;
                                         pDialog.dismiss();
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{
@@ -329,52 +333,6 @@ public class GovtNotification extends AppCompatActivity {
                 new NetCheck().execute();
                 pDialog.dismiss();
             }
-
-        }
-    }
-
-    private class NetCheck1 extends AsyncTask<String, Void, Boolean>
-    {
-        private ProgressDialog nDialog;
-
-        @Override
-        protected void onPreExecute(){
-            super.onPreExecute();
-            nDialog = MyCustomProgressDialog.ctor(GovtNotification.this);
-            nDialog.setCancelable(false);
-            nDialog.show();
-        }
-
-        @Override
-        protected Boolean doInBackground(String... args){
-            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo netInfo = cm.getActiveNetworkInfo();
-            if (netInfo != null && netInfo.isConnected()) {
-                try {
-                    URL url = new URL(getResources().getString(R.string.network_check));
-                    HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-                    urlc.setConnectTimeout(3000);
-                    urlc.connect();
-                    if (urlc.getResponseCode() == 200) {
-                        return true;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            return false;
-
-        }
-        @Override
-        protected void onPostExecute(Boolean th){
-
-            if(th){
-                new ProcessRegister().execute();
-            }
-            else{
-                new ProcessUpdateFromStored().execute();
-            }
-            nDialog.dismiss();
         }
     }
 }

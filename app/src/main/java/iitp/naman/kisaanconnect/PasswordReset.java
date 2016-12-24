@@ -7,6 +7,7 @@ package iitp.naman.kisaanconnect;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -34,6 +35,7 @@ public class PasswordReset extends AppCompatActivity {
 
     private EditText inputPhone;
     private Button btnReset;
+    private int poschooselan;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,9 @@ public class PasswordReset extends AppCompatActivity {
         }
         getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
+
 
         inputPhone = (EditText) findViewById(R.id.phone);
         btnReset = (Button) findViewById(R.id.reset);
@@ -53,7 +58,12 @@ public class PasswordReset extends AppCompatActivity {
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NetAsync(view);
+                if(inputPhone.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.javalogin_2), Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    NetAsync(view);
+                }
             }
         });
     }
@@ -174,7 +184,7 @@ public class PasswordReset extends AppCompatActivity {
                                         pDialog.dismiss();
                                         finish();
                                     }else if(status.compareTo("err") == 0){
-                                        Toast.makeText(getApplicationContext(), response.getString("message") , Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan] , Toast.LENGTH_LONG).show();
                                         pDialog.dismiss();
                                     }
                                     else{

@@ -6,6 +6,7 @@ package iitp.naman.kisaanconnect;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -36,6 +37,7 @@ public class ChangePassword extends AppCompatActivity {
     private Button btnconfirm;
 
     private String serverPhone;
+    private int poschooselan;
 
 
     @Override
@@ -51,6 +53,8 @@ public class ChangePassword extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        SharedPreferences sfchoosenlan = getSharedPreferences("languagechoosen",MODE_PRIVATE);
+        poschooselan = sfchoosenlan.getInt("position",0);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -66,8 +70,17 @@ public class ChangePassword extends AppCompatActivity {
                 public void onClick(View view) {
                     String inputnewpass=newpass.getText().toString();
                     String inputconfirmnewpass=confirmnewpass.getText().toString();
+
+
+
                     if(inputconfirmnewpass.equals(inputnewpass)) {
-                        NetAsync(view);
+
+                        if(inputnewpass.equals("")||oldpass.getText().toString().equals("")){
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.javaregistert_3), Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            NetAsync(view);
+                        }
                     }
                     else{
                         Toast.makeText(getApplicationContext(), getResources().getString(R.string.javachangepassword_1), Toast.LENGTH_SHORT).show();
@@ -177,11 +190,11 @@ public class ChangePassword extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if (status.compareTo("ok") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                         finish();
                                     } else if (status.compareTo("err") == 0) {
-                                        Toast.makeText(getApplicationContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), response.getString("message").split(";")[poschooselan], Toast.LENGTH_SHORT).show();
                                         pDialog.dismiss();
                                     }
                                     else{

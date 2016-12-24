@@ -1,10 +1,10 @@
 <resources>
-<string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
-<string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
-<string name="network_check">https://www.google.co.in/</string>
-<string name="network_home">https://kisaanconnect.herokuapp.com/</string>
-<string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
-<string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
+    <string name="network_url">https://kisaanconnect.herokuapp.com/api/user/</string>
+    <string name="network_url_category">https://kisaanconnect.herokuapp.com/api/categorization/</string>
+    <string name="network_check">https://www.google.com/</string>
+    <string name="network_home">https://kisaanconnect.herokuapp.com/</string>
+    <string name="network_notification">https://kisaanconnect.herokuapp.com/api/notification/</string>
+    <string name="network_quotes">https://kisaanconnect.herokuapp.com/api/quotes/</string>
 <string name="image_text">ریس مربوط کریں</string>
 <string name="app_name">KisaanConnect</string>
 <string name="title_activity_home">ہوم</string>
@@ -24,7 +24,7 @@
 <string name="addquotesofsubcategory_2">پروڈکٹ کا نام</string>
 <string name="addquotesofsubcategory_3">مقدار (کلو یا تعداد میں)</string>
 <string name="addquotesofsubcategory_4">قیمت (روپے میں)</string>
-<string name="addquotesofsubcategory_5">تفصیل (اختیاری)</string>
+<string name="addquotesofsubcategory_5">تفصیل</string>
 <string name="addquotesofsubcategory_6">شامل کریں</string>
 <string name="changepassword_1">پاس ورڈ تبدیل کریں</string>
 <string name="changepassword_2">کامیابی کے ساتھ تبدیل تو نیا پاس ورڈ بعد اگلے لاگ ان کی کوشش کو قبول کیا جائے گا</string>
@@ -157,7 +157,7 @@
 <string name="javagetallquotesuser_1">آپ کی مصنوعات</string>
 <string name="javagetallquotesuser_2">ابھی تک آپ کوئی مصنوعات شامل نہیں کی ہیں</string>
 <string name="javagetallquotesuser_3">ٹھیک ہے</string>
-<string name="getquotesofsubcategory_1">ابھی تک آپ کوئی مصنوعات شامل نہیں کی ہیں</string>
+<string name="getquotesofsubcategory_1">کوئی قیمت درج پایا</string>
 <string name="getquotesofsubcategory_2">ٹھیک ہے</string>
 <string name="govtnotif_1">پبلک نوٹیفیکیشن</string>
 <string name="govtnotif_2">آپ کے براؤزر میں کھولیں دی URL</string>
@@ -233,4 +233,6 @@
     <string name="content_home_2">، دیہی بھارت کے دلوں کو چھونے کے مقصد کے ساتھ، زرعی مارکیٹنگ کے لئے ایک قابل اعتماد اور مکمل پلیٹ فارم بناتی. یہ آپ کو ان کی لاگت ہیڈ اور نقصان عوامل نرمی کی طرف سے بھارتی کسانوں کے استعمال کے لیے موزوں ایک مجازی بازار، دیتا ہے. صارفین، خرید، فروخت یا فصلوں جیسے وسائل کرایہ پر کر سکتے، زرعی سازوسامان وغیرہ KisaanConnect بھی ایک مثالی کمیونٹی کسانوں کے لئے، وسائل کی بولی کے عمل کی حکمت عملی کی طرف سے زیادہ منافع حاصل کرنے کے لئے ان کی مدد بناتی. ایک گاہک کے لئے، اس پلیٹ فارم کے ساتھ کوئی بچولیا شامل کے طور پر سستے بازار کی خدمت کرتا ہے. یہ تازہ اور قابل اعتماد وسائل کو براہ راست رسائی فراہم کرتا ہے.</string>
     <string name="content_home_4">KisaanConnect کا استعمال کرتے ہوئے آسان اور بدیہی ہے. کسی خاص وسائل کو خریدنے کے لئے، اس صفحے کے سب سے اوپر بائیں میں فوری روابط پر جانے. وسائل تر کریں. شناخت کر کے شعبوں کی ایک زمرے دکھایا جائے گا. مطلوبہ قسم پر کلک کریں. اس قسم کی ذیلی اقسام دکھایا جائے گا. خواہش ظاہر کی ذیلی ذیلی زمرہ منتخب کریں. یہ تمام مرضی کے تلاش کے نتائج لانے گا. مطلوبہ ایک پر کلک کریں. تفصیلات کے صفحے پر دکھایا جائے گا. تم مذاکرات اور قبولیت کے بعد کیا اس صفحہ سے دلچسپی کو بڑھا سکتے ہیں. وسائل کو فروخت کرنے کے لئے، اسی راستے کی پیروی کی ہے. زمرے کے ذریعے ذیلی زمرہ کرنے کے لیے جانے سے آپ کی مصنوعات کو شامل کریں اور اسے آن لائن کو فوری طور پر دستیاب ہو جائے گا.</string>
     <string name="chooselanguage_2">ذیل کی فہرست ڈراپ ڈاؤن سے درخواست زبان منتخب کریں</string>
+    <string name="javausernegotiation_3">میرا مذاکرات</string>
+    <string name="defaultloading">.....</string>
 </resources>
